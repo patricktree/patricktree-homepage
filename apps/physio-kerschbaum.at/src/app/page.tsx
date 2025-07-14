@@ -111,7 +111,7 @@ function HomePage() {
         </p>
         <p>
           Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in der{' '}
-          <strong>Gemeinschaftspraxis &quot;Körperfunk&quot;</strong> in 1030 Wien tätig.
+          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong> in 1030 Wien tätig.
           Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
         </p>
         <span>Meine 3 Schwerpunkte:</span>
@@ -189,11 +189,11 @@ function HomePage() {
         </span>
         <ul>
           <li>
-            seit 06/2025 freiberufliche Physiotherapeutin in der Gemeinschaftspraxis
-            &quot;Körperfunk&quot;, Wien
+            seit 06/2025 freiberufliche Physiotherapeutin in der Gemeinschaftspraxis &quot;Physio
+            Allround&quot;, Wien
           </li>
           <li>
-            seit 12/2023 Intensivstation für Innere Medizin und Schwerbrandverletzte im AKH Wien
+            12/2023-07/2025 Intensivstation für Innere Medizin und Schwerbrandverletzte im AKH Wien
           </li>
           <li>07/2023-01/2024 Wirbelsäulengymnastik bei Willl-Gesund, Zwettl-NÖ</li>
           <li>07/2022-11/2023 NRZ Rosenhügel, Wien</li>
@@ -310,7 +310,7 @@ function HomePage() {
           Standort & Kontakt
         </Heading>
         <p>
-          <strong>Gemeinschaftspraxis &quot;Körperfunk&quot;</strong>
+          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong>
           <br />
           Physiotherapeutin Jasmin Kerschbaum, BSc.
           <br />
@@ -324,8 +324,8 @@ function HomePage() {
           <strong>Terminbuchung unter:</strong>
           <br />
           online:{' '}
-          <a href="https://www.koerperfunk.at/termin-buchen-1030">
-            www.koerperfunk.at/termin-buchen-1030
+          <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
+            https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307
           </a>
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
