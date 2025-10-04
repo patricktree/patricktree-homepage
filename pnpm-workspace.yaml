@@ -5,3 +5,4 @@ packages:
   - test/*
 onlyBuiltDependencies:
   - sharp
+  - unrs-resolver
