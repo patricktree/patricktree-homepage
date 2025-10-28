@@ -50,6 +50,23 @@ export default function RootLayout({ children }: LayoutProps) {
         <style dangerouslySetInnerHTML={{ __html: cssReset }} />
         <style dangerouslySetInnerHTML={{ __html: cssBase }} />
 
+        {/* Google tag (gtag.js) */}
+        {/* eslint-disable-next-line @next/next/next-script-for-ga -- don't care about that here */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SGY3FJ65G" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments); 
+              }
+              gtag('js', new Date());
+
+              gtag('config', 'G-4SGY3FJ65G');
+            `,
+          }}
+        />
+
         {/* 
               Some critical CSS which will disable animations until some data attribute is set on the 
               root element. This will avoid running animations on mount of components.
