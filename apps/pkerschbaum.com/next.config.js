@@ -2,7 +2,7 @@
 import createMDX from '@next/mdx';
 import { withPigment } from '@pigment-css/nextjs-plugin';
 
-import { createMdxOptions } from '@pkerschbaum-homepage/mdx/mdx';
+import { createMdxOptions } from '@patricktree-homepage/mdx/mdx';
 
 /** @type {import('next').NextConfig} */
 let nextConfig = {
@@ -37,11 +37,11 @@ let nextConfig = {
     return [
       {
         source: '/p.io/js/script.js',
-        destination: 'https://analytics.pkerschbaum.com/js/script.js',
+        destination: 'https://analytics.patricktree.me/js/script.js',
       },
       {
         source: '/p.io/api/event',
-        destination: 'https://analytics.pkerschbaum.com/api/event',
+        destination: 'https://analytics.patricktree.me/api/event',
       },
     ];
   },

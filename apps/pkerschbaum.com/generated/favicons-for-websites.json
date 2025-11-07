@@ -48,7 +48,7 @@
     "https://nodejs.org/favicon.ico": {
       "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAATvSURBVHgBpVfNixxFFH+ve3c2MZfxIyoEYfMf5E8YUDBIDrvehICzB8GgsLvgxYPMzMljNncPC14iBHdAUDEb00dv5j/IIGhwv5hkZ2d7u7vq+eqzq6fb7EeK6anq6ur3+9XvvXpVjXDBcvvBh6tSUP8kpXE2FYOf7vy+CRcoCOcs3a2bnYKoRwI6TAAEX8dHEoBgJIpo+ecvHj45j70zE/j8l5uLWUF3hYAlKQCkVBeBIpFnBFlKgBFAFEebGMWD4cqvo7PYPZXA2tZSe3IpWyWiNQZrG3ADrEnY+1SpoAyyRUUEY+wPV7YHr0Tgs98+6iJBjwgWPWiNgKlFziqckCYQRcgktCIjhGjw48rDzXMR+PLxrU5eUA+IOozF/jW+pgDQ1+oqSJNSrlBt1AQcEV0/mZfx8v0Gt1QIrD1eameQ32VjXSBkXAsqTS1kQGKWiArIAjQJZNmiGRJamRg34zge3P+kJBK5xq3vOqsZFE+52eVXOKgJzM/Iqlq2KrlTtTYgWjBDmkryqs11tyiKPz/+/oNejcDhi3zjaJK3vRzkYDAQChv0I/+CI0tkuh0Jo6RxEyvbPtwV/U6/064QYMXhn7+mftYOi4ggmL/tr4cOUUlWya7cAmbWpQJ8HR8JyDlYYQGqBJSfslzC/t6JNuRx0LrBztFb8vO27yMGZPRIDQx+uHHVdCJ5spJqLiAOHHXt7qQ64p0hLOlYUliGATQvI03GAkv+U3AqSNNjqWuAkq0nABGPjIkEa3dwkFbNBzPW3sGyrcfYWHDOcm6TdumSjYV0KmbiJnQB2h/37O+fmIBpLBTobsn4gC3/VSWDQDxJpXGJDlSsE1Dyswr8WILgkTu76azlALUUhuRsPFCpFFcqNyglslyQ8z01KaDk5wGmh988GKdQ5BWTtbbJ+1h76j1EZvYqRTNRozBAswJq9vqOiag8rmw9e5rVUDFY9w6ksmRCCg5IaoXJuaxZAQUa80jkoWojOZqH6aHQV7XUkxK5zOOpVe/1aBmhzy9I1ESAFVIklGaRekF37z3LTt2zy2xpXRAuE5sTQJoxhFRhFhCQBlyFQTrvZTrmxDF53qQCVZahSVYYKKLuonDJc0T6EKjnAYrMKsC0BVRgxU+7f2fQNO9yloFDKIwRquUQ3aUGX5ohoANPyTSZs+ZL5mqLPfg3r1qBIJgwUAXLGDECYdWFrAJFDalYyY/PF8yrWPf6eK/QpyFt2OGi3ywsqUoqspMgm7DcM4YUged9a9Iaw3TezIwIZnjrZDLezy0wlGL4gr6vzB4UeKJMUJGI1eBxhUC0c2XANsbgbVeXkSov9nkrzWUNc/ZcUD1DVJuMOAYB68l6orFi1z96NPrj+vvXf2Dg19nADWgo9lQDl6/Efld22c7tfCQxeKYu9O+x3XuQwnLyTZI0cfOl821nkZ9ssfFGIm+/14LWQmQPqsHxXJ8LzQFW3Qd1QgUMkq9L4JcSCIh0GaLHzcWwf+FyBFevtcqTsgwBDQlLaMT7yfqjr5Lh/2GcluQckT5nsFV2b9sdWN+6Nq9VqHygCDd7Gssc7rUKuTG0vn4lApbEIld9Bv9U3V96LYY33p2rfqiY9hBzsT68k4zOYvfMBEIirMYWi3CjfXVOE5HmxJvwdyN/E24n57F3bgIBkW7cwt6b78y1+awzeHB7ewMuUP4DdZRpUvCDD5UAAAAASUVORK5CYII="
     },
-    "https://pkerschbaum.com/favicons/favicon-32x32.png": {
+    "https://patricktree.me/favicons/favicon-32x32.png": {
       "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABd1BMVEUAAAAkJCQgICIfHyMgICMfICMfICMfHyMgICMnJyciIiIfICQfICMfISIcIiIcHBwfISMfHyMfHyMgICAfHyMfICMfHx8fHyQfHyMhISEgICAfICQfISMgICQfHyMfICQfICIgICMgICMfHyMfICMfICMfICMeICMeISQVKyseHiYeICQfICMkJCQeICMfICMcHCYcIiIkJCQeICIeICIfICIeICMeISQfICNGR0phYWNRUlTk5OX6+vrAwMEwMTNBQkWAgYK9vb6hoaJiY2Wqq6zi4uKio6QtLjFXWFq8vL1OT1FVVlghIiXS0tLHx8gpKiyHiIkjJCdJSkympqeUlZZWV1koKSxqa21/gIKCg4Tj4+Ryc3XJycqpqquMjY6FhYdpamzGx8dISUv4+Pjx8fE3ODuam5zs7OwrLC+urq+ys7QnKCvc3N329vZnZ2k+PkH5+fm2treYmJpKS02TlJWGh4k2Nzl7fH0iIybr6+svMDP///+KKfezAAAAOHRSTlMADlmbyur6mlgNJp31nCUJjPuKCNPHGTHjLhjQzIHzlvRXmevp+fiYVQwih8YH4uUbLRXBhsiXVsnIqF0AAAABYktHRHzRtiBfAAAACXBIWXMAAAHrAAAB6wGM2bZBAAAAB3RJTUUH5gUeECse5LaemQAAAYpJREFUOMt9k/k/AkEYxodOSiWiIm1ppShnjHgLISLKVc7cRwiRI/+83dl2262t55d3dp7v7PvOfN4XIUEtrQqlSq1WKTXaNlSvdp0eC9J3GGpso6kTS6Q2d4l9Qzeuk6Wn6veqsIysNuG8rM8Qds7v6pPuz4X5Vb+RACaJPb8AEeHDQe4nrT8KImCATaLDjQHsZN5P3wyg2lArbgZgF1KQuLi0HFtZXYuvV4CNRHyTGG6kJHELIJFMbsNOkgNS6d3Ke6JBEvcA9jE+ADgkQCbLp/AgWgQcARyzQCZykqoAQxLgFCDNAGfnADkBEKe4ALhkgKvrG7i941MoRcA9PDySGvIAeb5IDQ884eeXwit3zbcCvM8Tw4u0PFAMf8Q+mVWp9BX9zpVKP7+sMYx8VDVFvSgfQh3NAA3bT+rGAO1nG8LMrLLlcvGvHhjhWs6CG2g0wDWlPSjvj43zbW2zyvnBiepgTE7J/N8uHq2Ag6qpfzpQM512pwih3H6Z+fa5vCEPTXtCM7O+6u4/JjK7hhvNlzMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDUtMzBUMTY6NDM6MzArMDA6MDCnV4iFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA1LTMwVDE2OjQzOjMwKzAwOjAw1gowOQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABXelRYdFJhdyBwcm9maWxlIHR5cGUgaXB0YwAAeJzj8gwIcVYoKMpPy8xJ5VIAAyMLLmMLEyMTS5MUAxMgRIA0w2QDI7NUIMvY1MjEzMQcxAfLgEigSi4A6hcRdPJCNZUAAAAASUVORK5CYII="
     },
     "https://playwright.dev/img/playwright-logo.ico": {
@@ -308,10 +308,10 @@
         "light": "https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png"
       }
     },
-    "https://pkerschbaum.com/tidbits/multiple-vs-code-instances-with-separate-nodejs-versions": {
+    "https://patricktree.me/tidbits/multiple-vs-code-instances-with-separate-nodejs-versions": {
       "iconURLs": {
-        "dark": "https://pkerschbaum.com/favicons/favicon-32x32.png",
-        "light": "https://pkerschbaum.com/favicons/favicon-32x32.png"
+        "dark": "https://patricktree.me/favicons/favicon-32x32.png",
+        "light": "https://patricktree.me/favicons/favicon-32x32.png"
       }
     },
     "https://playwright.dev/docs/api/class-testconfig#test-config-snapshot-path-template": {
@@ -398,13 +398,13 @@
         "light": "https://www.docker.com/app/uploads/2024/02/cropped-docker-logo-favicon-32x32.png"
       }
     },
-    "https://www.npmjs.com/package/@pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths": {
+    "https://www.npmjs.com/package/@patricktree/codemod-rewrite-module-specifiers-to-full-paths": {
       "iconURLs": {
         "dark": "https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png",
         "light": "https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png"
       }
     },
-    "https://www.npmjs.com/package/@pkerschbaum/pkg-consumption-test": {
+    "https://www.npmjs.com/package/@patricktree/pkg-consumption-test": {
       "iconURLs": {
         "dark": "https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png",
         "light": "https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png"

@@ -1,9 +1,9 @@
 import {
   DataAttribute as MDXBlogDataAttribute,
   Classes as MDXBlogClasses,
-} from '@pkerschbaum-homepage/mdx-blog/constants-browser';
+} from '@patricktree-homepage/mdx-blog/constants-browser';
 
-export { ClassesAliases, ColorTheme } from '@pkerschbaum-homepage/mdx-blog/constants-browser';
+export { ClassesAliases, ColorTheme } from '@patricktree-homepage/mdx-blog/constants-browser';
 
 const BREAKPOINTS = {
   tabletMin: 600,

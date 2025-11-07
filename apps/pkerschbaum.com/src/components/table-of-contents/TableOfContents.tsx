@@ -1,7 +1,7 @@
 import { styled } from '@pigment-css/react';
 import React from 'react';
 
-import type { Heading } from '@pkerschbaum-homepage/mdx/schema';
+import type { Heading } from '@patricktree-homepage/mdx/schema';
 
 import { TableOfContentsAnchors } from '#pkg/components/table-of-contents/TableOfContentsAnchors.jsx';
 

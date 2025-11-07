@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
       <YearAndContact>
         <span>{dayjs().year()}</span>
         <span>-</span>
-        <Link href="/">pkerschbaum</Link>
+        <Link href="/">patricktree</Link>
       </YearAndContact>
     </FooterContainer>
   );

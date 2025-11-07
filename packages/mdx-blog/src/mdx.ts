@@ -6,10 +6,10 @@ import {
   type MDXFile,
   type MDXParseResult,
   schema_frontmatterData,
-} from '@pkerschbaum-homepage/mdx/schema';
+} from '@patricktree-homepage/mdx/schema';
 
-export { parseMDXFileAndCollectHrefs } from '@pkerschbaum-homepage/mdx/mdx';
-export type { MDXParseResult } from '@pkerschbaum-homepage/mdx/schema';
+export { parseMDXFileAndCollectHrefs } from '@patricktree-homepage/mdx/mdx';
+export type { MDXParseResult } from '@patricktree-homepage/mdx/schema';
 
 export async function getAllMarkdownFiles(absolutePathToDirectory: string): Promise<MDXFile[]> {
   let files = await fs.promises.readdir(absolutePathToDirectory);

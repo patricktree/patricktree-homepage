@@ -1,5 +1,5 @@
+import { urlUtils } from '@patricktree/commons-ecma/util/url';
 import { styled } from '@pigment-css/react';
-import { urlUtils } from '@pkerschbaum/commons-ecma/util/url';
 import type React from 'react';
 
 import { Classes } from '#pkg/constants-browser.js';

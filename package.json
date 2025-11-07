@@ -1,8 +1,8 @@
 {
-  "name": "pkerschbaum-homepage",
+  "name": "patricktree-homepage",
   "private": true,
   "scripts": {
-    "build": "superturbo build --filter=\"@pkerschbaum-homepage/superturbo\" && superturbo build --filter=\"!@pkerschbaum-homepage/superturbo\"",
+    "build": "superturbo build --filter=\"@patricktree-homepage/superturbo\" && superturbo build --filter=\"!@patricktree-homepage/superturbo\"",
     "dev": "pnpm --parallel --filter=\"./packages/*\" run dev",
     "format": "prettier --write --ignore-unknown .",
     "lint": "superturbo lint",
@@ -15,11 +15,11 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.3.1",
-    "@pkerschbaum-homepage/config-eslint": "workspace:*",
-    "@pkerschbaum-homepage/config-stylelint": "workspace:*",
-    "@pkerschbaum-homepage/config-typescript": "workspace:*",
-    "@pkerschbaum-homepage/superturbo": "workspace:*",
-    "@pkerschbaum/pkg-management": "^2.1.0",
+    "@patricktree-homepage/config-eslint": "workspace:*",
+    "@patricktree-homepage/config-stylelint": "workspace:*",
+    "@patricktree-homepage/config-typescript": "workspace:*",
+    "@patricktree-homepage/superturbo": "workspace:*",
+    "@patricktree/pkg-management": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
     "del-cli": "^6.0.0",
@@ -44,7 +44,7 @@
     "typescript": "~5.8.3"
   },
   "dependenciesMeta": {
-    "@pkerschbaum-homepage/config-eslint": {
+    "@patricktree-homepage/config-eslint": {
       "injected": true
     }
   },

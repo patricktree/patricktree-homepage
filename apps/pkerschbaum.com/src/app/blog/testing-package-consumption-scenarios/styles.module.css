@@ -1,4 +1,4 @@
-.favicons :global(.styled-anchor)[href="https://www.npmjs.com/package/@pkerschbaum/pkg-consumption-test"] :global(.fancy-anchor-icon)::before, .favicons :global(.styled-anchor)[href="https://npmjs.com"] :global(.fancy-anchor-icon)::before
+.favicons :global(.styled-anchor)[href="https://www.npmjs.com/package/@patricktree/pkg-consumption-test"] :global(.fancy-anchor-icon)::before, .favicons :global(.styled-anchor)[href="https://npmjs.com"] :global(.fancy-anchor-icon)::before
 {
   display: inline-block;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAklEQVR4AewaftIAAACiSURBVMXBsQmDUABF0evLrwISy2yQ1g3UzpHcyBXs9HeCE2SJgEhq0waxEBTeOckEK0bCTJgJM2EW2PGoa9Ki4EpLjMxdx1ZgR1oUPJuGq81dx5YwE2bCLHDSMgxs3fOcW5ZxROCkd1Wx9ep70rLkCGEmzISZMBNmwkyYCTNhJsyEmTATZsIssGOJkTM+bct3HPm3xMieZIIVI2EmzISZMPsBPLUeCZWhvyQAAAAASUVORK5CYII=');

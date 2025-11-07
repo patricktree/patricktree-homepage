@@ -1,5 +1,5 @@
 {
-  "extends": "@pkerschbaum-homepage/config-typescript/tsconfig.json",
+  "extends": "@patricktree-homepage/config-typescript/tsconfig.json",
   "compilerOptions": {
     /* Type Checking*/
     "strictNullChecks": true,

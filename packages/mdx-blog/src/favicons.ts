@@ -1,7 +1,7 @@
-import { schema_faviconsForWebsites } from '@pkerschbaum/fetch-favicon';
+import { schema_faviconsForWebsites } from '@patricktree/fetch-favicon';
 import fs from 'node:fs';
 
-import type { MDXParseResult } from '@pkerschbaum-homepage/mdx/schema';
+import type { MDXParseResult } from '@patricktree-homepage/mdx/schema';
 
 import { PATHS } from '#pkg/constants-server.js';
 

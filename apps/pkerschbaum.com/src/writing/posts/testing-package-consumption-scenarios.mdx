@@ -18,9 +18,9 @@ As package authors, we often need our creations to be versatile, working seamles
 
 Manually testing your package in each of these "consumption scenarios" can quickly become tedious and error-prone. Automating this process is desirable.
 
-## Automating Consumption Tests with `@pkerschbaum/pkg-consumption-test`
+## Automating Consumption Tests with `@patricktree/pkg-consumption-test`
 
-One tool that can help automate this is <FancyAnchor href="https://www.npmjs.com/package/@pkerschbaum/pkg-consumption-test">`@pkerschbaum/pkg-consumption-test`</FancyAnchor>. It is designed to automate the testing of these package consumption scenarios.
+One tool that can help automate this is <FancyAnchor href="https://www.npmjs.com/package/@patricktree/pkg-consumption-test">`@patricktree/pkg-consumption-test`</FancyAnchor>. It is designed to automate the testing of these package consumption scenarios.
 
 Here's how it works under the hood:
 
@@ -40,11 +40,11 @@ The setup involves the following steps:
 1.  Install the package as a dev dependency:
 
     ```bash
-    npm add --save-dev @pkerschbaum/pkg-consumption-test
+    npm add --save-dev @patricktree/pkg-consumption-test
     # or using pnpm
-    pnpm add --save-dev @pkerschbaum/pkg-consumption-test
+    pnpm add --save-dev @patricktree/pkg-consumption-test
     # or using yarn
-    yarn add --dev @pkerschbaum/pkg-consumption-test
+    yarn add --dev @patricktree/pkg-consumption-test
     ```
 
 2.  Add a script to your `package.json` to run the tests. You'll need to specify your package's name and the directory where your test scenarios will live.
@@ -196,4 +196,4 @@ You can add more subdirectories for other scenarios (Node.js CJS, browser enviro
 
 ## Conclusion
 
-`@pkerschbaum/pkg-consumption-test` provides a structured and automated way to test if your npm packages work reliably across the diverse JavaScript ecosystem. By simulating real-world consumption patterns using a private registry, it helps catch integration issues early before publishing new versions.
+`@patricktree/pkg-consumption-test` provides a structured and automated way to test if your npm packages work reliably across the diverse JavaScript ecosystem. By simulating real-world consumption patterns using a private registry, it helps catch integration issues early before publishing new versions.

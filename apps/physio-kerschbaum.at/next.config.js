@@ -34,11 +34,11 @@ let nextConfig = {
     return [
       {
         source: '/p.io/js/script.js',
-        destination: 'https://analytics.pkerschbaum.com/js/script.js',
+        destination: 'https://analytics.patricktree.me/js/script.js',
       },
       {
         source: '/p.io/api/event',
-        destination: 'https://analytics.pkerschbaum.com/api/event',
+        destination: 'https://analytics.patricktree.me/api/event',
       },
     ];
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@pkerschbaum-homepage/config-eslint",
+  "name": "@patricktree-homepage/config-eslint",
   "private": true,
   "peerDependencies": {
     "eslint-config-next": "^15"

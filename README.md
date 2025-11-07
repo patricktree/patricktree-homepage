@@ -1,4 +1,4 @@
-# pkerschbaum.com <!-- omit in toc -->
+# patricktree.me <!-- omit in toc -->
 
 - [Development](#development)
   - [Prerequisites](#prerequisites)
@@ -25,7 +25,7 @@
 
 ### Code Organization
 
-- [`./apps/pkerschbaum.com`](./apps/pkerschbaum.com): the homepage
+- [`./apps/patricktree.me`](./apps/patricktree.me): the homepage
 - [`./packages`](./packages): libraries
 - [`./platform`](./platform): configurations and tools for the monorepo
 
@@ -49,7 +49,7 @@
    pnpm dev
    ```
 
-1. **Start a local instance of `@pkerschbaum-homepage/web`:**
+1. **Start a local instance of `@patricktree-homepage/web`:**
 
    ```sh
    pnpm --filter=web run dev
@@ -59,7 +59,7 @@
 
 See `scripts` of [`./package.json`](./package.json) for available scripts in the workspace.
 
-To fetch the favicons for all articles, run `internal:fetch-favicons` and `internal:generate-css-modules` in [`./apps/pkerschbaum.com`](./apps/pkerschbaum.com).
+To fetch the favicons for all articles, run `internal:fetch-favicons` and `internal:generate-css-modules` in [`./apps/patricktree.me`](./apps/patricktree.me).
 
 > **Note:** This command will also run Puppeteer.  
 > If you have some errors with Puppeteer, like "error while loading shared libraries: libatk-1.0.so.0", make sure you have installed all dependencies on your system necessary to run Puppeteer/Chrome.  

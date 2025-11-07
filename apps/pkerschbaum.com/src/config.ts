@@ -1,6 +1,6 @@
 /* eslint-disable n/no-process-env -- configs are the only place where reading from process.env is allowed */
 
-import { config as MDXBlogConfig } from '@pkerschbaum-homepage/mdx-blog/config';
+import { config as MDXBlogConfig } from '@patricktree-homepage/mdx-blog/config';
 
 const isDevEnvironment = process.env.NODE_ENV === 'development';
 export const config = {
@@ -15,5 +15,5 @@ export const config = {
       bsky: 'patricktree.me',
     },
   },
-  canonicalTLDPlus1: 'pkerschbaum.com',
+  canonicalTLDPlus1: 'patricktree.me',
 };

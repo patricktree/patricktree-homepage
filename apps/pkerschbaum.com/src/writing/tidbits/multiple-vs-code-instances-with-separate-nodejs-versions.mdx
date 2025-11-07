@@ -20,11 +20,11 @@ I have been using a setup for Ubuntu (WSL2) for a few years which works very wel
 The aliases below capture everything what is needed:
 
 ```bash
-alias dev_pkerschbaum_homepage='cd ~/workspace/pkerschbaum-homepage && nvm use && code .'
+alias dev_patricktree_homepage='cd ~/workspace/patricktree-homepage && nvm use && code .'
 alias dev_document_generator='cd ~/workspace/react-pdf-document-generator && nvm use && code .'
 ```
 
-Then I can run `dev_pkerschbaum_homepage` and `dev_document_generator` to start two instances of VS Code each using the correct Node.js version!
+Then I can run `dev_patricktree_homepage` and `dev_document_generator` to start two instances of VS Code each using the correct Node.js version!
 
 Here's how the setup works:
 
@@ -49,11 +49,11 @@ Since `nvm use` does it's magic of switching Node.js versions via environment va
 To summarize, if I run the two aliases one after the other:
 
 ```bash
-$ dev_pkerschbaum_homepage
-Found '/home/pkerschbaum/workspace/pkerschbaum-homepage/.nvmrc' with version <16.19.0>
+$ dev_patricktree_homepage
+Found '/home/patricktree/workspace/patricktree-homepage/.nvmrc' with version <16.19.0>
 Now using node v16.19.0 (npm v8.19.3)
 $ dev_document_generator
-Found '/home/pkerschbaum/workspace/react-pdf-document-generator/.nvmrc' with version <18.12.1>
+Found '/home/patricktree/workspace/react-pdf-document-generator/.nvmrc' with version <18.12.1>
 Now using node v18.12.1 (npm v8.19.2)
 ```
 

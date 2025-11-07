@@ -1,5 +1,5 @@
 {
-  "name": "@pkerschbaum-homepage/e2e-test",
+  "name": "@patricktree-homepage/e2e-test",
   "private": true,
   "type": "module",
   "imports": {
@@ -17,7 +17,7 @@
     "nuke:artifacts": "del-cli dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@pkerschbaum/fetch-sitemap-locations": "^1.1.0"
+    "@patricktree/fetch-sitemap-locations": "^1.1.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",

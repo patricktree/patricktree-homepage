@@ -1,5 +1,5 @@
-const baseEslintConfig = require('@pkerschbaum-homepage/config-eslint/eslint-ecma.cjs');
-const reactEslintConfig = require('@pkerschbaum-homepage/config-eslint/eslint-react.cjs');
+const baseEslintConfig = require('@patricktree-homepage/config-eslint/eslint-ecma.cjs');
+const reactEslintConfig = require('@patricktree-homepage/config-eslint/eslint-react.cjs');
 
 module.exports = {
   ...baseEslintConfig,

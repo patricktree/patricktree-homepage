@@ -1,7 +1,7 @@
 // @ts-check
-const baseEslintConfig = require('@pkerschbaum-homepage/config-eslint/eslint-ecma.cjs');
-const reactEslintConfig = require('@pkerschbaum-homepage/config-eslint/eslint-react.cjs');
-const nextEslintConfig = require('@pkerschbaum-homepage/config-eslint/eslint-next.cjs');
+const baseEslintConfig = require('@patricktree-homepage/config-eslint/eslint-ecma.cjs');
+const reactEslintConfig = require('@patricktree-homepage/config-eslint/eslint-react.cjs');
+const nextEslintConfig = require('@patricktree-homepage/config-eslint/eslint-next.cjs');
 
 const noRestrictedSyntax_preferNextJsImage = [
   {
@@ -54,7 +54,7 @@ module.exports = {
     ...(baseEslintConfig.extends ?? []),
     ...(reactEslintConfig.extends ?? []),
     ...(nextEslintConfig.extends ?? []),
-    '../../node_modules/@pkerschbaum-homepage/config-eslint/eslint-config-next-core-web-vitals-fixed.cjs',
+    '../../node_modules/@patricktree-homepage/config-eslint/eslint-config-next-core-web-vitals-fixed.cjs',
   ],
   ignorePatterns: [
     ...(baseEslintConfig.ignorePatterns ?? []),

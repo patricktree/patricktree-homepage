@@ -1,7 +1,7 @@
 import { styled } from '@pigment-css/react';
 import type React from 'react';
 
-import type { MDXFile } from '@pkerschbaum-homepage/mdx/schema';
+import type { MDXFile } from '@patricktree-homepage/mdx/schema';
 
 import { Description, Tile, TileAnchor, TileContent, Title } from '#pkg/elements/index.js';
 

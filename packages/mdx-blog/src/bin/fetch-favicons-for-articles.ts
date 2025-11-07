@@ -1,10 +1,10 @@
-import { arrays } from '@pkerschbaum/commons-ecma/util/arrays';
-import { jsonUtil } from '@pkerschbaum/commons-ecma/util/json';
-import { fetchFavicons } from '@pkerschbaum/fetch-favicon';
+import { arrays } from '@patricktree/commons-ecma/util/arrays';
+import { jsonUtil } from '@patricktree/commons-ecma/util/json';
+import { fetchFavicons } from '@patricktree/fetch-favicon';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { parseMDXFileAndCollectHrefs } from '@pkerschbaum-homepage/mdx/mdx';
+import { parseMDXFileAndCollectHrefs } from '@patricktree-homepage/mdx/mdx';
 
 import { PATHS } from '#pkg/constants-server.js';
 

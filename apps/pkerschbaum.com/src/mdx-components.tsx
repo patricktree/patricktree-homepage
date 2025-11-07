@@ -1,12 +1,12 @@
 'use client';
+import { check } from '@patricktree/commons-ecma/util/assert';
 import { styled } from '@pigment-css/react';
-import { check } from '@pkerschbaum/commons-ecma/util/assert';
 import type { MDXComponents } from 'mdx/types.js';
 import React from 'react';
 import { CheckCircle, Clipboard } from 'react-feather';
 import invariant from 'tiny-invariant';
 
-import { reactUtils } from '@pkerschbaum-homepage/react-utils/react.utils.jsx';
+import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
 
 import { FancyAnchor, type FancyAnchorProps } from '#pkg/components/fancy-anchor/index.js';
 import { Classes, ColorTheme, DataAttribute } from '#pkg/constants-browser.js';

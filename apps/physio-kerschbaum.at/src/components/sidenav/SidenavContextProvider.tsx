@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { reactUtils } from '@pkerschbaum-homepage/react-utils/react.utils.jsx';
+import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
 
 type SidenavContextValue = {
   isOpen: boolean;

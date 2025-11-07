@@ -1,5 +1,5 @@
 {
-  "name": "@pkerschbaum-homepage/mdx-blog",
+  "name": "@patricktree-homepage/mdx-blog",
   "private": true,
   "type": "module",
   "imports": {
@@ -25,9 +25,9 @@
     "nuke:artifacts": "del-cli dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@pkerschbaum-homepage/mdx": "workspace:*",
-    "@pkerschbaum/commons-ecma": "^2.4.1",
-    "@pkerschbaum/fetch-favicon": "^1.2.0",
+    "@patricktree-homepage/mdx": "workspace:*",
+    "@patricktree/commons-ecma": "^2.4.1",
+    "@patricktree/fetch-favicon": "^1.2.0",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "playwright": "^1.52.0",

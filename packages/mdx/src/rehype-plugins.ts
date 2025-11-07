@@ -1,4 +1,4 @@
-import { urlUtils } from '@pkerschbaum/commons-ecma/util/url';
+import { urlUtils } from '@patricktree/commons-ecma/util/url';
 import type { ElementContent, Root } from 'hast';
 import { visit } from 'unist-util-visit';
 

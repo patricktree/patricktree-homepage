@@ -1,7 +1,7 @@
 import { type Author, Feed } from 'feed';
 import fs from 'node:fs';
 
-import type { MDXFile } from '@pkerschbaum-homepage/mdx/schema';
+import type { MDXFile } from '@patricktree-homepage/mdx/schema';
 
 import { config } from '#pkg/config.js';
 import {

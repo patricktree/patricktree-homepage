@@ -1,8 +1,8 @@
-import { fetchSitemapLinks } from '@pkerschbaum/fetch-sitemap-locations';
+import { fetchSitemapLinks } from '@patricktree/fetch-sitemap-locations';
 import { test, expect } from '@playwright/test';
 
 const allLinks: string[] = [];
-for await (const links of fetchSitemapLinks(new URL('https://pkerschbaum.com/sitemap.xml'))) {
+for await (const links of fetchSitemapLinks(new URL('https://patricktree.me/sitemap.xml'))) {
   allLinks.push(...links);
 }
 

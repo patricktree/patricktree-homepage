@@ -8,7 +8,7 @@ const PATH_TO_APP = path.join(
   '..',
   '..',
   'apps',
-  'pkerschbaum.com',
+  'patricktree.me',
 );
 
 export const PATHS = {

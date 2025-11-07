@@ -1,1 +1,1 @@
-export * from '@pkerschbaum-homepage/mdx-blog/mdx';
+export * from '@patricktree-homepage/mdx-blog/mdx';

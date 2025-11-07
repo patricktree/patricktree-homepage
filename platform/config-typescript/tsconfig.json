@@ -1,5 +1,5 @@
 {
-  /* based on https://pkerschbaum.com/tidbits/sensible-tsconfig-defaults */
+  /* based on https://patricktree.me/tidbits/sensible-tsconfig-defaults */
 
   "compilerOptions": {
     /* Language and Environment */

@@ -13,25 +13,25 @@ importers:
 
   .:
     dependenciesMeta:
-      '@pkerschbaum-homepage/config-eslint':
+      '@patricktree-homepage/config-eslint':
         injected: true
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: ^15.3.1
         version: 15.3.1
-      '@pkerschbaum-homepage/config-eslint':
+      '@patricktree-homepage/config-eslint':
         specifier: workspace:*
         version: file:platform/config-eslint(eslint-config-next@15.3.1(eslint@8.57.1)(typescript@5.8.3))
-      '@pkerschbaum-homepage/config-stylelint':
+      '@patricktree-homepage/config-stylelint':
         specifier: workspace:*
         version: link:platform/config-stylelint
-      '@pkerschbaum-homepage/config-typescript':
+      '@patricktree-homepage/config-typescript':
         specifier: workspace:*
         version: link:platform/config-typescript
-      '@pkerschbaum-homepage/superturbo':
+      '@patricktree-homepage/superturbo':
         specifier: workspace:*
         version: link:platform/superturbo
-      '@pkerschbaum/pkg-management':
+      '@patricktree/pkg-management':
         specifier: ^2.1.0
         version: 2.1.0
       '@typescript-eslint/eslint-plugin':
@@ -103,18 +103,18 @@ importers:
 
   apps/physio-kerschbaum.at:
     dependencies:
+      '@patricktree-homepage/react-utils':
+        specifier: workspace:*
+        version: link:../../packages/react-utils
+      '@patricktree-homepage/ui-utils':
+        specifier: workspace:*
+        version: link:../../packages/ui-utils
+      '@patricktree/commons-ecma':
+        specifier: ^2.4.1
+        version: 2.4.1
       '@pigment-css/react':
         specifier: ^0.0.30
         version: 0.0.30(@types/react@18.3.20)(react@19.1.0)(typescript@5.8.3)
-      '@pkerschbaum-homepage/react-utils':
-        specifier: workspace:*
-        version: link:../../packages/react-utils
-      '@pkerschbaum-homepage/ui-utils':
-        specifier: workspace:*
-        version: link:../../packages/ui-utils
-      '@pkerschbaum/commons-ecma':
-        specifier: ^2.4.1
-        version: 2.4.1
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -194,24 +194,24 @@ importers:
       '@next/mdx':
         specifier: ^15.3.1
         version: 15.3.1(@mdx-js/loader@3.1.0(acorn@8.14.1))(@mdx-js/react@3.1.0(@types/react@18.3.20)(react@19.1.0))
+      '@patricktree-homepage/mdx':
+        specifier: workspace:*
+        version: link:../../packages/mdx
+      '@patricktree-homepage/mdx-blog':
+        specifier: workspace:*
+        version: link:../../packages/mdx-blog
+      '@patricktree-homepage/react-utils':
+        specifier: workspace:*
+        version: link:../../packages/react-utils
+      '@patricktree-homepage/ui-utils':
+        specifier: workspace:*
+        version: link:../../packages/ui-utils
+      '@patricktree/commons-ecma':
+        specifier: ^2.4.1
+        version: 2.4.1
       '@pigment-css/react':
         specifier: ^0.0.30
         version: 0.0.30(@types/react@18.3.20)(react@19.1.0)(typescript@5.8.3)
-      '@pkerschbaum-homepage/mdx':
-        specifier: workspace:*
-        version: link:../../packages/mdx
-      '@pkerschbaum-homepage/mdx-blog':
-        specifier: workspace:*
-        version: link:../../packages/mdx-blog
-      '@pkerschbaum-homepage/react-utils':
-        specifier: workspace:*
-        version: link:../../packages/react-utils
-      '@pkerschbaum-homepage/ui-utils':
-        specifier: workspace:*
-        version: link:../../packages/ui-utils
-      '@pkerschbaum/commons-ecma':
-        specifier: ^2.4.1
-        version: 2.4.1
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
@@ -297,7 +297,7 @@ importers:
       '@mdx-js/mdx':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.14.1)
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: ^2.4.1
         version: 2.4.1
       '@types/hast':
@@ -346,13 +346,13 @@ importers:
 
   packages/mdx-blog:
     dependencies:
-      '@pkerschbaum-homepage/mdx':
+      '@patricktree-homepage/mdx':
         specifier: workspace:*
         version: link:../mdx
-      '@pkerschbaum/commons-ecma':
+      '@patricktree/commons-ecma':
         specifier: ^2.4.1
         version: 2.4.1
-      '@pkerschbaum/fetch-favicon':
+      '@patricktree/fetch-favicon':
         specifier: ^1.2.0
         version: 1.2.0(playwright@1.52.0)
       feed:
@@ -408,7 +408,7 @@ importers:
 
   test/e2e-test:
     dependencies:
-      '@pkerschbaum/fetch-sitemap-locations':
+      '@patricktree/fetch-sitemap-locations':
         specifier: ^1.1.0
         version: 1.1.0
     devDependencies:
@@ -951,6 +951,32 @@ packages:
     resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
     engines: {node: '>=8.0.0'}
 
+  '@patricktree-homepage/config-eslint@file:platform/config-eslint':
+    resolution: {directory: platform/config-eslint, type: directory}
+    peerDependencies:
+      eslint-config-next: ^15
+    peerDependenciesMeta:
+      eslint-config-next:
+        optional: true
+
+  '@patricktree/commons-ecma@2.4.1':
+    resolution: {integrity: sha512-Ripr10PWgaUagtbaWjP9lXgXMR5FZRf0W6sau/EIuzkySrD+Vz0SlweR8bde1iVRPjcmOGM+b+EXa0gTNvoi2Q==}
+
+  '@patricktree/commons-node@2.2.0':
+    resolution: {integrity: sha512-VXYQIe6jHN0CgfLpT+SPc6FLuJzrIY5YUevs6plStPlQMhxQ9Dk4hTBYwOukLNhXmwUHtBX8yoXZsU4HuYhhPA==}
+
+  '@patricktree/fetch-favicon@1.2.0':
+    resolution: {integrity: sha512-RLWfA6DnVLGqYqx7CGRlYuEL039ptUt/Q0UlZF5HlFYmfNVsF8IoRqN9G1AbeWQjO2XkCeZ7+QCluUHkXQse5g==}
+    peerDependencies:
+      playwright: ^1.35.0
+
+  '@patricktree/fetch-sitemap-locations@1.1.0':
+    resolution: {integrity: sha512-4Hw9crXgJv2noy7204qqEl80aBnJ2oiuq9XU7BGFZOmsEuxzYsKcj2jcCS6KOi/pomPX6Ljf7ZNMlPhwMmKsjw==}
+
+  '@patricktree/pkg-management@2.1.0':
+    resolution: {integrity: sha512-o4JRSDcgPu7Lhg9A5zOUlnC+DE/vkuWbgsgCkuTf/BbrkUbQVhaAq9QHk5RRV2iM88X5/3pHxeQgafAXMgSzRA==}
+    hasBin: true
+
   '@pigment-css/nextjs-plugin@0.0.30':
     resolution: {integrity: sha512-jdy8HAhG8xyxexldtFZbl7guTvtp8eT9Jc6sNnSL+cigVYnUQLK+izLb+IXDVA+ECZyrY+OSQMyt+qbI0Dwlzg==}
     engines: {node: '>=14.0.0'}
@@ -966,32 +992,6 @@ packages:
   '@pigment-css/unplugin@0.0.30':
     resolution: {integrity: sha512-HInjaCEacQj7ZXPaNzcdGZzmrlIQCP1Bc5nttbEFOoPuF4Mm1qJCK3T8M0JWvFCO55P6T06u219SGz+B4f241A==}
     engines: {node: '>=14.0.0'}
-
-  '@pkerschbaum-homepage/config-eslint@file:platform/config-eslint':
-    resolution: {directory: platform/config-eslint, type: directory}
-    peerDependencies:
-      eslint-config-next: ^15
-    peerDependenciesMeta:
-      eslint-config-next:
-        optional: true
-
-  '@pkerschbaum/commons-ecma@2.4.1':
-    resolution: {integrity: sha512-oXpWsCNPYXs0rZmKxlADYwGdyZKcaIS1sDLtslOTnKNw3Fa0EF7KWvrT8J42LYWGS97qkYjkB09pUXXWBeJJWg==}
-
-  '@pkerschbaum/commons-node@2.2.0':
-    resolution: {integrity: sha512-WXaB0zbdBCQzRnB9qcbQH0Gs89/cKZj374JeSj/mgnua8ukqQlCDMM60vUhgvFWyilEaXG2VfOeVpgp1JowVKQ==}
-
-  '@pkerschbaum/fetch-favicon@1.2.0':
-    resolution: {integrity: sha512-MWrWvRcw2x9dANPVU5ydBVnDso1jJ2JoCdM+mkZBfqS+MWLYLW/+yzHhEWWa27nwW8Gi5l2MHu/DrGHT+kwwDw==}
-    peerDependencies:
-      playwright: ^1.35.0
-
-  '@pkerschbaum/fetch-sitemap-locations@1.1.0':
-    resolution: {integrity: sha512-Up+YnnJpoMmLBmeGHQC4rdTUsYqOMMFpnYjIGmhMKfWpcM970hktx9okgIEpdypR6zOI5BYg/u+JIB5tRT+EIw==}
-
-  '@pkerschbaum/pkg-management@2.1.0':
-    resolution: {integrity: sha512-lSWsF6y61+iLJOXs6gBrxo7vf8fuMdYqWnB/qGok3Jy9kchPEFzu9TOWVbgoxakSN/WEnWA6BV8aiGsyJGbXKg==}
-    hasBin: true
 
   '@pkgr/core@0.1.2':
     resolution: {integrity: sha512-fdDH1LSGfZdTH2sxdpVMw31BanV28K/Gry0cVFxaNP77neJSkd82mM8ErPNYs9e+0O7SdHBLTDzDgwUuy18RnQ==}
@@ -4804,6 +4804,46 @@ snapshots:
 
   '@opentelemetry/api@1.9.0': {}
 
+  '@patricktree-homepage/config-eslint@file:platform/config-eslint(eslint-config-next@15.3.1(eslint@8.57.1)(typescript@5.8.3))':
+    optionalDependencies:
+      eslint-config-next: 15.3.1(eslint@8.57.1)(typescript@5.8.3)
+
+  '@patricktree/commons-ecma@2.4.1':
+    dependencies:
+      safe-stable-stringify: 2.5.0
+      tiny-invariant: 1.3.3
+
+  '@patricktree/commons-node@2.2.0':
+    dependencies:
+      '@patricktree/commons-ecma': 2.4.1
+
+  '@patricktree/fetch-favicon@1.2.0(playwright@1.52.0)':
+    dependencies:
+      '@patricktree/commons-ecma': 2.4.1
+      '@patricktree/commons-node': 2.2.0
+      playwright: 1.52.0
+      tiny-invariant: 1.3.3
+      zod: 3.24.3
+
+  '@patricktree/fetch-sitemap-locations@1.1.0':
+    dependencies:
+      '@commander-js/extra-typings': 13.1.0(commander@13.1.0)
+      commander: 13.1.0
+      tiny-invariant: 1.3.3
+      xml2js: 0.6.2
+      zod: 3.24.3
+
+  '@patricktree/pkg-management@2.1.0':
+    dependencies:
+      '@commander-js/extra-typings': 12.1.0(commander@12.1.0)
+      '@patricktree/commons-ecma': 2.4.1
+      '@patricktree/commons-node': 2.2.0
+      '@pnpm/find-workspace-packages': 6.0.9(@pnpm/logger@5.2.0)
+      '@pnpm/logger': 5.2.0
+      commander: 12.1.0
+      tempy: 3.1.0
+      zx: 8.5.3
+
   '@pigment-css/nextjs-plugin@0.0.30(@types/react@18.3.20)(next@15.3.1(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3)':
     dependencies:
       '@pigment-css/unplugin': 0.0.30(@types/react@18.3.20)(react@19.1.0)(typescript@5.8.3)
@@ -4857,46 +4897,6 @@ snapshots:
       - react
       - supports-color
       - typescript
-
-  '@pkerschbaum-homepage/config-eslint@file:platform/config-eslint(eslint-config-next@15.3.1(eslint@8.57.1)(typescript@5.8.3))':
-    optionalDependencies:
-      eslint-config-next: 15.3.1(eslint@8.57.1)(typescript@5.8.3)
-
-  '@pkerschbaum/commons-ecma@2.4.1':
-    dependencies:
-      safe-stable-stringify: 2.5.0
-      tiny-invariant: 1.3.3
-
-  '@pkerschbaum/commons-node@2.2.0':
-    dependencies:
-      '@pkerschbaum/commons-ecma': 2.4.1
-
-  '@pkerschbaum/fetch-favicon@1.2.0(playwright@1.52.0)':
-    dependencies:
-      '@pkerschbaum/commons-ecma': 2.4.1
-      '@pkerschbaum/commons-node': 2.2.0
-      playwright: 1.52.0
-      tiny-invariant: 1.3.3
-      zod: 3.24.3
-
-  '@pkerschbaum/fetch-sitemap-locations@1.1.0':
-    dependencies:
-      '@commander-js/extra-typings': 13.1.0(commander@13.1.0)
-      commander: 13.1.0
-      tiny-invariant: 1.3.3
-      xml2js: 0.6.2
-      zod: 3.24.3
-
-  '@pkerschbaum/pkg-management@2.1.0':
-    dependencies:
-      '@commander-js/extra-typings': 12.1.0(commander@12.1.0)
-      '@pkerschbaum/commons-ecma': 2.4.1
-      '@pkerschbaum/commons-node': 2.2.0
-      '@pnpm/find-workspace-packages': 6.0.9(@pnpm/logger@5.2.0)
-      '@pnpm/logger': 5.2.0
-      commander: 12.1.0
-      tempy: 3.1.0
-      zx: 8.5.3
 
   '@pkgr/core@0.1.2': {}
 
