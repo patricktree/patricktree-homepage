@@ -36,6 +36,7 @@
     "@patricktree/commons-ecma": "^2.4.1",
     "@pigment-css/react": "^0.0.30",
     "@types/mdast": "^4.0.4",
+    "@vercel/speed-insights": "^1.2.0",
     "acorn": "^8.14.1",
     "dayjs": "^1.11.13",
     "next": "^15.3.1",
