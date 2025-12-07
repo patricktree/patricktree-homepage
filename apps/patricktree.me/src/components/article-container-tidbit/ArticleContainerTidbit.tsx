@@ -10,6 +10,7 @@ import {
   TocAndArticleReadingTarget,
   TocAside,
 } from '#pkg/components/article-components/index.jsx';
+import { GiscusComments } from '#pkg/components/giscus-comments/GiscusComments.jsx';
 import { Main } from '#pkg/components/main/index.js';
 import {
   ReadingProgressBar,
@@ -55,6 +56,8 @@ export const ArticleContainerTidbit: React.FC<ArticleContainerTidbitProps> = ({
               <ReadingProgressSentinel />
             </Article>
           </TocAndArticleReadingTarget>
+
+          <GiscusComments giscusTerm={mdxParseResult.frontmatter.giscusTerm} />
         </ArticleContainer>
       </ReadingProgressProvider>
     </Main>
