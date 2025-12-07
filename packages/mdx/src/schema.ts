@@ -18,6 +18,7 @@ export const schema_frontmatterData = z.object({
   lastUpdatedAtISO: z.string().optional(),
   description: z.string(),
   tags: z.array(z.string()),
+  giscusTerm: z.string(),
 });
 export type FrontmatterData = z.infer<typeof schema_frontmatterData>;
 

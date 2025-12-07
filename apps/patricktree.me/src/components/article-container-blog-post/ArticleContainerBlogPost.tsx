@@ -13,6 +13,7 @@ import {
   Timestamps,
 } from '#pkg/components/article-components/index.jsx';
 import { BskyInteractionSection } from '#pkg/components/article-container-blog-post/BskyInteractionSection.jsx';
+import { GiscusComments } from '#pkg/components/giscus-comments/index.js';
 import { Main } from '#pkg/components/main/index.js';
 import {
   ReadingProgressBar,
@@ -88,6 +89,8 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
               </p>
             </ContactTeaser>
           </ContactTeaserWrapper>
+
+          <GiscusComments giscusTerm={mdxParseResult.frontmatter.giscusTerm} />
         </ArticleContainer>
       </ReadingProgressProvider>
     </Main>
