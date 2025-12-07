@@ -15,6 +15,7 @@ import {
 } from '#pkg/components/article-components/index.js';
 import { BskyInteractionSection } from '#pkg/components/article-container-blog-post/BskyInteractionSection.jsx';
 import { Main } from '#pkg/components/main/index.js';
+import { ReadingProgressBar } from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
 import { Anchor, FullBleedWrapper } from '#pkg/elements/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
@@ -34,6 +35,7 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
 }) => {
   return (
     <Main className={faviconsClassName}>
+      <ReadingProgressBar />
       <ArticleContainer>
         <TocAndArticle>
           <TocAside>

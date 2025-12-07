@@ -12,6 +12,7 @@ import {
   TocAside,
 } from '#pkg/components/article-components/index.js';
 import { Main } from '#pkg/components/main/index.js';
+import { ReadingProgressBar } from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
 
@@ -30,6 +31,7 @@ export const ArticleContainerTidbit: React.FC<ArticleContainerTidbitProps> = ({
 }) => {
   return (
     <Main className={faviconsClassName}>
+      <ReadingProgressBar />
       <ArticleContainer>
         <TocAndArticle>
           <TocAside>
