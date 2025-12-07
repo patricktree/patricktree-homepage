@@ -54,6 +54,11 @@
     "pnpm": "10.24.0"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "@vercel/speed-insights",
+      "sharp",
+      "unrs-resolver"
+    ],
     "updateConfig": {
       "ignoreDependencies": [
         "eslint"
