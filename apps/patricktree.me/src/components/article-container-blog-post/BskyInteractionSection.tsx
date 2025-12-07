@@ -3,7 +3,6 @@ import { styled } from '@pigment-css/react';
 import type React from 'react';
 import { Share2 } from 'react-feather';
 
-import { Bsky } from '#pkg/components/icon-library/index.js';
 import { config } from '#pkg/config.js';
 import { Anchor } from '#pkg/elements/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
@@ -30,19 +29,12 @@ ${blogPostHref}
 ${mdxParseResult.frontmatter.tags.map((tag) => `#${tag}`).join(' ')}`,
   );
   const bskyShareHref = bskyShareUrl.href;
-  const bskyDiscussUrl = new URL(`https://bsky.app/search`);
-  bskyDiscussUrl.searchParams.set('q', blogPostHref);
-  const bskyDiscussHref = bskyDiscussUrl.href;
 
   return (
     <InteractionSection>
       <InteractionAnchor href={bskyShareHref} target="_blank">
         <Share2 />
         Share on Bluesky
-      </InteractionAnchor>
-
-      <InteractionAnchor href={bskyDiscussHref} target="_blank">
-        <Bsky /> Discuss on Bluesky
       </InteractionAnchor>
     </InteractionSection>
   );
