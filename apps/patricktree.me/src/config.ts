@@ -29,5 +29,6 @@ export const config = {
     emitMetadata: '0',
     inputPosition: 'top',
     lang: 'en',
-  } satisfies GiscusProps,
+    termPrefix: 'patricktree.me',
+  } satisfies GiscusProps & { termPrefix: string },
 } as const;
