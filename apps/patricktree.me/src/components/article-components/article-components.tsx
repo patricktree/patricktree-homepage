@@ -12,21 +12,6 @@ export const ArticleContainer = styled.div`
   width: 100%;
 `;
 
-export const TocAndArticle = styled.div`
-  /* stylelint-disable-next-line media-query-no-invalid -- works */
-  @media ${TOC_QUERY} {
-    grid-template-areas: 'article toc';
-    grid-template-columns: 1fr 250px;
-    column-gap: calc(6 * var(--spacing-base));
-  }
-  display: grid;
-  grid-template-areas: 'article';
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr;
-
-  margin-block-start: 85px;
-`;
-
 export const TocAside = styled.aside`
   /* stylelint-disable-next-line media-query-no-invalid -- works */
   @media ${TOC_QUERY} {
