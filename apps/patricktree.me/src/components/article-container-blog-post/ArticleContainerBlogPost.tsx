@@ -1,6 +1,5 @@
 import { styled } from '@pigment-css/react';
 import dayjs from 'dayjs';
-import type React from 'react';
 
 import {
   ArticleHeading,
@@ -9,14 +8,18 @@ import {
   ArticleContent,
   FrontMatter,
   Time,
-  TocAndArticle,
+  TocAndArticleReadingTarget,
   TocAside,
   Timestamps,
-} from '#pkg/components/article-components/index.js';
+} from '#pkg/components/article-components/index.jsx';
 import { BskyInteractionSection } from '#pkg/components/article-container-blog-post/BskyInteractionSection.jsx';
 import { GiscusComments } from '#pkg/components/giscus-comments/index.js';
 import { Main } from '#pkg/components/main/index.js';
-import { ReadingProgressBar } from '#pkg/components/reading-progress-bar/index.js';
+import {
+  ReadingProgressBar,
+  ReadingProgressProvider,
+  ReadingProgressSentinel,
+} from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
 import { Anchor, FullBleedWrapper } from '#pkg/elements/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
@@ -36,57 +39,60 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
 }) => {
   return (
     <Main className={faviconsClassName}>
-      <ReadingProgressBar />
-      <ArticleContainer>
-        <TocAndArticle>
-          <TocAside>
-            <TableOfContents headings={mdxParseResult.collectedHeadings} />
-          </TocAside>
+      <ReadingProgressProvider>
+        <ReadingProgressBar />
+        <ArticleContainer>
+          <TocAndArticleReadingTarget>
+            <TocAside>
+              <TableOfContents headings={mdxParseResult.collectedHeadings} />
+            </TocAside>
 
-          <Article>
-            <FrontMatter>
-              <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
-              <Timestamps>
-                <Time dateTime={mdxParseResult.frontmatter.publishedAtISO}>
-                  Published on{' '}
-                  {dayjs(mdxParseResult.frontmatter.publishedAtISO).format('DD MMMM, YYYY')}
-                </Time>
-                {mdxParseResult.frontmatter.lastUpdatedAtISO && (
-                  <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
-                    Last updated on{' '}
-                    {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
+            <Article>
+              <FrontMatter>
+                <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
+                <Timestamps>
+                  <Time dateTime={mdxParseResult.frontmatter.publishedAtISO}>
+                    Published on{' '}
+                    {dayjs(mdxParseResult.frontmatter.publishedAtISO).format('DD MMMM, YYYY')}
                   </Time>
-                )}
-              </Timestamps>
-            </FrontMatter>
+                  {mdxParseResult.frontmatter.lastUpdatedAtISO && (
+                    <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
+                      Last updated on{' '}
+                      {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
+                    </Time>
+                  )}
+                </Timestamps>
+              </FrontMatter>
 
-            <ArticleContent>{mdxContent}</ArticleContent>
-          </Article>
-        </TocAndArticle>
+              <ArticleContent>{mdxContent}</ArticleContent>
+              <ReadingProgressSentinel />
+            </Article>
+          </TocAndArticleReadingTarget>
 
-        <BskyInteractionSection mdxParseResult={mdxParseResult} />
+          <BskyInteractionSection mdxParseResult={mdxParseResult} />
 
-        <ContactTeaserWrapper>
-          <ContactTeaser>
-            <ContactTeaserHeadline>Did you like this blog post?</ContactTeaserHeadline>
+          <ContactTeaserWrapper>
+            <ContactTeaser>
+              <ContactTeaserHeadline>Did you like this blog post?</ContactTeaserHeadline>
 
-            <p>
-              Great, then let&apos;s keep in touch!{' '}
-              <Anchor
-                href="https://bsky.app/profile/patricktree.me"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Follow me on Bluesky
-              </Anchor>
-              , I post about TypeScript, testing and web development in general - and of course
-              about updates on my own blog posts.
-            </p>
-          </ContactTeaser>
-        </ContactTeaserWrapper>
+              <p>
+                Great, then let&apos;s keep in touch!{' '}
+                <Anchor
+                  href="https://bsky.app/profile/patricktree.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Follow me on Bluesky
+                </Anchor>
+                , I post about TypeScript, testing and web development in general - and of course
+                about updates on my own blog posts.
+              </p>
+            </ContactTeaser>
+          </ContactTeaserWrapper>
 
-        <GiscusComments giscusTerm={mdxParseResult.frontmatter.giscusTerm} />
-      </ArticleContainer>
+          <GiscusComments giscusTerm={mdxParseResult.frontmatter.giscusTerm} />
+        </ArticleContainer>
+      </ReadingProgressProvider>
     </Main>
   );
 };

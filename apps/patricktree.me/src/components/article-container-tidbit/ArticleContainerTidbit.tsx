@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import type React from 'react';
 
 import {
   Article,
@@ -8,11 +7,15 @@ import {
   ArticleHeading,
   FrontMatter,
   Time,
-  TocAndArticle,
+  TocAndArticleReadingTarget,
   TocAside,
-} from '#pkg/components/article-components/index.js';
+} from '#pkg/components/article-components/index.jsx';
 import { Main } from '#pkg/components/main/index.js';
-import { ReadingProgressBar } from '#pkg/components/reading-progress-bar/index.js';
+import {
+  ReadingProgressBar,
+  ReadingProgressProvider,
+  ReadingProgressSentinel,
+} from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
 
@@ -31,26 +34,29 @@ export const ArticleContainerTidbit: React.FC<ArticleContainerTidbitProps> = ({
 }) => {
   return (
     <Main className={faviconsClassName}>
-      <ReadingProgressBar />
-      <ArticleContainer>
-        <TocAndArticle>
-          <TocAside>
-            <TableOfContents headings={mdxParseResult.collectedHeadings} />
-          </TocAside>
+      <ReadingProgressProvider>
+        <ReadingProgressBar />
+        <ArticleContainer>
+          <TocAndArticleReadingTarget>
+            <TocAside>
+              <TableOfContents headings={mdxParseResult.collectedHeadings} />
+            </TocAside>
 
-          <Article>
-            <FrontMatter>
-              <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
-              <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
-                Last updated on{' '}
-                {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
-              </Time>
-            </FrontMatter>
+            <Article>
+              <FrontMatter>
+                <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
+                <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
+                  Last updated on{' '}
+                  {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
+                </Time>
+              </FrontMatter>
 
-            <ArticleContent>{mdxContent}</ArticleContent>
-          </Article>
-        </TocAndArticle>
-      </ArticleContainer>
+              <ArticleContent>{mdxContent}</ArticleContent>
+              <ReadingProgressSentinel />
+            </Article>
+          </TocAndArticleReadingTarget>
+        </ArticleContainer>
+      </ReadingProgressProvider>
     </Main>
   );
 };

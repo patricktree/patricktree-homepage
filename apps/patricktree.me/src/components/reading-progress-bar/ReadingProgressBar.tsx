@@ -1,41 +1,56 @@
 'use client';
 
 import { styled } from '@pigment-css/react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+
+import { useReadingProgressContext } from '#pkg/components/reading-progress-bar/ReadingProgressContext.jsx';
 
 export const ReadingProgressBar: React.FC = () => {
-  const progressBarRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = React.useRef<HTMLDivElement>(null);
+  const { readingEnd, readingTarget } = useReadingProgressContext();
 
-  useEffect(function updateProgressBarOnScroll() {
-    const updateProgress = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.body.scrollHeight;
-      const scrollTop = window.scrollY;
+  React.useEffect(
+    function updateProgressBarOnScroll() {
+      const updateProgress = () => {
+        if (!progressBarRef.current || !readingTarget || !readingEnd) {
+          return;
+        }
 
-      // Calculate the total scrollable height
-      const scrollableHeight = documentHeight - windowHeight;
+        const viewportHeight = window.innerHeight;
+        const scrollTop = window.scrollY;
 
-      let progress = 0;
-      if (scrollableHeight > 0) {
-        progress = (scrollTop / scrollableHeight) * 100;
-      }
+        const targetTop = readingTarget.getBoundingClientRect().top + scrollTop;
+        const endTop = readingEnd.getBoundingClientRect().top + scrollTop;
 
-      // Clamp progress between 0 and 100
-      progress = Math.min(Math.max(progress, 0), 100);
+        const startPosition = targetTop;
+        const endPosition = endTop - viewportHeight;
+        const scrollableHeight = endPosition - startPosition;
 
-      if (progressBarRef.current) {
+        let progress;
+        if (scrollableHeight <= 0) {
+          progress = scrollTop >= startPosition ? 100 : 0;
+        } else {
+          progress = ((scrollTop - startPosition) / scrollableHeight) * 100;
+        }
+
+        // Clamp progress between 0 and 100
+        progress = Math.min(Math.max(progress, 0), 100);
+
         progressBarRef.current.style.width = `${progress}%`;
-      }
-    };
+      };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    // Trigger once on mount to set initial state
-    updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      // Trigger once on mount to set initial state
+      updateProgress();
 
-    return () => {
-      window.removeEventListener('scroll', updateProgress);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener('scroll', updateProgress);
+        window.removeEventListener('resize', updateProgress);
+      };
+    },
+    [readingEnd, readingTarget],
+  );
 
   return (
     <ProgressBarContainer>
@@ -50,7 +65,7 @@ const ProgressBarContainer = styled.div`
   left: 0;
   z-index: 100;
   width: 100%;
-  height: 4px;
+  height: 6px;
   pointer-events: none; /* Let clicks pass through */
 `;
 
