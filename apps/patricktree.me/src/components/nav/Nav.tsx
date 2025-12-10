@@ -11,23 +11,30 @@ import { Anchor } from '#pkg/elements/index.js';
 export const Nav: React.FC = () => {
   return (
     <NavContainer>
-      <NavHomeAnchor href="/">
-        <NavHomeAnchorText>Patrick Kerschbaum</NavHomeAnchorText>
-        <NavHomeAnchorLogo>
-          <Favicon width={36} height={36} />
-        </NavHomeAnchorLogo>
-      </NavHomeAnchor>
+      <NavList>
+        <NavListItem>
+          <NavHomeAnchor href="/">
+            <NavHomeAnchorText>Patrick Kerschbaum</NavHomeAnchorText>
+            <NavHomeAnchorLogo>
+              <Favicon width={36} height={36} />
+            </NavHomeAnchorLogo>
+          </NavHomeAnchor>
+        </NavListItem>
 
-      <SubNavContainer>
-        <NavAnchor href={`/#${headingIds.blog}`}>
-          <PenTool size="1em" />
-          Blog
-        </NavAnchor>
-        <NavAnchor href={`/#${headingIds.tidbits}`}>
-          <Cookie size="1em" />
-          Tidbits
-        </NavAnchor>
-      </SubNavContainer>
+        <NavListItem>
+          <NavAnchor href={`/#${headingIds.blog}`}>
+            <PenTool size="1em" />
+            Blog
+          </NavAnchor>
+        </NavListItem>
+
+        <NavListItem>
+          <NavAnchor href={`/#${headingIds.tidbits}`}>
+            <Cookie size="1em" />
+            Tidbits
+          </NavAnchor>
+        </NavListItem>
+      </NavList>
     </NavContainer>
   );
 };
@@ -35,18 +42,19 @@ export const Nav: React.FC = () => {
 const NavContainer = styled.nav`
   --nav-column-gap: calc(3 * var(--spacing-base));
 
+  display: block;
+`;
+
+const NavList = styled.ol`
   display: flex;
   flex-wrap: wrap;
   row-gap: calc(1 * var(--spacing-base));
   column-gap: var(--nav-column-gap);
   align-items: center;
+  list-style: none;
 `;
 
-const SubNavContainer = styled.div`
-  display: flex;
-  gap: var(--nav-column-gap);
-  align-items: center;
-`;
+const NavListItem = styled.li``;
 
 const NavAnchor = styled(Anchor)`
   display: flex;

@@ -11,8 +11,8 @@ export type TableOfContentsProps = {
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   return (
-    <TocNav>
-      <TocHeading>Table of Contents</TocHeading>
+    <TocNav aria-labelledby="table-of-contents-label">
+      <TocHeading id="table-of-contents-label">Table of Contents</TocHeading>
       <TableOfContentsAnchors headings={headings} />
     </TocNav>
   );
@@ -25,8 +25,9 @@ const TocNav = styled.nav`
   align-items: start;
 `;
 
-const TocHeading = styled.h2`
+const TocHeading = styled.span`
   margin-block-start: 0;
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
 `;

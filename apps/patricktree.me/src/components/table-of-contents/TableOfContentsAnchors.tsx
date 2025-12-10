@@ -138,30 +138,44 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
         headingsAboveTheFold.idOfLastHeadingAboveTheFold);
 
   return (
-    <>
+    <TocList>
       {headings.map((heading) => {
         const highlighted = highlightedHeadingId === heading.id;
         return (
-          <TocAnchor
-            key={heading.id}
-            href={`#${heading.id}`}
-            style={{
-              color: highlighted ? 'var(--color-fg-interactive)' : undefined,
-            }}
-            onClick={() => {
-              setLastScrolledToHeading({
-                id: heading.id,
-                wentOutOfViewport: false,
-              });
-            }}
-          >
-            {heading.text}
-          </TocAnchor>
+          <TocListItem key={heading.id}>
+            <TocAnchor
+              href={`#${heading.id}`}
+              style={{
+                color: highlighted ? 'var(--color-fg-interactive)' : undefined,
+              }}
+              onClick={() => {
+                setLastScrolledToHeading({
+                  id: heading.id,
+                  wentOutOfViewport: false,
+                });
+              }}
+            >
+              {heading.text}
+            </TocAnchor>
+          </TocListItem>
         );
       })}
-    </>
+    </TocList>
   );
 };
+
+const TocList = styled.ol`
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--spacing-base));
+  list-style: none;
+`;
+
+const TocListItem = styled.li`
+  /* display: flex to not "compound" line-height */
+  display: flex;
+  margin: 0;
+`;
 
 const TocAnchor = styled(Anchor)`
   font-size: var(--font-size-sm);
