@@ -12,6 +12,7 @@ This monorepo is rooted around `pnpm`. `apps/patricktree.me` is the flagship Nex
 - `pnpm build`: run the two-phase `superturbo` build (first tooling, then apps).
 - `pnpm lint` / `pnpm lint:fix`: execute the shared ESLint/Turbo lint tasks.
 - `pnpm --filter @patricktree-homepage/e2e-test run e2e-test`: launch Playwright specs against the dev server.
+- Validation when you think you are finished: `pnpm install && pnpm run format && pnpm run build && pnpm run lint:fix`.
 
 ## Coding Style & Naming Conventions
 

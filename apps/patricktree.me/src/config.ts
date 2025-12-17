@@ -15,6 +15,7 @@ export const config = {
       gitHub: 'patricktree',
       linkedIn: 'pkerschbaum',
       bsky: 'patricktree.me',
+      x: 'patricktree_',
     },
   },
   canonicalTLDPlus1: 'patricktree.me',

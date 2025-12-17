@@ -2,7 +2,7 @@ import { styled } from '@pigment-css/react';
 import type React from 'react';
 import { GitHub, Linkedin } from 'react-feather';
 
-import { Bsky } from '#pkg/components/icon-library/index.js';
+import { Bsky, X } from '#pkg/components/icon-library/index.js';
 import { config } from '#pkg/config.js';
 import { Anchor, type AnchorProps } from '#pkg/elements/index.js';
 
@@ -32,6 +32,12 @@ export const SocialMediaLinks: React.FC = () => (
         aria-label="Bluesky"
       >
         <Bsky />
+      </SocialMediaAnchor>
+    </LinkElement>
+
+    <LinkElement title="X">
+      <SocialMediaAnchor href={`https://x.com/${config.socialMedia.handles.x}`} aria-label="X">
+        <X />
       </SocialMediaAnchor>
     </LinkElement>
   </LinksList>

@@ -21,6 +21,7 @@ import {
   ReadingProgressSentinel,
 } from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
+import { config } from '#pkg/config.js';
 import { Anchor, FullBleedWrapper } from '#pkg/elements/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
 
@@ -76,13 +77,21 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
               <ContactTeaserHeadline>Did you like this blog post?</ContactTeaserHeadline>
 
               <p>
-                Great, then let&apos;s keep in touch!{' '}
+                Great, then let&apos;s keep in touch! Follow me{' '}
                 <Anchor
-                  href="https://bsky.app/profile/patricktree.me"
+                  href={`https://bsky.app/profile/${config.socialMedia.handles.bsky}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Follow me on Bluesky
+                  on Bluesky
+                </Anchor>{' '}
+                or{' '}
+                <Anchor
+                  href={`https://x.com/${config.socialMedia.handles.x}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  on X
                 </Anchor>
                 , I post about TypeScript, testing and web development in general - and of course
                 about updates on my own blog posts.
