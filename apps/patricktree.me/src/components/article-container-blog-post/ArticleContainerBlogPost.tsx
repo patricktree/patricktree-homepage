@@ -12,7 +12,7 @@ import {
   TocAside,
   Timestamps,
 } from '#pkg/components/article-components/index.jsx';
-import { BskyInteractionSection } from '#pkg/components/article-container-blog-post/BskyInteractionSection.jsx';
+import { SocialShareSection } from '#pkg/components/article-container-blog-post/SocialShareSection.jsx';
 import { GiscusComments } from '#pkg/components/giscus-comments/index.js';
 import { Main } from '#pkg/components/main/index.js';
 import {
@@ -70,7 +70,7 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
             </Article>
           </TocAndArticleReadingTarget>
 
-          <BskyInteractionSection mdxParseResult={mdxParseResult} />
+          <SocialShareSection mdxParseResult={mdxParseResult} />
 
           <ContactTeaserWrapper>
             <ContactTeaser>
