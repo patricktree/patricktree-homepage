@@ -1,11 +1,9 @@
 import { styled } from '@pigment-css/react';
 import type React from 'react';
-import { PenTool } from 'react-feather';
+import { Home, PenTool } from 'react-feather';
 
 import { headingIds } from '#pkg/app/heading-ids.js';
-import { Favicon } from '#pkg/components/favicon/index.js';
 import { Cookie } from '#pkg/components/icon-library/index.js';
-import { DataAttribute, IsScrolled } from '#pkg/constants-browser.js';
 import { Anchor } from '#pkg/elements/index.js';
 
 export const Nav: React.FC = () => {
@@ -13,12 +11,10 @@ export const Nav: React.FC = () => {
     <NavContainer>
       <NavList>
         <NavListItem>
-          <NavHomeAnchor href="/">
-            <NavHomeAnchorText>Patrick Kerschbaum</NavHomeAnchorText>
-            <NavHomeAnchorLogo>
-              <Favicon width={36} height={36} />
-            </NavHomeAnchorLogo>
-          </NavHomeAnchor>
+          <NavAnchor href="/">
+            <Home size="1em" />
+            Home
+          </NavAnchor>
         </NavListItem>
 
         <NavListItem>
@@ -73,49 +69,5 @@ const NavAnchor = styled(Anchor)`
 
   & > *:nth-child(1) {
     flex-shrink: 0;
-  }
-`;
-
-const NavHomeAnchor = styled(NavAnchor)`
-  --animation-duration: 400ms;
-
-  display: grid;
-  grid-template-areas: 'container';
-
-  width: 180px;
-
-  font-size: var(--font-size-xxl);
-  font-weight: var(--font-weight-bold);
-  line-height: 1;
-  text-transform: uppercase;
-
-  transition: width var(--animation-duration);
-  *:root[${DataAttribute.IS_SCROLLED}='${IsScrolled.YES}'] & {
-    width: 40px;
-  }
-
-  & > * {
-    grid-area: container;
-
-    animation-name: var(--animation-slide-right);
-    animation-duration: var(--animation-duration);
-    animation-fill-mode: both;
-  }
-`;
-
-const NavHomeAnchorText = styled.div`
-  *:root[${DataAttribute.IS_SCROLLED}='${IsScrolled.YES}'] & {
-    animation-name: var(--animation-slide-left);
-  }
-`;
-
-const NavHomeAnchorLogo = styled.div`
-  display: flex;
-  align-items: center;
-
-  width: fit-content;
-
-  *:root:not([${DataAttribute.IS_SCROLLED}='${IsScrolled.YES}']) & {
-    animation-name: var(--animation-slide-left);
   }
 `;

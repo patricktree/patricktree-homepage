@@ -22,7 +22,6 @@ export const TOC_QUERY = QUERIES.desktopAndUp;
 export enum DataAttribute {
   // eslint-disable-next-line @typescript-eslint/prefer-literal-enum-member
   THEME = MDXBlogDataAttribute.THEME,
-  IS_SCROLLED = 'data-is-scrolled',
   IS_ANIMATION_ENABLED = 'data-is-animation-enabled',
   SECTION_HEADING_ID = 'data-section-heading-id',
 }

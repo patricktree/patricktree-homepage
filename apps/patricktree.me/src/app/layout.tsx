@@ -23,7 +23,6 @@ import {
   ColorTheme,
   DataAttribute,
   IsAnimationEnabled,
-  IsScrolled,
   LocalStorageKey,
   TOC_QUERY,
 } from '#pkg/constants-browser.js';
@@ -51,24 +50,10 @@ type LayoutProps = {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html
-      lang="en"
-      className={fontMonospace.variable}
-      {...{ [DataAttribute.IS_SCROLLED]: IsScrolled.NO }}
-    >
+    <html lang="en" className={fontMonospace.variable}>
       <head>
         {/* disable automatic (faulty) detection of phone numbers on Safari */}
         <meta name="format-detection" content="telephone=no" />
-
-        {/* favicons block generated with https://realfavicongenerator.net */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
-        <link rel="shortcut icon" href="/favicons/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
 
         {/* if JS is disabled, apply "display: none" to all elements which the JS_REQUIRED class is applied to */}
         <noscript>
@@ -165,7 +150,6 @@ export default function RootLayout({ children }: LayoutProps) {
       </head>
       <body>
         <script dangerouslySetInnerHTML={{ __html: blockingSetInitialColorTheme }} />
-        <script dangerouslySetInnerHTML={{ __html: blockingSetDocumentIsScrolled }} />
 
         <div id="__next">
           <EnableAnimationsAfterHydration />
@@ -198,18 +182,6 @@ export const metadata: Metadata = {
   metadataBase: config.deploymentOrigin,
   openGraph: {
     type: 'website',
-    images: [
-      {
-        url: '/favicons/favicon-32x32.png',
-        height: 32,
-        width: 32,
-      },
-      {
-        url: '/favicons/android-chrome-512x512.png',
-        height: 512,
-        width: 512,
-      },
-    ],
     siteName: config.canonicalTLDPlus1,
     url: '/',
   },
@@ -275,14 +247,5 @@ const blockingSetInitialColorTheme = `(function() {
   if (colorTheme === '${ColorTheme.DARK}') {
     document.documentElement.setAttribute('${DataAttribute.THEME}', '${ColorTheme.DARK}');
   }
-})()
-`;
-
-const blockingSetDocumentIsScrolled = `(function() {
-  document.documentElement.setAttribute('${DataAttribute.IS_SCROLLED}', window.scrollY > 0 ? '${IsScrolled.YES}' : '${IsScrolled.NO}');
-  function onScroll() {
-    document.documentElement.setAttribute('${DataAttribute.IS_SCROLLED}', window.scrollY > 0 ? '${IsScrolled.YES}' : '${IsScrolled.NO}');
-  }
-  document.addEventListener('scroll', onScroll, { passive: true });
 })()
 `;
