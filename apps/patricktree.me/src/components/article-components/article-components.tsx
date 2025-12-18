@@ -18,15 +18,12 @@ export const TocAside = styled.aside`
     display: block;
   }
   position: sticky;
-  /* some "top" spacing because of the fixed positioned header */
-  top: 85px;
+  /* some pixels so that it doesn't stick to the very top of the viewport */
+  top: 5px;
 
   display: none;
   grid-area: toc;
   height: max-content;
-
-  /* some margin for visual alignment */
-  margin-block-start: 5px;
 `;
 
 export const Article = styled.article`

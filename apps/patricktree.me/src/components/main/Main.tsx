@@ -12,5 +12,4 @@ export const Main: React.FC<MainProps> = ({ children, ...delegated }) => {
 
 export const MainContainer = styled.main`
   flex: 1;
-  padding-block-start: 84px;
 `;
