@@ -25,5 +25,5 @@ const TocAndArticleDiv = styled.div`
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
 
-  margin-block-start: 85px;
+  margin-block-start: 56px;
 `;
