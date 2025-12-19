@@ -87,7 +87,7 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
                 </Anchor>{' '}
                 or{' '}
                 <Anchor
-                  href={`https://x.com/${config.socialMedia.handles.x}`}
+                  href={`https://x.com/intent/follow?screen_name=${config.socialMedia.handles.x}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
