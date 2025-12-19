@@ -6,7 +6,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function HomeLayout({ children }: LayoutProps) {
+const SiteLayout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
   return (
     <>
       <Header showHome={false} />
@@ -14,4 +14,6 @@ export default function HomeLayout({ children }: LayoutProps) {
       {children}
     </>
   );
-}
+};
+
+export default SiteLayout;

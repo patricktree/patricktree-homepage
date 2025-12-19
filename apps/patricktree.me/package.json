@@ -16,7 +16,7 @@
     "internal:fetch-favicons": "playwright install chromium && pnpm run internal:compile && fetch-favicons-for-articles && prettier --write \"./generated/favicons-for-websites.json\" && git add \"./generated/favicons-for-websites.json\"",
     "internal:generate-css-modules": "pnpm run internal:compile && generate-css-modules-for-articles && prettier --write \"./src/app/**/*.module.css\" && git add \"./src/app/**/*.module.css\"",
     "lint": "pnpm run lint:eslint && pnpm run lint:css",
-    "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\" \"!./src/app/blog/*/styles.module.css\" \"!./src/app/tidbits/*/styles.module.css\"",
+    "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\" \"!./src/app/\\(site\\)/blog/*/styles.module.css\" \"!./src/app/\\(site\\)/tidbits/*/styles.module.css\"",
     "lint:eslint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
     "lint:fix": "pnpm run lint:file . --fix && pnpm run lint:css --fix",

@@ -7,21 +7,21 @@ import { Cookie } from '#pkg/components/icon-library/index.js';
 import { Anchor } from '#pkg/elements/index.js';
 
 type NavProps = {
-  showHome?: boolean;
+  showHome: boolean;
 };
 
-export const Nav: React.FC<NavProps> = ({ showHome = true }) => {
+export const Nav: React.FC<NavProps> = ({ showHome }) => {
   return (
     <NavContainer>
       <NavList>
-        {showHome ? (
+        {showHome && (
           <NavListItem>
             <NavAnchor href="/">
               <Home size="1em" />
               Home
             </NavAnchor>
           </NavListItem>
-        ) : null}
+        )}
 
         <NavListItem>
           <NavAnchor href={`/#${headingIds.blog}`}>
