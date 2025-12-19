@@ -3,8 +3,8 @@ import path from 'path';
 import type React from 'react';
 import invariant from 'tiny-invariant';
 
-import { MDXContentClientComponent } from '#pkg/app/blog/using-playwright-to-run-unit-tests/mdx-content-client-component.jsx';
-import styles from '#pkg/app/blog/using-playwright-to-run-unit-tests/styles.module.css';
+import { MDXContentClientComponent } from '#pkg/app/(site)/blog/large-scale-code-changes-using-asts-and-jscodeshift/mdx-content-client-component.jsx';
+import styles from '#pkg/app/(site)/blog/large-scale-code-changes-using-asts-and-jscodeshift/styles.module.css';
 import { ArticleContainerBlogPost } from '#pkg/components/article-container-blog-post/index.js';
 import { ClassesAliases } from '#pkg/constants-browser.js';
 import { PATHS } from '#pkg/constants-server.js';

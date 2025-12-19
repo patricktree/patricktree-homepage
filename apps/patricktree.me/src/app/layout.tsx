@@ -12,10 +12,6 @@ import type React from 'react';
 import { cssReset, cssBase, cssPrismaTheme } from '#pkg/app/global-styles.js';
 import { EnableAnimationsAfterHydration } from '#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx';
 import { Footer } from '#pkg/components/footer/index.js';
-import { Header } from '#pkg/components/header/index.js';
-import { Nav } from '#pkg/components/nav/index.js';
-import { RssFeedAnchor } from '#pkg/components/rss-feed-anchor/index.js';
-import { ToggleThemeButton } from '#pkg/components/toggle-theme-button/index.js';
 import { config } from '#pkg/config.js';
 import {
   Animations,
@@ -155,16 +151,6 @@ export default function RootLayout({ children }: LayoutProps) {
           <EnableAnimationsAfterHydration />
 
           <RootContainer>
-            <Header>
-              <Nav />
-
-              <AnchorAndButtonsArea>
-                <RssFeedAnchor />
-
-                <ToggleThemeButton />
-              </AnchorAndButtonsArea>
-            </Header>
-
             {children}
 
             <Footer />
@@ -213,12 +199,6 @@ const RootContainer = styled.div`
   padding-block-end: calc(3 * var(--spacing-base));
   padding-inline: var(--app-padding-inline);
   margin: 0 auto;
-`;
-
-const AnchorAndButtonsArea = styled.div`
-  display: flex;
-  flex-shrink: 0;
-  gap: calc(3 * var(--spacing-base));
 `;
 
 // see https://sreetamdas.com/blog/the-perfect-dark-mode#recap

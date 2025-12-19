@@ -3,8 +3,8 @@ import path from 'path';
 import type React from 'react';
 import invariant from 'tiny-invariant';
 
-import { MDXContentClientComponent } from '#pkg/app/tidbits/sensible-tsconfig-defaults/mdx-content-client-component.jsx';
-import styles from '#pkg/app/tidbits/sensible-tsconfig-defaults/styles.module.css';
+import { MDXContentClientComponent } from '#pkg/app/(site)/tidbits/sensible-tsconfig-defaults/mdx-content-client-component.jsx';
+import styles from '#pkg/app/(site)/tidbits/sensible-tsconfig-defaults/styles.module.css';
 import { ArticleContainerTidbit } from '#pkg/components/article-container-tidbit/index.js';
 import { ClassesAliases } from '#pkg/constants-browser.js';
 import { PATHS } from '#pkg/constants-server.js';

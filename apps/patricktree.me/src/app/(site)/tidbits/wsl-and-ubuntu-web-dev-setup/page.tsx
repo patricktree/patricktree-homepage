@@ -3,9 +3,9 @@ import path from 'path';
 import type React from 'react';
 import invariant from 'tiny-invariant';
 
-import { MDXContentClientComponent } from '#pkg/app/blog/testing-package-consumption-scenarios/mdx-content-client-component.jsx';
-import styles from '#pkg/app/blog/testing-package-consumption-scenarios/styles.module.css';
-import { ArticleContainerBlogPost } from '#pkg/components/article-container-blog-post/index.js';
+import { MDXContentClientComponent } from '#pkg/app/(site)/tidbits/wsl-and-ubuntu-web-dev-setup/mdx-content-client-component.jsx';
+import styles from '#pkg/app/(site)/tidbits/wsl-and-ubuntu-web-dev-setup/styles.module.css';
+import { ArticleContainerTidbit } from '#pkg/components/article-container-tidbit/index.js';
 import { ClassesAliases } from '#pkg/constants-browser.js';
 import { PATHS } from '#pkg/constants-server.js';
 import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from '#pkg/mdx/index.js';
@@ -14,15 +14,14 @@ const faviconsClassName = styles[ClassesAliases.FAVICONS];
 
 const SEGMENT = path.parse(__dirname).name;
 
-async function BlogPostPage() {
+async function TidbitPage() {
   invariant(faviconsClassName);
 
   const mdxParseResult = await parseMDXFileAndCollectHrefs(
-    path.join(PATHS.POSTS, `${SEGMENT}.mdx`),
+    path.join(PATHS.TIDBITS, `${SEGMENT}.mdx`),
   );
-
   return (
-    <ArticleContainerBlogPost
+    <ArticleContainerTidbit
       mdxContent={<MDXContentClientComponent />}
       mdxParseResult={mdxParseResult}
       faviconsClassName={faviconsClassName}
@@ -32,12 +31,10 @@ async function BlogPostPage() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const mdxParseResult = await parseMDXFileAndCollectHrefs(
-    path.join(PATHS.POSTS, `${SEGMENT}.mdx`),
+    path.join(PATHS.TIDBITS, `${SEGMENT}.mdx`),
   );
 
   return mapMDXParseResultToMetadata(mdxParseResult);
 }
 
-export default BlogPostPage;
-
-export { BLOG_REFETCH_INTERVAL_SECONDS as revalidate } from '#pkg/constants-server.js';
+export default TidbitPage;

@@ -1,15 +1,31 @@
 import { styled } from '@pigment-css/react';
 import type React from 'react';
 
-export const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+import { Nav } from '#pkg/components/nav/index.js';
+import { RssFeedAnchor } from '#pkg/components/rss-feed-anchor/index.js';
+import { ToggleThemeButton } from '#pkg/components/toggle-theme-button/index.js';
+
+type HeaderProps = {
+  showHome: boolean;
+};
+
+export const Header: React.FC<HeaderProps> = ({ showHome }) => {
   return (
     <header>
-      <HeaderContent>{children}</HeaderContent>
+      <HeaderContent>
+        <Nav showHome={showHome} />
+
+        <AnchorAndButtonsArea>
+          <RssFeedAnchor />
+
+          <ToggleThemeButton />
+        </AnchorAndButtonsArea>
+      </HeaderContent>
     </header>
   );
 };
 
-export const HeaderContent = styled.div`
+const HeaderContent = styled.div`
   display: flex;
   gap: calc(4 * var(--spacing-base));
   align-items: flex-start;
@@ -23,4 +39,10 @@ export const HeaderContent = styled.div`
     padding-block-start: calc(1.5 * var(--spacing-base));
     padding-block-end: calc(3 * var(--spacing-base));
   }
+`;
+
+const AnchorAndButtonsArea = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  gap: calc(3 * var(--spacing-base));
 `;

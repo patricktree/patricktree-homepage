@@ -6,16 +6,22 @@ import { headingIds } from '#pkg/app/heading-ids.js';
 import { Cookie } from '#pkg/components/icon-library/index.js';
 import { Anchor } from '#pkg/elements/index.js';
 
-export const Nav: React.FC = () => {
+type NavProps = {
+  showHome?: boolean;
+};
+
+export const Nav: React.FC<NavProps> = ({ showHome = true }) => {
   return (
     <NavContainer>
       <NavList>
-        <NavListItem>
-          <NavAnchor href="/">
-            <Home size="1em" />
-            Home
-          </NavAnchor>
-        </NavListItem>
+        {showHome ? (
+          <NavListItem>
+            <NavAnchor href="/">
+              <Home size="1em" />
+              Home
+            </NavAnchor>
+          </NavListItem>
+        ) : null}
 
         <NavListItem>
           <NavAnchor href={`/#${headingIds.blog}`}>
