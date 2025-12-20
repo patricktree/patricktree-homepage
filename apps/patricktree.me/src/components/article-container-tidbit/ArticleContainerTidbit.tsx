@@ -1,10 +1,13 @@
 import dayjs from 'dayjs';
 
+import profilePic from '#pkg/app/icon.png';
 import {
   Article,
   ArticleContainer,
   ArticleContent,
   ArticleHeading,
+  AuthorAvatar,
+  AuthorLine,
   FrontMatter,
   Time,
   TocAndArticleReadingTarget,
@@ -18,6 +21,7 @@ import {
   ReadingProgressSentinel,
 } from '#pkg/components/reading-progress-bar/index.js';
 import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
+import { Anchor } from '#pkg/elements/index.js';
 import type { MDXParseResult } from '#pkg/mdx/index.js';
 
 export type ArticleContainerTidbitPropsBase = {
@@ -46,6 +50,17 @@ export const ArticleContainerTidbit: React.FC<ArticleContainerTidbitProps> = ({
             <Article>
               <FrontMatter>
                 <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
+                <AuthorLine>
+                  <AuthorAvatar
+                    src={profilePic}
+                    alt="Picture of Patrick Kerschbaum"
+                    width={40}
+                    height={40}
+                  />
+                  <span>
+                    By <Anchor href="/">patricktree</Anchor>
+                  </span>
+                </AuthorLine>
                 <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
                   Last updated on{' '}
                   {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}

@@ -1,15 +1,27 @@
 import { styled } from '@pigment-css/react';
 import type React from 'react';
 
-export const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+import { Nav } from '#pkg/components/nav/index.js';
+import { RssFeedAnchor } from '#pkg/components/rss-feed-anchor/index.js';
+import { ToggleThemeButton } from '#pkg/components/toggle-theme-button/index.js';
+
+export const Header: React.FC = () => {
   return (
     <FullBleedHeader>
-      <HeaderContent>{children}</HeaderContent>
+      <HeaderContent>
+        <Nav />
+
+        <AnchorAndButtonsArea>
+          <RssFeedAnchor />
+
+          <ToggleThemeButton />
+        </AnchorAndButtonsArea>
+      </HeaderContent>
     </FullBleedHeader>
   );
 };
 
-export const FullBleedHeader = styled.header`
+const FullBleedHeader = styled.header`
   position: fixed;
   top: 0;
   right: 0;
@@ -22,21 +34,23 @@ export const FullBleedHeader = styled.header`
   background-color: var(--color-bg);
 `;
 
-export const HeaderContent = styled.div`
+const HeaderContent = styled.div`
   display: flex;
   gap: calc(4 * var(--spacing-base));
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   max-width: var(--app-max-width);
-  padding-block-start: var(--spacing-base);
+  padding-block-start: calc(2 * var(--spacing-base));
+  padding-block-end: calc(2 * var(--spacing-base));
   padding-inline: var(--app-padding-inline);
   margin: 0 auto;
 
   overflow: hidden;
+`;
 
-  & > * {
-    padding-block-start: calc(1 * var(--spacing-base));
-    padding-block-end: calc(2 * var(--spacing-base));
-  }
+const AnchorAndButtonsArea = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  gap: calc(3 * var(--spacing-base));
 `;

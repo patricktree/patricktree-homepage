@@ -1,6 +1,7 @@
 import { styled } from '@pigment-css/react';
 
 import { TOC_QUERY } from '#pkg/constants-browser.js';
+import { Image } from '#pkg/elements/Image.jsx';
 import { CodeBlockContainer } from '#pkg/mdx-components.jsx';
 
 export const ArticleContainer = styled.div`
@@ -18,15 +19,12 @@ export const TocAside = styled.aside`
     display: block;
   }
   position: sticky;
-  /* some "top" spacing because of the fixed positioned header */
-  top: 85px;
+  /* some "top" spacing because of the fixed positioned header and so that it doesn't stick to the very top of the viewport */
+  top: calc(var(--header-height) + 5px);
 
   display: none;
   grid-area: toc;
   height: max-content;
-
-  /* some margin for visual alignment */
-  margin-block-start: 5px;
 `;
 
 export const Article = styled.article`
@@ -37,23 +35,21 @@ export const Article = styled.article`
 export const FrontMatter = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-base);
-  align-items: center;
-
-  text-align: center;
+  gap: calc(2 * var(--spacing-base));
 `;
 
 export const ArticleHeading = styled.h1`
   margin-block-start: 0;
+  text-align: left;
 `;
 
 export const Timestamps = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const Time = styled.time`
+  font-size: var(--font-size-sm);
   color: var(--color-fg-less-emphasized);
   text-transform: uppercase;
 `;
@@ -62,6 +58,23 @@ export const ArticleContent = styled.div`
   & p {
     margin-block: 1em;
   }
+
+  & h2 {
+    /* position: relative to be able to position the underline absolutely */
+    position: relative;
+    margin-block-end: calc(4 * var(--spacing-base));
+  }
+  /* underline for h2 headings */
+  & h2::after {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 140px;
+    height: 3px;
+    content: '';
+    background-image: linear-gradient(to right, var(--color-fg-interactive), rgb(0 0 0 / 0%));
+  }
+
   & ul,
   & ol {
     --ul-padding-inline-start: 20px;
@@ -147,8 +160,16 @@ export const ArticleContent = styled.div`
       -1 * (var(--app-padding-inline) + 2 * var(--ul-padding-inline-start))
     );
   }
+`;
 
-  & > *:last-of-type {
-    margin-block-end: 0;
-  }
+export const AuthorLine = styled.div`
+  display: inline-flex;
+  gap: calc(0.75 * var(--spacing-base));
+  align-items: center;
+  color: var(--color-fg-less-emphasized);
+`;
+
+export const AuthorAvatar = styled(Image)`
+  object-fit: cover;
+  border-radius: 999px;
 `;

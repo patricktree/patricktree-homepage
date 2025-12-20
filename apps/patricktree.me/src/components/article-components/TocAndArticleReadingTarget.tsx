@@ -24,6 +24,4 @@ const TocAndArticleDiv = styled.div`
   grid-template-areas: 'article';
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-
-  margin-block-start: 85px;
 `;

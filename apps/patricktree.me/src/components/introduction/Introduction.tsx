@@ -2,9 +2,9 @@ import { styled } from '@pigment-css/react';
 import type React from 'react';
 import { MapPin } from 'react-feather';
 
+import profilePic from '#pkg/app/icon.png';
 import { Image } from '#pkg/elements/Image.jsx';
 import { commonStyles } from '#pkg/styles/common.styles.js';
-import profilePic from '../../../public/profile-picture.jpg';
 
 export const Introduction: React.FC = () => {
   return (
@@ -40,7 +40,7 @@ const IntroductionContainer = styled.section`
   grid-template-columns: max-content 1fr;
   grid-row-gap: calc(0.5 * var(--spacing-base));
   grid-column-gap: calc(3 * var(--spacing-base));
-  align-items: center;
+  align-items: start;
 
   align-self: center;
   max-width: var(--box-width-sm);
@@ -50,13 +50,11 @@ const IntroductionContainer = styled.section`
 
 const Greeting = styled.h2`
   grid-area: greeting;
-  align-self: end;
   margin-block: 0;
 `;
 
 const Message = styled.p`
   grid-area: message;
-  align-self: end;
   margin-block-end: calc(0.5 * var(--spacing-base));
 `;
 
@@ -65,7 +63,6 @@ const Location = styled.p`
   grid-area: message-details;
   gap: calc(0.75 * var(--spacing-base));
   align-items: center;
-  align-self: start;
 `;
 
 const ProfilePictureWrapper = styled.span`

@@ -13,7 +13,7 @@ A key part of this process involved updating module specifiers.
 
 This post details how I performed this migration using a robust solution on top of Abstract Syntax Trees (ASTs) and `jscodeshift`.
 
-### The Challenge: Module Specifier Paths
+## The Challenge: Module Specifier Paths
 
 Here's the core issue:  
 CJS allows for some flexibility in how you specify module paths, but ESM doen't.
@@ -45,7 +45,7 @@ import * as constants from './constants.js';
 This difference means that a TypeScript CJS to ESM migration requires systematically updating these paths
 throughout the codebase.
 
-### Idea: Transform module specifiers via code
+## Idea: Transform module specifiers via code
 
 What I needed to do was:
 
@@ -76,7 +76,7 @@ The TypeScript AST is used by TypeScript and optimized for parsing incomplete co
 
 When in doubt, it is best to just use `TSESTree` because it covers TypeScript code and is supported by many tools.
 
-### Example: `TSESTree` of a TypeScript Variable Declaration
+## Example: `TSESTree` of a TypeScript Variable Declaration
 
 For example, given this code...
 
@@ -139,7 +139,7 @@ For example, to find all variable declarations, we would look for nodes with `ty
 
 But we don't have to do this manually - we can use `jscodeshift` to assist us!
 
-### `jscodeshift`: Transforming Code with ASTs
+## `jscodeshift`: Transforming Code with ASTs
 
 <FancyAnchor href="https://github.com/facebook/jscodeshift">`jscodeshift`</FancyAnchor> is a
 powerful tool for working with ASTs.
@@ -161,7 +161,7 @@ It is used by:
 - Prisma codemods (<FancyAnchor href="https://github.com/prisma/codemods/blob/db3fea927c79ef4c48a3df3876d1724e4e451e78/package.json#L39">source</FancyAnchor>)
 - and many more!
 
-### Putting things together
+## Putting things together
 
 Using what we learned, we can now write a script to update module specifiers of a file with only ~30 lines of code!
 
@@ -210,7 +210,7 @@ Note that to make this complete, there are other types of nodes to capture:
 I published the full codemod as NPM package here: <FancyAnchor href="https://www.npmjs.com/package/@patricktree/codemod-rewrite-module-specifiers-to-full-paths">`@patricktree/codemod-rewrite-module-specifiers-to-full-paths`</FancyAnchor>.  
 If you also need to transform all module specifiers of a TypeScript project to full paths, that NPM package is for you!
 
-### Appendix: Some useful links
+## Appendix: Some useful links
 
 - A great explanation of ASTs: <FancyAnchor href="https://typescript-eslint.io/blog/asts-and-typescript-eslint/">AUTOGENERATE</FancyAnchor>
 - The AST specification for `TSESTree`: <FancyAnchor href="https://typescript-eslint.io/packages/typescript-estree/ast-spec/">AUTOGENERATE</FancyAnchor>

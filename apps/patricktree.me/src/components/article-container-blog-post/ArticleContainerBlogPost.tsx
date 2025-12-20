@@ -1,11 +1,14 @@
 import { styled } from '@pigment-css/react';
 import dayjs from 'dayjs';
 
+import profilePic from '#pkg/app/icon.png';
 import {
   ArticleHeading,
   Article,
   ArticleContainer,
   ArticleContent,
+  AuthorAvatar,
+  AuthorLine,
   FrontMatter,
   Time,
   TocAndArticleReadingTarget,
@@ -51,6 +54,17 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
             <Article>
               <FrontMatter>
                 <ArticleHeading>{mdxParseResult.frontmatter.title}</ArticleHeading>
+                <AuthorLine>
+                  <AuthorAvatar
+                    src={profilePic}
+                    alt="Picture of Patrick Kerschbaum"
+                    width={40}
+                    height={40}
+                  />
+                  <span>
+                    By <Anchor href="/">patricktree</Anchor>
+                  </span>
+                </AuthorLine>
                 <Timestamps>
                   <Time dateTime={mdxParseResult.frontmatter.publishedAtISO}>
                     Published on{' '}

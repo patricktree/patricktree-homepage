@@ -13,21 +13,21 @@ export const Nav: React.FC = () => {
         <NavListItem>
           <NavAnchor href="/">
             <Home size="1em" />
-            Home
+            home
           </NavAnchor>
         </NavListItem>
 
         <NavListItem>
           <NavAnchor href={`/#${headingIds.blog}`}>
             <PenTool size="1em" />
-            Blog
+            blog
           </NavAnchor>
         </NavListItem>
 
         <NavListItem>
           <NavAnchor href={`/#${headingIds.tidbits}`}>
             <Cookie size="1em" />
-            Tidbits
+            tidbits
           </NavAnchor>
         </NavListItem>
       </NavList>
@@ -58,7 +58,7 @@ const NavAnchor = styled(Anchor)`
   gap: calc(1 * var(--spacing-base));
   align-items: center;
 
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
   color: inherit;
   text-decoration: none;
 

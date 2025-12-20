@@ -148,8 +148,9 @@ export const cssBase = css`
       --font-size-xxl: 1.5rem;
       --font-size-xxxl: 1.75rem;
       --font-size-xxxxl: 2rem;
-      --font-weight-bold: 700;
+      --font-weight-bold: 800;
       --spacing-base: 8px;
+      --header-height: 70px;
       --box-width-lg: 1050px;
       --box-width-md: 800px;
       --box-width-sm: 600px;
@@ -271,6 +272,7 @@ export const cssBase = css`
     }
 
     h1 {
+      font-weight: var(--font-weight-bold);
       text-wrap: balance;
     }
 
