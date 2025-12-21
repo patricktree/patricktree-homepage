@@ -218,7 +218,7 @@ export const cssBase = css`
     h4,
     h5,
     h6 {
-      text-wrap: balance;
+      text-wrap: pretty;
     }
 
     /* table border of 1px solid var(--color-black) */

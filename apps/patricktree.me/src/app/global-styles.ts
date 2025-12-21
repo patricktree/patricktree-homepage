@@ -273,7 +273,7 @@ export const cssBase = css`
 
     h1 {
       font-weight: var(--font-weight-bold);
-      text-wrap: balance;
+      text-wrap: pretty;
     }
 
     h1,

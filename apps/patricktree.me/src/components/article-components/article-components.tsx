@@ -14,17 +14,19 @@ export const ArticleContainer = styled.div`
 `;
 
 export const TocAside = styled.aside`
-  /* stylelint-disable-next-line media-query-no-invalid -- works */
-  @media ${TOC_QUERY} {
-    display: block;
-  }
   position: sticky;
   /* some "top" spacing because of the fixed positioned header and so that it doesn't stick to the very top of the viewport */
-  top: calc(var(--header-height) + 5px);
+  top: calc(var(--header-height));
 
   display: none;
   grid-area: toc;
   height: max-content;
+  margin-block-start: var(--main-container-children-margin-block-start);
+
+  /* stylelint-disable-next-line media-query-no-invalid -- works */
+  @media ${TOC_QUERY} {
+    display: block;
+  }
 `;
 
 export const Article = styled.article`
@@ -35,7 +37,10 @@ export const Article = styled.article`
 export const FrontMatter = styled.div`
   display: flex;
   flex-direction: column;
-  gap: calc(2 * var(--spacing-base));
+  gap: calc(1.5 * var(--spacing-base));
+
+  margin-block-start: var(--main-container-children-margin-block-start);
+  margin-block-end: calc(3 * var(--spacing-base));
 `;
 
 export const ArticleHeading = styled.h1`
