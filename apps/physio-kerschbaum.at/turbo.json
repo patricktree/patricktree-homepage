@@ -4,6 +4,7 @@
   "tasks": {
     "build": {
       "cache": true,
+      "env": ["DEPLOYMENT_ORIGIN", "VERCEL_URL"],
       "inputs": [
         "../../platform/config-typescript/tsconfig.json",
         "src/**",
