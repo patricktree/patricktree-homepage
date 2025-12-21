@@ -39,6 +39,7 @@ const NavContainer = styled.nav`
   --nav-column-gap: calc(3 * var(--spacing-base));
 
   display: block;
+  padding-inline-end: calc(1 * var(--spacing-base));
 `;
 
 const NavList = styled.ol`

@@ -1,4 +1,5 @@
 'use client';
+
 import { styled } from '@pigment-css/react';
 import type React from 'react';
 import { Moon, Sun } from 'react-feather';
@@ -6,11 +7,24 @@ import { Moon, Sun } from 'react-feather';
 import { Classes, ColorTheme, DataAttribute, LocalStorageKey } from '#pkg/constants-browser.js';
 import { IconButton } from '#pkg/elements/index.js';
 
+const iconSize = 20;
+
 export const ToggleThemeButton: React.FC = () => {
   return (
-    <ToggleThemeIconButton onClick={toggleColorTheme} className={Classes.JS_REQUIRED}>
-      <AnimatedMoon aria-label="Switch to dark mode" />
-      <AnimatedSun aria-label="Switch to light mode" />
+    <ToggleThemeIconButton
+      onClick={toggleColorTheme}
+      className={Classes.JS_REQUIRED}
+      style={{
+        '--icon-size': `${iconSize}px`,
+      }}
+      aria-label="toggle light/dark theme"
+    >
+      <CentralFixedSizeDiv>
+        <IconStack>
+          <StackedSun width={iconSize} height={iconSize} />
+          <StackedMoon width={iconSize} height={iconSize} />
+        </IconStack>
+      </CentralFixedSizeDiv>
     </ToggleThemeIconButton>
   );
 };
@@ -34,45 +48,54 @@ function toggleColorTheme() {
 }
 
 const ToggleThemeIconButton = styled(IconButton)`
-  --transition-duration: 500ms;
-  --transition-translatey-distance: 250%;
-
   display: grid;
   flex-shrink: 0;
   place-items: center;
+  height: 100%;
+  padding-block-start: calc(var(--header-content-padding-block-start) + 4px);
+  padding-block-end: var(--header-content-padding-block-end);
+  padding-inline: calc(1 * var(--spacing-base));
+`;
+
+const CentralFixedSizeDiv = styled('div')`
+  position: relative;
+
+  display: grid;
+  place-items: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
 
   overflow: hidden;
-
-  & > * {
-    grid-row: 1 / -1;
-    grid-column: 1 / -1;
-  }
 `;
 
-const AnimatedMoon = styled(Moon)`
-  transition: transform var(--transition-duration);
+const IconStack = styled('div')`
+  --icon-stack-spacing: 8px;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-areas:
+    'moon'
+    'spacer'
+    'sun';
+  grid-template-rows: 1fr var(--icon-stack-spacing) 1fr;
+  place-items: center;
+  width: calc(100%);
+  height: calc(200% + var(--icon-stack-spacing));
+
+  transition: transform 500ms;
 
   *:root[${DataAttribute.THEME}='${ColorTheme.DARK}'] && {
-    /* hide */
-    transform: translateY(var(--transition-translatey-distance));
-
-    animation-name: var(--animation-hide);
-    animation-duration: 0ms;
-    animation-delay: var(--transition-duration);
-    animation-fill-mode: forwards;
+    transform: translateY(calc(-1 * 50% - 0.5 * var(--icon-stack-spacing)));
   }
 `;
 
-const AnimatedSun = styled(Sun)`
-  transition: transform var(--transition-duration);
+const StackedSun = styled(Sun)`
+  grid-area: sun;
+`;
 
-  *:root:not([${DataAttribute.THEME}='${ColorTheme.DARK}']) && {
-    /* hide */
-    transform: translateY(calc(-1 * var(--transition-translatey-distance)));
-
-    animation-name: var(--animation-hide);
-    animation-duration: 0ms;
-    animation-delay: var(--transition-duration);
-    animation-fill-mode: forwards;
-  }
+const StackedMoon = styled(Moon)`
+  grid-area: moon;
 `;

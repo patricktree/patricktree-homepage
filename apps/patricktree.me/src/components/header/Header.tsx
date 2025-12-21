@@ -35,22 +35,30 @@ const FullBleedHeader = styled.header`
 `;
 
 const HeaderContent = styled.div`
+  --header-content-padding-block-start: calc(1.5 * var(--spacing-base));
+  --header-content-padding-block-end: calc(2 * var(--spacing-base));
+
   display: flex;
-  gap: calc(4 * var(--spacing-base));
+  gap: calc(2 * var(--spacing-base));
   align-items: flex-start;
   justify-content: space-between;
 
   max-width: var(--app-max-width);
-  padding-block-start: calc(2 * var(--spacing-base));
-  padding-block-end: calc(2 * var(--spacing-base));
   padding-inline: var(--app-padding-inline);
   margin: 0 auto;
 
   overflow: hidden;
+
+  & > *:nth-child(1) {
+    padding-block-start: calc(
+      var(--header-content-padding-block-start) + 0.25 * var(--spacing-base)
+    );
+    padding-block-end: calc(var(--header-content-padding-block-end));
+  }
 `;
 
 const AnchorAndButtonsArea = styled.div`
   display: flex;
   flex-shrink: 0;
-  gap: calc(3 * var(--spacing-base));
+  gap: calc(0.5 * var(--spacing-base));
 `;
