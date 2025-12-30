@@ -2,14 +2,15 @@
 title: Large-scale code changes using ASTs and jscodeshift
 published: true
 publishedAtISO: '2024-12-25T13:00:00.000Z'
-description: How I used Abstract Syntax Trees (ASTs) and the `jscodeshift` library to migrate module specifiers to full paths in a TypeScript codebase.
+lastUpdatedAtISO: '2025-12-30T13:14:00.000Z'
+description: How I used Abstract Syntax Trees (ASTs) and the `jscodeshift` library to migrate legacy CJS module specifiers to exact specifiers in a TypeScript codebase.
 tags: ['AST', 'jscodeshift', 'codemod', 'typescript', 'webdev']
 giscusTerm: large-scale-code-changes-using-asts-and-jscodeshift
 ---
 
 Migrating a codebase is often a complex undertaking, and I recently tackled a particularly interesting
 challenge: migrating a TypeScript medium-sized monorepo from CommonJS (CJS) to ECMAScript Modules (ESM).  
-A key part of this process involved updating module specifiers.
+A key part of this process involved updating **module specifiers**.
 
 This post details how I performed this migration using a robust solution on top of Abstract Syntax Trees (ASTs) and `jscodeshift`.
 
@@ -21,7 +22,7 @@ CJS allows for some flexibility in how you specify module paths, but ESM doen't.
 For example:
 
 ```ts
-// for this extensionless module specifier in some TypeScript CJS module...
+// for this (extensionless) module specifier in some TypeScript CJS module...
 import * as constants from './constants';
 
 // ...Node.js will look for these files:
@@ -32,7 +33,8 @@ import * as constants from './constants/index.cjs';
 ```
 
 However, ESM is much stricter.  
-It requires explicit file extensions:
+It won't append file extensions or look for directories with `index` files automatically.  
+It requires **exact module specifiers**:
 
 ```ts
 // in ESM, this import will fail!
@@ -40,6 +42,7 @@ import * as constants from './constants';
 
 // this works in ESM (and CJS)
 import * as constants from './constants.js';
+import * as constants from './constants/index.js';
 ```
 
 This difference means that a TypeScript CJS to ESM migration requires systematically updating these paths
@@ -185,11 +188,11 @@ astNodesModuleSpecifiers.forEach((astPath) => {
 
   const originalModuleSpecifier = astNode.value;
   /**
-   * assume "resolveModuleSpecifierToFullPath" is a (synchronous) function which looks into the file system
-   * to determine the full path
+   * assume "resolveModuleSpecifierToExactModuleSpecifier" is a (synchronous) function which looks
+   * into the file system to determine the exact specifier (full path)
    * e.g. given './constants' it returns './constants.js`
    */
-  const newModuleSpecifier = resolveModuleSpecifierToFullPath(originalModuleSpecifier);
+  const newModuleSpecifier = resolveModuleSpecifierToExactModuleSpecifier(originalModuleSpecifier);
   astNode.value = newModuleSpecifier;
 });
 
@@ -205,10 +208,11 @@ Note that to make this complete, there are other types of nodes to capture:
 - `export ... from <MODULE_SPECIFIER>`
 - `declare module <MODULE_SPECIFIER>`
 - `require(<MODULE_SPECIFIER>)`
-- ...actually **9 ways** to use module specifiers as of December 2024
+- ...actually **9 ways** to use module specifiers as of December 2025
 
 I published the full codemod as NPM package here: <FancyAnchor href="https://www.npmjs.com/package/@patricktree/codemod-rewrite-module-specifiers-to-full-paths">`@patricktree/codemod-rewrite-module-specifiers-to-full-paths`</FancyAnchor>.  
-If you also need to transform all module specifiers of a TypeScript project to full paths, that NPM package is for you!
+It uses the TypeScript compiler API under-the-hood to resolve module specifiers to exact specifiers (full paths) correctly.  
+If you also need to transform all module specifiers of a TypeScript project to exact specifiers, that NPM package is for you!
 
 ## Appendix: Some useful links
 
