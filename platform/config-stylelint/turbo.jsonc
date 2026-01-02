@@ -1,21 +1,21 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "extends": ["//"],
+  "extends": ["//", "@patricktree-homepage/config-turbo"],
   "tasks": {
-    "build": {
+    "turbo:build": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
+      "outputs": [],
     },
-    "lint": {
+    "turbo:lint": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
+      "outputs": [],
     },
-    "lint:fix": {
+    "turbo:lint:fix": {
       "cache": true,
       "inputs": ["no-inputs-for-this-task"],
-      "outputs": []
-    }
-  }
+      "outputs": [],
+    },
+  },
 }

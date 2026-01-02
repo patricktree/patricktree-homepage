@@ -6,21 +6,24 @@
     "#pkg/*": "./src/*"
   },
   "scripts": {
-    "build": "pnpm run internal:compile",
+    "build": "superturbo run turbo:build",
     "build:next": "pnpm run nuke:artifacts && pnpm run internal:compile && pnpm run internal:build:next && pnpm run internal:build:sitemap",
     "dev": "next dev",
     "internal:build:next": "next build",
     "internal:build:sitemap": "next-sitemap --config next-sitemap.cjs",
-    "internal:compile": "tsc -p ./tsconfig.project.json",
+    "internal:compile": "tsc --build ./tsconfig.json",
     "internal:compile:watch": "pnpm run internal:compile --watch",
-    "lint": "pnpm run lint:eslint && pnpm run lint:css",
+    "lint": "superturbo run turbo:lint",
     "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\"",
     "lint:eslint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint:file . --fix && pnpm run lint:css --fix",
+    "lint:fix": "superturbo run turbo:lint:fix",
     "nuke": "pnpm run nuke:artifacts && del-cli --dot=true node_modules",
     "nuke:artifacts": "del-cli --dot=true dist *.tsbuildinfo",
-    "start": "next start"
+    "start": "next start",
+    "turbo:build": "pnpm run internal:compile",
+    "turbo:lint": "pnpm run lint:eslint && pnpm run lint:css",
+    "turbo:lint:fix": "pnpm run lint:file . --fix && pnpm run lint:css --fix"
   },
   "dependencies": {
     "@patricktree-homepage/react-utils": "workspace:*",

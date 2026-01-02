@@ -2,7 +2,6 @@
   "extends": "@patricktree-homepage/config-typescript/tsconfig.json",
   "compilerOptions": {
     /* Modules */
-    "module": "node16",
     "types": ["node"],
     "rootDir": "./src",
 

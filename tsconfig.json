@@ -1,12 +1,13 @@
 {
   "references": [
-    { "path": "./apps/patricktree.me/tsconfig.project.json" },
-    { "path": "./apps/physio-kerschbaum.at/tsconfig.project.json" },
-    { "path": "./packages/mdx/tsconfig.project.json" },
-    { "path": "./packages/mdx-blog/tsconfig.project.json" },
-    { "path": "./packages/react-utils/tsconfig.project.json" },
-    { "path": "./packages/ui-utils/tsconfig.project.json" },
-    { "path": "./platform/superturbo/tsconfig.project.json" },
-    { "path": "./test/e2e-test/tsconfig.project.json" }
+    { "path": "./apps/patricktree.me/tsconfig.json" },
+    { "path": "./apps/physio-kerschbaum.at/tsconfig.json" },
+    { "path": "./packages/mdx/tsconfig.json" },
+    { "path": "./packages/mdx-blog/tsconfig.json" },
+    { "path": "./packages/react-utils/tsconfig.json" },
+    { "path": "./packages/ui-utils/tsconfig.json" },
+    { "path": "./platform/config-typescript/tsconfig.json" },
+    { "path": "./platform/superturbo/tsconfig.json" },
+    { "path": "./test/e2e-test/tsconfig.json" }
   ]
 }

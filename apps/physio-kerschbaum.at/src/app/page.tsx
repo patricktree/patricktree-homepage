@@ -395,7 +395,7 @@ const Section: React.FC<SectionProps> = ({ children, disablePadding, slots }) =>
             }
           ` +
           ' ' +
-          slots?.div?.cssClassName
+          (slots?.div?.cssClassName ?? '')
         }
         style={{
           '--padding-inline': disablePadding ? '0' : 'var(--app-padding-inline)',

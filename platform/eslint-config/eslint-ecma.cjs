@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.project.json',
+    projectService: true,
     sourceType: 'module',
   },
   plugins: [
@@ -22,8 +22,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:regexp/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -32,13 +32,36 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     'prettier',
   ],
-  ignorePatterns: ['.eslintrc.cjs', 'dist/**/*'],
+  ignorePatterns: ['.eslintrc.cjs', 'babel.config.mjs', 'dist/**/*'],
   rules: {
     curly: 'error',
     'multiline-comment-style': ['error', 'starred-block'],
     'no-console': 'error',
     'no-constant-condition': ['error', { checkLoops: false }],
+    'no-empty-pattern': 'off',
     'no-promise-executor-return': 'error',
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector:
+          "MemberExpression[object.name='it'][property.name='only'], MemberExpression[object.name='test'][property.name='only'], MemberExpression[object.name='apiTest'][property.name='only']",
+        message:
+          'Do not check in spec files with tests using ".only" - the other tests of that spec file would be skipped!',
+      },
+      {
+        selector:
+          "MemberExpression[object.name='it'][property.name='skip'], MemberExpression[object.name='test'][property.name='skip'], MemberExpression[object.name='apiTest'][property.name='skip']",
+        message: 'Do not check in dead tests. Either fix or delete them.',
+      },
+      {
+        selector: "[property.name='toBe']",
+        message:
+          'Prefer `expect(...).toEqual()` over `expect(...).toBe()`. This does not make any difference ' +
+          'for primitive types, but in case of objects/arrays `toEqual()` will perform a deep comparison ' +
+          '(compared to `toBe()` which checks for referential equality).',
+      },
+    ],
+    'no-undef': 'off',
     'no-unneeded-ternary': 'error',
     'no-useless-computed-key': 'error',
     'object-shorthand': 'error',
@@ -64,8 +87,6 @@ module.exports = {
       },
     ],
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
-    // disable "import/namespace" --> covered by TypeScript
-    'import/namespace': 'off',
     'import/newline-after-import': 'error',
     'import/no-absolute-path': 'error',
     'import/no-cycle': 'error',
@@ -99,6 +120,8 @@ module.exports = {
       },
     ],
     'n/handle-callback-err': 'error',
+    /* n/hashbang has false positives */
+    'n/hashbang': 'off',
     'n/no-callback-literal': 'error',
     // disable "n/no-extraneous-import" --> thanks to "isolated mode" of node_modules of pnpm and "public-hoist-pattern" being disabled of this monorepo, there is no possibilty for extraneous imports
     'n/no-extraneous-import': 'off',
@@ -131,7 +154,9 @@ module.exports = {
     'unicorn/prefer-string-replace-all': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
+    '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
     '@typescript-eslint/class-literal-property-style': 'error',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/explicit-member-accessibility': [
       'error',
@@ -144,8 +169,12 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-base-to-string': ['error', { ignoredTypeNames: ['Error', 'Moment'] }],
     '@typescript-eslint/no-confusing-non-null-assertion': 'error',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
     '@typescript-eslint/no-duplicate-enum-values': 'error',
+    '@typescript-eslint/no-extraneous-class': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
+    '@typescript-eslint/no-base-to-string': ['error', { ignoredTypeNames: ['RegExp'] }],
+    '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-meaningless-void-operator': 'error',
     '@typescript-eslint/no-misused-promises': [
       'error',
@@ -181,7 +210,7 @@ module.exports = {
     '@typescript-eslint/prefer-function-type': 'error',
     '@typescript-eslint/prefer-includes': 'error',
     '@typescript-eslint/prefer-literal-enum-member': 'error',
-    '@typescript-eslint/prefer-nullish-coalescing': 'error',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
     '@typescript-eslint/prefer-optional-chain': 'error',
     '@typescript-eslint/prefer-readonly': 'error',
     '@typescript-eslint/prefer-reduce-type-parameter': 'error',
@@ -221,15 +250,4 @@ module.exports = {
       },
     },
   ],
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.cts', '.ctsx', '.mts', '.mtsx'],
-    },
-    'import/resolver:': {
-      typescript: {
-        project: './tsconfig.project.json',
-      },
-      node: true,
-    },
-  },
 };

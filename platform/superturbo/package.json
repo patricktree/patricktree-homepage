@@ -9,20 +9,23 @@
     "superturbo": "./src/turbo-wrapper.mjs"
   },
   "scripts": {
-    "build": "pnpm run internal:build:compile",
+    "build": "superturbo run turbo:build",
     "dev": "pnpm run internal:build:compile -w --preserveWatchOutput",
-    "internal:build:compile": "tsc -p ./tsconfig.build.json",
-    "lint": "pnpm run lint:js",
-    "lint:fix": "pnpm run lint:js:file . --fix",
+    "internal:build:compile": "tsc --build ./tsconfig.json",
+    "lint": "superturbo run turbo:lint",
+    "lint:fix": "superturbo run turbo:lint:fix",
     "lint:js": "pnpm run lint:js:file .",
     "lint:js:file": "eslint --max-warnings 0",
     "nuke": "pnpm run nuke:artifacts && del-cli --dot=true node_modules",
-    "nuke:artifacts": "del-cli --dot=true *.tsbuildinfo"
+    "nuke:artifacts": "del-cli --dot=true *.tsbuildinfo",
+    "turbo:build": "pnpm run internal:build:compile",
+    "turbo:lint": "pnpm run lint:js",
+    "turbo:lint:fix": "pnpm run lint:js:file . --fix"
   },
   "devDependencies": {
     "@types/node": "^22.15.2"
   },
   "peerDependencies": {
-    "turbo": "^1.10.16"
+    "turbo": "^2.7.2"
   }
 }

@@ -1,2 +1,3 @@
-pnpm exec superturbo build lint
 pnpm exec prettier --ignore-unknown --check .
+pnpm run build
+pnpm run lint

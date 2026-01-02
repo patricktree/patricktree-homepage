@@ -19,37 +19,40 @@ export const QUERIES = {
 
 export const TOC_QUERY = QUERIES.desktopAndUp;
 
-export enum DataAttribute {
-  // eslint-disable-next-line @typescript-eslint/prefer-literal-enum-member
-  THEME = MDXBlogDataAttribute.THEME,
-  IS_ANIMATION_ENABLED = 'data-is-animation-enabled',
-  SECTION_HEADING_ID = 'data-section-heading-id',
-}
+export const DataAttribute = {
+  THEME: MDXBlogDataAttribute.THEME,
+  IS_ANIMATION_ENABLED: 'data-is-animation-enabled',
+  SECTION_HEADING_ID: 'data-section-heading-id',
+} as const;
+export type DataAttribute = (typeof DataAttribute)[keyof typeof DataAttribute];
 
-export enum LocalStorageKey {
-  THEME = 'theme',
-}
+export const LocalStorageKey = {
+  THEME: 'theme',
+} as const;
+export type LocalStorageKey = (typeof LocalStorageKey)[keyof typeof LocalStorageKey];
 
-export enum IsScrolled {
-  YES = 'yes',
-  NO = 'no',
-}
+export const IsScrolled = {
+  YES: 'yes',
+  NO: 'no',
+} as const;
+export type IsScrolled = (typeof IsScrolled)[keyof typeof IsScrolled];
 
-export enum IsAnimationEnabled {
-  YES = 'yes',
-  NO = 'no',
-}
+export const IsAnimationEnabled = {
+  YES: 'yes',
+  NO: 'no',
+} as const;
+export type IsAnimationEnabled = (typeof IsAnimationEnabled)[keyof typeof IsAnimationEnabled];
 
-export enum Classes {
-  JS_REQUIRED = 'js-required',
-  // eslint-disable-next-line @typescript-eslint/prefer-literal-enum-member
-  STYLED_ANCHOR = MDXBlogClasses.STYLED_ANCHOR,
-  // eslint-disable-next-line @typescript-eslint/prefer-literal-enum-member
-  FANCY_ANCHOR_ICON = MDXBlogClasses.FANCY_ANCHOR_ICON,
-}
+export const Classes = {
+  JS_REQUIRED: 'js-required',
+  STYLED_ANCHOR: MDXBlogClasses.STYLED_ANCHOR,
+  FANCY_ANCHOR_ICON: MDXBlogClasses.FANCY_ANCHOR_ICON,
+} as const;
+export type Classes = (typeof Classes)[keyof typeof Classes];
 
-export enum Animations {
-  HIDE = 'hide',
-  SLIDE_LEFT = 'slide-left',
-  SLIDE_RIGHT = 'slide-right',
-}
+export const Animations = {
+  HIDE: 'hide',
+  SLIDE_LEFT: 'slide-left',
+  SLIDE_RIGHT: 'slide-right',
+} as const;
+export type Animations = (typeof Animations)[keyof typeof Animations];

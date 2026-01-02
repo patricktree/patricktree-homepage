@@ -3,6 +3,26 @@ packages:
   - packages/*
   - platform/*
   - test/*
+
 onlyBuiltDependencies:
+  - '@vercel/speed-insights'
   - sharp
   - unrs-resolver
+
+publicHoistPattern:
+  - '*eslint*'
+
+# enforce specific Node.js and pnpm version (https://pnpm.io/npmrc#engine-strict)
+engineStrict: true
+
+# handle peer dependencies in a strict way
+autoInstallPeers: false
+dedupePeerDependents: false
+strictPeerDependencies: true
+resolvePeersFromWorkspaceRoot: false
+
+# https://pnpm.io/npmrc#update-notifier
+updateNotifier: false
+
+# workspace-concurrency=0 will use amount of cores of the host to run tasks concurrently (see https://pnpm.io/cli/recursive#--workspace-concurrency)
+workspaceConcurrency: 0

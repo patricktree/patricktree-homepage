@@ -2,6 +2,8 @@
   "extends": "@patricktree-homepage/config-typescript/tsconfig.json",
   "compilerOptions": {
     /* Modules */
+    "lib": ["dom", "dom.iterable", "es2019"],
+    "target": "ES2019",
     "rootDir": "./src",
 
     /* Emit */

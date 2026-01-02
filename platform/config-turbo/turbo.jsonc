@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "turbo:build": {
+      "dependsOn": ["^turbo:build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+    "turbo:lint": {
+      "dependsOn": ["^turbo:build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+    "turbo:lint:fix": {
+      "dependsOn": ["^turbo:build"],
+      "cache": false,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!*.md",
+        "!LICENSE",
+        /* vitest snapshots */
+        "!**/*.snap",
+      ],
+    },
+  },
+}

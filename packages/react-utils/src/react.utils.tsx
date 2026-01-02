@@ -70,9 +70,11 @@ function getNodeText(node: React.ReactNode): string {
  */
 export function useMediaMatch(query: string): boolean | 'SSR' {
   const matchMedia = React.useMemo<MediaQueryList | undefined>(() => {
+    // eslint-disable-next-line unicorn/prefer-global-this -- explicit usage of `window` here
     if (typeof window === 'undefined') {
       return;
     }
+    // eslint-disable-next-line unicorn/prefer-global-this -- explicit usage of `window` here
     return window.matchMedia(query);
   }, [query]);
   const [matches, setMatches] = React.useState<boolean | 'SSR'>(() => {
@@ -98,7 +100,9 @@ export function useMediaMatch(query: string): boolean | 'SSR' {
       matchMedia.addEventListener('change', onMatchMediaChangeListener);
       return () => matchMedia.removeEventListener('change', onMatchMediaChangeListener);
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       matchMedia.addListener(onMatchMediaChangeListener);
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       return () => matchMedia.removeListener(onMatchMediaChangeListener);
     }
   }, [matchMedia]);

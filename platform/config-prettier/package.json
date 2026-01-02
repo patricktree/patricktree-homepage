@@ -1,0 +1,5 @@
+{
+  "name": "@patricktree-homepage/config-prettier",
+  "private": true,
+  "main": "./prettier-config.cjs"
+}

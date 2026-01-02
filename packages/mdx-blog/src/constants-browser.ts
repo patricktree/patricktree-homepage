@@ -1,17 +1,21 @@
-export enum DataAttribute {
-  THEME = 'data-theme',
-}
+export const DataAttribute = {
+  THEME: 'data-theme',
+} as const;
+export type DataAttribute = (typeof DataAttribute)[keyof typeof DataAttribute];
 
-export enum ColorTheme {
-  LIGHT = 'light',
-  DARK = 'dark',
-}
+export const ColorTheme = {
+  LIGHT: 'light',
+  DARK: 'dark',
+} as const;
+export type ColorTheme = (typeof ColorTheme)[keyof typeof ColorTheme];
 
-export enum Classes {
-  STYLED_ANCHOR = 'styled-anchor',
-  FANCY_ANCHOR_ICON = 'fancy-anchor-icon',
-}
+export const Classes = {
+  STYLED_ANCHOR: 'styled-anchor',
+  FANCY_ANCHOR_ICON: 'fancy-anchor-icon',
+} as const;
+export type Classes = (typeof Classes)[keyof typeof Classes];
 
-export enum ClassesAliases {
-  FAVICONS = 'favicons',
-}
+export const ClassesAliases = {
+  FAVICONS: 'favicons',
+} as const;
+export type ClassesAliases = (typeof ClassesAliases)[keyof typeof ClassesAliases];

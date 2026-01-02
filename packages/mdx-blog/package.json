@@ -15,14 +15,17 @@
     "generate-css-modules-for-articles": "./bin/generate-css-modules-for-articles.js"
   },
   "scripts": {
-    "build": "pnpm run internal:compile",
+    "build": "superturbo run turbo:build",
     "dev": "pnpm run build --watch --preserveWatchOutput",
-    "internal:compile": "tsc -p ./tsconfig.project.json",
-    "lint": "pnpm run lint:file .",
+    "internal:compile": "tsc --build ./tsconfig.json",
+    "lint": "superturbo run turbo:lint",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint --fix",
+    "lint:fix": "superturbo run turbo:lint:fix",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist *.tsbuildinfo"
+    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
+    "turbo:build": "pnpm run internal:compile",
+    "turbo:lint": "pnpm run lint:file .",
+    "turbo:lint:fix": "pnpm run lint:file . --fix"
   },
   "dependencies": {
     "@patricktree-homepage/mdx": "workspace:*",

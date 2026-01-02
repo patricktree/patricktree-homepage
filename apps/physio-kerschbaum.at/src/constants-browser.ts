@@ -10,25 +10,30 @@ export const QUERIES = {
   desktopAndUp: `(min-width: ${BREAKPOINTS.desktopMin / 16}rem)`,
 };
 
-export enum DataAttribute {
-  IS_ANIMATION_ENABLED = 'data-is-animation-enabled',
-}
+export const DataAttribute = {
+  IS_ANIMATION_ENABLED: 'data-is-animation-enabled',
+} as const;
+export type DataAttribute = (typeof DataAttribute)[keyof typeof DataAttribute];
 
-export enum LocalStorageKey {
-  THEME = 'theme',
-}
+export const LocalStorageKey = {
+  THEME: 'theme',
+} as const;
+export type LocalStorageKey = (typeof LocalStorageKey)[keyof typeof LocalStorageKey];
 
-export enum IsAnimationEnabled {
-  YES = 'yes',
-  NO = 'no',
-}
+export const IsAnimationEnabled = {
+  YES: 'yes',
+  NO: 'no',
+} as const;
+export type IsAnimationEnabled = (typeof IsAnimationEnabled)[keyof typeof IsAnimationEnabled];
 
-export enum Classes {
-  JS_REQUIRED = 'js-required',
-}
+export const Classes = {
+  JS_REQUIRED: 'js-required',
+} as const;
+export type Classes = (typeof Classes)[keyof typeof Classes];
 
-export enum Animations {
-  HIDE = 'hide',
-  SLIDE_LEFT = 'slide-left',
-  SLIDE_RIGHT = 'slide-right',
-}
+export const Animations = {
+  HIDE: 'hide',
+  SLIDE_LEFT: 'slide-left',
+  SLIDE_RIGHT: 'slide-right',
+} as const;
+export type Animations = (typeof Animations)[keyof typeof Animations];

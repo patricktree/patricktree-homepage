@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//", "@patricktree-homepage/config-turbo"],
+  "tasks": {
+    "turbo:build": {
+      "cache": true,
+      "env": ["DEPLOYMENT_ORIGIN", "VERCEL_URL"],
+      "outputs": ["*.tsbuildinfo"],
+    },
+    "turbo:lint": {
+      "cache": true,
+      "outputs": [],
+    },
+    "turbo:lint:fix": {
+      "cache": true,
+      "outputs": [
+        "src/**",
+        "!src/**/*.jpeg",
+        "!src/**/*.jpg",
+        "!src/**/*.png",
+        "!src/**/*.svg",
+        "!src/**/*.webp",
+        "!src/**/*.gif",
+      ],
+    },
+  },
+}

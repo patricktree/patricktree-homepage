@@ -3,7 +3,7 @@
 
   "compilerOptions": {
     /* Language and Environment */
-    "target": "ES2019",
+    "target": "ES2018",
 
     /* Modules */
     "module": "node16",
@@ -15,6 +15,7 @@
     "sourceMap": true,
 
     /* Interop Constraints */
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -22,9 +23,9 @@
 
     /* Type Checking */
     "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "strict": true,
 
