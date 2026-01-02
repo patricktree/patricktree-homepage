@@ -5,6 +5,9 @@ const allLinks: string[] = [];
 for await (const links of fetchSitemapLinks(new URL('https://patricktree.me/sitemap.xml'))) {
   allLinks.push(...links);
 }
+for await (const links of fetchSitemapLinks(new URL('https://physio-kerschbaum.at/sitemap.xml'))) {
+  allLinks.push(...links);
+}
 
 for (const link of allLinks) {
   test(`visit ${link}`, async ({ page }) => {
