@@ -311,8 +311,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1
       '@patricktree/fetch-favicon':
-        specifier: ^1.2.0
-        version: 1.2.0(playwright@1.52.0)
+        specifier: ^1.3.0
+        version: 1.3.0(playwright@1.52.0)
       feed:
         specifier: ^4.2.2
         version: 4.2.2
@@ -525,6 +525,11 @@ packages:
     resolution: {integrity: sha512-q5P52BYb1hwVWE6dtID7VvuJWrlfbCv4klj7BjUUOqMz4jbSZD4C9fJ9lRjL2jnBGTg+gDDlaXN51rkWcLk4fg==}
     peerDependencies:
       commander: ~13.1.0
+
+  '@commander-js/extra-typings@14.0.0':
+    resolution: {integrity: sha512-hIn0ncNaJRLkZrxBIp5AsW/eXEHNKYQBh0aPdoUqNgD+Io3NIykQqpKFyKcuasZhicGaEZJX/JBSIkZ4e5x8Dg==}
+    peerDependencies:
+      commander: ~14.0.0
 
   '@corex/deepmerge@4.0.43':
     resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
@@ -1117,11 +1122,17 @@ packages:
   '@patricktree/commons-ecma@2.4.1':
     resolution: {integrity: sha512-Ripr10PWgaUagtbaWjP9lXgXMR5FZRf0W6sau/EIuzkySrD+Vz0SlweR8bde1iVRPjcmOGM+b+EXa0gTNvoi2Q==}
 
+  '@patricktree/commons-ecma@3.0.0':
+    resolution: {integrity: sha512-Ew5sbb3F4HK1YkmV+E0L7OVufFbykKbgtlghFakj7m8N1yq6iCb/ab9UhUprFRX/VvmeMSOKl6e4pM0u4JGj8Q==}
+
   '@patricktree/commons-node@2.2.0':
     resolution: {integrity: sha512-VXYQIe6jHN0CgfLpT+SPc6FLuJzrIY5YUevs6plStPlQMhxQ9Dk4hTBYwOukLNhXmwUHtBX8yoXZsU4HuYhhPA==}
 
-  '@patricktree/fetch-favicon@1.2.0':
-    resolution: {integrity: sha512-RLWfA6DnVLGqYqx7CGRlYuEL039ptUt/Q0UlZF5HlFYmfNVsF8IoRqN9G1AbeWQjO2XkCeZ7+QCluUHkXQse5g==}
+  '@patricktree/commons-node@3.0.0':
+    resolution: {integrity: sha512-y91RNxJtb0EfN2trxvBUODcXaxmufsDoyXgGGWIf1gcUuSodHqtICRxfAOl2HPwYNagHiovEI4+rQQOLYkZjmQ==}
+
+  '@patricktree/fetch-favicon@1.3.0':
+    resolution: {integrity: sha512-4C2dL0JHxKFNG77Eowm3ElQETS41589phg46J/ZWaTY7kbME8B4MHRC6iQCzIo8i50sK0YwUFc9UgfH29B0s5w==}
     peerDependencies:
       playwright: ^1.35.0
 
@@ -1923,6 +1934,10 @@ packages:
   commander@13.1.0:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
     engines: {node: '>=18'}
+
+  commander@14.0.2:
+    resolution: {integrity: sha512-TywoWNNRbhoD0BXs1P3ZEScW8W5iKrnbithIl0YH+uCmBd0QpPOA8yc82DS3BIE5Ma6FnBVUsJ7wVUDz4dvOWQ==}
+    engines: {node: '>=20'}
 
   comment-parser@1.4.1:
     resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
@@ -3277,7 +3292,7 @@ packages:
   next@15.5.7:
     resolution: {integrity: sha512-+t2/0jIJ48kUpGKkdlhgkv+zPTEOoXyr60qXe68eB/pl3CMJaLeIGjzp5D6Oqt25hCBiBTt8wEeeAzfJvUKnPQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
-    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -4433,6 +4448,9 @@ packages:
   zod@3.24.3:
     resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -4567,6 +4585,10 @@ snapshots:
   '@commander-js/extra-typings@13.1.0(commander@13.1.0)':
     dependencies:
       commander: 13.1.0
+
+  '@commander-js/extra-typings@14.0.0(commander@14.0.2)':
+    dependencies:
+      commander: 14.0.2
 
   '@corex/deepmerge@4.0.43': {}
 
@@ -5121,17 +5143,28 @@ snapshots:
       safe-stable-stringify: 2.5.0
       tiny-invariant: 1.3.3
 
+  '@patricktree/commons-ecma@3.0.0':
+    dependencies:
+      safe-stable-stringify: 2.5.0
+      tiny-invariant: 1.3.3
+
   '@patricktree/commons-node@2.2.0':
     dependencies:
       '@patricktree/commons-ecma': 2.4.1
 
-  '@patricktree/fetch-favicon@1.2.0(playwright@1.52.0)':
+  '@patricktree/commons-node@3.0.0':
     dependencies:
-      '@patricktree/commons-ecma': 2.4.1
-      '@patricktree/commons-node': 2.2.0
+      '@patricktree/commons-ecma': 3.0.0
+
+  '@patricktree/fetch-favicon@1.3.0(playwright@1.52.0)':
+    dependencies:
+      '@commander-js/extra-typings': 14.0.0(commander@14.0.2)
+      '@patricktree/commons-ecma': 3.0.0
+      '@patricktree/commons-node': 3.0.0
+      commander: 14.0.2
       playwright: 1.52.0
       tiny-invariant: 1.3.3
-      zod: 3.24.3
+      zod: 3.25.76
 
   '@patricktree/fetch-sitemap-locations@1.1.0':
     dependencies:
@@ -6079,6 +6112,8 @@ snapshots:
   commander@12.1.0: {}
 
   commander@13.1.0: {}
+
+  commander@14.0.2: {}
 
   comment-parser@1.4.1: {}
 
@@ -9247,6 +9282,8 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zod@3.24.3: {}
+
+  zod@3.25.76: {}
 
   zwitch@2.0.4: {}
 
