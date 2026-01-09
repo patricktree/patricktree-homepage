@@ -118,9 +118,9 @@ TL;DR:
 
   ```typescript
   // set-env.ts
-  const useDocker = process.env['PWDEBUG'] !== '1';
+  const playwrightWasStartedWithDebugFlag = process.env['PWDEBUG'] === '1';
 
-  if (useDocker) {
+  if (!playwrightWasStartedWithDebugFlag) {
     process.env['PW_TEST_CONNECT_WS_ENDPOINT'] = `ws://127.0.0.1:13579/`;
   }
   ```
