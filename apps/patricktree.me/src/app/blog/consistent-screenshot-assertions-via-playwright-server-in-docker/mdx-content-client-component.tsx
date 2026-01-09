@@ -14,6 +14,7 @@ export function MDXContentClientComponent() {
           <PlaywrightServerInDockerArchitectureImageC
             src={PlaywrightServerInDockerArchitectureImagePng}
             alt=""
+            quality={100}
           />
         ),
       }}
