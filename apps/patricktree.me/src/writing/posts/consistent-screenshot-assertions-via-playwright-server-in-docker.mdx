@@ -9,7 +9,8 @@ giscusTerm: consistent-screenshot-assertions-via-playwright-server-in-docker
 
 Screenshot assertions (aka visual testing, visual comparisons) are a high-leverage way to test UI:
 
-- they allow to test aesthetics, which is difficult with other assertion methods
+- they allow to test aesthetics (e.g. colors, font rendering)
+- they are the only way to verify visual elements where the state of the DOM doesn't reflect what the user sees (e.g. canvas, images)
 - they give a lot of bang for the buck - no fiddling with fine-grained assertions
 
 However, screenshot assertions come with a major challenge: **screenshots taken in different environments often differ from each other**.
@@ -55,10 +56,32 @@ The result is:
    docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --port <PORT> --host 0.0.0.0"
    ```
 
-2. Run Playwright with the environment variable `PW_TEST_CONNECT_WS_ENDPOINT` set:
+2. Connect Playwright to the websocket endpoint of Playwright Server.
+
+   3 options:
+
+   - Environment variable `PW_TEST_CONNECT_WS_ENDPOINT`:
 
    ```bash
    PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:<PORT>/ npx playwright test
+   ```
+
+   - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/next/api/class-testoptions#test-options-connect-options">`use.connectOptions.wsEndpoint`</FancyAnchor>:
+
+   ```typescript
+   export default defineConfig({
+     use: {
+       connectOptions: {
+         wsEndpoint: `ws://127.0.0.1:<PORT>/`,
+       },
+     },
+   });
+   ```
+
+   - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/api/class-browsertype#browser-type-connect">`browserType.connect()`</FancyAnchor>:
+
+   ```typescript
+   const browser = await playwright['chromium'].connect('ws://127.0.0.1:<PORT>/');
    ```
 
 That's it - the tests use the browsers inside the Docker container.
@@ -113,6 +136,8 @@ TL;DR:
   // set-env.ts
   process.env['PW_TEST_CONNECT_WS_ENDPOINT'] = `ws://127.0.0.1:13579/`;
   ```
+
+  If you prefer a more conventional `.env` approach, you can also load something like `.env.pw` (or `.env.pw.local`) via dotenv and set `PW_TEST_CONNECT_WS_ENDPOINT` there. I use the `set-env.ts` hook because it allows me to derive behavior from `PWDEBUG`.
 
 - Optional: add a `PWDEBUG` escape hatch so `playwright test --debug` runs with local browsers:
 
