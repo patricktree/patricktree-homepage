@@ -1,4 +1,5 @@
 'use client';
+
 import { check } from '@patricktree/commons-ecma/util/assert';
 import { styled } from '@pigment-css/react';
 import type { MDXComponents } from 'mdx/types.js';
@@ -151,7 +152,7 @@ export const PreComponent: React.FC<React.ComponentProps<'pre'>> = ({ children, 
   );
 };
 
-export const CodeBlockContainer = styled.div`
+export const CodeBlockContainer = styled.p`
   position: relative;
   overflow: visible;
 `;
