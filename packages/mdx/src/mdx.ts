@@ -3,6 +3,7 @@ import type { Root } from 'hast';
 import fs from 'node:fs';
 import rehypePrismGenerator from 'rehype-prism-plus/generator';
 import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
 import { VFile } from 'vfile';
 import { matter } from 'vfile-matter';
 
@@ -28,6 +29,7 @@ export function createMdxOptions({
        * Parsing the frontmatter is actualy done with 'vfile' and 'vfile-matter'.
        */
       remarkFrontmatter,
+      remarkGfm,
       createCollectHrefsFromJsxElementsPlugin({ hrefs: collectedHrefs }),
     ],
     rehypePlugins: [
