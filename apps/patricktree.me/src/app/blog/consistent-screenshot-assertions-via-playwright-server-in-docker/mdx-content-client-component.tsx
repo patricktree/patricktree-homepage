@@ -2,8 +2,8 @@
 
 import { styled } from '@pigment-css/react';
 
+import PlaywrightServerInDockerArchitectureImagePng from '#pkg/assets/consistent-screenshot-assertions-via-playwright-server-in-docker-image01.png';
 import { Image } from '#pkg/elements/Image.jsx';
-import PlaywrightServerInDockerArchitectureImagePng from '#pkg/writing/posts/consistent-screenshot-assertions-via-playwright-server-in-docker-image01.png';
 import MDXContent from '#pkg/writing/posts/consistent-screenshot-assertions-via-playwright-server-in-docker.mdx';
 
 export function MDXContentClientComponent() {
