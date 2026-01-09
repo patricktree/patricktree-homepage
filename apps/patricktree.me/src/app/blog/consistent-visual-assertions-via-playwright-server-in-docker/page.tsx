@@ -3,8 +3,8 @@ import path from 'path';
 import type React from 'react';
 import invariant from 'tiny-invariant';
 
-import { MDXContentClientComponent } from '#pkg/app/blog/consistent-screenshot-assertions-via-playwright-server-in-docker/mdx-content-client-component.jsx';
-import styles from '#pkg/app/blog/consistent-screenshot-assertions-via-playwright-server-in-docker/styles.module.css';
+import { MDXContentClientComponent } from '#pkg/app/blog/consistent-visual-assertions-via-playwright-server-in-docker/mdx-content-client-component.jsx';
+import styles from '#pkg/app/blog/consistent-visual-assertions-via-playwright-server-in-docker/styles.module.css';
 import { ArticleContainerBlogPost } from '#pkg/components/article-container-blog-post/index.js';
 import { ClassesAliases } from '#pkg/constants-browser.js';
 import { PATHS } from '#pkg/constants-server.js';

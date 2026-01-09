@@ -1,19 +1,19 @@
 ---
-title: Consistent Screenshot Assertions via Playwright Server in Docker
+title: Consistent Visual Assertions via Playwright Server in Docker
 published: true
 publishedAtISO: '2026-01-02T12:00:00.000Z'
-description: How to make Playwright screenshot assertions consistent across developer machines and CI by running Playwright Server in Docker and connecting tests remotely.
-tags: ['playwright', 'testing', 'docker', 'visual-regression', 'e2e']
-giscusTerm: consistent-screenshot-assertions-via-playwright-server-in-docker
+description: How to make Playwright visual assertions consistent across developer machines and CI by running Playwright Server in Docker and connecting tests remotely.
+tags: ['playwright', 'testing', 'docker', 'visual-testing', 'e2e']
+giscusTerm: consistent-visual-assertions-via-playwright-server-in-docker
 ---
 
-Screenshot assertions (aka visual testing, visual comparisons) are a high-leverage way to test UI:
+Visual assertions (aka screenshot assertions, visual comparisons) are a high-leverage way to test UI:
 
 - they allow to test aesthetics (e.g. colors, font rendering)
 - they are the only way to verify visual elements where the state of the DOM doesn't reflect what the user sees (e.g. canvas, images)
 - they give a lot of bang for the buck - no fiddling with fine-grained assertions
 
-However, screenshot assertions come with a major challenge: **screenshots taken in different environments often differ from each other**.
+However, visual assertions come with a major challenge: **snapshots taken in different environments often differ from each other**.
 
 As <FancyAnchor href="https://playwright.dev/docs/test-snapshots#introduction">the Playwright Docs for Visual Comparisons</FancyAnchor> state:
 
@@ -21,7 +21,7 @@ As <FancyAnchor href="https://playwright.dev/docs/test-snapshots#introduction">t
 
 Popular workarounds come with major tradeoffs:
 
-- **Updating the baseline screenshots only in one environment** (typically CI) leads to a slow feedback loop, no local debugging, and painful pull request workflows.
+- **Updating the baseline snapshots only in one environment** (typically CI) leads to a slow feedback loop, no local debugging, and painful pull request workflows.
 - **Keeping per-OS baselines** leads to extra maintenance and noisy pull request diffs.
 - **Increasing pixel-diff thresholds** or **masking areas causing differences** reduces coverage in the tests and therefore, confidence.
 
@@ -43,7 +43,7 @@ So the setup is:
 
 The result is:
 
-- **Screenshots are consistent across development machines and CI.** All browser rendering happens in a pinned Docker image, so the rendering environment is the same everywhere.
+- **Snapshots are consistent across development machines and CI.** All browser rendering happens in a pinned Docker image, so the rendering environment is the same everywhere.
 - **Tests still run on the host.** You keep your editor, TypeScript, local tooling.  
   Fast local feedback loop without waiting for CI.
 - **Minimal changes to the developer workflow.** Just ensure Docker is running.
