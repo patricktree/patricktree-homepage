@@ -60,12 +60,6 @@ The result is:
 
    3 options:
 
-   - Environment variable `PW_TEST_CONNECT_WS_ENDPOINT`:
-
-   ```bash
-   PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:<PORT>/ npx playwright test
-   ```
-
    - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/next/api/class-testoptions#test-options-connect-options">`use.connectOptions.wsEndpoint`</FancyAnchor>:
 
    ```typescript
@@ -76,6 +70,12 @@ The result is:
        },
      },
    });
+   ```
+
+   - Environment variable `PW_TEST_CONNECT_WS_ENDPOINT`:
+
+   ```bash
+   PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:<PORT>/ npx playwright test
    ```
 
    - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/api/class-browsertype#browser-type-connect">`browserType.connect()`</FancyAnchor>:
@@ -103,20 +103,22 @@ TL;DR:
   ```json
   {
     "scripts": {
-      "start": "docker pull mcr.microsoft.com/playwright:v1.57.0-noble && playwright test"
+      "test": "docker pull mcr.microsoft.com/playwright:v1.57.0-noble && playwright test"
     }
   }
   ```
 
-- Use the <FancyAnchor href="https://playwright.dev/docs/test-webserver">Playwright Web Server</FancyAnchor> feature to automatically start and stop the Docker container:
+- Use the <FancyAnchor href="https://playwright.dev/docs/test-webserver">Playwright Web Server</FancyAnchor> feature to automatically start and stop the Docker container, and extract the port chosen by the server via `wait.stdout`:
 
   ```typescript
   // playwright.config.ts
   export default defineConfig({
     webServer: {
-      command:
-        'docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --port 13579 --host 0.0.0.0"',
-      url: `http://127.0.0.1:13579/`,
+      command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --host 0.0.0.0"`,
+      wait: {
+        // Capture the Playwright Server port from stdout via regex and named capture group (https://playwright.dev/docs/api/class-testconfig#test-config-web-server)
+        stdout: /Listening on ws:\/\/0\.0\.0\.0:(?<PLAYWRIGHT_SERVER_PORT>\d+)/,
+      },
       stdout: 'pipe',
       stderr: 'pipe',
       gracefulShutdown: { signal: 'SIGTERM' },
@@ -125,29 +127,18 @@ TL;DR:
   });
   ```
 
-- Connect local Playwright to the Docker container by setting the environment variable via a side-effect import:
+- Connect local Playwright to the Docker container:
 
   ```typescript
   // playwright.config.ts
-  import './set-env.js';
-  ```
-
-  ```typescript
-  // set-env.ts
-  process.env['PW_TEST_CONNECT_WS_ENDPOINT'] = `ws://127.0.0.1:13579/`;
-  ```
-
-  If you prefer a more conventional `.env` approach, you can also load something like `.env.pw` (or `.env.pw.local`) via dotenv and set `PW_TEST_CONNECT_WS_ENDPOINT` there. I use the `set-env.ts` hook because it allows me to derive behavior from `PWDEBUG`.
-
-- Optional: add a `PWDEBUG` escape hatch so `playwright test --debug` runs with local browsers:
-
-  ```typescript
-  // set-env.ts
-  const playwrightWasStartedWithDebugFlag = process.env['PWDEBUG'] === '1';
-
-  if (!playwrightWasStartedWithDebugFlag) {
-    process.env['PW_TEST_CONNECT_WS_ENDPOINT'] = `ws://127.0.0.1:13579/`;
-  }
+  export default defineConfig({
+    use: {
+      connectOptions: {
+        // Playwright automatically provides the port extracted via named capture group in `process.env`
+        wsEndpoint: `ws://127.0.0.1:${process.env.PLAYWRIGHT_SERVER_PORT}/`,
+      },
+    },
+  });
   ```
 
 - Change snapshot naming to avoid per-OS baselines:
@@ -160,7 +151,13 @@ TL;DR:
   ```
 
 - If you are using Docker Desktop, make sure you have `Settings` → `Resources` → `Network` → `Enable host networking` enabled.
-  - As an alternative, you can try `docker run --add-host=hostmachine:host-gateway` as <FancyAnchor href="https://playwright.dev/docs/docker#network-configuration">suggested in the Playwright docs</FancyAnchor>.
+
+- Optional: add a `PWDEBUG` escape hatch so `playwright test --debug` runs with local browsers:
+
+  ```typescript
+  const playwrightWasStartedWithDebugFlag = process.env['PWDEBUG'] === '1';
+  // do all steps listed above only if !playwrightWasStartedWithDebugFlag
+  ```
 
 ## Summary
 
