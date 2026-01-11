@@ -105,6 +105,12 @@ export const ArticleContent = styled.div`
     border-left: 0.25em solid var(--color-fg-less-emphasized);
   }
 
+  & img {
+    max-width: calc(100% + 2 * var(--app-padding-inline));
+    margin-inline-start: calc(-1 * var(--app-padding-inline));
+    margin-inline-end: calc(-1 * var(--app-padding-inline));
+  }
+
   /* 
     Code blocks should span entire width.
     We have to undo the app padding and margin-inline-start of ul/ol list elements (if a code block is inside such an element).

@@ -19,6 +19,10 @@ As <FancyAnchor href="https://playwright.dev/docs/test-snapshots#introduction">t
 
 > Browser rendering can vary based on the host OS, version, settings, hardware, power source (battery vs. power adapter), headless mode, and other factors.
 
+Here is an example rendering the same content on MacOS and Ubuntu:
+
+<Image02 />
+
 Popular workarounds come with major tradeoffs:
 
 - **Updating the baseline snapshots only in one environment** (typically CI) leads to a slow feedback loop, no local debugging, and painful pull request workflows.
@@ -39,7 +43,7 @@ So the setup is:
 - keep the test runner on the host
 - and connect the two
 
-<PlaywrightServerInDockerArchitectureImage />
+<Image01 />
 
 The result is:
 
