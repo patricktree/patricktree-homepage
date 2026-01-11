@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { cookies } from 'next/headers';
 import type React from 'react';
 
 import { cssReset, cssBase, cssPrismaTheme } from '#pkg/app/global-styles.js';
@@ -18,9 +19,9 @@ import {
   Animations,
   Classes,
   ColorTheme,
+  CookieName,
   DataAttribute,
   IsAnimationEnabled,
-  LocalStorageKey,
   TOC_QUERY,
 } from '#pkg/constants-browser.js';
 
@@ -45,9 +46,17 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: LayoutProps) {
+export default async function RootLayout({ children }: LayoutProps) {
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get(CookieName.THEME);
+  const theme = themeCookie?.value === ColorTheme.DARK ? ColorTheme.DARK : undefined;
+
   return (
-    <html lang="en" className={fontMonospace.variable}>
+    <html
+      lang="en"
+      className={fontMonospace.variable}
+      {...(theme === ColorTheme.DARK && { [DataAttribute.THEME]: ColorTheme.DARK })}
+    >
       <head>
         {/* disable automatic (faulty) detection of phone numbers on Safari */}
         <meta name="format-detection" content="telephone=no" />
@@ -146,7 +155,7 @@ export default function RootLayout({ children }: LayoutProps) {
         />
       </head>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: blockingSetInitialColorTheme }} />
+        <script dangerouslySetInnerHTML={{ __html: blockingThemeScript }} />
 
         <div id="__next">
           <EnableAnimationsAfterHydration />
@@ -204,31 +213,35 @@ const RootContainer = styled.div`
   margin: 0 auto;
 `;
 
-// see https://sreetamdas.com/blog/the-perfect-dark-mode#recap
-const blockingSetInitialColorTheme = `(function() {
-  function getInitialColorTheme() {
-    // If the user has explicitly chosen light or dark, let's use it.
-    const persistedTheme = localStorage.getItem('${LocalStorageKey.THEME}');
-    if (persistedTheme === '${ColorTheme.LIGHT}' || persistedTheme === '${ColorTheme.DARK}') {
-      return persistedTheme;
-    }
-  
-    // If they haven't been explicit, let's check the media query (user agent)
-    const userAgentPrefersDarkMode =
-      'matchMedia' in window && window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-    if (userAgentPrefersDarkMode) {
-      return '${ColorTheme.DARK}';
-    }
-  
-    // Return LIGHT if user agent has no preference or preference is "light"
-    return '${ColorTheme.LIGHT}';
+/**
+ * Blocking script for first-time visitors with system dark mode preference.
+ *
+ * For returning visitors, SSR reads the theme cookie and renders the correct theme.
+ * But first-time visitors have no cookie yet, so SSR defaults to light theme.
+ *
+ * This script runs before paint to:
+ * 1. Detect system preference (prefers-color-scheme: dark)
+ * 2. Set data-theme attribute immediately (prevents flash of light theme)
+ * 3. Set cookie so subsequent page loads use SSR
+ */
+const blockingThemeScript = `(function() {
+  const match = document.cookie.match(new RegExp('(^| )' + ${CookieName.THEME} + '=([^;]+)'));
+  const persistedTheme = match ? match[2] : null;
+
+  if (persistedTheme === '${ColorTheme.LIGHT}' || persistedTheme === '${ColorTheme.DARK}') {
+    return; // Cookie exists, SSR already rendered correct theme
   }
 
-  const colorTheme = getInitialColorTheme();
+  // First-time visitor: check system preference
+  const prefersDark =
+    'matchMedia' in window && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = prefersDark ? '${ColorTheme.DARK}' : '${ColorTheme.LIGHT}';
 
-  // add HTML attribute if dark mode
-  if (colorTheme === '${ColorTheme.DARK}') {
+  if (theme === '${ColorTheme.DARK}') {
     document.documentElement.setAttribute('${DataAttribute.THEME}', '${ColorTheme.DARK}');
   }
+
+  // Set cookie for subsequent SSR
+  document.cookie = '${CookieName.THEME}=' + theme + '; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax';
 })()
 `;

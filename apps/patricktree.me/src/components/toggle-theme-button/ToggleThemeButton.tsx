@@ -4,7 +4,7 @@ import { styled } from '@pigment-css/react';
 import type React from 'react';
 import { Moon, Sun } from 'react-feather';
 
-import { Classes, ColorTheme, DataAttribute, LocalStorageKey } from '#pkg/constants-browser.js';
+import { Classes, ColorTheme, CookieName, DataAttribute } from '#pkg/constants-browser.js';
 import { IconButton } from '#pkg/elements/index.js';
 
 const iconSize = 20;
@@ -43,8 +43,9 @@ function toggleColorTheme() {
     document.documentElement.removeAttribute(DataAttribute.THEME);
   }
 
-  // Persist theme
-  localStorage.setItem(LocalStorageKey.THEME, newTheme);
+  // Persist theme via cookie (read server-side for SSR)
+  // eslint-disable-next-line unicorn/no-document-cookie -- simple cookie set, no library needed
+  document.cookie = `${CookieName.THEME}=${newTheme}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
 }
 
 const ToggleThemeIconButton = styled(IconButton)`

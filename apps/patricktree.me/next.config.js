@@ -9,6 +9,13 @@ let nextConfig = {
   distDir: 'dist',
   reactStrictMode: true,
 
+  outputFileTracingIncludes: {
+    '/*': [
+      // Include MDX source files for dynamic routes that read them at runtime
+      './src/writing/**/*',
+    ],
+  },
+
   eslint: {
     dirs: ['.'],
     ignoreDuringBuilds: true,

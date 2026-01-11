@@ -1,15 +1,7 @@
 import path from 'node:path';
-import url from 'node:url';
 
-const PATH_TO_APP = path.join(
-  url.fileURLToPath(import.meta.url),
-  '..',
-  '..',
-  '..',
-  '..',
-  'apps',
-  'patricktree.me',
-);
+// Use process.cwd() which points to the Next.js app root in both local dev and Vercel
+const PATH_TO_APP = process.cwd();
 
 export const PATHS = {
   FAVICONS_FOR_WEBSITES: path.join(PATH_TO_APP, 'generated', 'favicons-for-websites.json'),

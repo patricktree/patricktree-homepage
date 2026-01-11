@@ -26,10 +26,10 @@ export const DataAttribute = {
 } as const;
 export type DataAttribute = (typeof DataAttribute)[keyof typeof DataAttribute];
 
-export const LocalStorageKey = {
+export const CookieName = {
   THEME: 'theme',
 } as const;
-export type LocalStorageKey = (typeof LocalStorageKey)[keyof typeof LocalStorageKey];
+export type CookieName = (typeof CookieName)[keyof typeof CookieName];
 
 export const IsScrolled = {
   YES: 'yes',
