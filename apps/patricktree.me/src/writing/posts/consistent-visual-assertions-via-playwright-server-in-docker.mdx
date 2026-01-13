@@ -1,0 +1,168 @@
+---
+title: Consistent Visual Assertions via Playwright Server in Docker
+published: true
+publishedAtISO: '2026-01-13T12:00:00.000Z'
+description: How to make Playwright visual assertions consistent across developer machines and CI by running Playwright Server in Docker and connecting tests remotely.
+tags: ['playwright', 'testing', 'docker', 'visual-testing', 'ci']
+giscusTerm: consistent-visual-assertions-via-playwright-server-in-docker
+---
+
+Visual assertions (aka screenshot assertions, visual comparisons) are a high-leverage way to test UI:
+
+- they allow to test aesthetics (e.g. colors, font rendering)
+- they are the only way to verify visual elements where the state of the DOM doesn't reflect what the user sees (e.g. canvas, images)
+- they give a lot of bang for the buck - no fiddling with fine-grained assertions
+
+However, visual assertions come with a major challenge: **snapshots taken in different environments often differ from each other**.
+
+As <FancyAnchor href="https://playwright.dev/docs/test-snapshots#introduction">the Playwright Docs for Visual Comparisons</FancyAnchor> state:
+
+> Browser rendering can vary based on the host OS, version, settings, hardware, power source (battery vs. power adapter), headless mode, and other factors.
+
+Here is an example rendering the same content on MacOS and Ubuntu:
+
+<Image02 />
+
+Popular workarounds come with major tradeoffs:
+
+- **Updating the baseline snapshots only in one environment** (typically CI) leads to a slow feedback loop, no local debugging, and painful pull request workflows.
+- **Keeping per-OS baselines** leads to extra maintenance and noisy pull request diffs.
+- **Increasing pixel-diff thresholds** or **masking areas causing differences** reduces coverage in the tests and therefore, confidence.
+
+There is, however, another option: **run Playwright browsers in a Docker container (Playwright Server).**
+
+## The Idea: Playwright Server in Docker
+
+Playwright ships with a <FancyAnchor href="https://playwright.dev/docs/docker#remote-connection">"remote connection" mode</FancyAnchor>, also called "Playwright Server".  
+You can start a Playwright Server and connect to it from your Playwright tests.  
+**Only the browsers run within the server**, everything else **stays on the host**.
+
+So the setup is:
+
+- run Playwright browsers in a Docker container (Playwright Server)
+- keep the test runner on the host
+- and connect the two
+
+<Image01 />
+
+The result is:
+
+- **Snapshots are consistent across development machines and CI.** All browser rendering happens in a pinned Docker image, so the rendering environment is the same everywhere.
+- **Tests still run on the host.** You keep your editor, TypeScript, local tooling.  
+  Fast local feedback loop without waiting for CI.
+- **Minimal changes to the developer workflow.** Just ensure Docker is running.
+
+## How to
+
+1. Start Playwright Server in Docker with network mode `host` and a well-known port:
+
+   ```bash
+   docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --port <PORT> --host 0.0.0.0"
+   ```
+
+2. Connect Playwright to the websocket endpoint of Playwright Server.
+
+   3 options:
+
+   - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/next/api/class-testoptions#test-options-connect-options">`connectOptions.wsEndpoint`</FancyAnchor>:
+
+   ```typescript
+   export default defineConfig({
+     use: {
+       connectOptions: {
+         wsEndpoint: `ws://127.0.0.1:<PORT>/`,
+       },
+     },
+   });
+   ```
+
+   - Environment variable `PW_TEST_CONNECT_WS_ENDPOINT`:
+
+   ```bash
+   PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:<PORT>/ npx playwright test
+   ```
+
+   - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/api/class-browsertype#browser-type-connect">`browserType.connect()`</FancyAnchor>:
+
+   ```typescript
+   const browser = await playwright['chromium'].connect('ws://127.0.0.1:<PORT>/');
+   ```
+
+That's it - the tests use the browsers inside the Docker container.
+
+## Drawbacks
+
+- {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/debug#playwright-inspector">Playwright Inspector</FancyAnchor> (`playwright test --debug`) does not work.  
+  **Workaround:** Engineers can fall back to local browsers for this. The Docker setup works for everything else, including <FancyAnchor href="https://playwright.dev/docs/test-ui-mode">Playwright UI mode</FancyAnchor>.
+- Running the browsers from within the Docker container is slower compared to local browsers.
+
+## Wire it up via package.json and playwright.config.ts
+
+You can take a look at <FancyAnchor href="https://github.com/patricktree/packages/tree/main/packages/webpage-observer">`@patricktree/webpage-observer`</FancyAnchor> for a full example of wiring this up automatically.
+
+TL;DR:
+
+- Configure a `package.json` script to pull the Docker image (a no-op after the first run):
+
+  ```json
+  {
+    "scripts": {
+      "test": "docker pull mcr.microsoft.com/playwright:v1.57.0-noble && playwright test"
+    }
+  }
+  ```
+
+- Use the <FancyAnchor href="https://playwright.dev/docs/test-webserver">Playwright Web Server</FancyAnchor> feature to automatically start and stop the Docker container, and extract the port chosen by the server via `wait.stdout`:
+
+  ```typescript
+  // playwright.config.ts
+  export default defineConfig({
+    webServer: {
+      command: `docker run --rm --init --workdir /home/pwuser --user pwuser --network host mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --host 0.0.0.0"`,
+      wait: {
+        // Capture the Playwright Server port from stdout via regex and named capture group (https://playwright.dev/docs/api/class-testconfig#test-config-web-server)
+        stdout: /Listening on ws:\/\/0\.0\.0\.0:(?<PLAYWRIGHT_SERVER_PORT>\d+)/,
+      },
+      gracefulShutdown: { signal: 'SIGTERM' },
+    },
+  });
+  ```
+
+- Connect local Playwright to the Docker container:
+
+  ```typescript
+  // playwright.config.ts
+  export default defineConfig({
+    use: {
+      connectOptions: {
+        // Playwright automatically provides the port extracted via named capture group in `process.env`
+        wsEndpoint: `ws://127.0.0.1:${process.env.PLAYWRIGHT_SERVER_PORT}/`,
+      },
+    },
+  });
+  ```
+
+- Change snapshot naming to avoid per-OS baselines:
+
+  ```typescript
+  // playwright.config.ts
+  export default defineConfig({
+    snapshotPathTemplate: `{testDir}/../snapshots/{testFilePath}/{arg}-{projectName}-docker{ext}`,
+  });
+  ```
+
+- If you are using Docker Desktop, make sure you have `Settings` → `Resources` → `Network` → `Enable host networking` enabled.
+
+- Optional: add a `PWDEBUG` escape hatch so `playwright test --debug` runs with local browsers:
+
+  ```typescript
+  const playwrightWasStartedWithDebugFlag = process.env['PWDEBUG'] === '1';
+  // do all steps listed above only if !playwrightWasStartedWithDebugFlag
+  ```
+
+## Summary
+
+If you care about reliable visual regression testing, you need consistent rendering.
+Running Playwright Server in Docker and connecting your tests to it gives you that consistency without sacrificing the local developer experience.
+
+If you want to try it, skim <FancyAnchor href="https://playwright.dev/docs/docker#remote-connection">the Playwright docs on remote connections</FancyAnchor> and then wire it into your Playwright config as shown above.
