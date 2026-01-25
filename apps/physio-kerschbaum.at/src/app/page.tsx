@@ -287,15 +287,15 @@ function HomePage() {
           <tbody>
             <tr>
               <td>Physiotherapie 60 Min</td>
-              <td>115€</td>
+              <td>120€</td>
             </tr>
             <tr>
               <td>Physiotherapie 45 Min</td>
-              <td>95€</td>
+              <td>100€</td>
             </tr>
             <tr>
               <td>Physiotherapie 30 Min</td>
-              <td>65€</td>
+              <td>70€</td>
             </tr>
           </tbody>
         </table>
