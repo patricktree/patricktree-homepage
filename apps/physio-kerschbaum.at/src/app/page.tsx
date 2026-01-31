@@ -330,7 +330,7 @@ function HomePage() {
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
           <br />
-          Telefon: <a href="tel:+436801104304">+43 680 1104304</a>
+          Telefon: <a href="tel:+4368110799824">+43 681 10799824</a>
         </p>
       </Section>
     </>
