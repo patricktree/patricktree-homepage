@@ -10,6 +10,10 @@ export type TableOfContentsProps = {
 };
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
+  if (headings.length === 0) {
+    return null;
+  }
+
   return (
     <TocNav aria-labelledby="table-of-contents-label">
       <TocHeading id="table-of-contents-label">Table of Contents</TocHeading>

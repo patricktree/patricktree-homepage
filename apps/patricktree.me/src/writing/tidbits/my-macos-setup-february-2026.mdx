@@ -1,0 +1,34 @@
+---
+title: My macOS Setup - February 2026
+published: true
+publishedAtISO: '2026-02-15T10:00:00.000Z'
+description: My macOS setup - tools, shortcuts and workflows that keep me productive.
+tags: ['macos', 'VSCode', 'zsh', 'Node.js', 'developer-setup']
+giscusTerm: my-macos-setup-february-2026
+---
+
+- Terminal Shell: **zsh**
+  - with **[oh my zsh](https://ohmyz.sh/)** and the **git** plugin for branch/status info and aliases.
+  - a customization in `.zshrc` to set the terminal tab title to `<idle>` so I can tell at a glance which terminals are doing something and which are not:
+
+<Image01 />
+
+- Multitasking: **macOS spaces** and **<FancyAnchor href="https://alt-tab-macos.netlify.app/">AltTab</FancyAnchor>**
+  - one macOS space (desktop) = one focus topic.
+  - each space has at least one VS Code window and one browser window.
+  - all windows maximized.
+  - AltTab for window switching with two separate shortcuts:
+    - **`Option+Tab`:** shows window thumbnails of the _current space_ only, sorted by last-recently-used.  
+      Lets me quickly switch between windows related to my current focus topic.
+    - **`Cmd+Tab`:** shows window thumbnails of _all spaces_, sorted by space index ascending.  
+      Lets me switch to another focus topic when needed.
+
+<Image02 />
+<Image03 />
+
+- IDE / Git Diff Viewer / Git Graph UI: <FancyAnchor href="https://code.visualstudio.com/">**VS Code**</FancyAnchor> with the built-in git diff views and the **<FancyAnchor href="https://github.com/hansu/vscode-git-graph">Git Graph</FancyAnchor>** extension.
+- Terminal Emulator: <FancyAnchor href="https://code.visualstudio.com/docs/terminal/basics">**VS Code Integrated Terminal**</FancyAnchor> with ["Persistent Sessions"](https://code.visualstudio.com/docs/terminal/advanced#_persistent-sessions) enabled.
+- Node.js version management: **<FancyAnchor href="https://github.com/nvm-sh/nvm">NVM</FancyAnchor>**
+- Screen capture, screenshot annotation: **<FancyAnchor href="https://cleanshot.com/">CleanShot X</FancyAnchor>**. Works great, believe me, it is worth the one-time ~$30 investment.
+- **<FancyAnchor href="https://tailscale.com/">Tailscale</FancyAnchor>** for my mesh VPN to connect my devices together. Access dev servers running on one machine from another, no port forwarding or firewall config needed - highly recommend.
+- In general I use shortcuts heavily, e.g. `Cmd+Option+Left/Right` to switch between VS Code tabs or browser tabs.

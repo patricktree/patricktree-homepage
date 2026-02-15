@@ -2,8 +2,8 @@
 
 import { styled } from '@pigment-css/react';
 
-import Image01PNG from '#pkg/assets/consistent-visual-assertions-via-playwright-server-in-docker-image01.png';
-import Image02PNG from '#pkg/assets/consistent-visual-assertions-via-playwright-server-in-docker-image02.png';
+import Image01PNG from '#pkg/app/blog/consistent-visual-assertions-via-playwright-server-in-docker/consistent-visual-assertions-via-playwright-server-in-docker-image01.png';
+import Image02PNG from '#pkg/app/blog/consistent-visual-assertions-via-playwright-server-in-docker/consistent-visual-assertions-via-playwright-server-in-docker-image02.png';
 import { Image } from '#pkg/elements/Image.jsx';
 import MDXContent from '#pkg/writing/posts/consistent-visual-assertions-via-playwright-server-in-docker.mdx';
 

@@ -105,6 +105,18 @@ export const ArticleContent = styled.div`
     border-left: 0.25em solid var(--color-fg-less-emphasized);
   }
 
+  & figure {
+    margin-block-end: calc(3 * var(--spacing-base));
+  }
+
+  & figcaption {
+    margin-block-start: calc(0.5 * var(--spacing-base));
+
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-less-emphasized);
+    text-align: center;
+  }
+
   & img {
     max-width: calc(100% + 2 * var(--app-padding-inline));
     margin-inline-start: calc(-1 * var(--app-padding-inline));
