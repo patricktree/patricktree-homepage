@@ -1,0 +1,98 @@
+---
+title: My Agentic Coding Setup - February 2026
+published: true
+publishedAtISO: '2026-02-15T09:00:00.000Z'
+description: The terminal, coding agent, model, and customizations I use for agentic coding as of February 2026.
+tags: ['ai', 'agentic-coding']
+giscusTerm: my-agentic-coding-setup-february-2026
+---
+
+## Terminal Emulator
+
+**<FancyAnchor href="https://code.visualstudio.com/docs/terminal/basics">VS Code Integrated Terminal</FancyAnchor>**
+
+<Image01 />
+
+Reasons:
+
+- **Best-in-class click-to-action behavior.** Detects file paths, URLs and shell commands very reliably in the terminal output.  
+  `Cmd+Click` opens files in VS Code, URLs in my default browser (Brave) and runs shell commands directly in the terminal.
+- **IDE tools right next to the terminal.** I have `terminal.integrated.defaultLocation` set to `editor`, so every new terminal is a tab in the editor area. Git diff views, git graph, file explorer, markdown preview, etc. open next to it as tabs or are available in the sidebar.  
+  `Cmd+Option+Left/Right` navigate between the tabs.
+- **Fast enough.** Some people observe flickering with Claude Code in the VS Code terminal. I use Pi Coding Agent and have no flickering.
+- **macOS notifications when an agent needs input.** Via my <FancyAnchor href="https://github.com/patricktree/pi-vscode-terminal-notify">Pi VS Code extension</FancyAnchor>.
+
+Alternatives:
+
+- **<FancyAnchor href="https://ghostty.org/">Ghostty</FancyAnchor>:** great for terminal purists. Very fast, [native OS notifications](https://ghostty.org/docs/config/reference#desktop-notifications).  
+  But I want git diff views and git graphs in a proper IDE.
+- **<FancyAnchor href="https://www.warp.dev/">Warp</FancyAnchor>:** feels like a terminal plus IDE features.  
+  Interesting, but my VS Code setup already gives me that.
+
+## Terminal Multiplexer
+
+**✨ none ✨**
+
+The VS Code <FancyAnchor href="https://code.visualstudio.com/docs/terminal/advanced#_persistent-sessions">"Persistent Sessions"</FancyAnchor> feature restores terminal history across restarts.  
+This enables me to pick up where I stopped at when I closed the VS Code window.
+
+I still need to revive the original process (e.g. restart the dev server or do resume the Pi session via `pi --resume`), but I keep VS Code windows open for long stretches, so this is good enough.
+
+{/* prettier-ignore */}<FancyAnchor href="https://github.com/tmux/tmux/wiki">tmux</FancyAnchor> is powerful for persistent sessions, but it interferes with mouse interactions - text selection, scroll, and `Cmd+Click` on URLs/file paths break.  
+I tried it; not enough value to justify that tradeoff.  
+Only using it when Pi needs to run something in the background.
+
+## Coding Agent
+
+**<FancyAnchor href="https://pi.dev">Pi Coding Agent</FancyAnchor>**
+
+<Image02 />
+
+Reasons:
+
+- **Clear and explicit.** Tool calls and thinking traces are clearly visible. Shows at startup what skills, `AGENTS.md` files, and extensions got loaded.
+- **Simple.** No whimsical loading messages ("Combobulating..." etc.). Just straightforward output.
+- **Great UI.** No flickering. Tool call backgrounds turn green/red on success/failure.
+- **Great UX.** Fast path autocompletion (including directories). The `/tree` rewind feature is clearer than Claude Code's or Codex's.
+
+Alternatives:
+
+- **Claude Code:** heavily collapses tool calls and thinking traces; has slow path autocompletion; flickers.
+- **Codex:** runs things in hard-to-observe background terminals; its path autocompletion only selects files, not directories.
+
+## Model
+
+**Opus 4.6** and **gpt-5.3-codex**.  
+Thinking/Effort level set to high.
+
+People on X say they are the best, haven't felt the need to explore other models yet.
+
+## AGENTS.md, Skills, and Customization
+
+I maintain my `AGENTS.md` and custom skills centrally at <FancyAnchor href="https://github.com/patricktree/agent-stuff">github.com/patricktree/agent-stuff</FancyAnchor>.  
+Read its README to see how I keep everything in sync across repositories.
+
+### AGENTS.md highlights
+
+- **Node.js version switching via `nvm`** - agents check for `.nvmrc` and run `nvm install` at session start.
+- **`pnpm` usage** - including `corepack enable` before any `pnpm` command.
+- **"Run full validation when you think you are finished."** This one instruction makes even gpt-5.2-codex actually run tests when it's done 😉.
+
+### Custom skill highlights
+
+- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/chrome-devtools-cli/SKILL.md">`chrome-devtools-cli`</FancyAnchor>:** Browser automation via `chrome-devtools-mcp`. Works really well, and since it has the full power of Chrome DevTools the agent can do things like inspecting network requests, evaluating JavaScript in the page context, and reading console logs - not just interaction and taking screenshots.
+- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/nodejs-project-best-practices/SKILL.md">`nodejs-project-best-practices`</FancyAnchor>:** Opinions and good defaults for Node.js + TypeScript development. I hesitated defining this - I wanted the model to just gravitate towards whatever it prefers. But that led to avoidable issues: missing TypeScript/linting checks, `tsx`/`ts-node` runner bugs, outdated package configurations (`main` instead of `exports`, `tsconfig.json#compilerOptions.paths` instead of `package.json#imports`, CJS instead of ESM). Codifying these opinions into a skill resolved all of that.
+
+## Tackling Complex Work across Multiple Increments
+
+Larger tasks don't fit into a single agent session.  
+The context window fills up, focus might be unclear for the agent, the agent loses track of earlier decisions.
+
+I've tried three approaches to deal with this:
+
+- **Full compaction between tasks.** Finish a task, compact the entire session, then continue with the next one.
+- **Incremental compaction via `/tree`.** After each task, compact only back to the point where that task started. This builds up a stack of compaction entries in the session, one per task.
+- **Task tracker with fresh sessions.** Use a tool like <FancyAnchor href="https://dex.rip/">`dex`</FancyAnchor> to plan and track tasks. After finishing a task, update the task state in `dex`, then start a fresh session for the next one. The agent picks up where things left off by reading the task tracker. Cleanest separation, but requires discipline to keep the task descriptions up to date.
+
+Full compaction is simple but unclear
+No clear winner on this one, still experimenting
