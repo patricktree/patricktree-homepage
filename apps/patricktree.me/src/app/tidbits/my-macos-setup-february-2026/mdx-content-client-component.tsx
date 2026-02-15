@@ -60,7 +60,6 @@ const StyledImage01 = styled(Image)`
 `;
 
 const StyledImage02 = styled(Image)`
-  width: 100%;
   height: auto;
   max-height: 300px;
 
@@ -68,7 +67,6 @@ const StyledImage02 = styled(Image)`
 `;
 
 const StyledImage03 = styled(Image)`
-  width: 100%;
   height: auto;
   max-height: 300px;
 

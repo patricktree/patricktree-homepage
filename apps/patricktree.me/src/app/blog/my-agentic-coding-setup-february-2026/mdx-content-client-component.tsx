@@ -28,7 +28,7 @@ export function MDXContentClientComponent() {
             <StyledImage02
               src={Image02PNG}
               quality={100}
-              alt="Pi Coding Agent running in VS Code, reviewing a git diff with tool calls highlighted in green."
+              alt="Pi Coding Agent running in VS Code, exploring a git diff with successful tool calls highlighted in green."
             />
             <figcaption>
               Pi Coding Agent reviewing a git diff. Green backgrounds indicate successful tool
@@ -42,7 +42,6 @@ export function MDXContentClientComponent() {
 }
 
 const StyledImage01 = styled(Image)`
-  width: 100%;
   height: auto;
   max-height: 550px;
 
@@ -50,7 +49,6 @@ const StyledImage01 = styled(Image)`
 `;
 
 const StyledImage02 = styled(Image)`
-  width: 100%;
   height: auto;
   max-height: 550px;
 
