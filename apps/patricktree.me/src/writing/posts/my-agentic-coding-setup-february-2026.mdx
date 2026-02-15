@@ -81,7 +81,7 @@ Read its README to see how I keep everything in sync across repositories.
 - **`pnpm` usage** - including `corepack enable` before any `pnpm` command.
 - **"Run full validation when you think you are finished."** This one instruction makes even gpt-5.2-codex actually run tests when it's done 😉.
 
-### Custom skill highlights
+### Custom skills highlights
 
 - **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/chrome-devtools-cli/SKILL.md">`chrome-devtools-cli`</FancyAnchor>:** Browser automation via `chrome-devtools-mcp`. Works really well, and since it has the full power of Chrome DevTools the agent can do things like inspecting network requests, evaluating JavaScript in the page context, and reading console logs - not just browser interaction and taking screenshots.
 - **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/nodejs-project-best-practices/SKILL.md">`nodejs-project-best-practices`</FancyAnchor>:** Opinions and good defaults for Node.js + TypeScript development. I hesitated to define this - I wanted the model to just gravitate towards whatever it prefers. But that led to avoidable issues: missing TypeScript/linting checks, `tsx`/`ts-node` runner bugs, outdated package configurations (`main` instead of `exports`, `tsconfig.json#compilerOptions.paths` instead of `package.json#imports`, CJS instead of ESM). Codifying these opinions into a skill resolved all of that.
