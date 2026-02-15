@@ -17,8 +17,9 @@ Reasons:
 
 - **Best-in-class click-to-action behavior.** Detects file paths, URLs and shell commands very reliably in the terminal output.  
   `Cmd+Click` opens files in VS Code, URLs in my default browser (Brave) and runs shell commands directly in the terminal.
-- **IDE tools right next to the terminal.** I have `terminal.integrated.defaultLocation` set to `editor`, so every new terminal is a tab in the editor area. Git diff views, git graph, file explorer, markdown preview, etc. open next to it as tabs or are available in the sidebar.  
-  `Cmd+Option+Left/Right` navigate between the tabs.
+- **IDE tools right next to the terminal.** I have `terminal.integrated.defaultLocation` set to `editor`, so every new terminal is a tab in the editor area. Feels like a full-screen terminal.  
+  Git diff views, git graph, file explorer, markdown preview, etc. open next to it as tabs or are available in the sidebar.  
+  `Cmd+Option+Left/Right` to switch between tabs.
 - **Fast enough.** Some people observe flickering with Claude Code in the VS Code terminal. I use Pi Coding Agent and have no flickering.
 - **macOS notifications when an agent needs input.** Via my <FancyAnchor href="https://github.com/patricktree/pi-vscode-terminal-notify">Pi VS Code extension</FancyAnchor>.
 
@@ -34,11 +35,11 @@ Alternatives:
 **✨ none ✨**
 
 The VS Code <FancyAnchor href="https://code.visualstudio.com/docs/terminal/advanced#_persistent-sessions">"Persistent Sessions"</FancyAnchor> feature restores terminal history across restarts.  
-This enables me to pick up where I stopped at when I closed the VS Code window.
+This enables me to pick up where I stopped when I closed the VS Code window.
 
-I still need to revive the original process (e.g. restart the dev server or do resume the Pi session via `pi --resume`), but I keep VS Code windows open for long stretches, so this is good enough.
+I still need to revive the original process (e.g. restart the dev server or resume the Pi session via `pi --resume`), but I keep VS Code windows open for long stretches, so this is good enough.
 
-{/* prettier-ignore */}<FancyAnchor href="https://github.com/tmux/tmux/wiki">tmux</FancyAnchor> is powerful for persistent sessions, but it interferes with mouse interactions - text selection, scroll, and `Cmd+Click` on URLs/file paths break.  
+Some people use <FancyAnchor href="https://github.com/tmux/tmux/wiki">tmux</FancyAnchor> for persistent sessions, but it interferes with mouse interactions - text selection, scroll, and `Cmd+Click` on URLs/file paths break.  
 I tried it; not enough value to justify that tradeoff.  
 Only using it when Pi needs to run something in the background.
 
@@ -59,7 +60,7 @@ Reasons:
 
 Alternatives:
 
-- **Claude Code:** Heavily collapses tool calls and thinking traces. Has slow path autocompletion. I don't need the checkpoints features (just using git). Flickers.
+- **Claude Code:** Heavily collapses tool calls and thinking traces. Has slow path autocompletion. I don't need the checkpoint features (just using git). Flickers.
 - **Codex:** Runs things in hard-to-observe background terminals. Its path autocompletion allows only to select files, not directories.
 
 ## Model
@@ -67,7 +68,7 @@ Alternatives:
 **Opus 4.6** and **gpt-5.3-codex**.  
 Thinking/Effort level set to high.
 
-People on X say they are the best, haven't felt the need to explore other models yet.
+People on X say they are the best. I haven't felt the need to explore other models yet.
 
 ## AGENTS.md, Skills, and Customization
 
@@ -82,8 +83,8 @@ Read its README to see how I keep everything in sync across repositories.
 
 ### Custom skill highlights
 
-- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/chrome-devtools-cli/SKILL.md">`chrome-devtools-cli`</FancyAnchor>:** Browser automation via `chrome-devtools-mcp`. Works really well, and since it has the full power of Chrome DevTools the agent can do things like inspecting network requests, evaluating JavaScript in the page context, and reading console logs - not just interaction and taking screenshots.
-- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/nodejs-project-best-practices/SKILL.md">`nodejs-project-best-practices`</FancyAnchor>:** Opinions and good defaults for Node.js + TypeScript development. I hesitated defining this - I wanted the model to just gravitate towards whatever it prefers. But that led to avoidable issues: missing TypeScript/linting checks, `tsx`/`ts-node` runner bugs, outdated package configurations (`main` instead of `exports`, `tsconfig.json#compilerOptions.paths` instead of `package.json#imports`, CJS instead of ESM). Codifying these opinions into a skill resolved all of that.
+- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/chrome-devtools-cli/SKILL.md">`chrome-devtools-cli`</FancyAnchor>:** Browser automation via `chrome-devtools-mcp`. Works really well, and since it has the full power of Chrome DevTools the agent can do things like inspecting network requests, evaluating JavaScript in the page context, and reading console logs - not just browser interaction and taking screenshots.
+- **<FancyAnchor href="https://github.com/patricktree/agent-stuff/blob/main/skills/nodejs-project-best-practices/SKILL.md">`nodejs-project-best-practices`</FancyAnchor>:** Opinions and good defaults for Node.js + TypeScript development. I hesitated to define this - I wanted the model to just gravitate towards whatever it prefers. But that led to avoidable issues: missing TypeScript/linting checks, `tsx`/`ts-node` runner bugs, outdated package configurations (`main` instead of `exports`, `tsconfig.json#compilerOptions.paths` instead of `package.json#imports`, CJS instead of ESM). Codifying these opinions into a skill resolved all of that.
 
 ## Tackling Complex Work across Multiple Increments
 
@@ -98,7 +99,7 @@ I've tried three approaches to deal with this:
   The agent picks up where things left off by reading the task tracker.
 
 No clear winner on this one.  
-The full compaction approach is the simplest, but I fear the more often compaction happens the more information is lost from previous tasks.  
+The full compaction approach is the simplest, but I fear the more often compaction happens, the more information is lost from previous tasks.  
 The incremental compaction approach preserves more history, but the session keeps growing (albeit with most of it compacted).  
 The task tracker approach is the cleanest, but requires discipline to keep the task descriptions up to date, which is extra overhead and friction.
 
@@ -106,4 +107,4 @@ I guess any task tracker like `dex` is beneficial when the work can be broken in
 
 ## Other things
 
-- Not using voice dictation. I tried it but it gets into my way when I need to reference files/directories or adding images. Not feeling the value of it. Some people say the Pre-November-2025 models needed more guidance, more human input, so maybe the tradeoff was worth it back than.
+- Not using voice dictation. I tried it but it gets in my way when I need to reference files/directories or add images. Not feeling the value of it. Some people say the pre-November-2025 models needed more guidance, more human input, so maybe the tradeoff was worth it back then.

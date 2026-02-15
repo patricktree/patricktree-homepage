@@ -12,32 +12,47 @@ export function MDXContentClientComponent() {
     <MDXContent
       components={{
         Image01: () => (
-          <Image01
-            src={Image01PNG}
-            quality={100}
-            alt="VS Code window showing 3 terminal tabs. The file explorer in the side bar on the right shows a monorepo structure."
-          />
+          <figure>
+            <StyledImage01
+              src={Image01PNG}
+              quality={100}
+              alt="VS Code window with 3 terminal tabs in the editor area and a monorepo file explorer in the sidebar."
+            />
+            <figcaption>
+              VS Code with terminal tabs in the editor area and the file explorer in the sidebar.
+            </figcaption>
+          </figure>
         ),
         Image02: () => (
-          <Image02
-            src={Image02PNG}
-            quality={100}
-            alt="VS Code window showing the pi coding agent in action, in the first terminal tab."
-          />
+          <figure>
+            <StyledImage02
+              src={Image02PNG}
+              quality={100}
+              alt="Pi Coding Agent running in VS Code, reviewing a git diff with tool calls highlighted in green."
+            />
+            <figcaption>
+              Pi Coding Agent reviewing a git diff. Green backgrounds indicate successful tool
+              calls.
+            </figcaption>
+          </figure>
         ),
       }}
     />
   );
 }
 
-const Image01 = styled(Image)`
-  height: 550px;
+const StyledImage01 = styled(Image)`
+  width: 100%;
+  height: auto;
+  max-height: 550px;
 
   object-fit: contain;
 `;
 
-const Image02 = styled(Image)`
-  height: 550px;
+const StyledImage02 = styled(Image)`
+  width: 100%;
+  height: auto;
+  max-height: 550px;
 
   object-fit: contain;
 `;
