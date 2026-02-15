@@ -7,21 +7,27 @@ import type { MDXFile } from '@patricktree-homepage/mdx/schema';
 import { ArticleTile } from '#pkg/components/article-tile/index.js';
 import { QUERIES } from '#pkg/constants-browser.js';
 
-type ArticlesListProps = {
+type ArticlesListEntry = {
   pathPrefix: string;
-  articles: MDXFile[];
+  article: MDXFile;
 };
 
-export const ArticlesList: React.FC<ArticlesListProps> = ({ pathPrefix, articles }) => {
+type ArticlesListProps = {
+  entries: ArticlesListEntry[];
+};
+
+export const ArticlesList: React.FC<ArticlesListProps> = ({ entries }) => {
   return (
     <ArticlesListContainer>
-      {articles
-        .sort((a, b) => dayjs(b.frontmatter.publishedAtISO).diff(a.frontmatter.publishedAtISO))
-        .map((article) => (
+      {entries
+        .sort((a, b) =>
+          dayjs(b.article.frontmatter.publishedAtISO).diff(a.article.frontmatter.publishedAtISO),
+        )
+        .map((entry) => (
           <ArticleTile
-            key={article.segment}
-            article={article}
-            href={`${pathPrefix}/${encodeURIComponent(article.segment)}`}
+            key={entry.article.segment}
+            article={entry.article}
+            href={`${entry.pathPrefix}/${encodeURIComponent(entry.article.segment)}`}
           />
         ))}
     </ArticlesListContainer>

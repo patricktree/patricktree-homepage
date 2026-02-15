@@ -3,7 +3,6 @@ import type React from 'react';
 import { Home, PenTool } from 'react-feather';
 
 import { headingIds } from '#pkg/app/heading-ids.js';
-import { Cookie } from '#pkg/components/icon-library/index.js';
 import { Anchor } from '#pkg/elements/index.js';
 
 export const Nav: React.FC = () => {
@@ -18,16 +17,9 @@ export const Nav: React.FC = () => {
         </NavListItem>
 
         <NavListItem>
-          <NavAnchor href={`/#${headingIds.blog}`}>
+          <NavAnchor href={`/#${headingIds.writing}`}>
             <PenTool size="1em" />
-            blog
-          </NavAnchor>
-        </NavListItem>
-
-        <NavListItem>
-          <NavAnchor href={`/#${headingIds.tidbits}`}>
-            <Cookie size="1em" />
-            tidbits
+            writing
           </NavAnchor>
         </NavListItem>
       </NavList>

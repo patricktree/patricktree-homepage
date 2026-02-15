@@ -4,7 +4,6 @@ import { PenTool } from 'react-feather';
 
 import { headingIds } from '#pkg/app/heading-ids.js';
 import { ArticlesList } from '#pkg/components/articles-list/index.js';
-import { Cookie } from '#pkg/components/icon-library/index.js';
 import { Introduction } from '#pkg/components/introduction/index.js';
 import { Main } from '#pkg/components/main/index.js';
 import { PATHS } from '#pkg/constants-server.js';
@@ -16,24 +15,21 @@ async function HomePage() {
     getAllMarkdownFiles(PATHS.TIDBITS),
   ]);
 
+  const writingEntries = [
+    ...posts.map((article) => ({ pathPrefix: '/blog', article })),
+    ...tidbits.map((article) => ({ pathPrefix: '/tidbits', article })),
+  ];
+
   return (
     <HomepageContainer>
       <Introduction />
 
       <HomepageSection>
-        <SectionHeading id={headingIds.blog}>
+        <SectionHeading id={headingIds.writing}>
           <PenTool size="1em" />
-          Blog Posts
+          Writing
         </SectionHeading>
-        <ArticlesList pathPrefix="/blog" articles={posts} />
-      </HomepageSection>
-
-      <HomepageSection>
-        <SectionHeading id={headingIds.tidbits}>
-          <Cookie size="1em" />
-          Tidbits
-        </SectionHeading>
-        <ArticlesList pathPrefix="/tidbits" articles={tidbits} />
+        <ArticlesList entries={writingEntries} />
       </HomepageSection>
     </HomepageContainer>
   );
