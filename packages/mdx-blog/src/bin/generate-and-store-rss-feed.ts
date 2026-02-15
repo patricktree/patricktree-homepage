@@ -6,9 +6,9 @@ import type { MDXFile } from '@patricktree-homepage/mdx/schema';
 import { config } from '#pkg/config.js';
 import {
   PATHS,
-  RSS_FEED_JSON_PATH,
+  getRssFeedJsonPath,
+  getRssFeedXmlPath,
   RSS_FEED_JSON_SLUG,
-  RSS_FEED_XML_PATH,
   RSS_FEED_XML_SLUG,
 } from '#pkg/constants-server.js';
 import { getAllMarkdownFiles } from '#pkg/mdx.js';
@@ -58,8 +58,8 @@ for (const tidbit of tidbits) {
 }
 
 await Promise.all([
-  fs.promises.writeFile(RSS_FEED_XML_PATH, feed.rss2()),
-  fs.promises.writeFile(RSS_FEED_JSON_PATH, feed.json1()),
+  fs.promises.writeFile(getRssFeedXmlPath(), feed.rss2()),
+  fs.promises.writeFile(getRssFeedJsonPath(), feed.json1()),
 ]);
 
 function addArticleToFeed(article: MDXFile, feed: Feed, author: Author, baseUrl: URL) {
