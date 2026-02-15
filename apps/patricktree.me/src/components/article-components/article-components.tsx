@@ -110,7 +110,7 @@ export const ArticleContent = styled.div`
   }
 
   & figcaption {
-    margin-block-start: 4px;
+    margin-block-start: calc(0.5 * var(--spacing-base));
 
     font-size: var(--font-size-sm);
     color: var(--color-fg-less-emphasized);
