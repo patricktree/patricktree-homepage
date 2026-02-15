@@ -10,8 +10,12 @@ let nextConfig = {
   reactStrictMode: true,
 
   outputFileTracingIncludes: {
+    '/': [
+      // Include MDX source files
+      './src/writing/**/*',
+    ],
     '/*': [
-      // Include MDX source files for dynamic routes that read them at runtime
+      // Include MDX source files
       './src/writing/**/*',
     ],
   },
