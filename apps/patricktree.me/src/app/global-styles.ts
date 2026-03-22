@@ -134,7 +134,8 @@ export const cssBase = css`
       --color-lightteal: hsl(180deg 100% 45%);
       --color-verylightteal: hsl(180deg 100% 75%);
 
-      --color-bg-light-mode: var(--color-white);
+      --color-light-blue: hsl(210deg 100% 97%);
+      --color-bg-light-mode: var(--color-light-blue);
 
       --color-fg: var(--color-black);
       --color-fg-less-emphasized: var(--color-darkgrey);
