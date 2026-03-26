@@ -23,7 +23,9 @@ export const Nav: React.FC = () => {
           <NavAnchor href={`/#${headingIds.leistungen}`}>Leistungen</NavAnchor>
         </li>
         <li>
-          <NavAnchor href={`/#${headingIds.standortKontakt}`}>Standort & Kontakt</NavAnchor>
+          <NavAnchor href={`/#${headingIds.standorteTerminbuchung}`}>
+            Standorte & Terminbuchung
+          </NavAnchor>
         </li>
       </NavElementsContainer>
     </NavContainer>

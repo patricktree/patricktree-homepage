@@ -12,6 +12,7 @@ import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
 import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
 import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
 import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
+import { Anchor } from '#pkg/elements/Anchor.jsx';
 import { Image } from '#pkg/elements/Image.jsx';
 
 function HomePage() {
@@ -110,9 +111,12 @@ function HomePage() {
           stehe ich in der Physiotherapie!
         </p>
         <p>
-          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in der{' '}
-          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong> in 1030 Wien tätig.
-          Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
+          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in Wien
+          tätig (siehe{' '}
+          <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
+            &quot;Standorte & Terminbuchung&quot;
+          </Anchor>
+          ). Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
         </p>
         <span>Meine 3 Schwerpunkte:</span>
         <ul>
@@ -188,9 +192,10 @@ function HomePage() {
           <strong>Berufserfahrung:</strong>
         </span>
         <ul>
+          <li>seit 04/2026 freiberufliche Physiotherapeutin im HNO Zentrum 19, Wien</li>
           <li>
-            seit 06/2025 freiberufliche Physiotherapeutin in der Gemeinschaftspraxis &quot;Physio
-            Allround&quot;, Wien
+            seit 06/2025 freiberufliche Physiotherapeutin in der Praxis &quot;Physio Allround&quot;,
+            Wien
           </li>
           <li>
             12/2023-07/2025 Intensivstation für Innere Medizin und Schwerbrandverletzte im AKH Wien
@@ -235,7 +240,10 @@ function HomePage() {
             </ol>
           </li>
           <li>
-            <strong>Termin buchen:</strong> siehe unter &quot;Standort & Kontakt&quot;
+            <strong>Termin buchen:</strong> siehe unter{' '}
+            <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
+              &quot;Standorte & Terminbuchung&quot;
+            </Anchor>
           </li>
           <li>
             <strong>Ersttermin:</strong> gründliche Befundung des aktuellen Zustandes, gemeinsame
@@ -269,14 +277,6 @@ function HomePage() {
           <br />
           <a href="https://neurologe-dirnberger.at">https://neurologe-dirnberger.at</a>
         </p>
-        <p>
-          Dr. Bernadette Calabek-Wohinz - Fachärztin für Neurologie / Traditionell chinesische
-          Medizin
-          <br />
-          Darwingasse 9/5, 1020 Wien
-          <br />
-          <a href="https://www.neurotcm.net">https://www.neurotcm.net</a>
-        </p>
       </Section>
 
       <Section>
@@ -306,32 +306,107 @@ function HomePage() {
       </Section>
 
       <Section>
-        <Heading as="h2" id={headingIds.standortKontakt}>
-          Standort & Kontakt
+        <Heading as="h2" id={headingIds.standorteTerminbuchung}>
+          Standorte & Terminbuchung
         </Heading>
-        <p>
-          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong>
-          <br />
-          Physiotherapeutin Jasmin Kerschbaum, BSc.
-          <br />
-          Traungasse 1, Stiege 4, Tür 14
-          <br />
-          1030 Wien
-          <br />
-          <br />
-          <strong>Termine:</strong> Montags ab 13:30 Uhr
-          <br />
-          <strong>Terminbuchung unter:</strong>
-          <br />
-          online:{' '}
-          <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
-            https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307
-          </a>
+
+        <div
+          className={css`
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-block-start: 0.5em;
+
+            @container section (min-width: 520px) {
+              grid-template-columns: 1fr 1fr;
+            }
+          `}
+        >
+          <div
+            className={css`
+              padding: 20px;
+              background-color: #f3f3f3;
+              border: 1px solid var(--color-fg);
+              border-radius: 8px;
+            `}
+          >
+            <strong
+              className={css`
+                display: block;
+                margin-block-end: 0.4em;
+                font-size: var(--font-size-lg);
+              `}
+            >
+              Praxis &quot;Physio Allround&quot;
+            </strong>
+            <span>
+              Traungasse 1, Stiege 4, Tür 14
+              <br />
+              1030 Wien
+            </span>
+            <p
+              className={css`
+                margin-block: 0.6em;
+              `}
+            >
+              <strong>Termine:</strong> Montags 13:30 bis 19:00 Uhr
+            </p>
+            <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
+              Termin buchen - Physio Allround
+            </a>
+          </div>
+
+          <div
+            className={css`
+              padding: 20px;
+              background-color: #f3f3f3;
+              border: 1px solid var(--color-fg);
+              border-radius: 8px;
+            `}
+          >
+            <strong
+              className={css`
+                display: block;
+                margin-block-end: 0.4em;
+                font-size: var(--font-size-lg);
+              `}
+            >
+              HNO Zentrum 19
+            </strong>
+            <span>
+              Muthgasse 36, Stock 3
+              <br />
+              1190 Wien
+            </span>
+            <p
+              className={css`
+                margin-block: 0.6em;
+              `}
+            >
+              <strong>Termine:</strong> Freitags 08:00 bis 13:00 Uhr
+            </p>
+            <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
+              Termin buchen - HNO Zentrum 19
+            </a>
+          </div>
+        </div>
+
+        <p
+          className={css`
+            margin-block-start: 1.2em;
+          `}
+        >
+          <strong>Weitere Kontaktmöglichkeiten:</strong>
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
           <br />
           Telefon: <a href="tel:+4368110799824">+43 681 10799824</a>
         </p>
+      </Section>
+
+      <Section>
+        <Anchor href="/impressum">Impressum</Anchor> und{' '}
+        <Anchor href="/datenschutz">Datenschutz</Anchor>
       </Section>
     </>
   );
