@@ -199,7 +199,7 @@ export const cssBase = css`
     h1,
     h2,
     h3 {
-      margin-block-start: 2.5em;
+      margin-block-start: 1em;
       margin-block-end: 0.5em;
     }
     h1 {
@@ -228,7 +228,6 @@ export const cssBase = css`
     }
     th,
     td {
-      padding-block: 0.2em;
       padding-inline: 0.5em;
       border: 1px solid var(--color-fg);
     }

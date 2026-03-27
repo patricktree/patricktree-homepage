@@ -342,11 +342,17 @@ const BaseSectionContent = styled.div`
   max-width: var(--app-box-width);
   margin-inline: auto;
 
-  & > *:where(ol, ul) {
+  & > ol,
+  ul {
     margin-block-start: 0.25em;
   }
 
-  & > *:where(h1, h2, h3, h4, h5, h6) {
+  & > h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     padding-block-start: 32px;
   }
 
