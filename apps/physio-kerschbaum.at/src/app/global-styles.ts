@@ -125,10 +125,10 @@ export const cssBase = css`
       --color-darkgrey: hsl(0deg 0% 30%);
       --color-verylightgrey: hsl(0deg 0% 88%);
 
-      --color-primary: #296257;
-      --color-secondary: #5fb0a1;
-      --color-tertiary: #c6e7e1;
-      --color-quaternary: #eaf6f4;
+      --color-primary: #567c6c;
+      --color-secondary: #709b83;
+      --color-tertiary: #c0dbc6;
+      --color-quaternary: #e2f1e5;
 
       --color-fg: var(--color-black);
       --color-fg-less-emphasized: var(--color-darkgrey);
@@ -199,7 +199,7 @@ export const cssBase = css`
     h1,
     h2,
     h3 {
-      margin-block-start: 2.5em;
+      margin-block-start: 1em;
       margin-block-end: 0.5em;
     }
     h1 {
@@ -228,7 +228,6 @@ export const cssBase = css`
     }
     th,
     td {
-      padding-block: 0.2em;
       padding-inline: 0.5em;
       border: 1px solid var(--color-fg);
     }

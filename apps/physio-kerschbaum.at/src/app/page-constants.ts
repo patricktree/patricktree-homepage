@@ -4,5 +4,5 @@ export const headingIds = {
   derWegZurPhysiotherapie: 'der-weg-zur-physiotherapie',
   kooperierendeAerztInnen: 'kooperierende-aerztinnen',
   leistungen: 'leistungen',
-  standortKontakt: 'standort-kontakt',
+  standorteTerminbuchung: 'standorte-terminbuchung',
 };

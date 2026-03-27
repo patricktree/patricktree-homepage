@@ -1,4 +1,4 @@
-import { css } from '@pigment-css/react';
+import { styled } from '@pigment-css/react';
 import type { Metadata } from 'next';
 import type React from 'react';
 
@@ -12,92 +12,36 @@ import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
 import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
 import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
 import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
+import { Anchor } from '#pkg/elements/Anchor.jsx';
 import { Image } from '#pkg/elements/Image.jsx';
 
 function HomePage() {
   return (
     <>
-      <Section
-        disablePadding
-        slots={{
-          div: {
-            cssClassName: css`
-              height: 280px;
-
-              @container section (min-width: 570px) {
-                & {
-                  height: 400px;
-                }
-              }
-            `,
-          },
-        }}
-      >
+      <Section ContentComponent={HeroSectionContent}>
         <ImageCarousel>
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_8DSC0042}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_8DSC0042} fill />
           </Slide>
 
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_11DSC0068}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_11DSC0068} fill />
           </Slide>
 
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_20DSC0108}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_20DSC0108} fill />
           </Slide>
 
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_7DSC0039}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_7DSC0039} fill />
           </Slide>
 
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_3DSC0018}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_3DSC0018} fill />
           </Slide>
 
           <Slide>
-            <Image
-              alt=""
-              src={photoshooting_15DSC0081}
-              fill
-              style={{
-                objectFit: 'cover',
-              }}
-            />
+            <CarouselSlideImage alt="" src={photoshooting_15DSC0081} fill />
           </Slide>
         </ImageCarousel>
       </Section>
@@ -110,9 +54,12 @@ function HomePage() {
           stehe ich in der Physiotherapie!
         </p>
         <p>
-          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in der{' '}
-          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong> in 1030 Wien tätig.
-          Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
+          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in Wien
+          tätig (siehe{' '}
+          <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
+            &quot;Standorte & Terminbuchung&quot;
+          </Anchor>
+          ). Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
         </p>
         <span>Meine 3 Schwerpunkte:</span>
         <ul>
@@ -134,34 +81,9 @@ function HomePage() {
         <Heading as="h2" id={headingIds.ueberMich}>
           Über mich
         </Heading>
-        <div
-          className={css`
-            position: relative;
-            height: 400px;
-            margin-inline: calc(-1 * var(--padding-inline));
-            /* Define the container */
-            container-type: size;
-            container-name: image-container;
-          `}
-        >
-          <Image
-            src={photoshooting_24DSC01312}
-            alt=""
-            fill
-            className={css`
-              object-fit: cover;
-              object-position: 50% 50%;
-
-              @container image-container (aspect-ratio > 1.10) {
-                object-position: 50% 40%;
-              }
-
-              @container image-container (aspect-ratio > 1.25) {
-                object-position: 50% 25%;
-              }
-            `}
-          />
-        </div>
+        <AboutImageContainer>
+          <AboutImage src={photoshooting_24DSC01312} alt="" fill />
+        </AboutImageContainer>
         <p>
           Mein Name ist Jasmin Kerschbaum. Ich komme ursprünglich aus dem Waldviertel und wohne seit
           einigen Jahren in Wien. Im Jahr 2022 habe ich das Bachelor-Studium Physiotherapie an der
@@ -188,9 +110,10 @@ function HomePage() {
           <strong>Berufserfahrung:</strong>
         </span>
         <ul>
+          <li>seit 04/2026 freiberufliche Physiotherapeutin im HNO Zentrum 19, Wien</li>
           <li>
-            seit 06/2025 freiberufliche Physiotherapeutin in der Gemeinschaftspraxis &quot;Physio
-            Allround&quot;, Wien
+            seit 06/2025 freiberufliche Physiotherapeutin in der Praxis &quot;Physio Allround&quot;,
+            Wien
           </li>
           <li>
             12/2023-07/2025 Intensivstation für Innere Medizin und Schwerbrandverletzte im AKH Wien
@@ -235,7 +158,10 @@ function HomePage() {
             </ol>
           </li>
           <li>
-            <strong>Termin buchen:</strong> siehe unter &quot;Standort & Kontakt&quot;
+            <strong>Termin buchen:</strong> siehe unter{' '}
+            <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
+              &quot;Standorte & Terminbuchung&quot;
+            </Anchor>
           </li>
           <li>
             <strong>Ersttermin:</strong> gründliche Befundung des aktuellen Zustandes, gemeinsame
@@ -269,14 +195,6 @@ function HomePage() {
           <br />
           <a href="https://neurologe-dirnberger.at">https://neurologe-dirnberger.at</a>
         </p>
-        <p>
-          Dr. Bernadette Calabek-Wohinz - Fachärztin für Neurologie / Traditionell chinesische
-          Medizin
-          <br />
-          Darwingasse 9/5, 1020 Wien
-          <br />
-          <a href="https://www.neurotcm.net">https://www.neurotcm.net</a>
-        </p>
       </Section>
 
       <Section>
@@ -306,32 +224,56 @@ function HomePage() {
       </Section>
 
       <Section>
-        <Heading as="h2" id={headingIds.standortKontakt}>
-          Standort & Kontakt
+        <Heading as="h2" id={headingIds.standorteTerminbuchung}>
+          Standorte & Terminbuchung
         </Heading>
-        <p>
-          <strong>Gemeinschaftspraxis &quot;Physio Allround&quot;</strong>
-          <br />
-          Physiotherapeutin Jasmin Kerschbaum, BSc.
-          <br />
-          Traungasse 1, Stiege 4, Tür 14
-          <br />
-          1030 Wien
-          <br />
-          <br />
-          <strong>Termine:</strong> Montags ab 13:30 Uhr
-          <br />
-          <strong>Terminbuchung unter:</strong>
-          <br />
-          online:{' '}
-          <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
-            https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307
-          </a>
+
+        <LocationCards>
+          <LocationCard>
+            <LocationCardHeading>Praxis &quot;Physio Allround&quot;</LocationCardHeading>
+            <span>
+              Traungasse 1, Stiege 4, Tür 14
+              <br />
+              1030 Wien
+            </span>
+            <LocationCardSchedule>
+              <strong>Termine:</strong>{' '}
+              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr</LocationCardScheduleValue>
+            </LocationCardSchedule>
+            <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
+              Termin buchen - Physio Allround
+            </a>
+          </LocationCard>
+
+          <LocationCard>
+            <LocationCardHeading>HNO Zentrum 19</LocationCardHeading>
+            <span>
+              Muthgasse 36, Stock 3
+              <br />
+              1190 Wien
+            </span>
+            <LocationCardSchedule>
+              <strong>Termine:</strong>{' '}
+              <LocationCardScheduleValue>Freitags 08:00 bis 13:00 Uhr</LocationCardScheduleValue>
+            </LocationCardSchedule>
+            <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
+              Termin buchen - HNO Zentrum 19
+            </a>
+          </LocationCard>
+        </LocationCards>
+
+        <ContactInformation>
+          <strong>Weitere Kontaktmöglichkeiten:</strong>
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
           <br />
           Telefon: <a href="tel:+4368110799824">+43 681 10799824</a>
-        </p>
+        </ContactInformation>
+      </Section>
+
+      <Section as="footer" ContentComponent={FooterSectionContent}>
+        <Anchor href="/impressum">Impressum</Anchor> und{' '}
+        <Anchor href="/datenschutz">Datenschutz</Anchor>
       </Section>
     </>
   );
@@ -348,80 +290,171 @@ export default HomePage;
 
 type SectionProps = {
   children: React.ReactNode;
-  disablePadding?: boolean;
-  slots?: {
-    div?: {
-      cssClassName?: string;
-    };
-  };
+  as?: 'section' | 'footer';
+  ContentComponent?: React.ElementType<React.ComponentPropsWithoutRef<'div'>>;
 };
 
-const Section: React.FC<SectionProps> = ({ children, disablePadding, slots }) => {
+const Section: React.FC<SectionProps> = ({
+  children,
+  as = 'section',
+  ContentComponent = DefaultSectionContent,
+}) => {
   return (
-    <section
-      className={css`
-        container-name: section;
-        container-type: inline-size;
-
-        &:nth-last-of-type(even) {
-          background-color: var(--color-tertiary);
-        }
-        &:nth-last-of-type(odd) {
-          background-color: var(--color-quaternary);
-        }
-      `}
-    >
-      <div
-        className={
-          // eslint-disable-next-line prefer-template
-          css`
-            max-width: var(--app-box-width);
-            padding-inline: var(--padding-inline);
-            margin-inline: auto;
-
-            & > *:where(ol, ul) {
-              margin-block-start: 0.25em;
-            }
-
-            & > *:where(h1, h2, h3, h4, h5, h6) {
-              padding-block-start: 32px;
-            }
-            & > *:first-child {
-              margin-block-start: 0;
-            }
-            & > *:last-child {
-              padding-block-end: var(--padding-block);
-              margin-block-end: 0;
-            }
-          ` +
-          ' ' +
-          (slots?.div?.cssClassName ?? '')
-        }
-        style={{
-          '--padding-inline': disablePadding ? '0' : 'var(--app-padding-inline)',
-          '--padding-block': disablePadding ? '0' : '32px',
-        }}
-      >
-        {children}
-      </div>
-    </section>
+    <SectionRoot as={as}>
+      <ContentComponent>{children}</ContentComponent>
+    </SectionRoot>
   );
 };
 
 const Heading: React.FC<
-  React.ComponentProps<'h1'> & {
+  React.ComponentPropsWithoutRef<'h1'> & {
     as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   }
 > = ({ as, children, className, ...delegated }) => {
-  const HeadingComponent = as;
   return (
-    <HeadingComponent
+    <HeadingRoot
+      as={as}
       {...delegated}
-      className={`${className} ${merriweather.className} ${css`
-        scroll-margin-block-start: 64px;
-      `}`}
+      className={[className, merriweather.className].filter(Boolean).join(' ')}
     >
       {children}
-    </HeadingComponent>
+    </HeadingRoot>
   );
 };
+
+const SectionRoot = styled.section`
+  container-name: container-section;
+  container-type: inline-size;
+
+  &:nth-last-child(even) {
+    background-color: var(--color-tertiary);
+  }
+
+  &:nth-last-child(odd) {
+    background-color: var(--color-quaternary);
+  }
+`;
+
+const BaseSectionContent = styled.div`
+  --section-padding-inline: 0px;
+  --section-padding-block-end: 32px;
+
+  max-width: var(--app-box-width);
+  margin-inline: auto;
+
+  & > ol,
+  ul {
+    margin-block-start: 0.25em;
+  }
+
+  & > h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-block-start: 32px;
+  }
+
+  & > *:first-child {
+    margin-block-start: 0;
+  }
+
+  & > *:last-child {
+    padding-block-end: var(--section-padding-block-end);
+    margin-block-end: 0;
+  }
+`;
+
+const DefaultSectionContent = styled(BaseSectionContent)`
+  --section-padding-inline: var(--app-padding-inline);
+
+  padding-inline: var(--section-padding-inline);
+`;
+
+const UnpaddedSectionContent = styled(BaseSectionContent)`
+  --section-padding-block-end: 0px;
+
+  padding-inline: 0;
+`;
+
+const HeroSectionContent = styled(UnpaddedSectionContent)`
+  height: 280px;
+
+  @container container-section (min-width: 570px) {
+    height: 400px;
+  }
+`;
+
+const FooterSectionContent = styled(DefaultSectionContent)`
+  --section-padding-block-end: 0px;
+
+  padding-block: calc(1 * var(--spacing-base));
+`;
+
+const CarouselSlideImage = styled(Image)`
+  object-fit: cover;
+`;
+
+const AboutImageContainer = styled.div`
+  position: relative;
+  height: 400px;
+  margin-inline: calc(-1 * var(--section-padding-inline));
+
+  container-type: size;
+  container-name: image-container;
+`;
+
+const AboutImage = styled(Image)`
+  object-fit: cover;
+  object-position: 50% 50%;
+
+  @container image-container (aspect-ratio > 1.10) {
+    object-position: 50% 40%;
+  }
+
+  @container image-container (aspect-ratio > 1.25) {
+    object-position: 50% 25%;
+  }
+`;
+
+const LocationCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block-start: 0.5em;
+`;
+
+const LocationCard = styled.div`
+  flex: 1;
+  max-width: 400px;
+  padding: 20px;
+
+  background-color: #f3f3f3;
+  border: 1px solid var(--color-fg);
+  border-radius: 8px;
+`;
+
+const LocationCardHeading = styled.strong`
+  display: block;
+  margin-block-end: calc(0.5 * var(--spacing-base));
+
+  font-size: var(--font-size-lg);
+  text-wrap: nowrap;
+`;
+
+const LocationCardSchedule = styled.p`
+  margin-block: 0.6em;
+`;
+
+const LocationCardScheduleValue = styled.span`
+  text-wrap: nowrap;
+`;
+
+const ContactInformation = styled.p`
+  margin-block-start: 1.2em;
+`;
+
+const HeadingRoot = styled.h1`
+  scroll-margin-block-start: var(--header-height);
+`;

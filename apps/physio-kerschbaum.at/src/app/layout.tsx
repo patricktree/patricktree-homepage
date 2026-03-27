@@ -97,6 +97,7 @@ export default function RootLayout({ children }: LayoutProps) {
             --app-padding-inline: calc(2 * var(--spacing-base));
             --app-box-width: 800px;
             --app-max-width: calc(var(--app-box-width) + 2 * var(--app-padding-inline));
+            --header-height: 68px;
 
             display: flex;
             flex-direction: column;
@@ -116,8 +117,7 @@ export default function RootLayout({ children }: LayoutProps) {
 
             <main
               className={css`
-                position: relative;
-                top: 64px;
+                margin-block-start: var(--header-height);
               `}
             >
               {children}
