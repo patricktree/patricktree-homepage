@@ -2,13 +2,17 @@
 title: Sensible tsconfig.json Defaults
 published: true
 publishedAtISO: '2022-12-13T22:17:00.000Z'
-lastUpdatedAtISO: '2023-04-23T18:19:00.000Z'
+lastUpdatedAtISO: '2026-03-19T00:00:00.000Z'
 description: The TypeScript configuration I use as a basis for new projects.
 tags: ['typescript']
 giscusTerm: sensible-tsconfig-defaults
 ---
 
 When I set up a TypeScript package, this is the `tsconfig.json` configuration I start from:
+
+<VersionTabs versions={["TS 5.9", "TS 6.0"]} defaultVersion="TS 6.0">
+
+<Version value="TS 5.9">
 
 ```jsonc
 {
@@ -23,10 +27,8 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "strict": true,
 
     /* Modules */
+    "module": "Node20",
     "noUncheckedSideEffectImports": true,
-    "paths": {
-      "#pkg/*": ["./src/*"],
-    },
     "types": [],
 
     /* Emit */
@@ -38,7 +40,6 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     /* Interop Constraints */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
@@ -55,22 +56,93 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 }
 ```
 
+</Version>
+
+<Version value="TS 6.0">
+
+```jsonc
+{
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Modules */
+    "module": "Node20",
+    "rootDir": "./src",
+
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+
+    /* Language and Environment */
+    "target": "ES2017",
+
+    /* Projects */
+    "incremental": true,
+
+    /* Completeness */
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/node_modules"],
+}
+```
+
+</Version>
+
 I use it for new packages and adjust it as needed.  
 Below you find an explanation why I think these compiler options represent good defaults.
 
-## Path mapping `"#pkg/*"` pointing to the source
+## `module`: `"Node20"`
 
-{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#paths">#paths docs</FancyAnchor>
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#module">#module docs</FancyAnchor>
 
-Path aliases make imports cleaner, so it's a good idea to use them.
+`module`: `"Node20"` infers also `moduleResolution`: `"Node16"`.
 
-But why do I use `#pkg/*` as an alias for the source folder?  
-Node.js has a feature called <FancyAnchor href="https://nodejs.org/api/packages.html#subpath-imports">Subpath imports</FancyAnchor> which allows to "create private mappings that only apply to import specifiers from within the package itself".
-With them, Node.js supports path aliases **natively**.  
-No need to configure the runtime or the build system - using things like <FancyAnchor href="https://www.npmjs.com/package/tsconfig-paths">`tsconfig-paths`</FancyAnchor> or <FancyAnchor href="https://www.npmjs.com/package/typescript-transform-paths">`typescript-transform-paths`</FancyAnchor> - anymore!
+First, let's talk about what those 2 options do:
 
-But there is one important requirement for Node.js private mappings: they **must start with a** `#` and **at least one letter must follow before the slash**.  
-I decided to go for `#pkg/*` because it emphasizes that an import statement using this subpath refers to a source file inside our package.
+`module` controls how TypeScript compiles _module features_ of your files:
+
+- Module features are ever-expanding, things like `import.meta` or `import ... with { }`. The setting of `module` will determine whether those are reported as errors or not during compilation.
+- Whether to transform `import` statements, dynamic `import()`s and `exports` to CommonJS `require` function calls and `module.exports` assignments.
+
+Why `"Node20"` instead of the older `"CommonJS"`?
+
+Setting `module` to `"CommonJS"` has two significant problems:
+
+1. **Every TypeScript source file is treated as CJS.**
+   If your packages use `"type": "module"` in `package.json` (i.e. they are ESM), this is simply wrong - the module system TypeScript assumes doesn't match reality.
+
+2. **Dynamic imports (`await import()`) are transformed to `require()` calls.**
+   This is worse.
+   In production, your runtime (Node.js) executes `await import()` as an actual dynamic ESM import.
+   But if TypeScript compiled it down to `require()`, you can get subtle differences in behavior - especially around default exports, which `require()` and `await import()` load differently.
+   Test runners like vitest execute `await import()` as a real dynamic import too, so your tests might pass while production breaks (or vice versa).
+
+And `moduleResolution` set to `"Node"` (an alias for `"Node10"`) is also problematic: under this setting, TypeScript does **not** look into <FancyAnchor href="https://nodejs.org/api/packages.html#exports">`package.json#exports`</FancyAnchor> and <FancyAnchor href="https://nodejs.org/api/packages.html#imports">`package.json#imports`</FancyAnchor> when resolving modules.
+As the <FancyAnchor href="https://www.typescriptlang.org/docs/handbook/modules/theory.html#module-resolution-is-host-defined">TypeScript docs</FancyAnchor> put it, _"it's a very bad model of modern versions of Node.js"_.
+Modern Node.js (v16+) resolves `exports` and `imports`, and so does vitest - TypeScript should too.
+
+`module`: `"Node20"` fixes all of this:
+
+- Each `.ts` file is treated as ESM or CJS based on the nearest `package.json#type` field - matching what Node.js actually does at runtime.
+- `await import()` is left as-is, not transformed to `require()`.
+- The inferred `moduleResolution`: `"Node16"` resolves `package.json#exports` and `#imports` correctly, and forbids extensionless and directory imports in ESM files (matching Node.js behavior).
+
+For **browser projects** (where a bundler handles module resolution), I use `moduleResolution`: `"Bundler"` instead.
+It also supports `exports`/`imports`, but is more relaxed - e.g. it allows extensionless imports, which bundlers handle fine.
+
+<Version value="TS 5.9">
 
 ## `"types": []`
 
@@ -103,6 +175,29 @@ Therefore set
 
 etc.
 
+If you do need to include specific type packages implicitly, you can still set the option explicitly, e.g.:
+
+- `"types": ["node"]` in a Node.js package
+- `"types": ["node", "jest"]` if Jest globals are also needed
+
+</Version>
+
+<Version value="TS 6.0">
+
+## `rootDir`: `"./src"`
+
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#rootDir">#rootDir docs</FancyAnchor>
+
+I always explicitly set `"rootDir"`, by default to `"./src"`.
+
+Why?
+`rootDir` controls the directory structure of your output files relative to the output directory.  
+In TypeScript 6.0, the default `rootDir` will always be the directory containing the `tsconfig.json` file (except when using `tsc` from the command line without a `tsconfig.json` filem tgeb `rootDir` will be inferred, see more <FancyAnchor href="https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#rootdir-now-defaults-to-.">here</FancyAnchor>).
+
+Since I usually put my source files in a `src` directory, I set `rootDir` to `./src` to ensure that the output files in `dist` have the same directory structure as the source files in `src`.
+
+</Version>
+
 ## Enabling `"sourceMap"`, `"declaration"` and `"declarationMap"`
 
 Given a source file `src/main.ts`, this configuration will emit the following files:
@@ -131,15 +226,6 @@ Important notes here:
 
   ...if actions like "Go to Definition" are performed.
 
-## Enabling `"isolatedModules"`
-
-{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#isolatedModules">#isolatedModules docs</FancyAnchor>
-
-This forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
-Affected are e.g. `namespace`'s and `const enum`'s.
-
-I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyways; it can be disabled later in case one of those features is really needed.
-
 ## Enabling `"verbatimModuleSyntax"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax">#verbatimModuleSyntax docs</FancyAnchor>
@@ -149,6 +235,10 @@ This enables the restriction for import statements that `import type` must be us
 Such imports will get fully erased when TypeScript compiles the sources to JavaScript.
 Also it can help tools like bundlers to determine whether an import is needed at runtime or not.  
 The auto-import feature of VS Code will automatically use `import type` statements when this compiler option is set, making it less cumbersome to follow this import restriction.
+
+Enables also `isolatedModules` implicitly, this forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
+Affected are e.g. `namespace`'s and `const enum`'s.  
+I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyways; it can be disabled later in case one of those features is really needed.
 
 ## `"target": "ES2017"`
 
@@ -170,6 +260,8 @@ According to a <FancyAnchor href="https://youtu.be/cLxNdLK--yI">Chrome Developer
 
 Will improve compilation times after the first run.
 
+<Version value="TS 5.9">
+
 ## Enabling `"noUncheckedSideEffectImports"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig/#noUncheckedSideEffectImports">#noUncheckedSideEffectImports docs</FancyAnchor>
@@ -184,13 +276,25 @@ import './my-file.js';
 
 With the option `noUncheckedSideEffectImports` enabled, TypeScript will check this and emit an error if the file does not exist.
 
+</Version>
+
 ## And the others?
 
 These options are recommended by the <FancyAnchor href="https://www.typescriptlang.org/tsconfig">tsconfig reference</FancyAnchor>, though not enabled by default:
 
-- {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#esModuleInterop">`esModuleInterop`</FancyAnchor>
-- {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames">`forceConsistentCasingInFileNames`</FancyAnchor>
-- {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
+<Version value="TS 5.9">
+  - {/* prettier-ignore */}
+  <FancyAnchor href="https://www.typescriptlang.org/tsconfig#esModuleInterop">`esModuleInterop`</FancyAnchor>
+  - {/* prettier-ignore */}
+  <FancyAnchor href="https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames">`forceConsistentCasingInFileNames`</FancyAnchor>
+  - {/* prettier-ignore */}
+  <FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
+</Version>
+
+<Version value="TS 6.0">
+  - {/* prettier-ignore */}
+  <FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
+</Version>
 
 And the "Type Checking" rules are just my personal preference:
 
@@ -200,3 +304,5 @@ And the "Type Checking" rules are just my personal preference:
 - {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#noImplicitOverride">`noImplicitOverride`</FancyAnchor>
 - {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#noPropertyAccessFromIndexSignature">`noPropertyAccessFromIndexSignature`</FancyAnchor>
 - {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#noUncheckedIndexedAccess">`noUncheckedIndexedAccess`</FancyAnchor>
+
+</VersionTabs>

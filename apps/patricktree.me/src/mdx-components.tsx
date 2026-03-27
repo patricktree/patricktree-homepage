@@ -10,6 +10,7 @@ import invariant from 'tiny-invariant';
 import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
 
 import { FancyAnchor, type FancyAnchorProps } from '#pkg/components/fancy-anchor/index.js';
+import { Version, VersionTabs } from '#pkg/components/version-tabs/index.js';
 import { Classes, ColorTheme, DataAttribute } from '#pkg/constants-browser.js';
 import { Anchor, type AnchorProps, Button } from '#pkg/elements/index.js';
 
@@ -61,6 +62,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     FancyAnchor: (props: FancyAnchorProps) => {
       return <FancyAnchor target="_blank" {...props} />;
     },
+    VersionTabs,
+    Version,
     pre: ({ ref: _ignored, ...delegated }) => {
       return <PreComponent {...delegated} {...currentSectionHeadingId} />;
     },
