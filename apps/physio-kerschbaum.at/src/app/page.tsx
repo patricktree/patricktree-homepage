@@ -387,6 +387,8 @@ const HeroSectionContent = styled(UnpaddedSectionContent)`
 `;
 
 const FooterSectionContent = styled(DefaultSectionContent)`
+  --section-padding-block-end: 0px;
+
   padding-block: calc(1 * var(--spacing-base));
 `;
 
@@ -454,5 +456,5 @@ const ContactInformation = styled.p`
 `;
 
 const HeadingRoot = styled.h1`
-  scroll-margin-block-start: 64px;
+  scroll-margin-block-start: var(--header-height);
 `;
