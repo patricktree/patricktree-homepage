@@ -87,24 +87,23 @@ function HomePage() {
         <p>
           Mein Name ist Jasmin Kerschbaum. Ich komme ursprünglich aus dem Waldviertel und wohne seit
           einigen Jahren in Wien. Im Jahr 2022 habe ich das Bachelor-Studium Physiotherapie an der
-          FH St. Pölten abgeschlossen.
+          FH St. Pölten abgeschlossen und bin seither als Physiotherapeutin in Wien tätig.
         </p>
         <p>
-          Bereits vor meinem Studium war ich von der Idee begeistert, mit Menschen zu arbeiten und
-          ihnen dabei zu helfen, das Beste aus ihrem Alltag herauszuholen. Während des Studiums
-          stellte sich schnell heraus, dass ich als Physiotherapeutin in der Neurologie tätig werden
-          möchte. Besonders der komplexe Hintergrund neurologischer Erkrankungen und die
-          Individualität der Symptomatik empfinde ich als äußerst interessant. Ebenso arbeite ich
-          gerne mit Patient*innen mit Rückenbeschwerden, um Schmerzen zu lindern, die Beweglichkeit
-          zu verbessern und somit die Lebensqualität zu steigern.
+          Bereits vor meinem Studium war ich von der Idee begeistert, Menschen dabei zu
+          unterstützen, ihren Alltag aktiv und möglichst beschwerdefrei zu gestalten. Während des
+          Studiums stellte sich schnell heraus, dass ich als Physiotherapeutin in der Neurologie und
+          in der Behandlung von Wirbelsäulenbeschwerden tätig werden möchte. Im Laufe der Zeit
+          entwickelte sich ein weiterer Schwerpunkt in der Behandlung von Beschwerden im
+          Kopfbereich, wie Migräne, Schwindel und Tinnitus.
         </p>
         <p>
-          Die Stärken und Ressourcen der Patient*innen herauszufiltern und gemeinsam an den Zielen
-          zu arbeiten, stellt für mich die oberste Priorität in der Physiotherapie dar.
-          <br />
-          Der Hauptfokus in meinen Therapieeinheiten liegt auf aktiven funktionellen Übungen,
-          zusätzlich werden relevante passive Maßnahmen gesetzt. Außerdem werden bei Bedarf Themen
-          wie Hilfsmittelversorgung, Möglichkeiten zur weiteren Betreuung, etc. miteinbezogen.
+          In meiner therapeutischen Arbeit lege ich großen Wert auf eine individuelle Betreuung.
+          Gemeinsam definieren wir realistische Ziele und bauen auf vorhandenen Ressourcen auf. Der
+          Schwerpunkt meiner Therapie liegt auf aktiven, funktionellen Übungen, die gezielt in den
+          Alltag integriert werden können sowie ergänzende passive Maßnahmen. Bei Bedarf berate ich
+          zu Hilfsmitteln sowie weiteren Behandlungsmöglichkeiten. Dabei steht für mich immer im
+          Vordergrund, die Beschwerden zu reduzieren und die Lebensqualität nachhaltig zu steigern.
         </p>
         <span>
           <strong>Berufserfahrung:</strong>
