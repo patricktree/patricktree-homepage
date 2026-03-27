@@ -14,16 +14,23 @@ const faviconsClassName = styles[ClassesAliases.FAVICONS];
 
 const SEGMENT = path.parse(__dirname).name;
 
-async function TidbitPage() {
+type TidbitPageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+async function TidbitPage(props: TidbitPageProps) {
   invariant(faviconsClassName);
 
-  const mdxParseResult = await parseMDXFileAndCollectHrefs(
-    path.join(PATHS.TIDBITS, `${SEGMENT}.mdx`),
-  );
+  const [searchParams, mdxParseResult] = await Promise.all([
+    props.searchParams,
+    parseMDXFileAndCollectHrefs(path.join(PATHS.TIDBITS, `${SEGMENT}.mdx`)),
+  ]);
+
+  const versionFromUrl = typeof searchParams['v'] === 'string' ? searchParams['v'] : undefined;
 
   return (
     <ArticleContainerTidbit
-      mdxContent={<MDXContentClientComponent />}
+      mdxContent={<MDXContentClientComponent versionFromUrl={versionFromUrl} />}
       mdxParseResult={mdxParseResult}
       faviconsClassName={faviconsClassName}
     />

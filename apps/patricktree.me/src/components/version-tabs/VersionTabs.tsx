@@ -4,6 +4,10 @@ import { styled } from '@pigment-css/react';
 import React from 'react';
 
 import { VersionTabsContext } from '#pkg/components/version-tabs/VersionTabsContext.jsx';
+import {
+  SEARCH_PARAM_KEY,
+  VersionUrlContext,
+} from '#pkg/components/version-tabs/VersionUrlContext.jsx';
 import { Button } from '#pkg/elements/Button.jsx';
 
 type NonEmptyArray<T> = [T, ...T[]];
@@ -15,7 +19,23 @@ type VersionTabsProps = {
 };
 
 export const VersionTabs: React.FC<VersionTabsProps> = ({ versions, defaultVersion, children }) => {
-  const [activeVersion, setActiveVersion] = React.useState(defaultVersion ?? versions[0]);
+  const { versionFromUrl, syncWithUrl } = React.useContext(VersionUrlContext);
+
+  const initialVersion =
+    versionFromUrl !== undefined && versions.includes(versionFromUrl)
+      ? versionFromUrl
+      : (defaultVersion ?? versions[0]);
+
+  const [activeVersion, setActiveVersion] = React.useState(initialVersion);
+
+  React.useEffect(() => {
+    if (!syncWithUrl) {
+      return;
+    }
+    const url = new URL(window.location.href);
+    url.searchParams.set(SEARCH_PARAM_KEY, activeVersion);
+    window.history.replaceState(null, '', url.toString());
+  }, [activeVersion, syncWithUrl]);
 
   return (
     <VersionTabsContext.Provider value={{ activeVersion, setActiveVersion }}>
