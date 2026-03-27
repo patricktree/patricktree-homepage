@@ -1,20 +1,12 @@
-import { css } from '@pigment-css/react';
+import { styled } from '@pigment-css/react';
 import type { Metadata } from 'next';
-import type React from 'react';
 
 import { merriweather } from '#pkg/app/fonts.jsx';
 import { Anchor } from '#pkg/elements/Anchor.jsx';
 
 function DatenschutzPage() {
   return (
-    <article
-      className={css`
-        max-width: var(--app-box-width);
-        padding-block: 32px;
-        padding-inline: var(--app-padding-inline);
-        margin-inline: auto;
-      `}
-    >
+    <PageArticle>
       <h1 className={merriweather.className}>Datenschutzerklärung</h1>
 
       <Section>
@@ -238,14 +230,10 @@ function DatenschutzPage() {
         </p>
       </Section>
 
-      <p
-        className={css`
-          margin-block-start: 2em;
-        `}
-      >
+      <BackLinkParagraph>
         <Anchor href="/">← Zurück zur Startseite</Anchor>
-      </p>
-    </article>
+      </BackLinkParagraph>
+    </PageArticle>
   );
 }
 
@@ -258,14 +246,17 @@ export const metadata: Metadata = {
 
 export default DatenschutzPage;
 
-const Section: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return (
-    <section
-      className={css`
-        margin-block-start: 1.5em;
-      `}
-    >
-      {children}
-    </section>
-  );
-};
+const PageArticle = styled.article`
+  max-width: var(--app-box-width);
+  padding-block: 32px;
+  padding-inline: var(--app-padding-inline);
+  margin-inline: auto;
+`;
+
+const Section = styled.section`
+  margin-block-start: 1.5em;
+`;
+
+const BackLinkParagraph = styled.p`
+  margin-block-start: 2em;
+`;
