@@ -147,13 +147,13 @@ Below you find an explanation why I think these compiler options represent good 
 
 <Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
 
-## `module`: `"Node20"`
+## `"module": "Node20"`
 
 </Version>
 
 <Version values={["TS 6.0 Browser"]}>
 
-## `module`: `"Preserve"`
+## `"module": "Preserve"`
 
 </Version>
 
@@ -189,13 +189,13 @@ If you want to use any module features only supported by a newer `"module": "Nod
 It allows the usage of all ESM and CJS module features (in contrast to `none`).  
 Even mixed within the same file, reflecting the capability of modern bundlers to process all sorts of module features.
 
-Combined with `"noEmit" true`, the TypeScript compiler will still check the correct usage of module features but not do anything with it.
+Combined with `"noEmit": true`, the TypeScript compiler will still check the correct usage of module features but not do anything with it.
 
 </Version>
 
 <Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
 
-## `moduleResolution`: `"Node16"`
+## `"moduleResolution": "Node16"`
 
 </Version>
 
@@ -209,19 +209,19 @@ The module specifier is the string when loading modules:
 - `await import("specifier")`
 - `require("specifier")`
 
-Different hosts (Node.js, bundlers) follow different resolution rules: whether `package.json` `"exports"` and `"imports"` are consulted, whether extensionless relative imports (like `"./utils"` instead of `"./utils.js"`) are allowed, and whether directory imports (like `"./components"` resolving to `"./components/index.js"`) are allowed.
+Different hosts (Node.js, bundlers) follow different resolution rules: whether `package.json#exports` and `#imports` are consulted, whether extensionless relative imports (like `"./utils"` instead of `"./utils.js"`) are allowed, and whether directory imports (like `"./components"` resolving to `"./components/index.js"`) are allowed.
 
 <Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
 
-`"Node16"` resolves `package.json` `"exports"` and `"imports"` and forbids extensionless and directory imports in ESM files, matching Node.js behavior.
+`"Node16"` resolves `package.json#exports` and `#imports` and forbids extensionless and directory imports in ESM files, matching Node.js behavior.
 
 </Version>
 
 <Version values={["TS 6.0 Browser"]}>
 
-## `moduleResolution`: `"Bundler"`
+## `"moduleResolution": "Bundler"`
 
-`"Bundler"` resolves `package.json` `"exports"` and `"imports"` but allows extensionless and directory imports (which is more relaxed than the Node.js setting `"Node16"`).
+`"Bundler"` resolves `package.json#exports` and `#imports` but allows extensionless and directory imports (which is more relaxed than the Node.js setting `"Node16"`).
 
 </Version>
 
@@ -231,9 +231,9 @@ Different hosts (Node.js, bundlers) follow different resolution rules: whether `
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#types">#types docs</FancyAnchor>
 
-I always explicitly set `"types"`, by default to `[]`.
+I always explicitly set `types`, by default to `[]`.
 
-The option `"types"` influences what types are included _implicitly_ in the compilation process.
+The option `types` influences what types are included _implicitly_ in the compilation process.
 By default, if the option is not set, TS will include _all_ types located in the `@types` folder of any `node_modules` directory in the file system hierarchy.
 
 This behavior can introduce issues in monorepo setups where dependencies are hoisted to the root of the monorepo.
@@ -278,23 +278,24 @@ You still need to add entries if you rely on globally available types:
 - `"types": ["node"]` in a Node.js package (for globals like `process`, `Buffer`, Node.js-specific `setTimeout` overloads, etc.)
 - `"types": ["node", "jest"]` if Jest globals are also needed
 
+etc.
+
 Alternatively, you can avoid the `types` entry entirely by using explicit imports (e.g. `import process from 'node:process'`), which are always resolved regardless of this option.
 
 </Version>
 
 <Version values={["TS 6.0 Node.js"]}>
 
-## `rootDir`: `"./src"`
+## `"rootDir": "./src"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#rootDir">#rootDir docs</FancyAnchor>
 
-I always explicitly set `"rootDir"`, by default to `"./src"`.
+I always explicitly set `rootDir`, by default to `"./src"`.
 
-Why?
 `rootDir` controls the directory structure of your output files relative to the output directory.  
 In TypeScript 6.0, the default `rootDir` will always be the directory containing the `tsconfig.json` file (except when using `tsc` from the command line without a `tsconfig.json` file, then `rootDir` will be inferred, see more <FancyAnchor href="https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#rootdir-now-defaults-to-.">here</FancyAnchor>).
 
-Since I usually put my source files in a `src` directory, I set `rootDir` to `./src` to ensure that the output files in `dist` have the same directory structure as the source files in `src`.
+Since I usually put my source files in a `src` directory, I set `rootDir` to `"./src"` to ensure that the output files in `dist` have the same directory structure as the source files in `src`.
 
 </Version>
 
