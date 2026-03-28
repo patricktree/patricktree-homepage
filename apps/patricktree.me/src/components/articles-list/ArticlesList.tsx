@@ -10,6 +10,7 @@ import { QUERIES } from '#pkg/constants-browser.js';
 type ArticlesListEntry = {
   pathPrefix: string;
   article: MDXFile;
+  sortDateISO: string;
 };
 
 type ArticlesListProps = {
@@ -20,9 +21,7 @@ export const ArticlesList: React.FC<ArticlesListProps> = ({ entries }) => {
   return (
     <ArticlesListContainer>
       {entries
-        .sort((a, b) =>
-          dayjs(b.article.frontmatter.publishedAtISO).diff(a.article.frontmatter.publishedAtISO),
-        )
+        .sort((a, b) => dayjs(b.sortDateISO).diff(a.sortDateISO))
         .map((entry) => (
           <ArticleTile
             key={entry.article.segment}
