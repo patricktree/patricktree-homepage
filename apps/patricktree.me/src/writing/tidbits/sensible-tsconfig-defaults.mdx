@@ -199,6 +199,12 @@ Combined with `"noEmit": true`, the TypeScript compiler will still check the cor
 
 </Version>
 
+<Version values={["TS 6.0 Browser"]}>
+
+## `"moduleResolution": "Bundler"`
+
+</Version>
+
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#moduleResolution">#moduleResolution docs</FancyAnchor>
 
 `moduleResolution` controls how TypeScript resolves a _module specifier_ to an actual file on the disk.  
@@ -218,8 +224,6 @@ Different hosts (Node.js, bundlers) follow different resolution rules: whether `
 </Version>
 
 <Version values={["TS 6.0 Browser"]}>
-
-## `"moduleResolution": "Bundler"`
 
 `"Bundler"` resolves `package.json#exports` and `#imports` but allows extensionless and directory imports (which is more relaxed than the Node.js setting `"Node16"`).
 
@@ -256,11 +260,6 @@ Therefore set
 - `"types": ["node", "jest"]` if Jest globals are also needed
 
 etc.
-
-If you do need to include specific type packages implicitly, you can still set the option explicitly, e.g.:
-
-- `"types": ["node"]` in a Node.js package
-- `"types": ["node", "jest"]` if Jest globals are also needed
 
 </Version>
 
@@ -313,7 +312,7 @@ Given a source file `src/main.ts`, this configuration will emit the following fi
   Type definitions for things exported by `main.js`.
 - `dist/main.d.ts.map`: Emitted because of <FancyAnchor href="https://www.typescriptlang.org/tsconfig#declarationMap">`declarationMap`</FancyAnchor>.
   This is a source map for the type definitions `main.d.ts`.
-  One might wonders why we need a source map for type definitions (things like debugging and stack traces don't make sense for them).
+  One might wonder why we need a source map for type definitions (things like debugging and stack traces don't make sense for them).
 
   Turns out that IDEs (e.g. VS Code) can use such declaration maps to improve code navigation - things like "Go to Definition", "Find all References" etc.  
   This is very useful for monorepos because it improves the cross-package editing experience.
@@ -333,7 +332,9 @@ Important notes here:
 
 <Version values={["TS 6.0 Browser"]}>
 
-# Disabling emit via `"noEmit": true`
+## Disabling emit via `"noEmit": true`
+
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#noEmit">#noEmit docs</FancyAnchor>
 
 Since bundlers (like webpack) operate on the TypeScript sources directly, we don't want TypeScript to emit anything.
 
@@ -346,12 +347,12 @@ Since bundlers (like webpack) operate on the TypeScript sources directly, we don
 This enables the restriction for import statements that `import type` must be used if the imported thing is used as a _type_ only (and not used as a _value_).
 
 Such imports will get fully erased when TypeScript compiles the sources to JavaScript.
-Also it can help tools like bundlers to determine whether an import is needed at runtime or not.  
+Also, it can help tools like bundlers to determine whether an import is needed at runtime or not.  
 The auto-import feature of VS Code will automatically use `import type` statements when this compiler option is set, making it less cumbersome to follow this import restriction.
 
-Enables also `isolatedModules` implicitly, this forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
+This also enables `isolatedModules` implicitly, which forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
 Affected are e.g. `namespace`'s and `const enum`'s.  
-I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyways; it can be disabled later in case one of those features is really needed.
+I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyway; it can be disabled later in case one of those features is really needed.
 
 ## `"target": "ES2019"`
 
@@ -364,7 +365,7 @@ So what target is the best tradeoff here?
 According to a <FancyAnchor href="https://youtu.be/cLxNdLK--yI">Chrome Developers video</FancyAnchor> from late 2020, `ES2017` was a good choice back then:
 
 - It was supported by >95% of the browser market.
-- It included most of the commonly used modern syntax features (e.g. `async/await`), resulting in significant smaller and more performant code compared to lower targets.
+- It included most of the commonly used modern syntax features (e.g. `async/await`), resulting in significantly smaller and more performant code compared to lower targets.
 - And higher targets didn't change much in terms of size and performance.
 
 Even in 2026 it still applies that targets newer than `ES2017` don't change much in terms of size and performance.
