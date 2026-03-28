@@ -16,8 +16,17 @@ async function HomePage() {
   ]);
 
   const writingEntries = [
-    ...posts.map((article) => ({ pathPrefix: '/blog', article })),
-    ...tidbits.map((article) => ({ pathPrefix: '/tidbits', article })),
+    ...posts.map((article) => ({
+      pathPrefix: '/blog',
+      article,
+      sortDateISO: article.frontmatter.publishedAtISO,
+    })),
+    ...tidbits.map((article) => ({
+      pathPrefix: '/tidbits',
+      article,
+      // Use lastUpdatedAtISO so that tidbits with content updates get surfaced to the top
+      sortDateISO: article.frontmatter.lastUpdatedAtISO ?? article.frontmatter.publishedAtISO,
+    })),
   ];
 
   return (
