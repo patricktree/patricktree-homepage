@@ -155,7 +155,7 @@ export const PreComponent: React.FC<React.ComponentProps<'pre'>> = ({ children, 
   );
 };
 
-export const CodeBlockContainer = styled.p`
+export const CodeBlockContainer = styled.div`
   position: relative;
   overflow: visible;
 `;
