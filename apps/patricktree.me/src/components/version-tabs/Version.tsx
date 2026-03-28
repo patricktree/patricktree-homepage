@@ -5,13 +5,12 @@ import type React from 'react';
 import { useVersionTabs } from '#pkg/components/version-tabs/VersionTabsContext.jsx';
 
 type VersionProps = {
-  value: string | string[];
+  values: readonly string[];
   children: React.ReactNode;
 };
 
-export const Version: React.FC<VersionProps> = ({ value, children }) => {
+export const Version: React.FC<VersionProps> = ({ values, children }) => {
   const { activeVersion } = useVersionTabs();
-  const values = Array.isArray(value) ? value : [value];
 
   if (!values.includes(activeVersion)) {
     return null;

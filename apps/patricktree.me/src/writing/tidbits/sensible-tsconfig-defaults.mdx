@@ -10,9 +10,9 @@ giscusTerm: sensible-tsconfig-defaults
 
 When I set up a TypeScript package, this is the `tsconfig.json` configuration I start from:
 
-<VersionTabs versions={["TS 5.9", "TS 6.0"]} defaultVersion="TS 6.0">
+<VersionTabs versions={["TS 5.9", "TS 6.0 Node.js", "TS 6.0 Browser"]} defaultVersion="TS 6.0 Node.js">
 
-<Version value="TS 5.9">
+<Version values={["TS 5.9"]}>
 
 ```jsonc
 {
@@ -58,7 +58,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 
 </Version>
 
-<Version value="TS 6.0">
+<Version values={["TS 6.0 Node.js"]}>
 
 ```jsonc
 {
@@ -73,6 +73,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 
     /* Modules */
     "module": "Node20",
+    "moduleResolution": "Node16",
     "rootDir": "./src",
 
     /* Emit */
@@ -100,49 +101,123 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 
 </Version>
 
+<Version values={["TS 6.0 Browser"]}>
+
+```jsonc
+{
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Modules */
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "rootDir": "./src",
+
+    /* Emit */
+    "noEmit": true,
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+
+    /* Language and Environment */
+    "target": "ES2017",
+
+    /* Projects */
+    "incremental": true,
+
+    /* Completeness */
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/node_modules"],
+}
+```
+
+</Version>
+
 I use it for new packages and adjust it as needed.  
 Below you find an explanation why I think these compiler options represent good defaults.
 
+<Version values={["TS 6.0 Node.js"]}>
+
 ## `module`: `"Node20"`
+
+</Version>
+
+<Version values={["TS 6.0 Browser"]}>
+
+## `module`: `"Preserve"`
+
+</Version>
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#module">#module docs</FancyAnchor>
 
-`module`: `"Node20"` infers also `moduleResolution`: `"Node16"`.
+`module` controls 2 things:
 
-First, let's talk about what those 2 options do:
+1. **Supported Module Features:** Whether to report the usage of certain module features as errors or not. E.g. `import.meta.resolve`, `import ... with { }` statements, or `require(esm)` from CJS source files.
+2. **Module Emit:** Whether to transform ESM `import` statements, dynamic `import()`s and ESM `export` statements in source files to CommonJS `require` function calls and `module.exports` assignments in output files.
 
-`module` controls how TypeScript compiles _module features_ of your files:
+<Version values={["TS 6.0 Node.js"]}>
 
-- Module features are ever-expanding, things like `import.meta` or `import ... with { }`. The setting of `module` will determine whether those are reported as errors or not during compilation.
-- Whether to transform `import` statements, dynamic `import()`s and `exports` to CommonJS `require` function calls and `module.exports` assignments.
+`"Node20"` models the behavior of Node.js 20+.
 
-Why `"Node20"` instead of the older `"CommonJS"`?
+Each TypeScript source file is treated as ESM or CJS based on `type` of the "nearest" `package.json` file (that is, in the same directory or in any ancestor directory of the TypeScript source file) - matching what Node.js actually does at runtime.
 
-Setting `module` to `"CommonJS"` has two significant problems:
+The detected. module format (ESM or CJS) determines the supported module features and module emit.  
+`require()` function calls, `module.exports` assignments, `__dirname`, `__filename` will be forbidden in ESM files; `import.meta` will be forbidden in CJS source files.  
+This is correct, Node.js would throw an error during runtime in these cases.  
+If a CJS source file is using `import` statements or `export` statements, those will be rewritten to `require()` function calls and `module.exports` assignments.
 
-1. **Every TypeScript source file is treated as CJS.**
-   If your packages use `"type": "module"` in `package.json` (i.e. they are ESM), this is simply wrong - the module system TypeScript assumes doesn't match reality.
+Dynamic `import()`s are always kept as-is even if the output target of a file is CJS (in the old `CommonJS` setting, it would be replaced by `require()`, which is unnecessary as Node.js CJS modules support dynamic `import()`s).
 
-2. **Dynamic imports (`await import()`) are transformed to `require()` calls.**
-   This is worse.
-   In production, your runtime (Node.js) executes `await import()` as an actual dynamic ESM import.
-   But if TypeScript compiled it down to `require()`, you can get subtle differences in behavior - especially around default exports, which `require()` and `await import()` load differently.
-   Test runners like vitest execute `await import()` as a real dynamic import too, so your tests might pass while production breaks (or vice versa).
+If you want to use any module features supported by a newer `"NodeXX"` module value, upgrade to it but also make sure that the code only runs on that Node.js version or above.
 
-And `moduleResolution` set to `"Node"` (an alias for `"Node10"`) is also problematic: under this setting, TypeScript does **not** look into <FancyAnchor href="https://nodejs.org/api/packages.html#exports">`package.json#exports`</FancyAnchor> and <FancyAnchor href="https://nodejs.org/api/packages.html#imports">`package.json#imports`</FancyAnchor> when resolving modules.
-As the <FancyAnchor href="https://www.typescriptlang.org/docs/handbook/modules/theory.html#module-resolution-is-host-defined">TypeScript docs</FancyAnchor> put it, _"it's a very bad model of modern versions of Node.js"_.
-Modern Node.js (v16+) resolves `exports` and `imports`, and so does vitest - TypeScript should too.
+</Version>
 
-`module`: `"Node20"` fixes all of this:
+<Version values={["TS 6.0 Browser"]}>
 
-- Each `.ts` file is treated as ESM or CJS based on the nearest `package.json#type` field - matching what Node.js actually does at runtime.
-- `await import()` is left as-is, not transformed to `require()`.
-- The inferred `moduleResolution`: `"Node16"` resolves `package.json#exports` and `#imports` correctly, and forbids extensionless and directory imports in ESM files (matching Node.js behavior).
+`"Preserve"` is suitable if the application is processed by some bundler.
 
-For **browser projects** (where a bundler handles module resolution), I use `moduleResolution`: `"Bundler"` instead.
-It also supports `exports`/`imports`, but is more relaxed - e.g. it allows extensionless imports, which bundlers handle fine.
+It allows the usage of all ESM and CJS module features (in contrast to `none`).  
+Even mixed within the same file, reflecting the capability of modern bundlers to process all sorts of module features.
 
-<Version value="TS 5.9">
+Combined with `"noEmit" true`, the TypeScript compiler will still check the correct usage of module features but not do anything with it.
+
+</Version>
+
+<Version values={["TS 6.0 Node.js"]}>
+
+## `moduleResolution`: `"Node16"`
+
+</Version>
+
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#moduleResolution">#moduleResolution docs</FancyAnchor>
+
+TODO explainer
+
+<Version values={["TS 6.0 Node.js"]}>
+
+`moduleResolution`: `"Node16"` resolves `package.json#exports` and `#imports`, as Node.js and tools like Vite do.  
+It also forbids extensionless and directory imports in ESM files, matching Node.js behavior.
+
+</Version>
+
+<Version values={["TS 6.0 Browser"]}>
+
+## `moduleResolution`: `"Bundler"`
+
+**`moduleResolution`: `"Bundler"`** resolves `package.json#exports` and `#imports`.  
+It allows extensionless and directory imports, which is more relaxed than Node.js.
+
+</Version>
+
+<Version values={["TS 5.9"]}>
 
 ## `"types": []`
 
@@ -182,7 +257,7 @@ If you do need to include specific type packages implicitly, you can still set t
 
 </Version>
 
-<Version value="TS 6.0">
+<Version values={["TS 6.0 Node.js"]}>
 
 ## `rootDir`: `"./src"`
 
@@ -197,6 +272,8 @@ In TypeScript 6.0, the default `rootDir` will always be the directory containing
 Since I usually put my source files in a `src` directory, I set `rootDir` to `./src` to ensure that the output files in `dist` have the same directory structure as the source files in `src`.
 
 </Version>
+
+<Version values={["TS 5.9", "TS 6.0 Node.js"]}>
 
 ## Enabling `"sourceMap"`, `"declaration"` and `"declarationMap"`
 
@@ -225,6 +302,16 @@ Important notes here:
   - or the sources (`declarationMap` enabled)
 
   ...if actions like "Go to Definition" are performed.
+
+</Version>
+
+<Version values={["TS 6.0 Browser"]}>
+
+# Disabling emit via `"noEmit": true`
+
+Since bundlers (like webpack) operate on the TypeScript sources directly, we don't want TypeScript to emit anything.
+
+</Version>
 
 ## Enabling `"verbatimModuleSyntax"`
 
@@ -260,7 +347,7 @@ According to a <FancyAnchor href="https://youtu.be/cLxNdLK--yI">Chrome Developer
 
 Will improve compilation times after the first run.
 
-<Version value="TS 5.9">
+<Version values={["TS 5.9"]}>
 
 ## Enabling `"noUncheckedSideEffectImports"`
 
@@ -282,7 +369,7 @@ With the option `noUncheckedSideEffectImports` enabled, TypeScript will check th
 
 These options are recommended by the <FancyAnchor href="https://www.typescriptlang.org/tsconfig">tsconfig reference</FancyAnchor>, though not enabled by default:
 
-<Version value="TS 5.9">
+<Version values={['TS 5.9']}>
   - {/* prettier-ignore */}
   <FancyAnchor href="https://www.typescriptlang.org/tsconfig#esModuleInterop">`esModuleInterop`</FancyAnchor>
   - {/* prettier-ignore */}
@@ -291,7 +378,7 @@ These options are recommended by the <FancyAnchor href="https://www.typescriptla
   <FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
 </Version>
 
-<Version value="TS 6.0">
+<Version values={['TS 6.0 Node.js']}>
   - {/* prettier-ignore */}
   <FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
 </Version>
