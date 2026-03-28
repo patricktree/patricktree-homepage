@@ -76,6 +76,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "module": "Node20",
     "moduleResolution": "Node16",
     "rootDir": "./src",
+    "types": ["node"],
 
     /* Emit */
     "declaration": true,
@@ -118,7 +119,6 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     /* Modules */
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "rootDir": "./src",
 
     /* Emit */
     "noEmit": true,
@@ -211,7 +211,7 @@ The module specifier is the string when loading modules:
 
 Different hosts (Node.js, bundlers) follow different resolution rules: whether `package.json` `"exports"` and `"imports"` are consulted, whether extensionless relative imports (like `"./utils"` instead of `"./utils.js"`) are allowed, and whether directory imports (like `"./components"` resolving to `"./components/index.js"`) are allowed.
 
-<Version values={["TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
 
 `"Node16"` resolves `package.json` `"exports"` and `"imports"` and forbids extensionless and directory imports in ESM files, matching Node.js behavior.
 
@@ -233,7 +233,6 @@ Different hosts (Node.js, bundlers) follow different resolution rules: whether `
 
 I always explicitly set `"types"`, by default to `[]`.
 
-Why?
 The option `"types"` influences what types are included _implicitly_ in the compilation process.
 By default, if the option is not set, TS will include _all_ types located in the `@types` folder of any `node_modules` directory in the file system hierarchy.
 
@@ -262,6 +261,24 @@ If you do need to include specific type packages implicitly, you can still set t
 
 - `"types": ["node"]` in a Node.js package
 - `"types": ["node", "jest"]` if Jest globals are also needed
+
+</Version>
+
+<Version values={["TS 6.0 Node.js"]}>
+
+## `"types": ["node"]`
+
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#types">#types docs</FancyAnchor>
+
+In TypeScript 6.0, `types` defaults to `[]` (an empty array).
+This means TypeScript will no longer implicitly include all `@types` packages from `node_modules`.
+
+You still need to add entries if you rely on globally available types:
+
+- `"types": ["node"]` in a Node.js package (for globals like `process`, `Buffer`, Node.js-specific `setTimeout` overloads, etc.)
+- `"types": ["node", "jest"]` if Jest globals are also needed
+
+Alternatively, you can avoid the `types` entry entirely by using explicit imports (e.g. `import process from 'node:process'`), which are always resolved regardless of this option.
 
 </Version>
 
