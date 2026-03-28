@@ -92,8 +92,9 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
       const $headings: HTMLElement[] = [];
       for (const heading of headings) {
         const $element = document.querySelector(`#${heading.id}`);
-        invariant($element instanceof HTMLElement);
-        $headings.push($element);
+        if ($element instanceof HTMLElement) {
+          $headings.push($element);
+        }
       }
 
       const observer = new IntersectionObserver(
