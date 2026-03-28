@@ -29,6 +29,68 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
     undefined | { id: string; wentOutOfViewport: boolean }
   >();
 
+  /*
+   * Track which headings are currently present in the DOM.
+   * This handles cases where some headings are conditionally rendered
+   * (e.g. inside version tabs that show/hide content).
+   */
+  const [visibleHeadingIds, setVisibleHeadingIds] = React.useState<ReadonlySet<string> | undefined>(
+    undefined,
+  );
+
+  React.useEffect(
+    function trackHeadingsPresenceInDom() {
+      function computeVisibleIds() {
+        const ids = new Set<string>();
+        for (const heading of headings) {
+          if (document.querySelector(`#${heading.id}`)) {
+            ids.add(heading.id);
+          }
+        }
+        return ids;
+      }
+
+      function updateVisibleHeadingIds() {
+        setVisibleHeadingIds((prev) => {
+          const next = computeVisibleIds();
+          if (prev?.size === next.size && [...prev].every((id) => next.has(id))) {
+            return prev;
+          }
+          return next;
+        });
+      }
+
+      updateVisibleHeadingIds();
+
+      let rafId: number | undefined;
+      const observer = new MutationObserver(() => {
+        if (rafId !== undefined) {
+          cancelAnimationFrame(rafId);
+        }
+        rafId = requestAnimationFrame(updateVisibleHeadingIds);
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      return () => {
+        observer.disconnect();
+        if (rafId !== undefined) {
+          cancelAnimationFrame(rafId);
+        }
+      };
+    },
+    [headings],
+  );
+
+  /*
+   * During SSR (visibleHeadingIds is undefined), show no headings — they will pop in on the client.
+   * The ToC is auxiliary content not relevant for SEO.
+   */
+  const visibleHeadings = React.useMemo(
+    () =>
+      visibleHeadingIds === undefined ? [] : headings.filter((h) => visibleHeadingIds.has(h.id)),
+    [headings, visibleHeadingIds],
+  );
+
   React.useEffect(
     function observeLastScrolledToHeadingGoingOutOfViewport() {
       if (matches === 'SSR' || !matches) {
@@ -90,7 +152,7 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
       }
 
       const $headings: HTMLElement[] = [];
-      for (const heading of headings) {
+      for (const heading of visibleHeadings) {
         const $element = document.querySelector(`#${heading.id}`);
         if ($element instanceof HTMLElement) {
           $headings.push($element);
@@ -129,7 +191,7 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
         }
       };
     },
-    [headings, matches],
+    [visibleHeadings, matches],
   );
 
   const highlightedHeadingId: string | undefined =
@@ -140,7 +202,7 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
 
   return (
     <TocList>
-      {headings.map((heading) => {
+      {visibleHeadings.map((heading) => {
         const highlighted = highlightedHeadingId === heading.id;
         return (
           <TocListItem key={heading.id}>
