@@ -3,11 +3,9 @@
 import { styled } from '@pigment-css/react';
 import React from 'react';
 
+import { SEARCH_PARAM_KEY } from '#pkg/components/version-tabs/constants.jsx';
 import { VersionTabsContext } from '#pkg/components/version-tabs/VersionTabsContext.jsx';
-import {
-  SEARCH_PARAM_KEY,
-  VersionUrlContext,
-} from '#pkg/components/version-tabs/VersionUrlContext.jsx';
+import { VersionUrlContext } from '#pkg/components/version-tabs/VersionUrlContext.jsx';
 import { Button } from '#pkg/elements/Button.jsx';
 
 type NonEmptyArray<T> = [T, ...T[]];
