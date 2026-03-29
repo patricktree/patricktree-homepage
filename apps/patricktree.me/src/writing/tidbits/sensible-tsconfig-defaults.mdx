@@ -39,12 +39,13 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "sourceMap": true,
 
     /* Interop Constraints */
+    "erasableSyntaxOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2019",
+    "target": "ES2020",
 
     /* Projects */
     "incremental": true,
@@ -85,10 +86,11 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "sourceMap": true,
 
     /* Interop Constraints */
+    "erasableSyntaxOnly": true,
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2019",
+    "target": "ES2020",
 
     /* Projects */
     "incremental": true,
@@ -127,7 +129,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2019",
+    "target": "ES2020",
 
     /* Projects */
     "incremental": true,
@@ -173,7 +175,7 @@ Each TypeScript source file is treated as ESM or CJS based on `type` of the "nea
 
 The detected module format (ESM or CJS) determines the supported module features and module emit:
 
-- `require()` function calls, `module.exports` assignments, `__dirname`, `__filename` will be forbidden in ESM files; `import.meta` will be forbidden in CJS source files.
+- ESM-exclusive features like `import ... with { }` statements and `import.meta` will be forbidden in CJS source files.
 - If a CJS source file is using `import` statements or `export` statements, those will be rewritten to `require()` function calls and `module.exports` assignments.
 
 Dynamic `import()`s are always kept as-is even if the output target of a file is CJS (in the old `CommonJS` setting, it would be replaced by `require()`, which is unnecessary as Node.js CJS modules support dynamic `import()`s).
@@ -292,7 +294,7 @@ Alternatively, you can avoid the `types` entry entirely by using explicit import
 I always explicitly set `rootDir`, by default to `"./src"`.
 
 `rootDir` controls the directory structure of your output files relative to the output directory.  
-In TypeScript 6.0, the default `rootDir` will always be the directory containing the `tsconfig.json` file (except when using `tsc` from the command line without a `tsconfig.json` file, then `rootDir` will be inferred, see more <FancyAnchor href="https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#rootdir-now-defaults-to-.">here</FancyAnchor>).
+In TypeScript 6.0, the default `rootDir` will always be the directory containing the `tsconfig.json` file (except when using `tsc` from the command line without a `tsconfig.json` file, then `rootDir` will be inferred, more infos <FancyAnchor href="https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#rootdir-now-defaults-to-.">here</FancyAnchor>).
 
 Since I usually put my source files in a `src` directory, I set `rootDir` to `"./src"` to ensure that the output files in `dist` have the same directory structure as the source files in `src`.
 
@@ -311,22 +313,16 @@ Given a source file `src/main.ts`, this configuration will emit the following fi
 - `dist/main.d.ts`: Emitted because of <FancyAnchor href="https://www.typescriptlang.org/tsconfig#declaration">`declaration`</FancyAnchor>.
   Type definitions for things exported by `main.js`.
 - `dist/main.d.ts.map`: Emitted because of <FancyAnchor href="https://www.typescriptlang.org/tsconfig#declarationMap">`declarationMap`</FancyAnchor>.
-  This is a source map for the type definitions `main.d.ts`.
-  One might wonder why we need a source map for type definitions (things like debugging and stack traces don't make sense for them).
-
-  Turns out that IDEs (e.g. VS Code) can use such declaration maps to improve code navigation - things like "Go to Definition", "Find all References" etc.  
+  This is a source map for the type definitions `main.d.ts`.  
+  IDEs (e.g. VS Code) can use such declaration maps to improve code navigation - things like "Go to Definition", "Find all References" etc.  
   This is very useful for monorepos because it improves the cross-package editing experience.
 
-Important notes here:
+For libraries published to `npm`, the decision of enabling `declarationMap` depends on whether we want package consumers to go to
 
-- For most web apps we don't want TypeScript to emit anything, since bundlers (like webpack) operate on the TypeScript sources directly.  
-  In such cases, I don't enable any of these three options and instead enable `noEmit`.
-- For libraries published to `npm`, the decision of enabling `declarationMap` depends on whether we want package consumers to go to
+- the types (`declarationMap` not enabled)
+- or the sources (`declarationMap` enabled)
 
-  - the types (`declarationMap` not enabled)
-  - or the sources (`declarationMap` enabled)
-
-  ...if actions like "Go to Definition" are performed.
+...if actions like "Go to Definition" are performed.
 
 </Version>
 
@@ -340,6 +336,19 @@ Since bundlers (like webpack) operate on the TypeScript sources directly, we don
 
 </Version>
 
+<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+
+## Enabling `"erasableSyntaxOnly"`
+
+{/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#erasableSyntaxOnly">#erasableSyntaxOnly docs</FancyAnchor>
+
+`erasableSyntaxOnly` rejects TypeScript features that need code generation, like `enum`, parameter properties, runtime `namespace`s, `import = require(...)`, and `export =`.
+
+This matches modern Node.js very well, because Node.js's built-in TypeScript support only works for syntax that can be handled by stripping types.  
+In practice, this nudges Node.js projects toward a smaller, more JavaScript-native, ESM-first subset of TypeScript.
+
+</Version>
+
 ## Enabling `"verbatimModuleSyntax"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax">#verbatimModuleSyntax docs</FancyAnchor>
@@ -350,11 +359,19 @@ Such imports will get fully erased when TypeScript compiles the sources to JavaS
 Also, it can help tools like bundlers to determine whether an import is needed at runtime or not.  
 The auto-import feature of VS Code will automatically use `import type` statements when this compiler option is set, making it less cumbersome to follow this import restriction.
 
-This also enables `isolatedModules` implicitly, which forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
+<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+
+It also aligns well with modern Node.js.
+When Node.js runs `.ts` files by stripping types, type imports must be written explicitly with the `type` keyword.
+That is why the <FancyAnchor href="https://nodejs.org/api/typescript.html">Node.js TypeScript docs</FancyAnchor> recommend this option.
+
+</Version>
+
+`verbatimModuleSyntax` also enables `isolatedModules`, which forbids the use of a few TypeScript features that are not supported by tools which operate on a single-file basis, like Babel.  
 Affected are e.g. `namespace`'s and `const enum`'s.  
 I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyway; it can be disabled later in case one of those features is really needed.
 
-## `"target": "ES2019"`
+## `"target": "ES2020"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#target">#target docs</FancyAnchor>
 
@@ -371,7 +388,7 @@ According to a <FancyAnchor href="https://youtu.be/cLxNdLK--yI">Chrome Developer
 Even in 2026 it still applies that targets newer than `ES2017` don't change much in terms of size and performance.
 
 So my advice is to bump the target whenever you want access to newer JavaScript features.  
-I bumped it to `ES2019` to access e.g. `flatMap`.
+I bumped it to `ES2020` to have access to e.g. `flatMap`.
 
 ## Enabling `"incremental"`
 
