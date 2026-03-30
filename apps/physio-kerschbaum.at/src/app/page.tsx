@@ -253,7 +253,7 @@ function HomePage() {
             </span>
             <LocationCardSchedule>
               <strong>Termine:</strong>{' '}
-              <LocationCardScheduleValue>Freitags 08:00 bis 13:00 Uhr</LocationCardScheduleValue>
+              <LocationCardScheduleValue>Freitag 14-18 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
               Termin buchen - HNO Zentrum 19
