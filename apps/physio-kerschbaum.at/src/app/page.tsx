@@ -237,7 +237,7 @@ function HomePage() {
             </span>
             <LocationCardSchedule>
               <strong>Termine:</strong>{' '}
-              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr</LocationCardScheduleValue>
+              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr und Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
               Termin buchen - Physio Allround
