@@ -237,7 +237,7 @@ function HomePage() {
             </span>
             <LocationCardSchedule>
               <strong>Termine:</strong>{' '}
-              <LocationCardScheduleValue>Montags 13:30-19 Uhr und Freitags 14-18 Uhr</LocationCardScheduleValue>
+              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr und Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
               Termin buchen - Physio Allround
@@ -253,7 +253,7 @@ function HomePage() {
             </span>
             <LocationCardSchedule>
               <strong>Termine:</strong>{' '}
-              <LocationCardScheduleValue>Freitags 8-13</LocationCardScheduleValue>
+              <LocationCardScheduleValue>Freitags 08:00 bis 13:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
               Termin buchen - HNO Zentrum 19
