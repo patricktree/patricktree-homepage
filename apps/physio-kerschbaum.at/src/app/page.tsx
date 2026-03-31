@@ -236,8 +236,11 @@ function HomePage() {
               1030 Wien
             </span>
             <LocationCardSchedule>
-              <strong>Termine:</strong>{' '}
-              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr und Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
+              <strong>Termine:</strong>
+              <br />
+              <LocationCardScheduleValue>Montags 13:30 bis 19:00 Uhr</LocationCardScheduleValue>
+              <br />
+              <LocationCardScheduleValue>Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
               Termin buchen - Physio Allround
@@ -252,7 +255,8 @@ function HomePage() {
               1190 Wien
             </span>
             <LocationCardSchedule>
-              <strong>Termine:</strong>{' '}
+              <strong>Termine:</strong>
+              <br />
               <LocationCardScheduleValue>Freitags 08:00 bis 13:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
             <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
@@ -418,8 +422,10 @@ const AboutImage = styled(Image)`
 `;
 
 const LocationCards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  --card-min-with: 300px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--card-min-with), 100%), 1fr));
   gap: 16px;
   margin-block-start: 0.5em;
 `;
@@ -439,16 +445,13 @@ const LocationCardHeading = styled.strong`
   margin-block-end: calc(0.5 * var(--spacing-base));
 
   font-size: var(--font-size-lg);
-  text-wrap: nowrap;
 `;
 
-const LocationCardSchedule = styled.p`
+const LocationCardSchedule = styled.div`
   margin-block: 0.6em;
 `;
 
-const LocationCardScheduleValue = styled.span`
-  text-wrap: nowrap;
-`;
+const LocationCardScheduleValue = styled.span``;
 
 const ContactInformation = styled.p`
   margin-block-start: 1.2em;
