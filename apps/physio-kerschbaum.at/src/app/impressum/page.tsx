@@ -1,15 +1,19 @@
-import { styled } from '@pigment-css/react';
 import type { Metadata } from 'next';
+import { ArrowLeftCircle } from 'react-feather';
 
-import { merriweather } from '#pkg/app/fonts.jsx';
-import { Anchor } from '#pkg/elements/Anchor.jsx';
+import {
+  BacklinkAnchor,
+  BackLinkParagraph,
+  Heading,
+  PageArticle,
+} from '#pkg/components/commons.jsx';
 
 function ImpressumPage() {
   return (
     <PageArticle>
-      <h1 className={merriweather.className}>Impressum</h1>
+      <Heading as="h1">Impressum</Heading>
 
-      <h2 className={merriweather.className}>Angaben gemäß § 5 ECG und § 24 Mediengesetz</h2>
+      <Heading as="h2">Angaben gemäß § 5 ECG und § 24 Mediengesetz</Heading>
       <p>
         <strong>Physiotherapie Jasmin Kerschbaum</strong>
         <br />
@@ -32,9 +36,7 @@ function ImpressumPage() {
         Muthgasse 36, 1190 Wien
       </p>
 
-      <h2 className={merriweather.className}>
-        Berufsbezeichnung und berufsrechtliche Vorschriften
-      </h2>
+      <Heading as="h2">Berufsbezeichnung und berufsrechtliche Vorschriften</Heading>
       <p>
         <strong>Berufsbezeichnung:</strong> Physiotherapeutin
       </p>
@@ -43,28 +45,28 @@ function ImpressumPage() {
         medizinisch-technischen Dienste (MTD-Gesetz).
       </p>
 
-      <h2 className={merriweather.className}>Zuständige Aufsichtsbehörde</h2>
+      <Heading as="h2">Zuständige Aufsichtsbehörde</Heading>
       <p>Bezirkshauptmannschaft / Magistrat (je nach Standort)</p>
 
-      <h2 className={merriweather.className}>Mitgliedschaft</h2>
+      <Heading as="h2">Mitgliedschaft</Heading>
       <p>Mitglied im Berufsverband: Physio Austria</p>
 
-      <h2 className={merriweather.className}>Unternehmensgegenstand</h2>
+      <Heading as="h2">Unternehmensgegenstand</Heading>
       <p>Physiotherapeutische Behandlungen und Therapieleistungen</p>
 
-      <h2 className={merriweather.className}>Haftung für Inhalte</h2>
+      <Heading as="h2">Haftung für Inhalte</Heading>
       <p>
         Die Inhalte unserer Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
         Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
       </p>
 
-      <h2 className={merriweather.className}>Haftung für Links</h2>
+      <Heading as="h2">Haftung für Links</Heading>
       <p>
         Unsere Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
         Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Haftung.
       </p>
 
-      <h2 className={merriweather.className}>Urheberrecht</h2>
+      <Heading as="h2">Urheberrecht</Heading>
       <p>
         Die Inhalte und Werke auf dieser Website unterliegen dem Urheberrecht. Die Vervielfältigung,
         Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung
@@ -72,7 +74,10 @@ function ImpressumPage() {
       </p>
 
       <BackLinkParagraph>
-        <Anchor href="/">← Zurück zur Startseite</Anchor>
+        <BacklinkAnchor href="/">
+          <ArrowLeftCircle size="1em" />
+          Zurück zur Startseite
+        </BacklinkAnchor>
       </BackLinkParagraph>
     </PageArticle>
   );
@@ -86,14 +91,3 @@ export const metadata: Metadata = {
 };
 
 export default ImpressumPage;
-
-const PageArticle = styled.article`
-  max-width: var(--app-box-width);
-  padding-block: 32px;
-  padding-inline: var(--app-padding-inline);
-  margin-inline: auto;
-`;
-
-const BackLinkParagraph = styled.p`
-  margin-block-start: 2em;
-`;

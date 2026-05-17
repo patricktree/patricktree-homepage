@@ -1,8 +1,9 @@
 export const headingIds = {
   welcome: 'welcome',
+  ihreExpertinFuer: 'ihre-expertin-fuer',
   ueberMich: 'ueber-mich',
-  derWegZurPhysiotherapie: 'der-weg-zur-physiotherapie',
+  vierSchritteZurPhysiotherapie: 'vier-schritte-zur-physiotherapie',
   kooperierendeAerztInnen: 'kooperierende-aerztinnen',
-  leistungen: 'leistungen',
+  leistungenUndPreise: 'leistungen-und-preise',
   standorteTerminbuchung: 'standorte-terminbuchung',
 };

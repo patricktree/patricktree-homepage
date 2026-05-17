@@ -15,12 +15,12 @@ export const Nav: React.FC = () => {
           <NavAnchor href={`/#${headingIds.ueberMich}`}>Über Mich</NavAnchor>
         </li>
         <li>
-          <NavAnchor href={`/#${headingIds.derWegZurPhysiotherapie}`}>
+          <NavAnchor href={`/#${headingIds.vierSchritteZurPhysiotherapie}`}>
             Der Weg zur Physiotherapie
           </NavAnchor>
         </li>
         <li>
-          <NavAnchor href={`/#${headingIds.leistungen}`}>Leistungen</NavAnchor>
+          <NavAnchor href={`/#${headingIds.leistungenUndPreise}`}>Leistungen</NavAnchor>
         </li>
         <li>
           <NavAnchor href={`/#${headingIds.standorteTerminbuchung}`}>

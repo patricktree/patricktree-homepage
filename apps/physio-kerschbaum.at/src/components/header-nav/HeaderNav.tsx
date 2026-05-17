@@ -54,6 +54,7 @@ export const HeaderNav: React.FC = () => {
       <Anchor href={`/#${headingIds.welcome}`}>
         <Image src={logo} alt="" height={LOGO_HEIGHT} />
       </Anchor>
+
       <OpenSidenavButton />
     </div>
   );
