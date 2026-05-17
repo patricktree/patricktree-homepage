@@ -565,6 +565,7 @@ const DiseaseCardHeading = styled(CardHeading)`
 const PrescriptionGuide = styled.div`
   display: flex;
   flex-direction: column;
+  width: fit-content;
 
   margin-block: calc(4 * var(--spacing-base));
   margin-inline: auto;
