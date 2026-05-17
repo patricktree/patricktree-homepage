@@ -307,6 +307,11 @@ function HomePage() {
           Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale von 35€
           verrechnet.
         </p>
+        <p>
+          <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
+          Ansuchen ein Teil der Kosten von der Krankenkassa übernommen! Mehr Infos erhalten Sie beim
+          Gespräch - persönlich oder telefonisch!
+        </p>
       </Section>
 
       <Section>
@@ -364,12 +369,6 @@ function HomePage() {
           <strong>Terminabsagen</strong> müssen bis 24h vor dem vereinbarten Termin erfolgen,
           telefonisch oder per E-Mail. Bei kurzfristigen Absagen wird ein Entfallshonorar
           verrechnet.
-        </p>
-
-        <p>
-          <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
-          Ansuchen ein Teil der Kosten von der Krankenkassa übernommen! Mehr Infos erhalten Sie beim
-          Gespräch - persönlich oder telefonisch!
         </p>
       </Section>
 
