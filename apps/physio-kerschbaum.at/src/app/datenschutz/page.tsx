@@ -1,15 +1,20 @@
-import { styled } from '@pigment-css/react';
 import type { Metadata } from 'next';
+import { ArrowLeftCircle } from 'react-feather';
 
-import { merriweather } from '#pkg/app/fonts.jsx';
-import { Anchor } from '#pkg/elements/Anchor.jsx';
+import {
+  BacklinkAnchor,
+  BackLinkParagraph,
+  Heading,
+  PageArticle,
+} from '#pkg/components/commons.jsx';
 
 function DatenschutzPage() {
   return (
     <PageArticle>
-      <h1 className={merriweather.className}>Datenschutzerklärung</h1>
+      <Heading as="h1">Datenschutzerklärung</Heading>
 
-      <h2 className={merriweather.className}>1. Verantwortliche Stelle</h2>
+      <Heading as="h2">1. Verantwortliche Stelle</Heading>
+
       <p>
         Verantwortlich für die Verarbeitung Ihrer personenbezogenen Daten auf dieser Website ist:
       </p>
@@ -30,7 +35,8 @@ function DatenschutzPage() {
         Muthgasse 36, 1190 Wien
       </p>
 
-      <h2 className={merriweather.className}>2. Allgemeines zur Datenverarbeitung</h2>
+      <Heading as="h2">2. Allgemeines zur Datenverarbeitung</Heading>
+
       <p>
         Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre
         Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003).
@@ -40,9 +46,7 @@ function DatenschutzPage() {
         können.
       </p>
 
-      <h2 className={merriweather.className}>
-        3. Erhebung und Verarbeitung personenbezogener Daten
-      </h2>
+      <Heading as="h2">3. Erhebung und Verarbeitung personenbezogener Daten</Heading>
       <p>
         Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer
         funktionsfähigen Website sowie unserer Leistungen erforderlich ist.
@@ -56,7 +60,7 @@ function DatenschutzPage() {
         <li>Gesundheitsdaten im Rahmen der Behandlung</li>
       </ul>
 
-      <h2 className={merriweather.className}>4. Kontaktaufnahme</h2>
+      <Heading as="h2">4. Kontaktaufnahme</Heading>
       <p>
         Wenn Sie per E-Mail oder Kontaktformular mit uns Kontakt aufnehmen, werden Ihre angegebenen
         Daten zwecks Bearbeitung der Anfrage sowie für den Fall von Anschlussfragen gespeichert.
@@ -69,7 +73,7 @@ function DatenschutzPage() {
         <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</li>
       </ul>
 
-      <h2 className={merriweather.className}>5. E-Mail-Kommunikation</h2>
+      <Heading as="h2">5. E-Mail-Kommunikation</Heading>
       <p>
         Für die Kommunikation nutzen wir einen externen E-Mail-Dienst (GMX). Dabei werden
         personenbezogene Daten (z.&nbsp;B. Name, E-Mail-Adresse, Inhalte der Nachricht) verarbeitet.
@@ -80,9 +84,9 @@ function DatenschutzPage() {
       </p>
       <p>Die Nutzung der E-Mail-Kommunikation erfolgt freiwillig.</p>
 
-      <h2 className={merriweather.className}>6. Terminbuchung</h2>
+      <Heading as="h2">6. Terminbuchung</Heading>
 
-      <h3 className={merriweather.className}>Synaptos (Praxissoftware)</h3>
+      <Heading as="h3">Synaptos (Praxissoftware)</Heading>
       <p>
         Auf dieser Seite sind Funktionen des Dienstes Synaptos eingebunden (Online-Terminanfrage).
         Anbieter dieses Dienstes ist die Synaptos GmbH, St. Veiter Straße 188/1 EG, 9020 Klagenfurt
@@ -101,9 +105,7 @@ function DatenschutzPage() {
         <a href="https://synaptos.at/datenschutzerklaerung/">Datenschutzerklärung von Synaptos</a>.
       </p>
 
-      <h3 className={merriweather.className}>
-        Acuity Scheduling (Online-Terminbuchung – je nach Standort)
-      </h3>
+      <Heading as="h3">Acuity Scheduling (Online-Terminbuchung – je nach Standort)</Heading>
       <p>
         An einzelnen Praxisstandorten wird zusätzlich das Online-Terminbuchungssystem Acuity
         Scheduling eingesetzt.
@@ -124,13 +126,13 @@ function DatenschutzPage() {
         oder direkt vor Ort vereinbart werden.
       </p>
 
-      <h3 className={merriweather.className}>Hinweis zur unterschiedlichen Nutzung</h3>
+      <Heading as="h3">Hinweis zur unterschiedlichen Nutzung</Heading>
       <p>
         Je nach Praxisstandort erfolgt die Terminverwaltung entweder ausschließlich über die
         Praxissoftware Synaptos oder ergänzend über das Online-Buchungssystem Acuity Scheduling.
       </p>
 
-      <h2 className={merriweather.className}>7. Hosting der Website</h2>
+      <Heading as="h2">7. Hosting der Website</Heading>
       <p>
         Unsere Website wird bei einem externen Dienstleister gehostet. Dabei werden automatisch
         folgende Daten verarbeitet:
@@ -149,7 +151,7 @@ function DatenschutzPage() {
         <li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</li>
       </ul>
 
-      <h2 className={merriweather.className}>8. Ihre Rechte</h2>
+      <Heading as="h2">8. Ihre Rechte</Heading>
       <p>Sie haben jederzeit folgende Rechte gemäß DSGVO:</p>
       <ul>
         <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
@@ -160,7 +162,7 @@ function DatenschutzPage() {
         <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
       </ul>
 
-      <h2 className={merriweather.className}>9. Beschwerderecht</h2>
+      <Heading as="h2">9. Beschwerderecht</Heading>
       <p>
         Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht
         verstößt, haben Sie das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren:
@@ -173,19 +175,19 @@ function DatenschutzPage() {
         1030 Wien
       </p>
 
-      <h2 className={merriweather.className}>10. Speicherung von Daten</h2>
+      <Heading as="h2">10. Speicherung von Daten</Heading>
       <p>
         Wir speichern personenbezogene Daten nur so lange, wie dies für die jeweiligen Zwecke
         erforderlich ist bzw. gesetzliche Aufbewahrungsfristen bestehen.
       </p>
 
-      <h2 className={merriweather.className}>11. Datensicherheit</h2>
+      <Heading as="h2">11. Datensicherheit</Heading>
       <p>
         Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen
         Manipulation, Verlust oder unbefugten Zugriff zu schützen.
       </p>
 
-      <h2 className={merriweather.className}>12. Hinweis zu Gesundheitsdaten</h2>
+      <Heading as="h2">12. Hinweis zu Gesundheitsdaten</Heading>
       <p>
         Im Rahmen physiotherapeutischer Leistungen werden Gesundheitsdaten verarbeitet. Diese zählen
         zu den besonders schützenswerten Daten gemäß Art. 9 DSGVO.
@@ -195,14 +197,17 @@ function DatenschutzPage() {
         gesetzlichen Verschwiegenheitspflicht.
       </p>
 
-      <h2 className={merriweather.className}>13. Änderungen dieser Datenschutzerklärung</h2>
+      <Heading as="h2">13. Änderungen dieser Datenschutzerklärung</Heading>
       <p>
         Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen, um sie an geänderte
         rechtliche Anforderungen oder neue Leistungen anzupassen.
       </p>
 
       <BackLinkParagraph>
-        <Anchor href="/">← Zurück zur Startseite</Anchor>
+        <BacklinkAnchor href="/">
+          <ArrowLeftCircle size="1em" />
+          Zurück zur Startseite
+        </BacklinkAnchor>
       </BackLinkParagraph>
     </PageArticle>
   );
@@ -216,14 +221,3 @@ export const metadata: Metadata = {
 };
 
 export default DatenschutzPage;
-
-const PageArticle = styled.article`
-  max-width: var(--app-box-width);
-  padding-block: 32px;
-  padding-inline: var(--app-padding-inline);
-  margin-inline: auto;
-`;
-
-const BackLinkParagraph = styled.p`
-  margin-block-start: 2em;
-`;

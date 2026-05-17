@@ -1,9 +1,9 @@
 import { styled } from '@pigment-css/react';
 import type { Metadata } from 'next';
 import type React from 'react';
+import { ArrowRightCircle } from 'react-feather';
 
-import { merriweather } from '#pkg/app/fonts.jsx';
-import { bookingUrl, headingIds } from '#pkg/app/page-constants.js';
+import { headingIds } from '#pkg/app/page-constants.js';
 import photoshooting_11DSC0068 from '#pkg/assets/11-DSC_0068.jpg';
 import photoshooting_15DSC0081 from '#pkg/assets/15-DSC_0081.jpg';
 import photoshooting_20DSC0108 from '#pkg/assets/20-DSC_0108.jpg';
@@ -11,6 +11,7 @@ import photoshooting_24DSC01312 from '#pkg/assets/24-DSC_0131-2.jpg';
 import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
 import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
 import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
+import { AboutImage, AboutImageContainer, Heading } from '#pkg/components/commons.jsx';
 import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
 import { Anchor } from '#pkg/elements/Anchor.jsx';
 import { Image } from '#pkg/elements/Image.jsx';
@@ -51,139 +52,100 @@ function HomePage() {
         </Heading>
         <p>
           Ihre Expertin für Beschwerdefreiheit und mehr Leichtigkeit im Alltag. Mit Kompetenz, Herz
-          und Freude begleite ich dich dabei, alltägliche Einschränkungen nachhaltig zu verbessern,
+          und Freude begleite ich dir dabei, alltägliche Einschränkungen nachhaltig zu verbessern -
           ganz auf dich abgestimmt.
         </p>
         <p>
           Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in Wien
-          tätig. Hausbesuche sind auf Anfrage per Mail oder Telefon ebenso möglich.
+          tätig.
+          <br />
+          Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
         </p>
+
         <HeroActions>
-          <PrimaryActionLink href={new URL(bookingUrl)} target="_blank" rel="noopener noreferrer">
+          <PrimaryActionLink href={`/#${headingIds.standorteTerminbuchung}`}>
             Termin buchen
           </PrimaryActionLink>
-          <SecondaryActionLink href={`/#${headingIds.standorteTerminbuchung}`}>
-            Standorte ansehen
-          </SecondaryActionLink>
         </HeroActions>
-        <span>Ihre Expertin für:</span>
-        <ul>
-          <li>
-            <strong>neurologische Erkrankungen</strong> wie Schlaganfall, Multiple Sklerose, Morbus
-            Parkinson, ALS, etc.
-          </li>
-          <li>
-            Erkrankungen/Verletzungen der <strong>Wirbelsäule</strong> (Bandscheibenvorfall,
-            Operationen, Instabilitäten, etc.)
-          </li>
-          <li>
-            <strong>Schwindel, Tinnitus, Kopfschmerzen, Migräne</strong>
-          </li>
-        </ul>
+      </Section>
+      <Section>
+        <Heading as="h2" id={headingIds.ihreExpertinFuer}>
+          Ihre Expertin für:
+        </Heading>
+
+        <CardsGrid>
+          <Card>
+            <CardHeading>Neurologie</CardHeading>
+            <span>
+              Therapie bei neurologischen Erkrankungen wie Multiple Sklerose, ALS, Schlaganfall und
+              anderen neurologischen Beschwerden.
+            </span>
+          </Card>
+
+          <Card>
+            <CardHeading>Rückenbeschwerden</CardHeading>
+            <span>
+              Gezielte Behandlung bei akuten sowie chronischen Rückenschmerzen, Bandscheibenvorfall
+              oder Instabilitäten - für mehr Beweglichkeit und weniger Schmerzen.
+            </span>
+          </Card>
+
+          <Card>
+            <CardHeading>Kopfschmerzen & Migräne</CardHeading>
+            <span>
+              Individuelle ganzheitliche Behandlung von Kopfschmerzen und Migräne - mit Fokus auf
+              Ursachen und langfristiger Linderung.
+            </span>
+          </Card>
+
+          <Card>
+            <CardHeading>Schwindel & Tinnitus</CardHeading>
+            <span>
+              Gezielte Therapie bei Schwindel, Gleichgewichtsstörungen und Tinnitus - zur
+              Verbesserung der Stabilität im Alltag.
+            </span>
+          </Card>
+        </CardsGrid>
       </Section>
 
       <Section>
         <Heading as="h2" id={headingIds.ueberMich}>
           Über mich
         </Heading>
+
         <AboutImageContainer>
           <AboutImage src={photoshooting_24DSC01312} alt="" fill />
         </AboutImageContainer>
+
         <p>
-          Mein Name ist Jasmin Kerschbaum. Ich komme ursprünglich aus dem Waldviertel und wohne seit
-          einigen Jahren in Wien. Im Jahr 2022 habe ich das Bachelor-Studium Physiotherapie an der
-          FH St. Pölten abgeschlossen und bin seither als Physiotherapeutin in Wien tätig.
+          Bereits vor meinem Studium war ich von der Idee begeistert, mit Menschen zu arbeiten und
+          ihnen dabei zu helfen, das Beste aus ihrem Alltag herauszuholen. Patient*innen dabei zu
+          unterstützen, Schmerzen zu lindern, die Beweglichkeit zu verbessern und somit die
+          Lebensqualität zu steigern - darauf liegt mein Fokus in der Physiotherapie.
         </p>
-        <p>
-          Bereits vor meinem Studium war ich von der Idee begeistert, Menschen dabei zu
-          unterstützen, ihren Alltag aktiv und möglichst beschwerdefrei zu gestalten. Während des
-          Studiums stellte sich schnell heraus, dass ich als Physiotherapeutin in der Neurologie und
-          in der Behandlung von Wirbelsäulenbeschwerden tätig werden möchte. Im Laufe der Zeit
-          entwickelte sich ein weiterer Schwerpunkt in der Behandlung von Beschwerden im
-          Kopfbereich, wie Migräne, Schwindel und Tinnitus.
-        </p>
-        <p>
-          In meiner therapeutischen Arbeit lege ich großen Wert auf eine individuelle Betreuung.
-          Gemeinsam definieren wir realistische Ziele und bauen auf vorhandenen Ressourcen auf. Der
-          Schwerpunkt meiner Therapie liegt auf aktiven, funktionellen Übungen, die gezielt in den
-          Alltag integriert werden können sowie ergänzende passive Maßnahmen. Bei Bedarf berate ich
-          zu Hilfsmitteln sowie weiteren Behandlungsmöglichkeiten. Dabei steht für mich immer im
-          Vordergrund, die Beschwerden zu reduzieren und die Lebensqualität nachhaltig zu steigern.
-        </p>
-        <span>
-          <strong>Berufserfahrung:</strong>
-        </span>
-        <ul>
-          <li>seit 04/2026 freiberufliche Physiotherapeutin im HNO Zentrum 19, Wien</li>
-          <li>
-            seit 06/2025 freiberufliche Physiotherapeutin in der Praxis &quot;Physio Allround&quot;,
-            Wien
-          </li>
-          <li>
-            12/2023-07/2025 Intensivstation für Innere Medizin und Schwerbrandverletzte im AKH Wien
-          </li>
-          <li>07/2023-01/2024 Wirbelsäulengymnastik bei Willl-Gesund, Zwettl-NÖ</li>
-          <li>07/2022-11/2023 NRZ Rosenhügel, Wien</li>
-        </ul>
-        <span>
-          <strong>Fortbildungen:</strong>
-        </span>
-        <ul>
-          <li>ESP Wirbelsäulenrehabilitation</li>
-          <li>Spiegeltherapie</li>
-          <li>Evidenzbasierte Ganganalyse & Gangtherapie in der Neurologie und Geriatrie</li>
-          <li>Bandscheibenproblematik</li>
-          <li>Atempacing bei geringer Belastungstoleranz</li>
-          <li>Schwindel-, Tinnitus-, Kopfschmerz-, & Migränetherapie</li>
-        </ul>
+
+        <SubpageAnchor href="/ueber-mich">
+          <ArrowRightCircle size="1em" />
+          Mehr Infos
+        </SubpageAnchor>
       </Section>
 
       <Section>
-        <Heading as="h2" id={headingIds.derWegZurPhysiotherapie}>
-          Der Weg zur Physiotherapie
+        <Heading as="h2" id={headingIds.vierSchritteZurPhysiotherapie}>
+          4 Schritte zur Physiotherapie
         </Heading>
+
         <ol>
-          <li>
-            <strong>Verordnung vom Arzt:</strong> Sie benötigen für Physiotherapie eine ärztliche
-            Verordnung mit 10x Physiotherapie à 45 Min + 10x Heilmassage à 15 Min oder 10x
-            Physiotherapie à 60 Min. Bei Hausbesuchen muss der Hausbesuch verordnet sein!
-          </li>
-          <li>
-            <span>
-              <strong>Bewilligung durch Krankenkassa:</strong>
-            </span>
-            <ol>
-              <li>ÖGK und BVA: bis auf Weiteres keine Bewilligung notwendig</li>
-              <li>KFA und SVS: Bewilligung vor der 1. Therapieeinheit notwendig!</li>
-            </ol>
-          </li>
-          <li>
-            <strong>Termin buchen:</strong> Termine können online, per Telefon oder Mail gebucht
-            werden, siehe unter{' '}
-            <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
-              &quot;Standorte & Terminbuchung&quot;
-            </Anchor>
-          </li>
-          <li>
-            <strong>Ersttermin:</strong> Beim Ersttermin erfolgen eine gründliche Befundung des
-            aktuellen Zustandes, eine gemeinsame Zielvereinbarung und erste Behandlungsmaßnahmen.
-            Bitte (bewilligte) Verordnung und ärztliche Befunde, falls vorhanden, mitnehmen.
-          </li>
-          <li>
-            <strong>Folgetermine:</strong> Bitte bequeme Kleidung, Handtuch und Trinkflasche
-            mitbringen.
-          </li>
+          <li>Verordnung vom Arzt</li>
+          <li>Bewilligung durch Krankenkasse (nur bei SVS und KFA notwendig)</li>
+          <li>Termin buchen</li>
+          <li>Ersttermin</li>
         </ol>
-        <p>
-          <strong>Terminabsagen</strong> müssen bis 24h vor dem vereinbarten Termin erfolgen
-          (telefonisch oder per E-Mail). Bei kurzfristigen Absagen wird ein Entfallshonorar
-          verrechnet!
-        </p>
-        <p>
-          <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
-          Ansuchen ein Teil der Kosten von der Krankenkassa übernommen. Mehr Infos erhalten Sie beim
-          Gespräch, persönlich oder telefonisch!
-        </p>
+
+        <SubpageAnchor href="/der-weg-zur-physiotherapie">
+          <ArrowRightCircle size="1em" />
+          Mehr Infos
+        </SubpageAnchor>
       </Section>
 
       <Section>
@@ -200,8 +162,8 @@ function HomePage() {
       </Section>
 
       <Section>
-        <Heading as="h2" id={headingIds.leistungen}>
-          Leistungen
+        <Heading as="h2" id={headingIds.leistungenUndPreise}>
+          Leistungen und Preise
         </Heading>
         <table>
           <tbody>
@@ -227,10 +189,6 @@ function HomePage() {
           Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale von 35€
           verrechnet.
         </p>
-        <p>
-          Als <strong>Wahltherapeutin</strong> stelle ich die Therapie privat in Rechnung. Nach dem
-          Einreichen bei der Krankenkassa wird ein Teil der Kosten rückerstattet.
-        </p>
       </Section>
 
       <Section>
@@ -238,9 +196,9 @@ function HomePage() {
           Standorte & Terminbuchung
         </Heading>
 
-        <LocationCards>
-          <LocationCard>
-            <LocationCardHeading>Praxis &quot;Physio Allround&quot;</LocationCardHeading>
+        <CardsGrid>
+          <Card>
+            <CardHeading>Praxis &quot;Physio Allround&quot;</CardHeading>
             <span>
               Traungasse 1, Stiege 4, Tür 14
               <br />
@@ -253,11 +211,13 @@ function HomePage() {
               <br />
               <LocationCardScheduleValue>Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
-            <a href={bookingUrl}>Termin buchen - Physio Allround</a>
-          </LocationCard>
+            <a href="https://termine-physioallround.as.me/?calendarID=12010307">
+              Termin buchen - Physio Allround
+            </a>
+          </Card>
 
-          <LocationCard>
-            <LocationCardHeading>HNO Zentrum 19</LocationCardHeading>
+          <Card>
+            <CardHeading>HNO Zentrum 19</CardHeading>
             <span>
               Muthgasse 36, Stock 3
               <br />
@@ -271,22 +231,28 @@ function HomePage() {
             <a href="https://app.synaptos.at/myapp/smartSchedule/scheduleOnlineBookingCore.jsf?jwt=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzeW5hcHRvcyIsImlhdCI6MTc3NDE3MDc2NiwiYXVkIjoiYmMxYTBhMjA4NzVjYjBkMTM5OTM4Njk5OTQ0MjQ0MWVmNiJ9.7oo4SklusB77xN3LLlIIkGvRYsEc8b0rO8U-64FhE1C7ApGQXAyd-5F-Q29-1TgTfU56QrZRo2NpkGeLYzUkWQ;">
               Termin buchen - HNO Zentrum 19
             </a>
-          </LocationCard>
-        </LocationCards>
+          </Card>
+        </CardsGrid>
 
-        <CancellationInformation>
-          <strong>Terminabsagen</strong> müssen bis 24h vor dem vereinbarten Termin erfolgen,
-          telefonisch oder per E-Mail. Bei kurzfristigen Absagen wird ein Entfallshonorar
-          verrechnet.
-        </CancellationInformation>
-
-        <ContactInformation>
-          <strong>Weitere Kontaktmöglichkeiten, auch für Terminbuchung:</strong>
+        <p>
+          <strong>Weitere Kontaktmöglichkeiten (auch für Terminbuchung):</strong>
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
           <br />
           Telefon: <a href="tel:+4368110799824">+43 681 10799824</a>
-        </ContactInformation>
+        </p>
+
+        <p>
+          <strong>Terminabsagen</strong> müssen bis 24h vor dem vereinbarten Termin erfolgen,
+          telefonisch oder per E-Mail. Bei kurzfristigen Absagen wird ein Entfallshonorar
+          verrechnet.
+        </p>
+
+        <p>
+          <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
+          Ansuchen ein Teil der Kosten von der Krankenkassa übernommen! Mehr Infos erhalten Sie beim
+          Gespräch - persönlich oder telefonisch!
+        </p>
       </Section>
 
       <Section as="footer" ContentComponent={FooterSectionContent}>
@@ -321,22 +287,6 @@ const Section: React.FC<SectionProps> = ({
     <SectionRoot as={as}>
       <ContentComponent>{children}</ContentComponent>
     </SectionRoot>
-  );
-};
-
-const Heading: React.FC<
-  React.ComponentPropsWithoutRef<'h1'> & {
-    as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  }
-> = ({ as, children, className, ...delegated }) => {
-  return (
-    <HeadingRoot
-      as={as}
-      {...delegated}
-      className={[className, merriweather.className].filter(Boolean).join(' ')}
-    >
-      {children}
-    </HeadingRoot>
   );
 };
 
@@ -433,48 +383,15 @@ const PrimaryActionLink = styled(Anchor)`
   border: 1px solid var(--color-fg);
   border-radius: 9999px;
   box-shadow: var(--shadow-style);
-
-  &:hover {
-    color: var(--color-bg);
-    background-color: var(--color-fg);
-  }
 `;
 
-const SecondaryActionLink = styled(Anchor)`
-  display: inline-flex;
-  padding: 10px 18px;
-
-  font-weight: var(--font-weight-bold);
-  text-decoration: none;
-
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-fg);
-  border-radius: 9999px;
+const SubpageAnchor = styled(Anchor)`
+  display: flex;
+  gap: calc(0.5 * var(--spacing-base));
+  align-items: center;
 `;
 
-const AboutImageContainer = styled.div`
-  position: relative;
-  height: 400px;
-  margin-inline: calc(-1 * var(--section-padding-inline));
-
-  container-type: size;
-  container-name: image-container;
-`;
-
-const AboutImage = styled(Image)`
-  object-fit: cover;
-  object-position: 50% 50%;
-
-  @container image-container (aspect-ratio > 1.10) {
-    object-position: 50% 40%;
-  }
-
-  @container image-container (aspect-ratio > 1.25) {
-    object-position: 50% 25%;
-  }
-`;
-
-const LocationCards = styled.div`
+const CardsGrid = styled.div`
   --card-min-with: 300px;
 
   display: grid;
@@ -483,17 +400,17 @@ const LocationCards = styled.div`
   margin-block-start: 0.5em;
 `;
 
-const LocationCard = styled.div`
+const Card = styled.div`
   flex: 1;
   max-width: 400px;
   padding: 20px;
 
-  background-color: #f3f3f3;
+  background-color: var(--color-white);
   border: 1px solid var(--color-fg);
   border-radius: 8px;
 `;
 
-const LocationCardHeading = styled.strong`
+const CardHeading = styled.strong`
   display: block;
   margin-block-end: calc(0.5 * var(--spacing-base));
 
@@ -505,25 +422,3 @@ const LocationCardSchedule = styled.div`
 `;
 
 const LocationCardScheduleValue = styled.span``;
-
-const CancellationInformation = styled.p`
-  padding: 16px;
-  margin-block-start: 1.2em;
-
-  background-color: color-mix(in srgb, var(--color-bg) 65%, var(--color-quaternary));
-  border: 1px solid var(--color-fg);
-  border-radius: 8px;
-`;
-
-const ContactInformation = styled.p`
-  padding: 16px;
-  margin-block-start: 1.2em;
-
-  background-color: color-mix(in srgb, var(--color-bg) 65%, var(--color-quaternary));
-  border: 1px solid var(--color-fg);
-  border-radius: 8px;
-`;
-
-const HeadingRoot = styled.h1`
-  scroll-margin-block-start: var(--header-height);
-`;
