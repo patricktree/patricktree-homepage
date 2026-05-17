@@ -192,6 +192,7 @@ function HomePage() {
 
         <PrescriptionGuide>
           <PrescriptionGuideSection>
+            <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>1</PrescriptionGuideNumbering>
             <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
               <Image
@@ -203,11 +204,12 @@ function HomePage() {
                 height={prescriptionGuideIconHeight - 18}
               />
             </PrescriptionGuideIcon>
-            <PrescriptionGuideGridLine />
+            <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Verordnung vom Arzt</PrescriptionGuideText>
           </PrescriptionGuideSection>
 
           <PrescriptionGuideSection>
+            <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>2</PrescriptionGuideNumbering>
             <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
               <Image
@@ -219,7 +221,7 @@ function HomePage() {
                 height={prescriptionGuideIconHeight - 15}
               />
             </PrescriptionGuideIcon>
-            <PrescriptionGuideGridLine />
+            <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>
               Bewilligung durch Krankenkasse
               <br />
@@ -228,6 +230,7 @@ function HomePage() {
           </PrescriptionGuideSection>
 
           <PrescriptionGuideSection>
+            <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>3</PrescriptionGuideNumbering>
             <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
               <Image
@@ -239,11 +242,12 @@ function HomePage() {
                 height={prescriptionGuideIconHeight - 20}
               />
             </PrescriptionGuideIcon>
-            <PrescriptionGuideGridLine />
+            <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Termin buchen</PrescriptionGuideText>
           </PrescriptionGuideSection>
 
           <PrescriptionGuideSection>
+            <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>4</PrescriptionGuideNumbering>
             <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
               <Image
@@ -255,7 +259,7 @@ function HomePage() {
                 height={prescriptionGuideIconHeight - 25}
               />
             </PrescriptionGuideIcon>
-            <PrescriptionGuideGridLine />
+            <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Ersttermin</PrescriptionGuideText>
           </PrescriptionGuideSection>
         </PrescriptionGuide>
@@ -283,7 +287,7 @@ function HomePage() {
         <Heading as="h2" id={headingIds.leistungenUndPreise}>
           Leistungen und Preise
         </Heading>
-        <table>
+        <OfferingsTable>
           <tbody>
             <tr>
               <td>Physiotherapie Ersttermin 60 Min</td>
@@ -302,7 +306,7 @@ function HomePage() {
               <td>70€</td>
             </tr>
           </tbody>
-        </table>
+        </OfferingsTable>
         <p>
           Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale von 35€
           verrechnet.
@@ -319,7 +323,7 @@ function HomePage() {
           Standorte & Terminbuchung
         </Heading>
 
-        <CardsGrid>
+        <LocationCardsGrid>
           <Card>
             <CardHeading>Praxis &quot;Physio Allround&quot;</CardHeading>
             <span>
@@ -355,7 +359,7 @@ function HomePage() {
               Termin buchen - HNO Zentrum 19
             </a>
           </Card>
-        </CardsGrid>
+        </LocationCardsGrid>
 
         <p>
           <strong>Weitere Kontaktmöglichkeiten (auch für Terminbuchung):</strong>
@@ -438,7 +442,7 @@ const BaseSectionContent = styled.div`
   h4,
   h5,
   h6 {
-    padding-block-start: 32px;
+    padding-block-start: 42px;
   }
 
   & > *:first-child {
@@ -508,13 +512,16 @@ const SubpageAnchor = styled(Anchor)`
   align-items: center;
 `;
 
+const OfferingsTable = styled.table`
+  background-color: var(--color-white);
+`;
+
 const CardsGrid = styled.div`
   --card-min-with: 300px;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(var(--card-min-with), 100%), 1fr));
   gap: 16px;
-  margin-block-start: 0.5em;
 `;
 
 const Card = styled.div`
@@ -539,6 +546,10 @@ const CardHeading = styled.strong`
   margin-block-end: calc(0.5 * var(--spacing-base));
 
   font-size: var(--font-size-lg);
+`;
+
+const LocationCardsGrid = styled(CardsGrid)`
+  margin-block-end: calc(3 * var(--spacing-base));
 `;
 
 const LocationCardSchedule = styled.div`
@@ -573,22 +584,34 @@ const PrescriptionGuide = styled.div`
 const PrescriptionGuideSection = styled.div`
   --numbering-size: 36px;
   --grid-line-width: 1px;
+  --grid-line-1-width: var(--grid-line-width);
+  --grid-line-2-width: var(--grid-line-width);
   --section-margin-block-end: calc(4 * var(--spacing-base));
-
   display: grid;
   grid-template-areas:
+    'grid-line-1 empty-1'
     'numbering section-icon'
-    'grid-line section-icon'
-    'grid-line section-text';
+    'grid-line-2 empty-2'
+    'grid-line-2 section-text'
+    'grid-line-2 block-end-spacing';
+  grid-template-rows: 0 var(--numbering-size) 12px 1fr var(--section-margin-block-end);
   grid-template-columns: max-content minmax(max-content, 300px);
 
+  isolation: isolate;
+
+  &:first-of-type {
+    --grid-line-1-width: 0px;
+  }
+
   &:last-of-type {
-    --grid-line-width: 0px;
+    --grid-line-2-width: 0px;
     --section-margin-block-end: 0px;
   }
 `;
 
 const PrescriptionGuideNumbering = styled.div`
+  z-index: 1;
+
   display: flex;
   grid-area: numbering;
   align-items: center;
@@ -606,6 +629,7 @@ const PrescriptionGuideNumbering = styled.div`
 const PrescriptionGuideIcon = styled.div`
   display: flex;
   grid-area: section-icon;
+  place-self: center;
   align-items: center;
   justify-content: center;
   justify-self: center;
@@ -617,16 +641,33 @@ const PrescriptionGuideIcon = styled.div`
 `;
 
 const PrescriptionGuideGridLine = styled.div`
-  grid-area: grid-line;
+  z-index: 0;
   justify-self: start;
   padding-inline-start: calc(0.5 * var(--numbering-size) - 0.5px);
 
-  border-inline-end: var(--grid-line-width) solid var(--color-primary);
+  border-color: var(--color-primary);
+  border-style: solid;
+  border-width: 0;
+`;
+
+const PrescriptionGuideGridLine1 = styled(PrescriptionGuideGridLine)`
+  grid-row-start: grid-line-1;
+  grid-row-end: numbering;
+  grid-column: grid-line-1;
+
+  border-inline-end-width: var(--grid-line-1-width);
+`;
+
+const PrescriptionGuideGridLine2 = styled(PrescriptionGuideGridLine)`
+  grid-row-start: numbering;
+  grid-row-end: grid-line-2;
+  grid-column: grid-line-2;
+
+  border-inline-end-width: var(--grid-line-2-width);
 `;
 
 const PrescriptionGuideText = styled.div`
   grid-area: section-text;
-  margin-block-end: var(--section-margin-block-end);
 
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
