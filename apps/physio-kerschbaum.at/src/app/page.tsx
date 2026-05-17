@@ -12,8 +12,12 @@ import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
 import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
 import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
 import icon_brain from '#pkg/assets/icons/brain.svg';
+import icon_calendar from '#pkg/assets/icons/calendar.svg';
+import icon_file_checked from '#pkg/assets/icons/file-checked.svg';
+import icon_file from '#pkg/assets/icons/file.svg';
 import icon_head_confused from '#pkg/assets/icons/head-confused.svg';
 import icon_headache from '#pkg/assets/icons/headache.svg';
+import icon_people_talk from '#pkg/assets/icons/people-talk.svg';
 import icon_spine from '#pkg/assets/icons/spine.svg';
 import { AboutImage, AboutImageContainer, Heading } from '#pkg/components/commons.jsx';
 import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
@@ -21,6 +25,7 @@ import { Anchor } from '#pkg/elements/Anchor.jsx';
 import { Image } from '#pkg/elements/Image.jsx';
 
 const diseaseIconHeight = 72;
+const prescriptionGuideIconHeight = 50;
 
 function HomePage() {
   return (
@@ -185,12 +190,75 @@ function HomePage() {
           4 Schritte zur Physiotherapie
         </Heading>
 
-        <ol>
-          <li>Verordnung vom Arzt</li>
-          <li>Bewilligung durch Krankenkasse (nur bei SVS und KFA notwendig)</li>
-          <li>Termin buchen</li>
-          <li>Ersttermin</li>
-        </ol>
+        <PrescriptionGuide>
+          <PrescriptionGuideSection>
+            <PrescriptionGuideNumbering>1</PrescriptionGuideNumbering>
+            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_file
+                }
+                height={prescriptionGuideIconHeight - 18}
+              />
+            </PrescriptionGuideIcon>
+            <PrescriptionGuideGridLine />
+            <PrescriptionGuideText>Verordnung vom Arzt</PrescriptionGuideText>
+          </PrescriptionGuideSection>
+
+          <PrescriptionGuideSection>
+            <PrescriptionGuideNumbering>2</PrescriptionGuideNumbering>
+            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_file_checked
+                }
+                height={prescriptionGuideIconHeight - 15}
+              />
+            </PrescriptionGuideIcon>
+            <PrescriptionGuideGridLine />
+            <PrescriptionGuideText>
+              Bewilligung durch Krankenkasse
+              <br />
+              (nur bei SVS und KFA notwendig)
+            </PrescriptionGuideText>
+          </PrescriptionGuideSection>
+
+          <PrescriptionGuideSection>
+            <PrescriptionGuideNumbering>3</PrescriptionGuideNumbering>
+            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_calendar
+                }
+                height={prescriptionGuideIconHeight - 20}
+              />
+            </PrescriptionGuideIcon>
+            <PrescriptionGuideGridLine />
+            <PrescriptionGuideText>Termin buchen</PrescriptionGuideText>
+          </PrescriptionGuideSection>
+
+          <PrescriptionGuideSection>
+            <PrescriptionGuideNumbering>4</PrescriptionGuideNumbering>
+            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_people_talk
+                }
+                height={prescriptionGuideIconHeight - 25}
+              />
+            </PrescriptionGuideIcon>
+            <PrescriptionGuideGridLine />
+            <PrescriptionGuideText>Ersttermin</PrescriptionGuideText>
+          </PrescriptionGuideSection>
+        </PrescriptionGuide>
 
         <SubpageAnchor href="/der-weg-zur-physiotherapie">
           <ArrowRightCircle size="1em" />
@@ -492,4 +560,75 @@ const FancyDivider = styled.div`
 
 const DiseaseCardHeading = styled(CardHeading)`
   justify-content: center;
+`;
+
+const PrescriptionGuide = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-block: calc(4 * var(--spacing-base));
+  margin-inline: auto;
+`;
+
+const PrescriptionGuideSection = styled.div`
+  --numbering-size: 36px;
+  --grid-line-width: 1px;
+  --section-margin-block-end: calc(4 * var(--spacing-base));
+
+  display: grid;
+  grid-template-areas:
+    'numbering section-icon'
+    'grid-line section-icon'
+    'grid-line section-text';
+  grid-template-columns: max-content minmax(max-content, 300px);
+
+  &:last-of-type {
+    --grid-line-width: 0px;
+    --section-margin-block-end: 0px;
+  }
+`;
+
+const PrescriptionGuideNumbering = styled.div`
+  display: flex;
+  grid-area: numbering;
+  align-items: center;
+  justify-content: center;
+  width: var(--numbering-size);
+  height: var(--numbering-size);
+
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: 999px;
+`;
+
+const PrescriptionGuideIcon = styled.div`
+  display: flex;
+  grid-area: section-icon;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+
+  background-color: var(--color-white);
+  border-radius: 999px;
+`;
+
+const PrescriptionGuideGridLine = styled.div`
+  grid-area: grid-line;
+  justify-self: start;
+  padding-inline-start: calc(0.5 * var(--numbering-size) - 0.5px);
+
+  border-inline-end: var(--grid-line-width) solid var(--color-primary);
+`;
+
+const PrescriptionGuideText = styled.div`
+  grid-area: section-text;
+  margin-block-end: var(--section-margin-block-end);
+
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
 `;
