@@ -308,8 +308,7 @@ function HomePage() {
           </tbody>
         </OfferingsTable>
         <p>
-          Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale von 35€
-          verrechnet.
+          Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale verrechnet.
         </p>
         <p>
           <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
