@@ -1,7 +1,7 @@
 import { styled } from '@pigment-css/react';
 import type React from 'react';
 
-import { headingIds } from '#pkg/app/page-constants.js';
+import { bookingUrl, headingIds } from '#pkg/app/page-constants.js';
 import { SidenavAnchor } from '#pkg/components/sidenav/SidenavAnchor.jsx';
 
 export const Nav: React.FC = () => {
@@ -26,6 +26,11 @@ export const Nav: React.FC = () => {
           <NavAnchor href={`/#${headingIds.standorteTerminbuchung}`}>
             Standorte & Terminbuchung
           </NavAnchor>
+        </li>
+        <li>
+          <ExternalNavAnchor href={new URL(bookingUrl)} target="_blank" rel="noopener noreferrer">
+            Termin online buchen
+          </ExternalNavAnchor>
         </li>
       </NavElementsContainer>
     </NavContainer>
@@ -80,5 +85,21 @@ const NavAnchor = styled(SidenavAnchor)`
 
   & > *:nth-child(1) {
     flex-shrink: 0;
+  }
+`;
+
+const ExternalNavAnchor = styled(SidenavAnchor)`
+  display: flex;
+  flex-shrink: 0;
+  gap: calc(1 * var(--spacing-base));
+  align-items: center;
+
+  font-weight: var(--font-weight-bold);
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: revert;
   }
 `;

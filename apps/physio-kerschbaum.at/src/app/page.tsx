@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import type React from 'react';
 
 import { merriweather } from '#pkg/app/fonts.jsx';
-import { headingIds } from '#pkg/app/page-constants.js';
+import { bookingUrl, headingIds } from '#pkg/app/page-constants.js';
 import photoshooting_11DSC0068 from '#pkg/assets/11-DSC_0068.jpg';
 import photoshooting_15DSC0081 from '#pkg/assets/15-DSC_0081.jpg';
 import photoshooting_20DSC0108 from '#pkg/assets/20-DSC_0108.jpg';
@@ -47,21 +47,26 @@ function HomePage() {
       </Section>
       <Section>
         <Heading as="h1" id={headingIds.welcome}>
-          Herzlich Willkommen!
+          Herzlich Willkommen bei Physiotherapie Jasmin Kerschbaum
         </Heading>
         <p>
-          Gemeinsam an alltäglichen Problemen arbeiten, mit Herz und Spaß bei der Sache - dafür
-          stehe ich in der Physiotherapie!
+          Ihre Expertin für Beschwerdefreiheit und mehr Leichtigkeit im Alltag. Mit Kompetenz, Herz
+          und Freude begleite ich dich dabei, alltägliche Einschränkungen nachhaltig zu verbessern,
+          ganz auf dich abgestimmt.
         </p>
         <p>
           Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in Wien
-          tätig (siehe{' '}
-          <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
-            &quot;Standorte & Terminbuchung&quot;
-          </Anchor>
-          ). Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
+          tätig. Hausbesuche sind auf Anfrage per Mail oder Telefon ebenso möglich.
         </p>
-        <span>Meine 3 Schwerpunkte:</span>
+        <HeroActions>
+          <PrimaryActionLink href={new URL(bookingUrl)} target="_blank" rel="noopener noreferrer">
+            Termin buchen
+          </PrimaryActionLink>
+          <SecondaryActionLink href={`/#${headingIds.standorteTerminbuchung}`}>
+            Standorte ansehen
+          </SecondaryActionLink>
+        </HeroActions>
+        <span>Ihre Expertin für:</span>
         <ul>
           <li>
             <strong>neurologische Erkrankungen</strong> wie Schlaganfall, Multiple Sklerose, Morbus
@@ -131,11 +136,6 @@ function HomePage() {
           <li>Atempacing bei geringer Belastungstoleranz</li>
           <li>Schwindel-, Tinnitus-, Kopfschmerz-, & Migränetherapie</li>
         </ul>
-        <p>
-          <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
-          Ansuchen nur ein Teil der Kosten von der Krankenkassa übernommen! Mehr Infos erhalten Sie
-          beim Gespräch - persönlich oder telefonisch!
-        </p>
       </Section>
 
       <Section>
@@ -144,8 +144,9 @@ function HomePage() {
         </Heading>
         <ol>
           <li>
-            <strong>Verordnung vom Arzt:</strong> 10x Neurophysiotherapie/Physiotherapie à 45 Min
-            (oder 60 Min) - bei Hausbesuchen muss der Hausbesuch verordnet sein!
+            <strong>Verordnung vom Arzt:</strong> Sie benötigen für Physiotherapie eine ärztliche
+            Verordnung mit 10x Physiotherapie à 45 Min + 10x Heilmassage à 15 Min oder 10x
+            Physiotherapie à 60 Min. Bei Hausbesuchen muss der Hausbesuch verordnet sein!
           </li>
           <li>
             <span>
@@ -153,22 +154,24 @@ function HomePage() {
             </span>
             <ol>
               <li>ÖGK und BVA: bis auf Weiteres keine Bewilligung notwendig</li>
-              <li>KFA: Bewilligung vor der 1. Therapieeinheit notwendig!</li>
+              <li>KFA und SVS: Bewilligung vor der 1. Therapieeinheit notwendig!</li>
             </ol>
           </li>
           <li>
-            <strong>Termin buchen:</strong> siehe unter{' '}
+            <strong>Termin buchen:</strong> Termine können online, per Telefon oder Mail gebucht
+            werden, siehe unter{' '}
             <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
               &quot;Standorte & Terminbuchung&quot;
             </Anchor>
           </li>
           <li>
-            <strong>Ersttermin:</strong> gründliche Befundung des aktuellen Zustandes, gemeinsame
-            Zielvereinbarung, erste Behandlungsmaßnahmen → (bewilligte) Verordnung und ärztliche
-            Befunde falls vorhanden mitnehmen
+            <strong>Ersttermin:</strong> Beim Ersttermin erfolgen eine gründliche Befundung des
+            aktuellen Zustandes, eine gemeinsame Zielvereinbarung und erste Behandlungsmaßnahmen.
+            Bitte (bewilligte) Verordnung und ärztliche Befunde, falls vorhanden, mitnehmen.
           </li>
           <li>
-            <strong>Folgetermine:</strong> bequeme Kleidung, Handtuch, Trinkflasche mitbringen
+            <strong>Folgetermine:</strong> Bitte bequeme Kleidung, Handtuch und Trinkflasche
+            mitbringen.
           </li>
         </ol>
         <p>
@@ -178,8 +181,8 @@ function HomePage() {
         </p>
         <p>
           <strong>Achtung:</strong> Da ich eine <strong>Wahltherapeutin</strong> bin, wird nach
-          Ansuchen nur ein Teil der Kosten von der Krankenkassa übernommen! Mehr Infos erhalten Sie
-          beim Gespräch - persönlich oder telefonisch!
+          Ansuchen ein Teil der Kosten von der Krankenkassa übernommen. Mehr Infos erhalten Sie beim
+          Gespräch, persönlich oder telefonisch!
         </p>
       </Section>
 
@@ -203,6 +206,10 @@ function HomePage() {
         <table>
           <tbody>
             <tr>
+              <td>Physiotherapie Ersttermin 60 Min</td>
+              <td>120€</td>
+            </tr>
+            <tr>
               <td>Physiotherapie 60 Min</td>
               <td>120€</td>
             </tr>
@@ -217,8 +224,12 @@ function HomePage() {
           </tbody>
         </table>
         <p>
-          → bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale
-          verrechnet!
+          Bei <strong>Hausbesuchen</strong> wird pro Einheit eine zusätzliche Pauschale von 35€
+          verrechnet.
+        </p>
+        <p>
+          Als <strong>Wahltherapeutin</strong> stelle ich die Therapie privat in Rechnung. Nach dem
+          Einreichen bei der Krankenkassa wird ein Teil der Kosten rückerstattet.
         </p>
       </Section>
 
@@ -242,9 +253,7 @@ function HomePage() {
               <br />
               <LocationCardScheduleValue>Freitags 14:00 bis 18:00 Uhr</LocationCardScheduleValue>
             </LocationCardSchedule>
-            <a href="https://termine-physioallround.as.me/schedule/058f2326/category/01%2520Physiotherapie%2520/appointment/9235042/calendar/12010307">
-              Termin buchen - Physio Allround
-            </a>
+            <a href={bookingUrl}>Termin buchen - Physio Allround</a>
           </LocationCard>
 
           <LocationCard>
@@ -265,8 +274,14 @@ function HomePage() {
           </LocationCard>
         </LocationCards>
 
+        <CancellationInformation>
+          <strong>Terminabsagen</strong> müssen bis 24h vor dem vereinbarten Termin erfolgen,
+          telefonisch oder per E-Mail. Bei kurzfristigen Absagen wird ein Entfallshonorar
+          verrechnet.
+        </CancellationInformation>
+
         <ContactInformation>
-          <strong>Weitere Kontaktmöglichkeiten:</strong>
+          <strong>Weitere Kontaktmöglichkeiten, auch für Terminbuchung:</strong>
           <br />
           E-Mail: <a href="mailto:physio.kerschbaum@gmx.at">physio.kerschbaum@gmx.at</a>
           <br />
@@ -399,6 +414,44 @@ const CarouselSlideImage = styled(Image)`
   object-fit: cover;
 `;
 
+const HeroActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(1.5 * var(--spacing-base));
+  margin-block: calc(2 * var(--spacing-base));
+`;
+
+const PrimaryActionLink = styled(Anchor)`
+  display: inline-flex;
+  padding: 10px 18px;
+
+  font-weight: var(--font-weight-bold);
+  color: var(--color-bg);
+  text-decoration: none;
+
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-fg);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-style);
+
+  &:hover {
+    color: var(--color-bg);
+    background-color: var(--color-fg);
+  }
+`;
+
+const SecondaryActionLink = styled(Anchor)`
+  display: inline-flex;
+  padding: 10px 18px;
+
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-fg);
+  border-radius: 9999px;
+`;
+
 const AboutImageContainer = styled.div`
   position: relative;
   height: 400px;
@@ -453,8 +506,22 @@ const LocationCardSchedule = styled.div`
 
 const LocationCardScheduleValue = styled.span``;
 
-const ContactInformation = styled.p`
+const CancellationInformation = styled.p`
+  padding: 16px;
   margin-block-start: 1.2em;
+
+  background-color: color-mix(in srgb, var(--color-bg) 65%, var(--color-quaternary));
+  border: 1px solid var(--color-fg);
+  border-radius: 8px;
+`;
+
+const ContactInformation = styled.p`
+  padding: 16px;
+  margin-block-start: 1.2em;
+
+  background-color: color-mix(in srgb, var(--color-bg) 65%, var(--color-quaternary));
+  border: 1px solid var(--color-fg);
+  border-radius: 8px;
 `;
 
 const HeadingRoot = styled.h1`
