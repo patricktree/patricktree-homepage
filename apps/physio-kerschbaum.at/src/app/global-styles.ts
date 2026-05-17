@@ -231,6 +231,11 @@ export const cssBase = css`
       padding-inline: 0.5em;
       border: 1px solid var(--color-fg);
     }
+
+    /* enable smooth-scroll */
+    *:root {
+      scroll-behavior: smooth;
+    }
   }
 `;
 

@@ -11,10 +11,16 @@ import photoshooting_24DSC01312 from '#pkg/assets/24-DSC_0131-2.jpg';
 import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
 import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
 import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
+import icon_brain from '#pkg/assets/icons/brain.svg';
+import icon_head_confused from '#pkg/assets/icons/head-confused.svg';
+import icon_headache from '#pkg/assets/icons/headache.svg';
+import icon_spine from '#pkg/assets/icons/spine.svg';
 import { AboutImage, AboutImageContainer, Heading } from '#pkg/components/commons.jsx';
 import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
 import { Anchor } from '#pkg/elements/Anchor.jsx';
 import { Image } from '#pkg/elements/Image.jsx';
+
+const diseaseIconHeight = 72;
 
 function HomePage() {
   return (
@@ -75,7 +81,18 @@ function HomePage() {
 
         <CardsGrid>
           <Card>
-            <CardHeading>Neurologie</CardHeading>
+            <CardIcon>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_brain
+                }
+                height={diseaseIconHeight}
+              />
+            </CardIcon>
+            <DiseaseCardHeading>Neurologie</DiseaseCardHeading>
+            <FancyDivider />
             <span>
               Therapie bei neurologischen Erkrankungen wie Multiple Sklerose, ALS, Schlaganfall und
               anderen neurologischen Beschwerden.
@@ -83,7 +100,18 @@ function HomePage() {
           </Card>
 
           <Card>
-            <CardHeading>Rückenbeschwerden</CardHeading>
+            <CardIcon>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_spine
+                }
+                height={diseaseIconHeight}
+              />
+            </CardIcon>
+            <DiseaseCardHeading>Rückenbeschwerden</DiseaseCardHeading>
+            <FancyDivider />
             <span>
               Gezielte Behandlung bei akuten sowie chronischen Rückenschmerzen, Bandscheibenvorfall
               oder Instabilitäten - für mehr Beweglichkeit und weniger Schmerzen.
@@ -91,7 +119,18 @@ function HomePage() {
           </Card>
 
           <Card>
-            <CardHeading>Kopfschmerzen & Migräne</CardHeading>
+            <CardIcon>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_headache
+                }
+                height={diseaseIconHeight}
+              />
+            </CardIcon>
+            <DiseaseCardHeading>Kopfschmerzen & Migräne</DiseaseCardHeading>
+            <FancyDivider />
             <span>
               Individuelle ganzheitliche Behandlung von Kopfschmerzen und Migräne - mit Fokus auf
               Ursachen und langfristiger Linderung.
@@ -99,7 +138,18 @@ function HomePage() {
           </Card>
 
           <Card>
-            <CardHeading>Schwindel & Tinnitus</CardHeading>
+            <CardIcon>
+              <Image
+                alt=""
+                src={
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  icon_head_confused
+                }
+                height={diseaseIconHeight}
+              />
+            </CardIcon>
+            <DiseaseCardHeading>Schwindel & Tinnitus</DiseaseCardHeading>
+            <FancyDivider />
             <span>
               Gezielte Therapie bei Schwindel, Gleichgewichtsstörungen und Tinnitus - zur
               Verbesserung der Stabilität im Alltag.
@@ -410,8 +460,15 @@ const Card = styled.div`
   border-radius: 8px;
 `;
 
+const CardIcon = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-block-end: calc(2 * var(--spacing-base));
+`;
+
 const CardHeading = styled.strong`
-  display: block;
+  display: flex;
   margin-block-end: calc(0.5 * var(--spacing-base));
 
   font-size: var(--font-size-lg);
@@ -422,3 +479,17 @@ const LocationCardSchedule = styled.div`
 `;
 
 const LocationCardScheduleValue = styled.span``;
+
+const FancyDivider = styled.div`
+  --spacing-block: calc(2 * var(--spacing-base));
+  width: 64px;
+  margin-block-start: var(--spacing-block);
+  margin-block-end: var(--spacing-block);
+  margin-inline: auto;
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+`;
+
+const DiseaseCardHeading = styled(CardHeading)`
+  justify-content: center;
+`;
