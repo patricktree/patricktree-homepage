@@ -281,6 +281,13 @@ function HomePage() {
           <br />
           <a href="https://neurologe-dirnberger.at">https://neurologe-dirnberger.at</a>
         </p>
+        <p>
+          Dr. Philipp Wimmer - Facharzt für Hals-, Nasen- und Ohrenheilkunde
+          <br />
+          Muthgasse 36, 3. Stock, 1190 Wien
+          <br />
+          <a href="https://hno19.at">https://hno19.at</a>
+        </p>
       </Section>
 
       <Section>
