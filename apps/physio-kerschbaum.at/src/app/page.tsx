@@ -67,7 +67,7 @@ function HomePage() {
           ganz auf dich abgestimmt.
         </p>
         <p>
-          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Physiotherapeutin in Wien
+          Mein Name ist Jasmin Kerschbaum. Ich bin als freiberufliche Wahl-Physiotherapeutin in Wien
           tätig.
           <br />
           Hausbesuche sind auf Anfrage (per Mail oder Telefon) ebenso möglich.
