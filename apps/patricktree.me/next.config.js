@@ -60,6 +60,31 @@ let nextConfig = {
   async redirects() {
     return [
       {
+        // Preserve links shared before the TS 6.0 tabs were expanded to cover TS 7.0.
+        source: '/tidbits/sensible-tsconfig-defaults',
+        has: [
+          {
+            type: 'query',
+            key: 'version-tab',
+            value: 'TS 6.0 Node.js',
+          },
+        ],
+        destination: '/tidbits/sensible-tsconfig-defaults?version-tab=TS+6.0%2F7.0+Node.js',
+        permanent: true,
+      },
+      {
+        source: '/tidbits/sensible-tsconfig-defaults',
+        has: [
+          {
+            type: 'query',
+            key: 'version-tab',
+            value: 'TS 6.0 Browser',
+          },
+        ],
+        destination: '/tidbits/sensible-tsconfig-defaults?version-tab=TS+6.0%2F7.0+Browser',
+        permanent: true,
+      },
+      {
         source: '/tidbits/wsl-web-dev-setup',
         destination: '/tidbits/wsl-and-ubuntu-web-dev-setup',
         permanent: true,

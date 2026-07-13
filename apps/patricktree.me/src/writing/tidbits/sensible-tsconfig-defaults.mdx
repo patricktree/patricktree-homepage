@@ -10,7 +10,7 @@ giscusTerm: sensible-tsconfig-defaults
 
 When I set up a TypeScript package, this is the `tsconfig.json` configuration I start from:
 
-<VersionTabs versions={["TS 5.9 Node.js", "TS 6.0 Node.js", "TS 6.0 Browser"]} defaultVersion="TS 6.0 Node.js">
+<VersionTabs versions={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js", "TS 6.0/7.0 Browser"]} defaultVersion="TS 6.0/7.0 Node.js">
 
 <Version values={["TS 5.9 Node.js"]}>
 
@@ -60,7 +60,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 
 </Version>
 
-<Version values={["TS 6.0 Node.js"]}>
+<Version values={["TS 6.0/7.0 Node.js"]}>
 
 ```jsonc
 {
@@ -105,7 +105,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 ```jsonc
 {
@@ -147,13 +147,13 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
 I use it for new packages and adjust it as needed.  
 Below you find an explanation why I think these compiler options represent good defaults.
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 ## `"module": "Node20"`
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 ## `"module": "Preserve"`
 
@@ -167,7 +167,7 @@ Below you find an explanation why I think these compiler options represent good 
    E.g. `import.meta.resolve`, `import ... with { }` statements, or `require(esm)` from CommonJS source files.
 2. **Module Emit:** Whether to transform ESM `import` and `export` statements in source files to CommonJS `require` and `module.exports` in output files.
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 `"Node20"` models the behavior of Node.js 20+.
 
@@ -184,7 +184,7 @@ If you want to use any module features only supported by a newer `"module": "Nod
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 `"Preserve"` is suitable if the application is processed by some bundler.
 
@@ -195,13 +195,13 @@ Combined with `"noEmit": true`, the TypeScript compiler will still check the cor
 
 </Version>
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 ## `"moduleResolution": "Node16"`
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 ## `"moduleResolution": "Bundler"`
 
@@ -219,13 +219,13 @@ The module specifier is the string when loading modules:
 
 Different hosts (Node.js, bundlers) follow different resolution rules: whether `package.json#exports` and `#imports` are consulted, whether extensionless relative imports (like `"./utils"` instead of `"./utils.js"`) are allowed, and whether directory imports (like `"./components"` resolving to `"./components/index.js"`) are allowed.
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 `"Node16"` resolves `package.json#exports` and `#imports` and forbids extensionless and directory imports in ESM files, matching Node.js behavior.
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 `"Bundler"` resolves `package.json#exports` and `#imports` but allows extensionless and directory imports (which is more relaxed than the Node.js setting `"Node16"`).
 
@@ -265,7 +265,7 @@ etc.
 
 </Version>
 
-<Version values={["TS 6.0 Node.js"]}>
+<Version values={["TS 6.0/7.0 Node.js"]}>
 
 ## `"types": ["node"]`
 
@@ -285,7 +285,7 @@ Alternatively, you can avoid the `types` entry entirely by using explicit import
 
 </Version>
 
-<Version values={["TS 6.0 Node.js"]}>
+<Version values={["TS 6.0/7.0 Node.js"]}>
 
 ## `"rootDir": "./src"`
 
@@ -300,7 +300,7 @@ Since I usually put my source files in a `src` directory, I set `rootDir` to `".
 
 </Version>
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 ## Enabling `"sourceMap"`, `"declaration"` and `"declarationMap"`
 
@@ -326,7 +326,7 @@ For libraries published to `npm`, the decision of enabling `declarationMap` depe
 
 </Version>
 
-<Version values={["TS 6.0 Browser"]}>
+<Version values={["TS 6.0/7.0 Browser"]}>
 
 ## Disabling emit via `"noEmit": true`
 
@@ -336,7 +336,7 @@ Since bundlers (like webpack) operate on the TypeScript sources directly, we don
 
 </Version>
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 ## Enabling `"erasableSyntaxOnly"`
 
@@ -359,7 +359,7 @@ Such imports will get fully erased when TypeScript compiles the sources to JavaS
 Also, it can help tools like bundlers to determine whether an import is needed at runtime or not.  
 The auto-import feature of VS Code will automatically use `import type` statements when this compiler option is set, making it less cumbersome to follow this import restriction.
 
-<Version values={["TS 5.9 Node.js", "TS 6.0 Node.js"]}>
+<Version values={["TS 5.9 Node.js", "TS 6.0/7.0 Node.js"]}>
 
 It also aligns well with modern Node.js.
 When Node.js runs `.ts` files by stripping types, type imports must be written explicitly with the `type` keyword.
@@ -426,7 +426,7 @@ These options are recommended by the <FancyAnchor href="https://www.typescriptla
 
 </Version>
 
-<Version values={['TS 6.0 Node.js', 'TS 6.0 Browser']}>
+<Version values={['TS 6.0/7.0 Node.js', 'TS 6.0/7.0 Browser']}>
 
 - {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#skipLibCheck">`skipLibCheck`</FancyAnchor>
 
