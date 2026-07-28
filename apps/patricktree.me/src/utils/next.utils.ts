@@ -1,6 +1,6 @@
-import { usePathname } from 'next/navigation.js';
+import { usePathname } from "next/navigation.js";
 
-import { config } from '#pkg/config.js';
+import { config } from "#pkg/config.js";
 
 export function usePageUrl() {
   const pathname = usePathname();

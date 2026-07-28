@@ -1,10 +1,10 @@
 ---
 title: Using Playwright Test to run Unit Tests
 published: true
-publishedAtISO: '2022-06-17T14:30:00.000Z'
-lastUpdatedAtISO: '2023-06-11T17:58:00.000Z'
+publishedAtISO: "2022-06-17T14:30:00.000Z"
+lastUpdatedAtISO: "2023-06-11T17:58:00.000Z"
 description: Why you might want to use Playwright Test as a test runner for unit tests, and how to fill in missing pieces (e.g. code coverage).
-tags: ['playwright', 'testing', 'unittest', 'webdev']
+tags: ["playwright", "testing", "unittest", "webdev"]
 giscusTerm: using-playwright-to-run-unit-tests
 ---
 
@@ -37,8 +37,8 @@ I think there are some advantages of using Playwright for unit tests:
 
     ```typescript
     // base.ts
-    import { test as base } from '@playwright/test';
-    import * as sinon from 'sinon';
+    import { test as base } from "@playwright/test";
+    import * as sinon from "sinon";
 
     export const test = base.extend<{ fakeClock: sinon.SinonFakeTimers }>({
       fakeClock: [
@@ -47,20 +47,20 @@ I think there are some advantages of using Playwright for unit tests:
           await use(clock);
           clock.restore();
         },
-        { scope: 'test' },
+        { scope: "test" },
       ],
     });
 
     // FILE: bar.spec.ts
-    import { test } from './base';
+    import { test } from "./base";
 
-    test('with real clock', ({}) => {
+    test("with real clock", ({}) => {
       /*
        * this test case does not use the "fakeClock" fixture,
        * thus the fixture does not get set up
        */
     });
-    test('with fake clock', ({ fakeClock }) => {
+    test("with fake clock", ({ fakeClock }) => {
       /*
        * fake timers will get set up for this test case
        * because "fakeClock" fixture is used
@@ -74,21 +74,21 @@ I think there are some advantages of using Playwright for unit tests:
 
     ```typescript
     // playwright.config.ts
-    import { PlaywrightTestConfig } from '@playwright/test';
+    import { PlaywrightTestConfig } from "@playwright/test";
 
     interface TestOptions {
-      transport: 'websocket' | 'polling';
+      transport: "websocket" | "polling";
     }
 
     const config: PlaywrightTestConfig<TestOptions> = {
       projects: [
         {
-          name: 'using transport: websocket',
-          use: { transport: 'websocket' },
+          name: "using transport: websocket",
+          use: { transport: "websocket" },
         },
         {
-          name: 'using transport: polling',
-          use: { transport: 'polling' },
+          name: "using transport: polling",
+          use: { transport: "polling" },
         },
       ],
     };
@@ -96,9 +96,9 @@ I think there are some advantages of using Playwright for unit tests:
     export default config;
 
     // FILE: bar.spec.ts
-    import { test } from '@playwright/test';
+    import { test } from "@playwright/test";
 
-    test('socket.io connection', ({ transport }) => {
+    test("socket.io connection", ({ transport }) => {
       /*
        * this test case will get run twice,
        * with "transport" set once to "websocket" and once to "polling"
@@ -115,10 +115,10 @@ I think there are some advantages of using Playwright for unit tests:
 
   ```typescript
   // FILE bar.spec.ts
-  import { expect, test } from '@playwright/test';
+  import { expect, test } from "@playwright/test";
 
-  test.describe('describe title', () => {
-    test('test title', ({}) => {
+  test.describe("describe title", () => {
+    test("test title", ({}) => {
       expect(1 + 1).toEqual(2);
     });
   });
@@ -163,10 +163,10 @@ This makes sense for screenshots (since screenshots taken on different platforms
 The platform-specific suffix can be removed by setting the <FancyAnchor href="https://playwright.dev/docs/api/class-testconfig#test-config-snapshot-path-template">`snapshotPathTemplate`</FancyAnchor> configuration parameter:
 
 ```typescript
-import { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
-  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
+  snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}{ext}",
 };
 
 export default config;

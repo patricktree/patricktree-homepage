@@ -1,9 +1,9 @@
-import { styled } from '@pigment-css/react';
-import type React from 'react';
+import { styled } from "@pigment-css/react";
+import type React from "react";
 
-import type { MDXFile } from '@patricktree-homepage/mdx/schema';
+import type { MDXFile } from "@patricktree-homepage/mdx/schema";
 
-import { Description, Tile, TileAnchor, TileContent, Title } from '#pkg/elements/index.js';
+import { Description, Tile, TileAnchor, TileContent, Title } from "#pkg/elements/index.js";
 
 type ArticleTileProps = {
   article: MDXFile;

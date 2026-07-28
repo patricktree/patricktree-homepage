@@ -1,3 +1,3 @@
 export const headingIds = {
-  writing: 'writing',
+  writing: "writing",
 };

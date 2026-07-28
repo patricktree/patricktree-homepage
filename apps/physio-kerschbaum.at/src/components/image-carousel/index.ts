@@ -1,1 +1,1 @@
-export * from '#pkg/components/image-carousel/ImageCarousel.jsx';
+export * from "#pkg/components/image-carousel/ImageCarousel.jsx";

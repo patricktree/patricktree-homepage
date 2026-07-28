@@ -1,5 +1,5 @@
-import { css, keyframes } from '@pigment-css/react';
-import React from 'react';
+import { css, keyframes } from "@pigment-css/react";
+import React from "react";
 
 type ImageCarouselProps = {
   children: React.ReactNode;

@@ -1,23 +1,23 @@
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-import { merriweather } from '#pkg/app/fonts.jsx';
-import { Image } from '#pkg/elements/Image.jsx';
-import { Anchor } from '../elements';
+import { merriweather } from "#pkg/app/fonts.jsx";
+import { Image } from "#pkg/elements/Image.jsx";
+import { Anchor } from "#pkg/elements/index.js";
 
 const HeadingRoot = styled.h1`
   scroll-margin-block-start: var(--header-height);
 `;
 
 export const Heading: React.FC<
-  React.ComponentPropsWithoutRef<'h1'> & {
-    as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  React.ComponentPropsWithoutRef<"h1"> & {
+    as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   }
 > = ({ as, children, className, ...delegated }) => {
   return (
     <HeadingRoot
       as={as}
       {...delegated}
-      className={[className, merriweather.className].filter(Boolean).join(' ')}
+      className={[className, merriweather.className].filter(Boolean).join(" ")}
     >
       {children}
     </HeadingRoot>

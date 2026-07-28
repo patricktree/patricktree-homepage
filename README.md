@@ -11,7 +11,7 @@
 ### Prerequisites
 
 - **Node.js:** It is recommended to use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use`, this will automatically switch to the Node.js version mentioned in the file [`.nvmrc`](./.nvmrc).  
-   Alternatively you can install Node.js directly, please refer to `.nvmrc` of this project to determine the Node.js version to use.
+  Alternatively you can install Node.js directly, please refer to `.nvmrc` of this project to determine the Node.js version to use.
 - **pnpm:** This monorepo ("workspace") uses [`pnpm`](https://pnpm.io/) as package manager.  
   It is recommended to use `corepack` of Node.js, just run:
 

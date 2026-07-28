@@ -1,9 +1,9 @@
 ---
 title: Testing Package Consumption Scenarios with pkg-consumption-test
 published: true
-publishedAtISO: '2025-04-19T12:00:00.000Z'
+publishedAtISO: "2025-04-19T12:00:00.000Z"
 description: How to automatically test if your npm package works correctly in various JavaScript environments like Node.js CJS/ESM, TypeScript, browsers, etc.
-tags: ['testing', 'npm', 'package']
+tags: ["testing", "npm", "package"]
 giscusTerm: testing-package-consumption-scenarios
 ---
 
@@ -108,18 +108,18 @@ Let's create a scenario to test importing and using the package in a Node.js ESM
 
     ```javascript
     // src/test.mjs
-    import { someFunction } from 'my-awesome-lib';
-    import assert from 'node:assert/strict';
+    import { someFunction } from "my-awesome-lib";
+    import assert from "node:assert/strict";
 
-    console.log('Running Node.js ESM scenario...');
+    console.log("Running Node.js ESM scenario...");
 
     // Example: Call a function from your library and assert its behavior
-    const input = 'world';
-    const expectedOutput = 'Hello, world!';
+    const input = "world";
+    const expectedOutput = "Hello, world!";
     const result = someFunction(input);
     assert.equal(result, expectedOutput, `someFunction('${input}') failed.`);
 
-    console.log('Node.js ESM scenario passed!');
+    console.log("Node.js ESM scenario passed!");
     ```
 
     Replace `someFunction` and the assertions with actual code that uses your library's exports and verifies they work correctly in this ESM context.
@@ -171,14 +171,14 @@ Let's create a scenario to verify that our package types work correctly in a Typ
 4.  **Add the test file:** Create `./test-pkg-consumption-scenarios/compile-typescript-cjs/src/index.ts`:
 
     ```typescript
-    import { someFunction } from 'my-awesome-lib';
+    import { someFunction } from "my-awesome-lib";
 
     // Use the imported function to ensure types are checked correctly.
     // The specific logic isn't crucial; the goal is to make sure
     // the import resolves and the function signature matches.
-    const result: string = someFunction('test');
+    const result: string = someFunction("test");
 
-    console.log('TypeScript CJS compilation check successful for:', result);
+    console.log("TypeScript CJS compilation check successful for:", result);
     ```
 
 Now, when you run `npm run test:pkg-consumption` again, the tool will execute both scenarios.

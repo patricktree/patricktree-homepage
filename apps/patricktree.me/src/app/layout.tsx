@@ -1,20 +1,19 @@
-import './cascade-layers-definition.css';
-import '@pigment-css/react/styles.css';
-import '@fontsource-variable/rubik';
+import "#pkg/app/cascade-layers-definition.css";
+import "@pigment-css/react/styles.css";
+import "@fontsource-variable/rubik";
+import { styled } from "@pigment-css/react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import { cookies } from "next/headers";
+import type React from "react";
 
-import { styled } from '@pigment-css/react';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata, Viewport } from 'next';
-import localFont from 'next/font/local';
-import { cookies } from 'next/headers';
-import type React from 'react';
-
-import { cssReset, cssBase, cssPrismaTheme } from '#pkg/app/global-styles.js';
-import { EnableAnimationsAfterHydration } from '#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx';
-import { Footer } from '#pkg/components/footer/index.js';
-import { Header } from '#pkg/components/header/index.js';
-import { config } from '#pkg/config.js';
+import { cssReset, cssBase, cssPrismaTheme } from "#pkg/app/global-styles.js";
+import { EnableAnimationsAfterHydration } from "#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx";
+import { Footer } from "#pkg/components/footer/index.js";
+import { Header } from "#pkg/components/header/index.js";
+import { config } from "#pkg/config.js";
 import {
   Animations,
   Classes,
@@ -23,23 +22,23 @@ import {
   DataAttribute,
   IsAnimationEnabled,
   TOC_QUERY,
-} from '#pkg/constants-browser.js';
+} from "#pkg/constants-browser.js";
 
 const fontMonospace = localFont({
   src: [
     {
-      path: '../assets/fonts/CascadiaMono.woff2',
-      style: 'normal',
-      weight: '200 700',
+      path: "../assets/fonts/CascadiaMono.woff2",
+      style: "normal",
+      weight: "200 700",
     },
     {
-      path: '../assets/fonts/CascadiaMonoItalic.woff2',
-      style: 'italic',
-      weight: '200 700',
+      path: "../assets/fonts/CascadiaMonoItalic.woff2",
+      style: "italic",
+      weight: "200 700",
     },
   ],
-  display: 'swap',
-  variable: '--font-family-monospace',
+  display: "swap",
+  variable: "--font-family-monospace",
 });
 
 type LayoutProps = {
@@ -86,7 +85,7 @@ export default async function RootLayout({ children }: LayoutProps) {
         <style dangerouslySetInnerHTML={{ __html: cssBase }} />
         <style dangerouslySetInnerHTML={{ __html: cssPrismaTheme }} />
 
-        {/* 
+        {/*
               Some critical CSS which will disable animations until some data attribute is set on the 
               root element. This will avoid running animations on mount of components.
           */}
@@ -179,14 +178,14 @@ export default async function RootLayout({ children }: LayoutProps) {
 export const metadata: Metadata = {
   metadataBase: config.deploymentOrigin,
   openGraph: {
-    type: 'website',
+    type: "website",
     siteName: config.canonicalTLDPlus1,
-    url: '/',
+    url: "/",
   },
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
 };
 
@@ -216,13 +215,12 @@ const RootContainer = styled.div`
 /**
  * Blocking script for first-time visitors with system dark mode preference.
  *
- * For returning visitors, SSR reads the theme cookie and renders the correct theme.
- * But first-time visitors have no cookie yet, so SSR defaults to light theme.
+ * For returning visitors, SSR reads the theme cookie and renders the correct theme. But first-time
+ * visitors have no cookie yet, so SSR defaults to light theme.
  *
- * This script runs before paint to:
- * 1. Detect system preference (prefers-color-scheme: dark)
- * 2. Set data-theme attribute immediately (prevents flash of light theme)
- * 3. Set cookie so subsequent page loads use SSR
+ * This script runs before paint to: 1. Detect system preference (prefers-color-scheme: dark) 2. Set
+ * data-theme attribute immediately (prevents flash of light theme) 3. Set cookie so subsequent page
+ * loads use SSR
  */
 const blockingThemeScript = `(function() {
   const match = document.cookie.match(new RegExp('(^| )' + ${CookieName.THEME} + '=([^;]+)'));

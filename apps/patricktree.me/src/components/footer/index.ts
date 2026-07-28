@@ -1,1 +1,1 @@
-export * from '#pkg/components/footer/Footer.jsx';
+export * from "#pkg/components/footer/Footer.jsx";

@@ -1,19 +1,18 @@
-import './cascade-layers-definition.css';
-import '@pigment-css/react/styles.css';
+import "#pkg/app/cascade-layers-definition.css";
+import "@pigment-css/react/styles.css";
+import { css } from "@pigment-css/react";
+import { Analytics } from "@vercel/analytics/react";
+import type { Metadata, Viewport } from "next";
+import type React from "react";
 
-import { css } from '@pigment-css/react';
-import { Analytics } from '@vercel/analytics/react';
-import type { Metadata, Viewport } from 'next';
-import type React from 'react';
-
-import { manrope } from '#pkg/app/fonts.jsx';
-import { cssReset, cssBase } from '#pkg/app/global-styles.js';
-import { EnableAnimationsAfterHydration } from '#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx';
-import { Header } from '#pkg/components/header/index.js';
-import { HeaderNav } from '#pkg/components/header-nav/index.js';
-import { Sidenav, SidenavContextProvider } from '#pkg/components/sidenav/index.js';
-import { config } from '#pkg/config.js';
-import { Classes, DataAttribute, IsAnimationEnabled } from '#pkg/constants-browser.js';
+import { manrope } from "#pkg/app/fonts.jsx";
+import { cssReset, cssBase } from "#pkg/app/global-styles.js";
+import { EnableAnimationsAfterHydration } from "#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx";
+import { HeaderNav } from "#pkg/components/header-nav/index.js";
+import { Header } from "#pkg/components/header/index.js";
+import { Sidenav, SidenavContextProvider } from "#pkg/components/sidenav/index.js";
+import { config } from "#pkg/config.js";
+import { Classes, DataAttribute, IsAnimationEnabled } from "#pkg/constants-browser.js";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -51,7 +50,7 @@ export default function RootLayout({ children }: LayoutProps) {
         <style dangerouslySetInnerHTML={{ __html: cssBase }} />
 
         {/* Google tag (gtag.js) */}
-        {/* eslint-disable-next-line @next/next/next-script-for-ga -- don't care about that here */}
+        {/* oxlint-disable-next-line nextjs/next-script-for-ga -- a plain script tag is fine here */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SGY3FJ65G" />
         <script
           dangerouslySetInnerHTML={{
@@ -67,7 +66,7 @@ export default function RootLayout({ children }: LayoutProps) {
           }}
         />
 
-        {/* 
+        {/*
               Some critical CSS which will disable animations until some data attribute is set on the 
               root element. This will avoid running animations on mount of components.
           */}
@@ -134,13 +133,13 @@ export default function RootLayout({ children }: LayoutProps) {
 export const metadata: Metadata = {
   metadataBase: config.deploymentOrigin,
   openGraph: {
-    type: 'website',
+    type: "website",
     siteName: config.canonicalTLDPlus1,
-    url: '/',
+    url: "/",
   },
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
 };

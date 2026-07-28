@@ -1,9 +1,9 @@
 ---
 title: Consistent Visual Assertions via Playwright Server in Docker
 published: true
-publishedAtISO: '2026-01-13T12:00:00.000Z'
+publishedAtISO: "2026-01-13T12:00:00.000Z"
 description: How to make Playwright visual assertions consistent across developer machines and CI by running Playwright Server in Docker and connecting tests remotely.
-tags: ['playwright', 'testing', 'docker', 'visual-testing', 'ci']
+tags: ["playwright", "testing", "docker", "visual-testing", "ci"]
 giscusTerm: consistent-visual-assertions-via-playwright-server-in-docker
 ---
 
@@ -85,7 +85,7 @@ The result is:
    - {/* prettier-ignore */}<FancyAnchor href="https://playwright.dev/docs/api/class-browsertype#browser-type-connect">`browserType.connect()`</FancyAnchor>:
 
    ```typescript
-   const browser = await playwright['chromium'].connect('ws://127.0.0.1:<PORT>/');
+   const browser = await playwright["chromium"].connect("ws://127.0.0.1:<PORT>/");
    ```
 
 That's it - the tests use the browsers inside the Docker container.
@@ -123,7 +123,7 @@ TL;DR:
         // Capture the Playwright Server port from stdout via regex and named capture group (https://playwright.dev/docs/api/class-testconfig#test-config-web-server)
         stdout: /Listening on ws:\/\/0\.0\.0\.0:(?<PLAYWRIGHT_SERVER_PORT>\d+)/,
       },
-      gracefulShutdown: { signal: 'SIGTERM' },
+      gracefulShutdown: { signal: "SIGTERM" },
     },
   });
   ```
@@ -156,7 +156,7 @@ TL;DR:
 - Optional: add a `PWDEBUG` escape hatch so `playwright test --debug` runs with local browsers:
 
   ```typescript
-  const playwrightWasStartedWithDebugFlag = process.env['PWDEBUG'] === '1';
+  const playwrightWasStartedWithDebugFlag = process.env["PWDEBUG"] === "1";
   // do all steps listed above only if !playwrightWasStartedWithDebugFlag
   ```
 

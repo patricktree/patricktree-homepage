@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-import { useReadingProgressContext } from '#pkg/components/reading-progress-bar/ReadingProgressContext.jsx';
-import { TOC_QUERY } from '#pkg/constants-browser.js';
+import { useReadingProgressContext } from "#pkg/components/reading-progress-bar/ReadingProgressContext.jsx";
+import { TOC_QUERY } from "#pkg/constants-browser.js";
 
 export const TocAndArticleReadingTarget: React.FC<{ children: React.ReactNode }> = ({
   children,

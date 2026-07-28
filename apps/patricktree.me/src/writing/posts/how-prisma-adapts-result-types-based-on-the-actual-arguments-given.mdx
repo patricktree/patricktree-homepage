@@ -1,9 +1,9 @@
 ---
 title: How Prisma adapts Result Types based on the Actual Arguments given
 published: true
-publishedAtISO: '2022-07-07T16:00:00.000Z'
+publishedAtISO: "2022-07-07T16:00:00.000Z"
 description: A lesson on how to achieve fine-grained TypeScript results by combining generics with conditional types.
-tags: ['typescript', 'prisma', 'generics', 'conditionaltypes', 'webdev']
+tags: ["typescript", "prisma", "generics", "conditionaltypes", "webdev"]
 giscusTerm: how-prisma-adapts-result-types-based-on-the-actual-arguments-given
 ---
 
@@ -155,7 +155,7 @@ const userWithOrgUnit = findUniqueOrThrow({
  * To avoid type errors, we must handle `orgUnit` being `undefined` in some way.
  */
 if (!userWithOrgUnit.orgUnit) {
-  throw new Error('should not happen');
+  throw new Error("should not happen");
 }
 // From here on TypeScript will know that accessing properties of `orgUnit` is safe
 ```
@@ -269,7 +269,7 @@ function findUniqueOrThrow(args: FindArgs): Promise<FindResult>;
 
 findUniqueOrThrow({
   where: { id: 1 },
-  foo: 'bar', // <-- TS error here: "Object literal may only specify known properties, and 'foo' does not exist in type 'FindArgs'"
+  foo: "bar", // <-- TS error here: "Object literal may only specify known properties, and 'foo' does not exist in type 'FindArgs'"
 });
 ```
 
@@ -280,7 +280,7 @@ function findUniqueOrThrow<T extends FindArgs>(args: T): Promise<FindResult<T>>;
 
 findUniqueOrThrow({
   where: { id: 1 },
-  foo: 'bar', // <-- no TS error here anymore...
+  foo: "bar", // <-- no TS error here anymore...
 });
 ```
 
@@ -346,16 +346,16 @@ export type UserGetPayload<
   : S extends undefined
     ? never
     : S extends UserArgs | UserFindManyArgs
-      ? 'include' extends U
+      ? "include" extends U
         ? User & {
-            [P in TrueKeys<S['include']>]: P extends 'orgUnit'
-              ? OrgUnitGetPayload<S['include'][P]>
+            [P in TrueKeys<S["include"]>]: P extends "orgUnit"
+              ? OrgUnitGetPayload<S["include"][P]>
               : never;
           }
-        : 'select' extends U
+        : "select" extends U
           ? {
-              [P in TrueKeys<S['select']>]: P extends 'orgUnit'
-                ? OrgUnitGetPayload<S['select'][P]>
+              [P in TrueKeys<S["select"]>]: P extends "orgUnit"
+                ? OrgUnitGetPayload<S["select"][P]>
                 : P extends keyof User
                   ? User[P]
                   : never;

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
-import type React from 'react';
-import { Moon, Sun } from 'react-feather';
+import { styled } from "@pigment-css/react";
+import type React from "react";
+import { Moon, Sun } from "react-feather";
 
-import { Classes, ColorTheme, CookieName, DataAttribute } from '#pkg/constants-browser.js';
-import { IconButton } from '#pkg/elements/index.js';
+import { Classes, ColorTheme, CookieName, DataAttribute } from "#pkg/constants-browser.js";
+import { IconButton } from "#pkg/elements/index.js";
 
 const iconSize = 20;
 
@@ -15,7 +15,7 @@ export const ToggleThemeButton: React.FC = () => {
       onClick={toggleColorTheme}
       className={Classes.JS_REQUIRED}
       style={{
-        '--icon-size': `${iconSize}px`,
+        "--icon-size": `${iconSize}px`,
       }}
       aria-label="toggle light/dark theme"
     >
@@ -44,7 +44,7 @@ function toggleColorTheme() {
   }
 
   // Persist theme via cookie (read server-side for SSR)
-  // eslint-disable-next-line unicorn/no-document-cookie -- simple cookie set, no library needed
+  /* simple cookie set, no library needed */
   document.cookie = `${CookieName.THEME}=${newTheme}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
 }
 
@@ -58,7 +58,7 @@ const ToggleThemeIconButton = styled(IconButton)`
   padding-inline: calc(1 * var(--spacing-base));
 `;
 
-const CentralFixedSizeDiv = styled('div')`
+const CentralFixedSizeDiv = styled("div")`
   position: relative;
 
   display: grid;
@@ -69,7 +69,7 @@ const CentralFixedSizeDiv = styled('div')`
   overflow: hidden;
 `;
 
-const IconStack = styled('div')`
+const IconStack = styled("div")`
   --icon-stack-spacing: 8px;
 
   position: absolute;

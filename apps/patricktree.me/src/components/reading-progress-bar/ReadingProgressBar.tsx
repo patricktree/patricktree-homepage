@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
-import React from 'react';
+import { styled } from "@pigment-css/react";
+import React from "react";
 
-import { useReadingProgressContext } from '#pkg/components/reading-progress-bar/ReadingProgressContext.jsx';
+import { useReadingProgressContext } from "#pkg/components/reading-progress-bar/ReadingProgressContext.jsx";
 
 export const ReadingProgressBar: React.FC = () => {
   const progressBarRef = React.useRef<HTMLDivElement>(null);
@@ -39,14 +39,14 @@ export const ReadingProgressBar: React.FC = () => {
         progressBarRef.current.style.width = `${progress}%`;
       };
 
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress);
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
       // Trigger once on mount to set initial state
       updateProgress();
 
       return () => {
-        window.removeEventListener('scroll', updateProgress);
-        window.removeEventListener('resize', updateProgress);
+        window.removeEventListener("scroll", updateProgress);
+        window.removeEventListener("resize", updateProgress);
       };
     },
     [readingEnd, readingTarget],

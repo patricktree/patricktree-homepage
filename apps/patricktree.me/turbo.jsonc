@@ -1,18 +1,13 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "extends": ["//", "@patricktree-homepage/config-turbo"],
+  "$schema": "../../node_modules/turbo/schema.json",
+  "extends": ["//", "@patricktree-stack/config-turbo-typescript"],
   "tasks": {
     "turbo:build": {
-      "cache": true,
       "env": ["DEPLOYMENT_ORIGIN", "VERCEL_URL"],
+      /* the apps type-check only (`noEmit`), so there is no `dist` to cache */
       "outputs": ["*.tsbuildinfo"],
     },
-    "turbo:lint": {
-      "cache": true,
-      "outputs": [],
-    },
     "turbo:lint:fix": {
-      "cache": true,
       "outputs": [
         "src/**",
         "!src/**/*.jpeg",

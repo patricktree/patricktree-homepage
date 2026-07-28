@@ -1,12 +1,12 @@
-import { arrays } from '@patricktree/commons-ecma/util/arrays';
-import { jsonUtil } from '@patricktree/commons-ecma/util/json';
-import { fetchFavicons } from '@patricktree/fetch-favicon';
-import fs from 'node:fs';
-import path from 'node:path';
+import { arrays } from "@patricktree/commons-ecma/util/arrays";
+import { jsonUtil } from "@patricktree/commons-ecma/util/json";
+import { fetchFavicons } from "@patricktree/fetch-favicon";
+import fs from "node:fs";
+import path from "node:path";
 
-import { parseMDXFileAndCollectHrefs } from '@patricktree-homepage/mdx/mdx';
+import { parseMDXFileAndCollectHrefs } from "@patricktree-homepage/mdx/mdx";
 
-import { PATHS } from '#pkg/constants-server.js';
+import { PATHS } from "#pkg/constants-server.js";
 
 async function fetchFaviconsForAllHrefsAndWriteToFile() {
   const [postsBasenames, tidbitBasenames] = await Promise.all([
@@ -14,10 +14,10 @@ async function fetchFaviconsForAllHrefsAndWriteToFile() {
     fs.promises.readdir(PATHS.TIDBITS),
   ]);
   const postsWithAbsolutePaths = postsBasenames
-    .filter((path) => path.endsWith('.mdx'))
+    .filter((basename) => basename.endsWith(".mdx"))
     .map((basename) => path.join(PATHS.POSTS, basename));
   const tidbitsWithAbsolutePaths = tidbitBasenames
-    .filter((path) => path.endsWith('.mdx'))
+    .filter((basename) => basename.endsWith(".mdx"))
     .map((basename) => path.join(PATHS.TIDBITS, basename));
   const filesWithAbsolutePaths = [...postsWithAbsolutePaths, ...tidbitsWithAbsolutePaths];
 
@@ -35,7 +35,7 @@ async function fetchFaviconsForAllHrefsAndWriteToFile() {
   await fs.promises.writeFile(
     PATHS.FAVICONS_FOR_WEBSITES,
     jsonUtil.safeStringify(finalResult, undefined, 2),
-    { encoding: 'utf8' },
+    { encoding: "utf8" },
   );
 }
 

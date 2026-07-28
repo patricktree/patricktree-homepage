@@ -1,11 +1,11 @@
-import { styled } from '@pigment-css/react';
-import dayjs from 'dayjs';
-import type React from 'react';
+import { styled } from "@pigment-css/react";
+import dayjs from "dayjs";
+import type React from "react";
 
-import type { MDXFile } from '@patricktree-homepage/mdx/schema';
+import type { MDXFile } from "@patricktree-homepage/mdx/schema";
 
-import { ArticleTile } from '#pkg/components/article-tile/index.js';
-import { QUERIES } from '#pkg/constants-browser.js';
+import { ArticleTile } from "#pkg/components/article-tile/index.js";
+import { QUERIES } from "#pkg/constants-browser.js";
 
 type ArticlesListEntry = {
   pathPrefix: string;

@@ -1,10 +1,10 @@
-import { styled } from '@pigment-css/react';
-import type React from 'react';
-import { MapPin } from 'react-feather';
+import { styled } from "@pigment-css/react";
+import type React from "react";
+import { MapPin } from "react-feather";
 
-import profilePic from '#pkg/app/icon.png';
-import { Image } from '#pkg/elements/Image.jsx';
-import { commonStyles } from '#pkg/styles/common.styles.js';
+import profilePic from "#pkg/app/icon.png";
+import { Image } from "#pkg/elements/Image.jsx";
+import { commonStyles } from "#pkg/styles/common.styles.js";
 
 export const Introduction: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Introduction: React.FC = () => {
       <h1 className={commonStyles.visuallyHidden}>Patrick Kerschbaum homepage</h1>
       <Greeting>👋 Hi, I&apos;m Patrick</Greeting>
       <Message>
-        I&apos;m a software developer with a great passion for <strong>web technologies</strong> and{' '}
+        I&apos;m a software developer with a great passion for <strong>web technologies</strong> and{" "}
         <strong>the JavaScript ecosystem</strong>.
       </Message>
       <Location>
@@ -34,9 +34,9 @@ export const Introduction: React.FC = () => {
 const IntroductionContainer = styled.section`
   display: grid;
   grid-template-areas:
-    'profile-picture greeting'
-    'profile-picture message'
-    'profile-picture message-details';
+    "profile-picture greeting"
+    "profile-picture message"
+    "profile-picture message-details";
   grid-template-columns: max-content 1fr;
   grid-row-gap: calc(0.5 * var(--spacing-base));
   grid-column-gap: calc(3 * var(--spacing-base));

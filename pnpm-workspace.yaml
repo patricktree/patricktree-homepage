@@ -3,26 +3,42 @@ packages:
   - packages/*
   - platform/*
   - test/*
+  - .patricktree-stack/tooling/config-oxfmt
+  - .patricktree-stack/tooling/config-oxlint
+  - .patricktree-stack/tooling/config-turbo-typescript
 
-onlyBuiltDependencies:
-  - '@vercel/speed-insights'
-  - sharp
-  - unrs-resolver
+allowBuilds:
+  "@vercel/speed-insights": true
+  sharp: true
+  unrs-resolver: true
 
-publicHoistPattern:
-  - '*eslint*'
+catalog:
+  "@types/node": ^24
+  "@typescript/native": "npm:typescript@^7.0.2"
+  oxfmt: ^0.58.0
+  # oxlint >=1.75 requires the renumbered oxlint-tsgolint 7.x line (it tracks the TypeScript version)
+  oxlint: ^1.75.0
+  oxlint-tsgolint: ^7.0.2001
+  typescript: "npm:@typescript/typescript6@^6.0.2"
+
+packageExtensions:
+  eslint-plugin-react-you-might-not-need-an-effect@1.0.1:
+    # "eslint-plugin-react-you-might-not-need-an-effect" defines eslint as peer dependency, but that is not required when used by oxlint --> make it optional
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+
+# handle peer dependencies in a strict way
+autoInstallPeers: false
+resolvePeersFromWorkspaceRoot: false
+strictPeerDependencies: true
+dedupePeerDependents: false
 
 # enforce specific Node.js and pnpm version (https://pnpm.io/npmrc#engine-strict)
 engineStrict: true
 
-# handle peer dependencies in a strict way
-autoInstallPeers: false
-dedupePeerDependents: false
-strictPeerDependencies: true
-resolvePeersFromWorkspaceRoot: false
-
-# https://pnpm.io/npmrc#update-notifier
+# disable update notifier (https://pnpm.io/npmrc#update-notifier)
 updateNotifier: false
 
-# workspace-concurrency=0 will use amount of cores of the host to run tasks concurrently (see https://pnpm.io/cli/recursive#--workspace-concurrency)
+# workspace-concurrency=0 will use amount of cores of the host to run tasks concurrently (https://pnpm.io/cli/recursive#--workspace-concurrency)
 workspaceConcurrency: 0

@@ -1,23 +1,23 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import { useIsMounted } from '@patricktree-homepage/react-utils/react.utils.jsx';
+import { useIsMounted } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
-import { DataAttribute, IsAnimationEnabled } from '#pkg/constants-browser.js';
+import { DataAttribute, IsAnimationEnabled } from "#pkg/constants-browser.js";
 
 export const EnableAnimationsAfterHydration: React.FC = () => {
   const isMounted = useIsMounted();
 
   React.useEffect(
     /**
-     * For whatever reason, in Firefox, some elements using keyframe animations flicker on page load.
-     * Specifically, the "home link" on the navigation bar. There are animations in place to replace
-     * the home link "Patrick Kerschbaum" by the logo "PK", but that should only happen on scroll.
-     * Firefox animates them on load. Very fast, but still this flickering is noticable.
+     * For whatever reason, in Firefox, some elements using keyframe animations flicker on page
+     * load. Specifically, the "home link" on the navigation bar. There are animations in place to
+     * replace the home link "Patrick Kerschbaum" by the logo "PK", but that should only happen on
+     * scroll. Firefox animates them on load. Very fast, but still this flickering is noticable.
      *
-     * That's why we enable animations only after client-side hydration and some small timeout.
-     * We do so by setting a specific data attribute on the root element (<html> element).
-     * That attribute will enable animations for the whole website.
+     * That's why we enable animations only after client-side hydration and some small timeout. We
+     * do so by setting a specific data attribute on the root element (<html> element). That
+     * attribute will enable animations for the whole website.
      *
      * This means that animations will not be active if the website is rendered without javascript.
      * This is absolutely OK since animations are just a "progressive enhancement".

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
+import { reactUtils } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
 type SidenavContextValue = {
   isOpen: boolean;
@@ -10,7 +10,7 @@ type SidenavContextValue = {
   openSidenavButtonRef: React.MutableRefObject<HTMLButtonElement | null>;
 };
 
-const sidenavContext = reactUtils.createContext<SidenavContextValue>('SidenavContext');
+const sidenavContext = reactUtils.createContext<SidenavContextValue>("SidenavContext");
 export const useSidenavContext = sidenavContext.useContextValue;
 
 type SidenavContextProviderProps = {

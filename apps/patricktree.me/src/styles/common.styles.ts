@@ -1,9 +1,7 @@
-import { css } from '@pigment-css/react';
+import { css } from "@pigment-css/react";
 
 export const commonStyles = {
-  /**
-   * based on https://www.joshwcomeau.com/snippets/react-components/visually-hidden/
-   */
+  /** Based on https://www.joshwcomeau.com/snippets/react-components/visually-hidden/ */
   visuallyHidden: css`
     position: absolute;
     display: inline-block;

@@ -1,4 +1,4 @@
-import { Animations, ColorTheme, DataAttribute } from '#pkg/constants-browser.js';
+import { Animations, ColorTheme, DataAttribute } from "#pkg/constants-browser.js";
 
 export const cssReset = css`
   @layer reset {
@@ -495,11 +495,12 @@ export const cssPrismaTheme = css`
 `;
 
 /**
- * This function just returns the template string.
- * It's purpose is solely to have a function `css` which will trigger CSS syntax highlighting in VS Code, extension [`styled-components.vscode-styled-components`](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components).
+ * This function just returns the template string. It's purpose is solely to have a function `css`
+ * which will trigger CSS syntax highlighting in VS Code, extension
+ * [`styled-components.vscode-styled-components`](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components).
  */
 function css(strings: TemplateStringsArray, ...args: Array<string | number>): string {
-  let result = strings[0] ?? '';
+  let result = strings[0] ?? "";
   for (const [i, arg] of args.entries()) {
     result += `${arg}${strings[i + 1]}`;
   }

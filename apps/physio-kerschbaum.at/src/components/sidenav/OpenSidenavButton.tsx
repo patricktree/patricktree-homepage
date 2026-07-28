@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
-import type React from 'react';
-import { Menu } from 'react-feather';
+import { styled } from "@pigment-css/react";
+import type React from "react";
+import { Menu } from "react-feather";
 
-import { useSidenavContext } from '#pkg/components/sidenav/SidenavContextProvider.jsx';
-import { Button } from '#pkg/elements/Button.jsx';
+import { useSidenavContext } from "#pkg/components/sidenav/SidenavContextProvider.jsx";
+import { Button } from "#pkg/elements/Button.jsx";
 
 export const OpenSidenavButton: React.FC = () => {
   const { setIsOpen, openSidenavButtonRef } = useSidenavContext();

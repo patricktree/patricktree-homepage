@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
-import React from 'react';
+import { styled } from "@pigment-css/react";
+import React from "react";
 
-import { SEARCH_PARAM_KEY } from '#pkg/components/version-tabs/constants.jsx';
-import { VersionTabsContext } from '#pkg/components/version-tabs/VersionTabsContext.jsx';
-import { VersionUrlContext } from '#pkg/components/version-tabs/VersionUrlContext.jsx';
-import { Button } from '#pkg/elements/Button.jsx';
+import { SEARCH_PARAM_KEY } from "#pkg/components/version-tabs/constants.jsx";
+import { VersionTabsContext } from "#pkg/components/version-tabs/VersionTabsContext.jsx";
+import { VersionUrlContext } from "#pkg/components/version-tabs/VersionUrlContext.jsx";
+import { Button } from "#pkg/elements/Button.jsx";
 
 type NonEmptyArray<T> = [T, ...T[]];
 
@@ -32,13 +32,14 @@ export const VersionTabs: React.FC<VersionTabsProps> = ({ versions, defaultVersi
     }
     const url = new URL(window.location.href);
     url.searchParams.set(SEARCH_PARAM_KEY, activeVersion);
-    window.history.replaceState(null, '', url.toString());
+    window.history.replaceState(null, "", url.toString());
   }, [activeVersion, syncWithUrl]);
 
   return (
     <VersionTabsContext.Provider value={{ activeVersion, setActiveVersion }}>
       <TabBar role="tablist" aria-label="Version">
         {versions.map((version) => (
+          // oxlint-disable-next-line jsx-a11y/interactive-supports-focus -- TabButton renders a natively focusable <button>
           <TabButton
             key={version}
             role="tab"
@@ -80,7 +81,7 @@ const TabButton = styled(Button)`
     color: var(--color-fg);
   }
 
-  &[aria-selected='true'] {
+  &[aria-selected="true"] {
     font-weight: 600;
     color: var(--color-fg);
     border-bottom-color: var(--color-fg-interactive);

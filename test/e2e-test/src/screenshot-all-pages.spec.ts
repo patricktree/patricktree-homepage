@@ -1,11 +1,11 @@
-import { fetchSitemapLinks } from '@patricktree/fetch-sitemap-locations';
-import { test, expect } from '@playwright/test';
+import { fetchSitemapLinks } from "@patricktree/fetch-sitemap-locations";
+import { test, expect } from "@playwright/test";
 
 const allLinks: string[] = [];
-for await (const links of fetchSitemapLinks(new URL('https://patricktree.me/sitemap.xml'))) {
+for await (const links of fetchSitemapLinks(new URL("https://patricktree.me/sitemap.xml"))) {
   allLinks.push(...links);
 }
-for await (const links of fetchSitemapLinks(new URL('https://physio-kerschbaum.at/sitemap.xml'))) {
+for await (const links of fetchSitemapLinks(new URL("https://physio-kerschbaum.at/sitemap.xml"))) {
   allLinks.push(...links);
 }
 

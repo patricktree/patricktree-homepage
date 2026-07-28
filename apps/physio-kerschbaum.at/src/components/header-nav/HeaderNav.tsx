@@ -1,12 +1,12 @@
-import { css } from '@pigment-css/react';
-import type React from 'react';
-import { Instagram } from 'react-feather';
+import { css } from "@pigment-css/react";
+import type React from "react";
+import { Instagram } from "react-feather";
 
-import { headingIds } from '#pkg/app/page-constants.js';
-import logo from '#pkg/assets/logo.png';
-import { OpenSidenavButton } from '#pkg/components/sidenav/index.js';
-import { Anchor } from '#pkg/elements/Anchor.jsx';
-import { Image } from '#pkg/elements/Image.jsx';
+import { headingIds } from "#pkg/app/page-constants.js";
+import logo from "#pkg/assets/logo.png";
+import { OpenSidenavButton } from "#pkg/components/sidenav/index.js";
+import { Anchor } from "#pkg/elements/Anchor.jsx";
+import { Image } from "#pkg/elements/Image.jsx";
 
 const LOGO_HEIGHT = 32;
 

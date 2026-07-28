@@ -1,8 +1,8 @@
-import { styled } from '@pigment-css/react';
-import type React from 'react';
+import { styled } from "@pigment-css/react";
+import type React from "react";
 
-import { headingIds } from '#pkg/app/page-constants.js';
-import { SidenavAnchor } from '#pkg/components/sidenav/SidenavAnchor.jsx';
+import { headingIds } from "#pkg/app/page-constants.js";
+import { SidenavAnchor } from "#pkg/components/sidenav/SidenavAnchor.jsx";
 
 export const Nav: React.FC = () => {
   return (

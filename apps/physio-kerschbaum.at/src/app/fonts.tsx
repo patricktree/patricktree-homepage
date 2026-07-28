@@ -1,10 +1,10 @@
-import { Manrope, Merriweather } from 'next/font/google';
+import { Manrope, Merriweather } from "next/font/google";
 
 export const manrope = Manrope({
-  subsets: ['latin-ext'],
+  subsets: ["latin-ext"],
 });
 
 export const merriweather = Merriweather({
-  subsets: ['latin-ext'],
-  weight: '400',
+  subsets: ["latin-ext"],
+  weight: "400",
 });

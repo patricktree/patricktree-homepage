@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
+import { reactUtils } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
 type ReadingProgressContextValue = {
   readingTarget: HTMLElement | null;
@@ -12,7 +12,7 @@ type ReadingProgressContextValue = {
 };
 
 const { useContextValue, Provider: ReadingProgressContextProvider } =
-  reactUtils.createContext<ReadingProgressContextValue>('ReadingProgressContext');
+  reactUtils.createContext<ReadingProgressContextValue>("ReadingProgressContext");
 
 export const ReadingProgressProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [readingTarget, setReadingTarget] = React.useState<HTMLElement | null>(null);

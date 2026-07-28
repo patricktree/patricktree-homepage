@@ -10,37 +10,36 @@
     "./*": "./dist/*.js"
   },
   "scripts": {
-    "build": "superturbo run turbo:build",
-    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "superturbo run turbo:lint",
-    "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint:file . --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 .",
+    "turbo:lint:fix": "pnpm run turbo:lint --fix"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.0",
     "@patricktree/commons-ecma": "^2.4.1",
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",
-    "acorn": "^8.14.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "refractor": "^5.0.0",
     "rehype-prism-plus": "^2.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "tiny-invariant": "^1.3.3",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1",
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@types/node": "^24"
+    "@patricktree-stack/config-oxlint": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "typescript": "catalog:"
   }
 }

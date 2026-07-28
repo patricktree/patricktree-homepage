@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-import { useReadingProgressContext } from '#pkg/components/reading-progress-bar/ReadingProgressContext.jsx';
+import { useReadingProgressContext } from "#pkg/components/reading-progress-bar/ReadingProgressContext.jsx";
 
 export const ReadingProgressSentinel: React.FC = () => {
   const { setReadingEnd } = useReadingProgressContext();

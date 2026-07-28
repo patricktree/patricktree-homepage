@@ -1,1 +1,1 @@
-export * from '#pkg/components/article-container-tidbit/ArticleContainerTidbit.jsx';
+export * from "#pkg/components/article-container-tidbit/ArticleContainerTidbit.jsx";

@@ -1,9 +1,9 @@
-import { schema_faviconsForWebsites } from '@patricktree/fetch-favicon';
-import fs from 'node:fs';
+import { schema_faviconsForWebsites } from "@patricktree/fetch-favicon";
+import fs from "node:fs";
 
-import type { MDXParseResult } from '@patricktree-homepage/mdx/schema';
+import type { MDXParseResult } from "@patricktree-homepage/mdx/schema";
 
-import { PATHS } from '#pkg/constants-server.js';
+import { PATHS } from "#pkg/constants-server.js";
 
 type IconURLToAssociatedWebsitesMap = {
   [iconURL in string]?: {
@@ -17,7 +17,7 @@ export type FaviconDataURLsForWebsiteURLs = {
 };
 
 const faviconsForWebsitesReadPromise = fs.promises.readFile(PATHS.FAVICONS_FOR_WEBSITES, {
-  encoding: 'utf8',
+  encoding: "utf8",
 });
 
 export async function createFaviconsMapping(

@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { ArrowLeftCircle } from 'react-feather';
+import type { Metadata } from "next";
+import { ArrowLeftCircle } from "react-feather";
 
 import {
   BacklinkAnchor,
   BackLinkParagraph,
   Heading,
   PageArticle,
-} from '#pkg/components/commons.jsx';
+} from "#pkg/components/commons.jsx";
 
 function BlogPage() {
   return (
@@ -30,13 +30,13 @@ function BlogPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Blog – Physiotherapie Jasmin Kerschbaum',
+  title: "Blog – Physiotherapie Jasmin Kerschbaum",
   robots: {
     follow: false,
     index: false,
   },
   openGraph: {
-    title: 'Blog – Physiotherapie Jasmin Kerschbaum',
+    title: "Blog – Physiotherapie Jasmin Kerschbaum",
   },
 };
 

@@ -1,6 +1,6 @@
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-import { Anchor } from '#pkg/elements/Anchor.jsx';
+import { Anchor } from "#pkg/elements/Anchor.jsx";
 
 export const TileAnchor = styled(Anchor)`
   text-decoration: none;

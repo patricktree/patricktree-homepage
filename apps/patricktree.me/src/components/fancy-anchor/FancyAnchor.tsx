@@ -1,9 +1,9 @@
-import { urlUtils } from '@patricktree/commons-ecma/util/url';
-import { styled } from '@pigment-css/react';
-import type React from 'react';
+import { urlUtils } from "@patricktree/commons-ecma/util/url";
+import { styled } from "@pigment-css/react";
+import type React from "react";
 
-import { Classes } from '#pkg/constants-browser.js';
-import { Anchor, type AnchorProps } from '#pkg/elements/index.js';
+import { Classes } from "#pkg/constants-browser.js";
+import { Anchor, type AnchorProps } from "#pkg/elements/index.js";
 
 const MAX_TEXT_LENGTH_TO_BREAK_ICON_WITH_TEXT = 15;
 
@@ -12,11 +12,11 @@ export type FancyAnchorProps = AnchorProps & {};
 /**
  * The `FancyAnchor` allows to put an icon right at the beginning of the anchor.
  *
- * It applies some logic to get a nice line wrapping behaviour.
- * First it does a rudimentary scan for a line wrapping opportunity.
- * Then:
- * - If there is no wrap opportunity and the text is rather short, it will be put with the icon in
- *   one "group" (with `display: inline-block`). The result is that the anchor content does not line
+ * It applies some logic to get a nice line wrapping behaviour. First it does a rudimentary scan for
+ * a line wrapping opportunity. Then:
+ *
+ * - If there is no wrap opportunity and the text is rather short, it will be put with the icon in one
+ *   "group" (with `display: inline-block`). The result is that the anchor content does not line
  *   wrap; the whole anchor, together with the icon, will be put into the next line if necessary.
  * - If there is a wrap opportunity and the text part until that wrap opportunity is rather short,
  *   that text part will be put into one "group" with the icon (so that they wrap together into the
@@ -35,11 +35,11 @@ export function FancyAnchor({
 }: FancyAnchorProps): React.ReactElement {
   let childrenToRender;
 
-  if (typeof children !== 'string') {
+  if (typeof children !== "string") {
     childrenToRender = <IconGroupedSpan>{children}</IconGroupedSpan>;
   } else {
     let textToDisplay = children;
-    if (textToDisplay === 'AUTOGENERATE') {
+    if (textToDisplay === "AUTOGENERATE") {
       const url = new URL(href);
       textToDisplay = urlUtils.createReadableTextFromUrl(url);
     }
@@ -53,7 +53,7 @@ export function FancyAnchor({
         };
     for (let i = 0; i < textToDisplay.length; i++) {
       const char = textToDisplay.charAt(i);
-      if (char === ' ' || char === '-') {
+      if (char === " " || char === "-") {
         wrapOpportunity = {
           textToWrapChar: textToDisplay.slice(0, i),
           wrapChar: char,
@@ -95,7 +95,7 @@ export function FancyAnchor({
   return (
     <StyledAnchor
       href={href}
-      className={`${className ?? ''} ${Classes.STYLED_ANCHOR}`}
+      className={`${className ?? ""} ${Classes.STYLED_ANCHOR}`}
       {...delegated}
     >
       {childrenToRender}
@@ -103,13 +103,13 @@ export function FancyAnchor({
   );
 }
 
-export const StyledAnchor = styled(Anchor)``;
+const StyledAnchor = styled(Anchor)``;
 
 const IconSpanInner: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
 > = ({ children, className, ...delegated }) => {
   return (
-    <span className={`${className ?? ''} ${Classes.FANCY_ANCHOR_ICON}`} {...delegated}>
+    <span className={`${className ?? ""} ${Classes.FANCY_ANCHOR_ICON}`} {...delegated}>
       {children}
     </span>
   );
@@ -121,7 +121,7 @@ const IconSpan = styled(IconSpanInner)`
     height: calc(1.2 * 1em);
     margin-inline-end: calc(0.5 * var(--spacing-base));
     vertical-align: sub;
-    content: '';
+    content: "";
 
     background-repeat: no-repeat;
     background-position: center;

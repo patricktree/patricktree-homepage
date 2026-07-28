@@ -1,7 +1,7 @@
-import { styled } from '@pigment-css/react';
-import dayjs from 'dayjs';
+import { styled } from "@pigment-css/react";
+import dayjs from "dayjs";
 
-import profilePic from '#pkg/app/icon.png';
+import profilePic from "#pkg/app/icon.png";
 import {
   ArticleHeading,
   Article,
@@ -14,21 +14,21 @@ import {
   TocAndArticleReadingTarget,
   TocAside,
   Timestamps,
-} from '#pkg/components/article-components/index.jsx';
-import { SocialShareSection } from '#pkg/components/article-container-blog-post/SocialShareSection.jsx';
-import { GiscusComments } from '#pkg/components/giscus-comments/index.js';
-import { Main } from '#pkg/components/main/index.js';
+} from "#pkg/components/article-components/index.jsx";
+import { SocialShareSection } from "#pkg/components/article-container-blog-post/SocialShareSection.jsx";
+import { GiscusComments } from "#pkg/components/giscus-comments/index.js";
+import { Main } from "#pkg/components/main/index.js";
 import {
   ReadingProgressBar,
   ReadingProgressProvider,
   ReadingProgressSentinel,
-} from '#pkg/components/reading-progress-bar/index.js';
-import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
-import { config } from '#pkg/config.js';
-import { Anchor, FullBleedWrapper } from '#pkg/elements/index.js';
-import type { MDXParseResult } from '#pkg/mdx/index.js';
+} from "#pkg/components/reading-progress-bar/index.js";
+import { TableOfContents } from "#pkg/components/table-of-contents/index.js";
+import { config } from "#pkg/config.js";
+import { Anchor, FullBleedWrapper } from "#pkg/elements/index.js";
+import type { MDXParseResult } from "#pkg/mdx/index.js";
 
-export type ArticleContainerBlogPostPropsBase = {
+type ArticleContainerBlogPostPropsBase = {
   mdxContent: React.ReactNode;
   mdxParseResult: MDXParseResult;
 };
@@ -67,13 +67,13 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
                 </AuthorLine>
                 <Timestamps>
                   <Time dateTime={mdxParseResult.frontmatter.publishedAtISO}>
-                    Published on{' '}
-                    {dayjs(mdxParseResult.frontmatter.publishedAtISO).format('DD MMMM, YYYY')}
+                    Published on{" "}
+                    {dayjs(mdxParseResult.frontmatter.publishedAtISO).format("DD MMMM, YYYY")}
                   </Time>
                   {mdxParseResult.frontmatter.lastUpdatedAtISO && (
                     <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
-                      Last updated on{' '}
-                      {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
+                      Last updated on{" "}
+                      {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format("DD MMMM, YYYY")}
                     </Time>
                   )}
                 </Timestamps>
@@ -91,15 +91,15 @@ export const ArticleContainerBlogPost: React.FC<ArticleContainerBlogPostProps> =
               <ContactTeaserHeadline>Did you like this blog post?</ContactTeaserHeadline>
 
               <p>
-                Great, then let&apos;s keep in touch! Follow me{' '}
+                Great, then let&apos;s keep in touch! Follow me{" "}
                 <Anchor
                   href={`https://bsky.app/profile/${config.socialMedia.handles.bsky}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   on Bluesky
-                </Anchor>{' '}
-                or{' '}
+                </Anchor>{" "}
+                or{" "}
                 <Anchor
                   href={`https://x.com/intent/follow?screen_name=${config.socialMedia.handles.x}`}
                   target="_blank"
