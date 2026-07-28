@@ -1,11 +1,10 @@
 import { styled } from "@pigment-css/react";
+import type React from "react";
 import { MapPin } from "react-feather";
 
 import profilePic from "#pkg/app/icon.png";
 import { Image } from "#pkg/elements/Image.jsx";
 import { commonStyles } from "#pkg/styles/common.styles.js";
-
-import type React from "react";
 
 export const Introduction: React.FC = () => {
   return (

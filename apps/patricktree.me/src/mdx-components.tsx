@@ -2,6 +2,7 @@
 
 import { check } from "@patricktree/commons-ecma/util/assert";
 import { styled } from "@pigment-css/react";
+import type { MDXComponents } from "mdx/types.js";
 import React from "react";
 import { CheckCircle, Clipboard } from "react-feather";
 import invariant from "tiny-invariant";
@@ -12,8 +13,6 @@ import { FancyAnchor, type FancyAnchorProps } from "#pkg/components/fancy-anchor
 import { Version, VersionTabs } from "#pkg/components/version-tabs/index.js";
 import { Classes, ColorTheme, DataAttribute } from "#pkg/constants-browser.js";
 import { Anchor, type AnchorProps, Button } from "#pkg/elements/index.js";
-
-import type { MDXComponents } from "mdx/types.js";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   let currentSectionHeadingId = {

@@ -1,9 +1,8 @@
 import { urlUtils } from "@patricktree/commons-ecma/util/url";
+import type { ElementContent, Root } from "hast";
 import { visit } from "unist-util-visit";
 
 import type { Heading, HeadingLevel } from "#pkg/schema.js";
-
-import type { ElementContent, Root } from "hast";
 
 export function createCollectAndAugmentHeadingsPlugin({ headings }: { headings: Heading[] }) {
   return function myRehypePluginToIncreaseHeadings() {

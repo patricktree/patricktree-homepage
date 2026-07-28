@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowLeftCircle } from "react-feather";
 
 import { headingIds } from "#pkg/app/page-constants.js";
@@ -8,8 +9,6 @@ import {
   PageArticle,
 } from "#pkg/components/commons.jsx";
 import { Anchor } from "#pkg/elements/Anchor.jsx";
-
-import type { Metadata } from "next";
 
 function UeberMichPage() {
   return (

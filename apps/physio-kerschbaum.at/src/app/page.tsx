@@ -1,4 +1,6 @@
 import { styled } from "@pigment-css/react";
+import type { Metadata } from "next";
+import type React from "react";
 import { ArrowRightCircle } from "react-feather";
 
 import { headingIds } from "#pkg/app/page-constants.js";
@@ -21,9 +23,6 @@ import { AboutImage, AboutImageContainer, Heading } from "#pkg/components/common
 import { ImageCarousel, Slide } from "#pkg/components/image-carousel/index.js";
 import { Anchor } from "#pkg/elements/Anchor.jsx";
 import { Image } from "#pkg/elements/Image.jsx";
-
-import type { Metadata } from "next";
-import type React from "react";
 
 const diseaseIconHeight = 72;
 const prescriptionGuideIconHeight = 50;

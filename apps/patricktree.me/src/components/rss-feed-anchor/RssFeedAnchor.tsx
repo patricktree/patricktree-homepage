@@ -1,9 +1,8 @@
 import { styled } from "@pigment-css/react";
+import type React from "react";
 import { Rss } from "react-feather";
 
 import { Anchor } from "#pkg/elements/index.js";
-
-import type React from "react";
 
 export const RssFeedAnchor: React.FC = () => {
   return (

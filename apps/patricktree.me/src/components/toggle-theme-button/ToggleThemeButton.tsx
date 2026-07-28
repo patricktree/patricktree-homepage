@@ -1,12 +1,11 @@
 "use client";
 
 import { styled } from "@pigment-css/react";
+import type React from "react";
 import { Moon, Sun } from "react-feather";
 
 import { Classes, ColorTheme, CookieName, DataAttribute } from "#pkg/constants-browser.js";
 import { IconButton } from "#pkg/elements/index.js";
-
-import type React from "react";
 
 const iconSize = 20;
 

@@ -1,9 +1,9 @@
 "use client";
 
+import type React from "react";
+
 import { useSidenavContext } from "#pkg/components/sidenav/SidenavContextProvider.jsx";
 import { Anchor, type AnchorProps } from "#pkg/elements/Anchor.jsx";
-
-import type React from "react";
 
 type SidenavAnchorProps = AnchorProps;
 

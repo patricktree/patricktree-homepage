@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowLeftCircle } from "react-feather";
 
 import {
@@ -6,8 +7,6 @@ import {
   Heading,
   PageArticle,
 } from "#pkg/components/commons.jsx";
-
-import type { Metadata } from "next";
 
 function BlogPage() {
   return (

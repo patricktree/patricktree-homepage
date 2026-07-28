@@ -9,18 +9,12 @@ type IconProps = {
 /**
  * Taken and adapted from
  * https://fonts.google.com/icons?selected=Material+Symbols+Outlined:cookie:FILL@0;wght@400;GRAD@0;opsz@24
- * Changes: - Added "viewBox" so that the icon fills its SVG bounding client rect completely without
- * whitespace, and to make the icon resizable. - Set "fill" to "currentColor" so that the icon
- * adapts to the font-size of its surrounding context. - Takes a property "size" which will set
- * "height" and "width".
- */
-/**
- * Taken and adapted from
- * https://fonts.google.com/icons?selected=Material+Symbols+Outlined:cookie:FILL@0;wght@400;GRAD@0;opsz@24
- * Changes: - Added "viewBox" so that the icon fills its SVG bounding client rect completely without
- * whitespace, and to make the icon resizable. - Set "fill" to "currentColor" so that the icon
- * adapts to the font-size of its surrounding context. - Takes a property "size" which will set
- * "height" and "width".
+ * Changes:
+ *
+ * - Added "viewBox" so that the icon fills its SVG bounding client rect completely without
+ *   whitespace, and to make the icon resizable.
+ * - Set "fill" to "currentColor" so that the icon adapts to the font-size of its surrounding context.
+ * - Takes a property "size" which will set "height" and "width".
  */
 export const Bsky: React.FC<IconProps> = ({ size = 24 }) => (
   <svg
@@ -37,6 +31,16 @@ export const Bsky: React.FC<IconProps> = ({ size = 24 }) => (
   </svg>
 );
 
+/**
+ * Taken and adapted from
+ * https://fonts.google.com/icons?selected=Material+Symbols+Outlined:cookie:FILL@0;wght@400;GRAD@0;opsz@24
+ * Changes:
+ *
+ * - Added "viewBox" so that the icon fills its SVG bounding client rect completely without
+ *   whitespace, and to make the icon resizable.
+ * - Set "fill" to "currentColor" so that the icon adapts to the font-size of its surrounding context.
+ * - Takes a property "size" which will set "height" and "width".
+ */
 export const X: React.FC<IconProps> = ({ size = 24 }) => (
   <svg
     width={size}

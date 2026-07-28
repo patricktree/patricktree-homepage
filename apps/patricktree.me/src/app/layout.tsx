@@ -4,8 +4,10 @@ import "@fontsource-variable/rubik";
 import { styled } from "@pigment-css/react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { cookies } from "next/headers";
+import type React from "react";
 
 import { cssReset, cssBase, cssPrismaTheme } from "#pkg/app/global-styles.js";
 import { EnableAnimationsAfterHydration } from "#pkg/components/enable-animations-after-hydration/EnableAnimationsAfterHydration.jsx";
@@ -21,9 +23,6 @@ import {
   IsAnimationEnabled,
   TOC_QUERY,
 } from "#pkg/constants-browser.js";
-
-import type { Metadata, Viewport } from "next";
-import type React from "react";
 
 const fontMonospace = localFont({
   src: [

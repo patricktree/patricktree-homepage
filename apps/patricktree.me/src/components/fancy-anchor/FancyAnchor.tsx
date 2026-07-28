@@ -1,10 +1,9 @@
 import { urlUtils } from "@patricktree/commons-ecma/util/url";
 import { styled } from "@pigment-css/react";
+import type React from "react";
 
 import { Classes } from "#pkg/constants-browser.js";
 import { Anchor, type AnchorProps } from "#pkg/elements/index.js";
-
-import type React from "react";
 
 const MAX_TEXT_LENGTH_TO_BREAK_ICON_WITH_TEXT = 15;
 

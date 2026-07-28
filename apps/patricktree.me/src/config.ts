@@ -1,8 +1,8 @@
 /* configs are the only place where reading from process.env is allowed */
 
-import { config as MDXBlogConfig } from "@patricktree-homepage/mdx-blog/config";
-
 import type { GiscusProps } from "@giscus/react";
+
+import { config as MDXBlogConfig } from "@patricktree-homepage/mdx-blog/config";
 
 const isDevEnvironment = process.env.NODE_ENV === "development";
 export const config = {

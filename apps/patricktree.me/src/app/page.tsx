@@ -1,4 +1,5 @@
 import { styled } from "@pigment-css/react";
+import type { Metadata } from "next";
 import { PenTool } from "react-feather";
 
 import { headingIds } from "#pkg/app/heading-ids.js";
@@ -7,8 +8,6 @@ import { Introduction } from "#pkg/components/introduction/index.js";
 import { Main } from "#pkg/components/main/index.js";
 import { PATHS } from "#pkg/constants-server.js";
 import { getAllMarkdownFiles } from "#pkg/mdx/index.js";
-
-import type { Metadata } from "next";
 
 async function HomePage() {
   const [posts, tidbits] = await Promise.all([

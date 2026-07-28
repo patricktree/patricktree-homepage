@@ -1,13 +1,12 @@
 "use client";
 import { styled } from "@pigment-css/react";
+import type React from "react";
 
 import { Bsky, X as XIcon } from "#pkg/components/icon-library/index.js";
 import { config } from "#pkg/config.js";
 import { Anchor } from "#pkg/elements/index.js";
 import type { MDXParseResult } from "#pkg/mdx/index.js";
 import { usePageUrl } from "#pkg/utils/next.utils.js";
-
-import type React from "react";
 
 export type SocialShareSectionProps = { mdxParseResult: MDXParseResult };
 

@@ -1,10 +1,9 @@
 import { styled } from "@pigment-css/react";
+import type React from "react";
 import { Home, PenTool } from "react-feather";
 
 import { headingIds } from "#pkg/app/heading-ids.js";
 import { Anchor } from "#pkg/elements/index.js";
-
-import type React from "react";
 
 export const Nav: React.FC = () => {
   return (

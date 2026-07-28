@@ -2,6 +2,8 @@ import "#pkg/app/cascade-layers-definition.css";
 import "@pigment-css/react/styles.css";
 import { css } from "@pigment-css/react";
 import { Analytics } from "@vercel/analytics/react";
+import type { Metadata, Viewport } from "next";
+import type React from "react";
 
 import { manrope } from "#pkg/app/fonts.jsx";
 import { cssReset, cssBase } from "#pkg/app/global-styles.js";
@@ -11,9 +13,6 @@ import { Header } from "#pkg/components/header/index.js";
 import { Sidenav, SidenavContextProvider } from "#pkg/components/sidenav/index.js";
 import { config } from "#pkg/config.js";
 import { Classes, DataAttribute, IsAnimationEnabled } from "#pkg/constants-browser.js";
-
-import type { Metadata, Viewport } from "next";
-import type React from "react";
 
 type LayoutProps = {
   children: React.ReactNode;

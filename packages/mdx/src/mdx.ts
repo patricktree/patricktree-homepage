@@ -1,4 +1,5 @@
 import { compile } from "@mdx-js/mdx";
+import type { Root } from "hast";
 import fs from "node:fs";
 import rehypePrismGenerator from "rehype-prism-plus/generator";
 import remarkFrontmatter from "remark-frontmatter";
@@ -11,8 +12,6 @@ import { createCollectAndAugmentHeadingsPlugin } from "#pkg/rehype-plugins.js";
 import { createCollectHrefsFromJsxElementsPlugin } from "#pkg/remark-plugins.js";
 import type { Heading, MDXParseResult } from "#pkg/schema.js";
 import { schema_frontmatterData } from "#pkg/schema.js";
-
-import type { Root } from "hast";
 
 /* `rehype-prism-plus` declares a wider plugin type than the transformer it actually returns */
 // oxlint-disable-next-line typescript/no-unsafe-type-assertion

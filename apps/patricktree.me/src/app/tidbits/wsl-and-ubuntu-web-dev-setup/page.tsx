@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import path from "path";
 import invariant from "tiny-invariant";
 
@@ -7,8 +8,6 @@ import { ArticleContainerTidbit } from "#pkg/components/article-container-tidbit
 import { ClassesAliases } from "#pkg/constants-browser.js";
 import { PATHS } from "#pkg/constants-server.js";
 import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from "#pkg/mdx/index.js";
-
-import type { Metadata } from "next";
 
 const faviconsClassName = styles[ClassesAliases.FAVICONS];
 

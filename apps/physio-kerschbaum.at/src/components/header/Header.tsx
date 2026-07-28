@@ -1,5 +1,4 @@
 import { css } from "@pigment-css/react";
-
 import type React from "react";
 
 export const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => {
