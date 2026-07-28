@@ -5,6 +5,7 @@
     "build": "turbo run turbo:build",
     "build:watch": "turbo watch turbo:build",
     "clean": "pnpm run --parallel clean && pnpm exec del-cli \"**/node_modules\" \"**/.turbo\"",
+    "declutter": "knip",
     "dev": "pnpm --parallel --filter=\"./packages/*\" run dev",
     "fix": "pnpm run format && pnpm run lint:fix",
     "format": "oxfmt .",
@@ -12,7 +13,8 @@
     "lint": "turbo run turbo:lint",
     "lint:fix": "turbo run turbo:lint:fix",
     "postinstall": "sh ./postinstall.sh",
-    "test": "turbo run turbo:test"
+    "test": "turbo run turbo:test",
+    "validate": "turbo run turbo:build turbo:lint turbo:test && pnpm run declutter"
   },
   "devDependencies": {
     "@patricktree-homepage/config-stylelint": "workspace:*",
@@ -23,6 +25,7 @@
     "del-cli": "^6.0.0",
     "eslint-plugin-react-you-might-not-need-an-effect": "^1.0.1",
     "husky": "^9.1.7",
+    "knip": "^6.24.0",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
