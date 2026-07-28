@@ -57,7 +57,7 @@
     "@opentelemetry/api": "^1.9.0",
     "@pigment-css/nextjs-plugin": "^0.0.30",
     "@types/mdx": "^2.0.13",
-    "@types/node": "^24",
+    "@types/node": "catalog:",
     "@types/react": "^18",
     "@vercel/analytics": "^1.5.0",
     "next-sitemap": "^4.2.3",
@@ -68,8 +68,5 @@
     "stylelint-config-recess-order": "^6.0.0",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-standard-scss": "^14.0.0"
-  },
-  "engines": {
-    "node": "^24.15.0"
   }
 }

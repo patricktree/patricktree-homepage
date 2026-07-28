@@ -28,11 +28,7 @@
     "turbo": "^2.7.2",
     "typescript": "~5.9.3"
   },
-  "packageManager": "pnpm@10.26.2",
-  "engines": {
-    "npm": "0.0.0",
-    "pnpm": "10.26.2"
-  },
+  "packageManager": "pnpm@11.1.0",
   "pnpm": {
     "updateConfig": {
       "ignoreDependencies": [
@@ -42,6 +38,13 @@
     },
     "patchedDependencies": {
       "@wyw-in-js/transform@0.5.5": "patches/@wyw-in-js__transform@0.5.5.patch"
+    }
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.15.0",
+      "onFail": "download"
     }
   }
 }

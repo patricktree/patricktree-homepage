@@ -23,7 +23,7 @@
     "turbo:lint:fix": "pnpm run lint:js:file . --fix"
   },
   "devDependencies": {
-    "@types/node": "^24"
+    "@types/node": "catalog:"
   },
   "peerDependencies": {
     "turbo": "^2.7.2"
