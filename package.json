@@ -2,31 +2,26 @@
   "name": "patricktree-homepage",
   "private": true,
   "scripts": {
-    "build": "superturbo run turbo:build",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "pnpm run --parallel clean && pnpm exec del-cli \"**/node_modules\" \"**/.turbo\"",
     "dev": "pnpm --parallel --filter=\"./packages/*\" run dev",
-    "format": "prettier --write --ignore-unknown .",
-    "lint": "superturbo run turbo:lint",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:node-modules",
-    "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
-    "nuke:compute-cache": "del-cli --dot=true \"*/**/.turbo\"",
-    "nuke:node-modules": "del-cli --dot=true \"**/node_modules\"",
-    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky && pnpm exec add-all-tsconfigs-as-project-references --monorepo-path=. --tsconfig-filename=\"tsconfig.json\")"
+    "lint": "turbo run turbo:lint",
+    "lint:fix": "turbo run turbo:lint:fix",
+    "postinstall": "sh ./postinstall.sh",
+    "test": "turbo run turbo:test"
   },
   "devDependencies": {
     "@patricktree-homepage/config-prettier": "workspace:*",
     "@patricktree-homepage/config-stylelint": "workspace:*",
-    "@patricktree-homepage/config-turbo": "workspace:*",
     "@patricktree-homepage/config-typescript": "workspace:*",
     "@patricktree-homepage/eslint-config": "workspace:*",
-    "@patricktree-homepage/superturbo": "workspace:*",
-    "@patricktree/pkg-management": "^2.1.0",
     "@typescript/native": "catalog:",
     "del-cli": "^6.0.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.10",
-    "turbo": "^2.7.2",
+    "turbo": "^2.10.3",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@11.1.0",
@@ -47,5 +42,6 @@
       "version": "^24.15.0",
       "onFail": "download"
     }
-  }
+  },
+  "type": "module"
 }

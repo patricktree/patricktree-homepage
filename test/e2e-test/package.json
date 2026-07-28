@@ -6,15 +6,14 @@
     "#pkg/*": "./dist/*"
   },
   "scripts": {
-    "build": "superturbo run turbo:build",
-    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "build": "turbo run turbo:build",
+    "build:watch": "turbo watch turbo:build",
+    "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "e2e-test": "playwright test --config ./src/playwright.config.ts",
     "internal:compile": "tsc --build ./tsconfig.json",
-    "lint": "superturbo run turbo:lint",
+    "lint": "turbo run turbo:lint",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "superturbo run turbo:lint:fix",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
+    "lint:fix": "turbo run turbo:lint:fix",
     "turbo:build": "pnpm run internal:compile",
     "turbo:lint": "pnpm run lint:file .",
     "turbo:lint:fix": "pnpm run lint:file . --fix"

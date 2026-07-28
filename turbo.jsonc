@@ -1,3 +1,54 @@
 {
-  "$schema": "https://turbo.build/schema.json",
+  "$schema": "./node_modules/turbo/schema.json",
+  "noUpdateNotifier": true,
+  "concurrency": "100%",
+  "futureFlags": {
+    "watchUsingTaskInputs": true,
+  },
+  "tasks": {
+    "turbo:build": {
+      "cache": false,
+      "inputs": [
+        /* default inputs = all git tracked files */
+        "$TURBO_DEFAULT$",
+        /* exclude markdown files */
+        "!*.md",
+        /* exclude license files */
+        "!LICENSE",
+      ],
+    },
+    "turbo:lint": {
+      "cache": false,
+      "inputs": [
+        /* default inputs = all git tracked files */
+        "$TURBO_DEFAULT$",
+        /* exclude markdown files */
+        "!*.md",
+        /* exclude license files */
+        "!LICENSE",
+      ],
+    },
+    "turbo:lint:fix": {
+      "cache": false,
+      "inputs": [
+        /* default inputs = all git tracked files */
+        "$TURBO_DEFAULT$",
+        /* exclude markdown files */
+        "!*.md",
+        /* exclude license files */
+        "!LICENSE",
+      ],
+    },
+    "turbo:test": {
+      "cache": false,
+      "inputs": [
+        /* default inputs = all git tracked files */
+        "$TURBO_DEFAULT$",
+        /* exclude markdown files */
+        "!*.md",
+        /* exclude license files */
+        "!LICENSE",
+      ],
+    },
+  },
 }
