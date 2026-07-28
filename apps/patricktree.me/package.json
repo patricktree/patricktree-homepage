@@ -18,13 +18,11 @@
     "internal:generate-css-modules": "pnpm run internal:compile && generate-css-modules-for-articles && oxfmt \"./src/app/**/*.module.css\" && git add \"./src/app/**/*.module.css\"",
     "lint": "turbo run turbo:lint",
     "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\" \"!./src/app/blog/*/styles.module.css\" \"!./src/app/tidbits/*/styles.module.css\"",
-    "lint:eslint": "pnpm run lint:file .",
-    "lint:file": "eslint --max-warnings 0",
     "lint:fix": "turbo run turbo:lint:fix",
     "start": "next start",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:eslint && pnpm run lint:css",
-    "turbo:lint:fix": "pnpm run lint:file . --fix && pnpm run lint:css --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 . && pnpm run lint:css",
+    "turbo:lint:fix": "oxlint --type-aware --max-warnings 0 . --fix && pnpm run lint:css --fix"
   },
   "dependencies": {
     "@fontsource-variable/rubik": "^5.2.5",
@@ -54,6 +52,7 @@
     "@babel/runtime": "^7.27.0",
     "@next/env": "^15.3.1",
     "@opentelemetry/api": "^1.9.0",
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@pigment-css/nextjs-plugin": "^0.0.30",
     "@types/mdx": "^2.0.13",
     "@types/node": "catalog:",
@@ -62,6 +61,8 @@
     "@vercel/analytics": "^1.5.0",
     "next-sitemap": "^4.2.3",
     "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "playwright": "^1.52.0",
     "postcss": "^8.5.3",
     "postcss-styled-syntax": "^0.7.1",

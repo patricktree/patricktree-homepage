@@ -15,11 +15,10 @@
     "clean": "del-cli --dot=true \"dist\" \"*.tsbuildinfo\"",
     "internal:compile": "tsc --build ./tsconfig.json",
     "lint": "turbo run turbo:lint",
-    "lint:file": "eslint --max-warnings 0",
     "lint:fix": "turbo run turbo:lint:fix",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:file .",
-    "turbo:lint:fix": "pnpm run lint:file . --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 .",
+    "turbo:lint:fix": "pnpm run turbo:lint --fix"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.0",
@@ -40,8 +39,11 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@types/node": "catalog:",
     "@typescript/native": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "typescript": "catalog:"
   }
 }

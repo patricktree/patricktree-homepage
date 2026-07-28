@@ -17,23 +17,20 @@
   "devDependencies": {
     "@patricktree-homepage/config-stylelint": "workspace:*",
     "@patricktree-homepage/config-typescript": "workspace:*",
-    "@patricktree-homepage/eslint-config": "workspace:*",
     "@patricktree-stack/config-oxfmt": "workspace:*",
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@typescript/native": "catalog:",
     "del-cli": "^6.0.0",
+    "eslint-plugin-react-you-might-not-need-an-effect": "^1.0.1",
     "husky": "^9.1.7",
     "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "turbo": "^2.10.3",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@11.1.0",
   "pnpm": {
-    "updateConfig": {
-      "ignoreDependencies": [
-        "eslint",
-        "@types/eslint"
-      ]
-    },
     "patchedDependencies": {
       "@wyw-in-js/transform@0.5.5": "patches/@wyw-in-js__transform@0.5.5.patch"
     }

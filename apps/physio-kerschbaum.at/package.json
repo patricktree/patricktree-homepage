@@ -16,13 +16,11 @@
     "internal:compile:watch": "pnpm run internal:compile --watch",
     "lint": "turbo run turbo:lint",
     "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\"",
-    "lint:eslint": "pnpm run lint:file .",
-    "lint:file": "eslint --max-warnings 0",
     "lint:fix": "turbo run turbo:lint:fix",
     "start": "next start",
     "turbo:build": "pnpm run internal:compile",
-    "turbo:lint": "pnpm run lint:eslint && pnpm run lint:css",
-    "turbo:lint:fix": "pnpm run lint:file . --fix && pnpm run lint:css --fix"
+    "turbo:lint": "oxlint --type-aware --max-warnings 0 . && pnpm run lint:css",
+    "turbo:lint:fix": "oxlint --type-aware --max-warnings 0 . --fix && pnpm run lint:css --fix"
   },
   "dependencies": {
     "@patricktree-homepage/react-utils": "workspace:*",
@@ -41,12 +39,15 @@
   "devDependencies": {
     "@next/env": "^15.3.1",
     "@opentelemetry/api": "^1.9.0",
+    "@patricktree-stack/config-oxlint": "workspace:*",
     "@pigment-css/nextjs-plugin": "^0.0.30",
     "@types/node": "catalog:",
     "@types/react": "^18",
     "@typescript/native": "catalog:",
     "@vercel/analytics": "^1.5.0",
     "next-sitemap": "^4.2.3",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "postcss": "^8.5.3",
     "postcss-styled-syntax": "^0.7.1",
     "stylelint": "^16.19.1",
