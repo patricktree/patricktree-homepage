@@ -1,3 +1,2 @@
 pnpm run format:check
-pnpm run build
-pnpm run lint
+pnpm run validate
