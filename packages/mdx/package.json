@@ -41,6 +41,8 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@types/node": "catalog:"
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:"
   }
 }

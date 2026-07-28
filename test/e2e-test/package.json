@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "catalog:"
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:"
   }
 }

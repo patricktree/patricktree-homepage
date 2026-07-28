@@ -21,12 +21,13 @@
     "@patricktree-homepage/eslint-config": "workspace:*",
     "@patricktree-homepage/superturbo": "workspace:*",
     "@patricktree/pkg-management": "^2.1.0",
+    "@typescript/native": "catalog:",
     "del-cli": "^6.0.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.10",
     "turbo": "^2.7.2",
-    "typescript": "~5.9.3"
+    "typescript": "catalog:"
   },
   "packageManager": "pnpm@11.1.0",
   "pnpm": {
