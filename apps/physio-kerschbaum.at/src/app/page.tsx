@@ -1,28 +1,29 @@
-import { styled } from '@pigment-css/react';
-import type { Metadata } from 'next';
-import type React from 'react';
-import { ArrowRightCircle } from 'react-feather';
+import { styled } from "@pigment-css/react";
+import { ArrowRightCircle } from "react-feather";
 
-import { headingIds } from '#pkg/app/page-constants.js';
-import photoshooting_11DSC0068 from '#pkg/assets/11-DSC_0068.jpg';
-import photoshooting_15DSC0081 from '#pkg/assets/15-DSC_0081.jpg';
-import photoshooting_20DSC0108 from '#pkg/assets/20-DSC_0108.jpg';
-import photoshooting_24DSC01312 from '#pkg/assets/24-DSC_0131-2.jpg';
-import photoshooting_3DSC0018 from '#pkg/assets/3-DSC_0018.jpg';
-import photoshooting_7DSC0039 from '#pkg/assets/7-DSC_0039.jpg';
-import photoshooting_8DSC0042 from '#pkg/assets/8-DSC_0042.jpg';
-import icon_brain from '#pkg/assets/icons/brain.svg';
-import icon_calendar from '#pkg/assets/icons/calendar.svg';
-import icon_file_checked from '#pkg/assets/icons/file-checked.svg';
-import icon_file from '#pkg/assets/icons/file.svg';
-import icon_head_confused from '#pkg/assets/icons/head-confused.svg';
-import icon_headache from '#pkg/assets/icons/headache.svg';
-import icon_people_talk from '#pkg/assets/icons/people-talk.svg';
-import icon_spine from '#pkg/assets/icons/spine.svg';
-import { AboutImage, AboutImageContainer, Heading } from '#pkg/components/commons.jsx';
-import { ImageCarousel, Slide } from '#pkg/components/image-carousel/index.js';
-import { Anchor } from '#pkg/elements/Anchor.jsx';
-import { Image } from '#pkg/elements/Image.jsx';
+import { headingIds } from "#pkg/app/page-constants.js";
+import photoshooting_3DSC0018 from "#pkg/assets/3-DSC_0018.jpg";
+import photoshooting_7DSC0039 from "#pkg/assets/7-DSC_0039.jpg";
+import photoshooting_8DSC0042 from "#pkg/assets/8-DSC_0042.jpg";
+import photoshooting_11DSC0068 from "#pkg/assets/11-DSC_0068.jpg";
+import photoshooting_15DSC0081 from "#pkg/assets/15-DSC_0081.jpg";
+import photoshooting_20DSC0108 from "#pkg/assets/20-DSC_0108.jpg";
+import photoshooting_24DSC01312 from "#pkg/assets/24-DSC_0131-2.jpg";
+import icon_brain from "#pkg/assets/icons/brain.svg";
+import icon_calendar from "#pkg/assets/icons/calendar.svg";
+import icon_file_checked from "#pkg/assets/icons/file-checked.svg";
+import icon_file from "#pkg/assets/icons/file.svg";
+import icon_head_confused from "#pkg/assets/icons/head-confused.svg";
+import icon_headache from "#pkg/assets/icons/headache.svg";
+import icon_people_talk from "#pkg/assets/icons/people-talk.svg";
+import icon_spine from "#pkg/assets/icons/spine.svg";
+import { AboutImage, AboutImageContainer, Heading } from "#pkg/components/commons.jsx";
+import { ImageCarousel, Slide } from "#pkg/components/image-carousel/index.js";
+import { Anchor } from "#pkg/elements/Anchor.jsx";
+import { Image } from "#pkg/elements/Image.jsx";
+
+import type { Metadata } from "next";
+import type React from "react";
 
 const diseaseIconHeight = 72;
 const prescriptionGuideIconHeight = 50;
@@ -87,14 +88,7 @@ function HomePage() {
         <CardsGrid>
           <Card>
             <CardIcon>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_brain
-                }
-                height={diseaseIconHeight}
-              />
+              <Image alt="" src={icon_brain} height={diseaseIconHeight} />
             </CardIcon>
             <DiseaseCardHeading>Neurologie</DiseaseCardHeading>
             <FancyDivider />
@@ -106,14 +100,7 @@ function HomePage() {
 
           <Card>
             <CardIcon>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_spine
-                }
-                height={diseaseIconHeight}
-              />
+              <Image alt="" src={icon_spine} height={diseaseIconHeight} />
             </CardIcon>
             <DiseaseCardHeading>Rückenbeschwerden</DiseaseCardHeading>
             <FancyDivider />
@@ -125,14 +112,7 @@ function HomePage() {
 
           <Card>
             <CardIcon>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_headache
-                }
-                height={diseaseIconHeight}
-              />
+              <Image alt="" src={icon_headache} height={diseaseIconHeight} />
             </CardIcon>
             <DiseaseCardHeading>Kopfschmerzen & Migräne</DiseaseCardHeading>
             <FancyDivider />
@@ -144,14 +124,7 @@ function HomePage() {
 
           <Card>
             <CardIcon>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_head_confused
-                }
-                height={diseaseIconHeight}
-              />
+              <Image alt="" src={icon_head_confused} height={diseaseIconHeight} />
             </CardIcon>
             <DiseaseCardHeading>Schwindel & Tinnitus</DiseaseCardHeading>
             <FancyDivider />
@@ -194,15 +167,8 @@ function HomePage() {
           <PrescriptionGuideSection>
             <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>1</PrescriptionGuideNumbering>
-            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_file
-                }
-                height={prescriptionGuideIconHeight - 18}
-              />
+            <PrescriptionGuideIcon style={{ "--icon-size": `${prescriptionGuideIconHeight}px` }}>
+              <Image alt="" src={icon_file} height={prescriptionGuideIconHeight - 18} />
             </PrescriptionGuideIcon>
             <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Verordnung vom Arzt</PrescriptionGuideText>
@@ -211,15 +177,8 @@ function HomePage() {
           <PrescriptionGuideSection>
             <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>2</PrescriptionGuideNumbering>
-            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_file_checked
-                }
-                height={prescriptionGuideIconHeight - 15}
-              />
+            <PrescriptionGuideIcon style={{ "--icon-size": `${prescriptionGuideIconHeight}px` }}>
+              <Image alt="" src={icon_file_checked} height={prescriptionGuideIconHeight - 15} />
             </PrescriptionGuideIcon>
             <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>
@@ -232,15 +191,8 @@ function HomePage() {
           <PrescriptionGuideSection>
             <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>3</PrescriptionGuideNumbering>
-            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_calendar
-                }
-                height={prescriptionGuideIconHeight - 20}
-              />
+            <PrescriptionGuideIcon style={{ "--icon-size": `${prescriptionGuideIconHeight}px` }}>
+              <Image alt="" src={icon_calendar} height={prescriptionGuideIconHeight - 20} />
             </PrescriptionGuideIcon>
             <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Termin buchen</PrescriptionGuideText>
@@ -249,15 +201,8 @@ function HomePage() {
           <PrescriptionGuideSection>
             <PrescriptionGuideGridLine1 />
             <PrescriptionGuideNumbering>4</PrescriptionGuideNumbering>
-            <PrescriptionGuideIcon style={{ '--icon-size': `${prescriptionGuideIconHeight}px` }}>
-              <Image
-                alt=""
-                src={
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  icon_people_talk
-                }
-                height={prescriptionGuideIconHeight - 25}
-              />
+            <PrescriptionGuideIcon style={{ "--icon-size": `${prescriptionGuideIconHeight}px` }}>
+              <Image alt="" src={icon_people_talk} height={prescriptionGuideIconHeight - 25} />
             </PrescriptionGuideIcon>
             <PrescriptionGuideGridLine2 />
             <PrescriptionGuideText>Ersttermin</PrescriptionGuideText>
@@ -383,7 +328,7 @@ function HomePage() {
       </Section>
 
       <Section as="footer" ContentComponent={FooterSectionContent}>
-        <Anchor href="/impressum">Impressum</Anchor> und{' '}
+        <Anchor href="/impressum">Impressum</Anchor> und{" "}
         <Anchor href="/datenschutz">Datenschutz</Anchor>
       </Section>
     </>
@@ -391,9 +336,9 @@ function HomePage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Physiotherapie Jasmin Kerschbaum',
+  title: "Physiotherapie Jasmin Kerschbaum",
   openGraph: {
-    title: 'Physiotherapie Jasmin Kerschbaum',
+    title: "Physiotherapie Jasmin Kerschbaum",
   },
 };
 
@@ -401,13 +346,13 @@ export default HomePage;
 
 type SectionProps = {
   children: React.ReactNode;
-  as?: 'section' | 'footer';
-  ContentComponent?: React.ElementType<React.ComponentPropsWithoutRef<'div'>>;
+  as?: "section" | "footer";
+  ContentComponent?: React.ElementType<React.ComponentPropsWithoutRef<"div">>;
 };
 
 const Section: React.FC<SectionProps> = ({
   children,
-  as = 'section',
+  as = "section",
   ContentComponent = DefaultSectionContent,
 }) => {
   return (
@@ -595,11 +540,11 @@ const PrescriptionGuideSection = styled.div`
   --section-margin-block-end: calc(4 * var(--spacing-base));
   display: grid;
   grid-template-areas:
-    'grid-line-1 empty-1'
-    'numbering section-icon'
-    'grid-line-2 empty-2'
-    'grid-line-2 section-text'
-    'grid-line-2 block-end-spacing';
+    "grid-line-1 empty-1"
+    "numbering section-icon"
+    "grid-line-2 empty-2"
+    "grid-line-2 section-text"
+    "grid-line-2 block-end-spacing";
   grid-template-rows: 0 var(--numbering-size) 12px 1fr var(--section-margin-block-end);
   grid-template-columns: max-content minmax(max-content, 300px);
 

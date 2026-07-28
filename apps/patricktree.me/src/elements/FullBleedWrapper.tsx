@@ -1,8 +1,6 @@
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-/**
- * https://css-tricks.com/full-bleed/
- */
+/** https://css-tricks.com/full-bleed/ */
 export const FullBleedWrapper = styled.div`
   position: relative;
   right: 50%;

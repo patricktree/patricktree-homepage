@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
-import { ArrowLeftCircle } from 'react-feather';
+import { ArrowLeftCircle } from "react-feather";
 
+import { headingIds } from "#pkg/app/page-constants.js";
 import {
   BacklinkAnchor,
   BackLinkParagraph,
   Heading,
   PageArticle,
-} from '#pkg/components/commons.jsx';
-import { Anchor } from '#pkg/elements/Anchor.jsx';
-import { headingIds } from '../page-constants';
+} from "#pkg/components/commons.jsx";
+import { Anchor } from "#pkg/elements/Anchor.jsx";
+
+import type { Metadata } from "next";
 
 function UeberMichPage() {
   return (
@@ -27,7 +28,7 @@ function UeberMichPage() {
         </li>
         <li>
           <strong>Termin buchen:</strong> Termine können online, per Telefon oder Mail gebucht
-          werden - siehe unter{' '}
+          werden - siehe unter{" "}
           <Anchor href={`/#${headingIds.standorteTerminbuchung}`}>
             &quot;Standorte & Terminbuchung&quot;
           </Anchor>
@@ -60,9 +61,9 @@ function UeberMichPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Der Weg zur Physiotherapie – Physiotherapie Jasmin Kerschbaum',
+  title: "Der Weg zur Physiotherapie – Physiotherapie Jasmin Kerschbaum",
   openGraph: {
-    title: 'Der Weg zur Physiotherapie – Physiotherapie Jasmin Kerschbaum',
+    title: "Der Weg zur Physiotherapie – Physiotherapie Jasmin Kerschbaum",
   },
 };
 

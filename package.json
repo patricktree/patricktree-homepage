@@ -1,6 +1,7 @@
 {
   "name": "patricktree-homepage",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run turbo:build",
     "build:watch": "turbo watch turbo:build",
@@ -20,7 +21,6 @@
     "@patricktree-homepage/config-stylelint": "workspace:*",
     "@patricktree-homepage/config-typescript": "workspace:*",
     "@patricktree-stack/config-oxfmt": "workspace:*",
-    "@patricktree-stack/config-oxlint": "workspace:*",
     "@typescript/native": "catalog:",
     "del-cli": "^6.0.0",
     "eslint-plugin-react-you-might-not-need-an-effect": "^1.0.1",
@@ -32,12 +32,6 @@
     "turbo": "^2.10.3",
     "typescript": "catalog:"
   },
-  "packageManager": "pnpm@11.1.0",
-  "pnpm": {
-    "patchedDependencies": {
-      "@wyw-in-js/transform@0.5.5": "patches/@wyw-in-js__transform@0.5.5.patch"
-    }
-  },
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -45,5 +39,10 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "packageManager": "pnpm@11.1.0",
+  "pnpm": {
+    "patchedDependencies": {
+      "@wyw-in-js/transform@0.5.5": "patches/@wyw-in-js__transform@0.5.5.patch"
+    }
+  }
 }

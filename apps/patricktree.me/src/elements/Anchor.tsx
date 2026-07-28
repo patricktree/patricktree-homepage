@@ -1,8 +1,9 @@
-import type { Route } from 'next';
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
-export type AnchorRoute = Route;
+import type { Route } from "next";
+
+type AnchorRoute = Route;
 
 export type AnchorProps = React.ComponentProps<typeof Link> & {
   href: AnchorRoute | URL;

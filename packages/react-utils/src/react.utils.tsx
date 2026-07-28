@@ -1,9 +1,9 @@
-import React from 'react';
-import * as ReactIs from 'react-is';
+import React from "react";
+import * as ReactIs from "react-is";
 
 export const reactUtils = { createContext, getNodeText };
 
-const SYMBOL_CONTEXT_NOT_FOUND = Symbol('ContextNotFound');
+const SYMBOL_CONTEXT_NOT_FOUND = Symbol("ContextNotFound");
 type SYMBOL_CONTEXT_NOT_FOUND = typeof SYMBOL_CONTEXT_NOT_FOUND;
 
 function createContext<ContextValue>(name: string) {
@@ -19,6 +19,8 @@ function createContext<ContextValue>(name: string) {
     return valueOfContext;
   }
 
+  /* `Provider` captures `Context` from this scope, so it cannot be hoisted out */
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
   const Provider: React.FC<{
     children: React.ReactNode;
     value: ContextValue;
@@ -33,76 +35,76 @@ export function useIsMounted() {
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
+    /* this is the SSR hydration idiom: the value has to start out `false` so that server and client
+       render identically, and only flip to `true` after the client has mounted */
+    // oxlint-disable-next-line react-you-might-not-need-an-effect/no-initialize-state
     setIsMounted(true);
   }, []);
 
   return isMounted;
 }
 
-/**
- * based on https://stackoverflow.com/a/60564620/1700319
- */
+/** Based on https://stackoverflow.com/a/60564620/1700319 */
 function getNodeText(node: React.ReactNode): string {
-  if (typeof node === 'string') {
+  if (typeof node === "string") {
     return node;
   }
-  if (typeof node === 'number') {
+  if (typeof node === "number") {
     return `${node}`;
   }
   if (Array.isArray(node)) {
-    return node.map((node) => getNodeText(node as React.ReactNode)).join('');
+    return node.map((childNode: React.ReactNode) => getNodeText(childNode)).join("");
   }
   if (ReactIs.isElement(node)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     return getNodeText(node.props.children);
   }
   throw new Error(`should not get here`);
 }
 
 /**
- * Based on https://github.com/imbhargav5/rooks/blob/76426161edca1f233c8d4dea6ce5e5f97d4ff607/packages/rooks/src/hooks/useMediaMatch.ts
+ * Based on
+ * https://github.com/imbhargav5/rooks/blob/76426161edca1f233c8d4dea6ce5e5f97d4ff607/packages/rooks/src/hooks/useMediaMatch.ts
  *
  * A react hook that signals whether or not a media query is matched.
- * @param query The media query to signal on. Example, `"print"` will signal
- * `true` when previewing in print mode, and `false` otherwise.
- * @returns if "window" is not defined, "SSR"; if "window" is defined a boolean whether or not the media query is currently matched.
+ *
+ * @param query The media query to signal on. Example, `"print"` will signal `true` when previewing
+ *   in print mode, and `false` otherwise.
+ * @returns If "window" is not defined, "SSR"; if "window" is defined a boolean whether or not the
+ *   media query is currently matched.
  * @see https://rooks.vercel.app/docs/useMediaMatch
  */
-export function useMediaMatch(query: string): boolean | 'SSR' {
+export function useMediaMatch(query: string): boolean | "SSR" {
   const matchMedia = React.useMemo<MediaQueryList | undefined>(() => {
-    // eslint-disable-next-line unicorn/prefer-global-this -- explicit usage of `window` here
-    if (typeof window === 'undefined') {
-      return;
+    /* explicit usage of `window` here */
+    if (typeof window === "undefined") {
+      return undefined;
     }
-    // eslint-disable-next-line unicorn/prefer-global-this -- explicit usage of `window` here
+    /* explicit usage of `window` here */
     return window.matchMedia(query);
   }, [query]);
-  const [matches, setMatches] = React.useState<boolean | 'SSR'>(() => {
+  const [matches, setMatches] = React.useState<boolean | "SSR">(() => {
     if (!matchMedia) {
-      return 'SSR';
+      return "SSR";
     }
     return matchMedia.matches;
   });
 
   React.useEffect(() => {
     if (!matchMedia) {
-      return;
+      return undefined;
     }
 
     setMatches(matchMedia.matches);
 
-    function onMatchMediaChangeListener(event: MediaQueryListEventMap['change']) {
+    function onMatchMediaChangeListener(event: MediaQueryListEventMap["change"]) {
       setMatches(event.matches);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (matchMedia.addEventListener) {
-      matchMedia.addEventListener('change', onMatchMediaChangeListener);
-      return () => matchMedia.removeEventListener('change', onMatchMediaChangeListener);
+      matchMedia.addEventListener("change", onMatchMediaChangeListener);
+      return () => matchMedia.removeEventListener("change", onMatchMediaChangeListener);
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       matchMedia.addListener(onMatchMediaChangeListener);
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
       return () => matchMedia.removeListener(onMatchMediaChangeListener);
     }
   }, [matchMedia]);

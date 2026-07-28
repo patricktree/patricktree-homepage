@@ -1,27 +1,29 @@
-'use client';
+"use client";
 
-import Giscus from '@giscus/react';
-import { useEffect, useState } from 'react';
+import Giscus from "@giscus/react";
+import { useEffect, useState } from "react";
 
-import { config } from '#pkg/config.js';
-import { ColorTheme, DataAttribute } from '#pkg/constants-browser.js';
+import { config } from "#pkg/config.js";
+import { ColorTheme, DataAttribute } from "#pkg/constants-browser.js";
 
 export const GiscusComments: React.FC<{ giscusTerm: string }> = ({ giscusTerm }) => {
-  const [theme, setTheme] = useState<string>('light');
+  const [theme, setTheme] = useState<string>("light");
 
   useEffect(function syncReactStateThemeWithDataAttribute() {
     const updateTheme = () => {
       const currentTheme = document.documentElement.getAttribute(DataAttribute.THEME);
-      setTheme(currentTheme === ColorTheme.DARK ? 'dark' : 'light');
+      setTheme(currentTheme === ColorTheme.DARK ? "dark" : "light");
     };
 
-    // Initial check
+    /* the theme lives in a DOM data attribute set before hydration, so the initial value has to be
+       read after mount to keep the server and client markup identical */
+    // oxlint-disable-next-line react-you-might-not-need-an-effect/no-initialize-state
     updateTheme();
 
     // Observer for changes
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
-        if (mutation.type === 'attributes' && mutation.attributeName === DataAttribute.THEME) {
+        if (mutation.type === "attributes" && mutation.attributeName === DataAttribute.THEME) {
           updateTheme();
         }
       }

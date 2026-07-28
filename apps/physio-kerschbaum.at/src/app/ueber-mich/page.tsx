@@ -1,7 +1,6 @@
-import type { Metadata } from 'next';
-import { ArrowLeftCircle } from 'react-feather';
+import { ArrowLeftCircle } from "react-feather";
 
-import photoshooting_24DSC01312 from '#pkg/assets/24-DSC_0131-2.jpg';
+import photoshooting_24DSC01312 from "#pkg/assets/24-DSC_0131-2.jpg";
 import {
   AboutImage,
   AboutImageContainer,
@@ -9,7 +8,9 @@ import {
   BackLinkParagraph,
   Heading,
   PageArticle,
-} from '#pkg/components/commons.jsx';
+} from "#pkg/components/commons.jsx";
+
+import type { Metadata } from "next";
 
 function UeberMichPage() {
   return (
@@ -70,9 +71,9 @@ function UeberMichPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Über mich – Physiotherapie Jasmin Kerschbaum',
+  title: "Über mich – Physiotherapie Jasmin Kerschbaum",
   openGraph: {
-    title: 'Über mich – Physiotherapie Jasmin Kerschbaum',
+    title: "Über mich – Physiotherapie Jasmin Kerschbaum",
   },
 };
 

@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
-import path from 'path';
-import type React from 'react';
-import invariant from 'tiny-invariant';
+import path from "path";
+import invariant from "tiny-invariant";
 
-import { MDXContentClientComponent } from '#pkg/app/tidbits/my-macos-setup-february-2026/mdx-content-client-component.jsx';
-import styles from '#pkg/app/tidbits/my-macos-setup-february-2026/styles.module.css';
-import { ArticleContainerTidbit } from '#pkg/components/article-container-tidbit/index.js';
-import { ClassesAliases } from '#pkg/constants-browser.js';
-import { PATHS } from '#pkg/constants-server.js';
-import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from '#pkg/mdx/index.js';
+import { MDXContentClientComponent } from "#pkg/app/tidbits/my-macos-setup-february-2026/mdx-content-client-component.jsx";
+import styles from "#pkg/app/tidbits/my-macos-setup-february-2026/styles.module.css";
+import { ArticleContainerTidbit } from "#pkg/components/article-container-tidbit/index.js";
+import { ClassesAliases } from "#pkg/constants-browser.js";
+import { PATHS } from "#pkg/constants-server.js";
+import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from "#pkg/mdx/index.js";
+
+import type { Metadata } from "next";
 
 const faviconsClassName = styles[ClassesAliases.FAVICONS];
 

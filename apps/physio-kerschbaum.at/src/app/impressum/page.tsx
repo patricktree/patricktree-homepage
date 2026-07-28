@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
-import { ArrowLeftCircle } from 'react-feather';
+import { ArrowLeftCircle } from "react-feather";
 
 import {
   BacklinkAnchor,
   BackLinkParagraph,
   Heading,
   PageArticle,
-} from '#pkg/components/commons.jsx';
+} from "#pkg/components/commons.jsx";
+
+import type { Metadata } from "next";
 
 function ImpressumPage() {
   return (
@@ -84,9 +85,9 @@ function ImpressumPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Impressum – Physiotherapie Jasmin Kerschbaum',
+  title: "Impressum – Physiotherapie Jasmin Kerschbaum",
   openGraph: {
-    title: 'Impressum – Physiotherapie Jasmin Kerschbaum',
+    title: "Impressum – Physiotherapie Jasmin Kerschbaum",
   },
 };
 

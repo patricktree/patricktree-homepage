@@ -9,7 +9,6 @@
     "lib": ["dom", "dom.iterable", "esnext"],
 
     /* Modules */
-    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import type React from 'react';
+import { useVersionTabs } from "#pkg/components/version-tabs/VersionTabsContext.jsx";
 
-import { useVersionTabs } from '#pkg/components/version-tabs/VersionTabsContext.jsx';
+import type React from "react";
 
 type VersionProps = {
   values: readonly string[];

@@ -1,41 +1,44 @@
-import { type Author, Feed } from 'feed';
-import fs from 'node:fs';
+import { type Author, Feed } from "feed";
+import fs from "node:fs";
 
-import type { MDXFile } from '@patricktree-homepage/mdx/schema';
+import type { MDXFile } from "@patricktree-homepage/mdx/schema";
 
-import { config } from '#pkg/config.js';
+import { config } from "#pkg/config.js";
 import {
   PATHS,
   getRssFeedJsonPath,
   getRssFeedXmlPath,
   RSS_FEED_JSON_SLUG,
   RSS_FEED_XML_SLUG,
-} from '#pkg/constants-server.js';
-import { getAllMarkdownFiles } from '#pkg/mdx.js';
+} from "#pkg/constants-server.js";
+import { getAllMarkdownFiles } from "#pkg/mdx.js";
 
 const [posts, tidbits] = await Promise.all([
   getAllMarkdownFiles(PATHS.POSTS),
   getAllMarkdownFiles(PATHS.TIDBITS),
 ]);
 
-const imageUrl = new URL('/favicons/android-chrome-512x512.png', config.deploymentOrigin);
-const faviconUrl = new URL('/favicons/favicon.ico', config.deploymentOrigin);
+const imageUrl = new URL("/favicons/android-chrome-512x512.png", config.deploymentOrigin);
+const faviconUrl = new URL("/favicons/favicon.ico", config.deploymentOrigin);
 const rssFeedXmlUrl = new URL(RSS_FEED_XML_SLUG, config.deploymentOrigin);
 const rssFeedJsonUrl = new URL(RSS_FEED_JSON_SLUG, config.deploymentOrigin);
 
+/* the `feed` package's API takes `Date` instances, so there is nothing to gain from
+   converting to `Temporal` and back here */
+// oxlint-disable-next-line no-restricted-globals
 const today = new Date();
 const author: Author = {
-  name: 'Patrick Kerschbaum',
+  name: "Patrick Kerschbaum",
   link: config.deploymentOrigin.href,
 };
 
 const feed = new Feed({
-  title: 'Patrick Kerschbaum',
+  title: "Patrick Kerschbaum",
   description:
-    'I write articles about JavaScript, TypeScript, Testing, and the web platform in general.',
+    "I write articles about JavaScript, TypeScript, Testing, and the web platform in general.",
   id: config.deploymentOrigin.href,
   link: config.deploymentOrigin.href,
-  language: 'en',
+  language: "en",
   image: imageUrl.href,
   favicon: faviconUrl.href,
   copyright: `All rights reserved ${today.getFullYear()}, Patrick Kerschbaum`,
@@ -62,15 +65,21 @@ await Promise.all([
   fs.promises.writeFile(getRssFeedJsonPath(), feed.json1()),
 ]);
 
-function addArticleToFeed(article: MDXFile, feed: Feed, author: Author, baseUrl: URL) {
+function addArticleToFeed(
+  article: MDXFile,
+  feedToAddTo: Feed,
+  articleAuthor: Author,
+  baseUrl: URL,
+) {
   const articleUrl = new URL(`${baseUrl.href}/${article.segment}`);
-  feed.addItem({
+  feedToAddTo.addItem({
     title: article.frontmatter.title,
     id: articleUrl.href,
     link: articleUrl.href,
     description: article.frontmatter.description,
-    author: [author],
-    contributor: [author],
+    author: [articleAuthor],
+    contributor: [articleAuthor],
+    // oxlint-disable-next-line no-restricted-globals -- the `feed` package's API takes `Date`
     date: new Date(article.frontmatter.publishedAtISO),
   });
 }

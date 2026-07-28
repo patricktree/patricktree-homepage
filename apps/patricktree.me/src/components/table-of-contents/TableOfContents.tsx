@@ -1,9 +1,9 @@
-import { styled } from '@pigment-css/react';
-import React from 'react';
+import { styled } from "@pigment-css/react";
+import React from "react";
 
-import type { Heading } from '@patricktree-homepage/mdx/schema';
+import type { Heading } from "@patricktree-homepage/mdx/schema";
 
-import { TableOfContentsAnchors } from '#pkg/components/table-of-contents/TableOfContentsAnchors.jsx';
+import { TableOfContentsAnchors } from "#pkg/components/table-of-contents/TableOfContentsAnchors.jsx";
 
 export type TableOfContentsProps = {
   headings: Heading[];

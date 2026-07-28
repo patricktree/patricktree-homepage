@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
-import profilePic from '#pkg/app/icon.png';
+import profilePic from "#pkg/app/icon.png";
 import {
   Article,
   ArticleContainer,
@@ -12,19 +12,19 @@ import {
   Time,
   TocAndArticleReadingTarget,
   TocAside,
-} from '#pkg/components/article-components/index.jsx';
-import { GiscusComments } from '#pkg/components/giscus-comments/GiscusComments.jsx';
-import { Main } from '#pkg/components/main/index.js';
+} from "#pkg/components/article-components/index.jsx";
+import { GiscusComments } from "#pkg/components/giscus-comments/GiscusComments.jsx";
+import { Main } from "#pkg/components/main/index.js";
 import {
   ReadingProgressBar,
   ReadingProgressProvider,
   ReadingProgressSentinel,
-} from '#pkg/components/reading-progress-bar/index.js';
-import { TableOfContents } from '#pkg/components/table-of-contents/index.js';
-import { Anchor } from '#pkg/elements/index.js';
-import type { MDXParseResult } from '#pkg/mdx/index.js';
+} from "#pkg/components/reading-progress-bar/index.js";
+import { TableOfContents } from "#pkg/components/table-of-contents/index.js";
+import { Anchor } from "#pkg/elements/index.js";
+import type { MDXParseResult } from "#pkg/mdx/index.js";
 
-export type ArticleContainerTidbitPropsBase = {
+type ArticleContainerTidbitPropsBase = {
   mdxContent: React.ReactNode;
   mdxParseResult: MDXParseResult;
 };
@@ -62,8 +62,8 @@ export const ArticleContainerTidbit: React.FC<ArticleContainerTidbitProps> = ({
                   </span>
                 </AuthorLine>
                 <Time dateTime={mdxParseResult.frontmatter.lastUpdatedAtISO}>
-                  Last updated on{' '}
-                  {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format('DD MMMM, YYYY')}
+                  Last updated on{" "}
+                  {dayjs(mdxParseResult.frontmatter.lastUpdatedAtISO).format("DD MMMM, YYYY")}
                 </Time>
               </FrontMatter>
 

@@ -1,6 +1,11 @@
 {
   "name": "@patricktree-homepage/mdx-blog",
   "private": true,
+  "bin": {
+    "fetch-favicons-for-articles": "./bin/fetch-favicons-for-articles.js",
+    "generate-and-store-rss-feed": "./bin/generate-and-store-rss-feed.js",
+    "generate-css-modules-for-articles": "./bin/generate-css-modules-for-articles.js"
+  },
   "type": "module",
   "imports": {
     "#pkg/*": "./dist/*"
@@ -8,11 +13,6 @@
   "exports": {
     ".": null,
     "./*": "./dist/*.js"
-  },
-  "bin": {
-    "fetch-favicons-for-articles": "./bin/fetch-favicons-for-articles.js",
-    "generate-and-store-rss-feed": "./bin/generate-and-store-rss-feed.js",
-    "generate-css-modules-for-articles": "./bin/generate-css-modules-for-articles.js"
   },
   "scripts": {
     "build": "turbo run turbo:build",

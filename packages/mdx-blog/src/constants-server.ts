@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path from "node:path";
 
 /*
  * AI GENERATED EXPLANATION - NOT SURE IF THIS IS 100% CORRECT, PLEASE REVIEW CAREFULLY
@@ -14,26 +14,26 @@ import path from 'node:path';
  */
 export const PATHS = {
   get FAVICONS_FOR_WEBSITES() {
-    return path.join(process.cwd(), 'generated', 'favicons-for-websites.json');
+    return path.join(process.cwd(), "generated", "favicons-for-websites.json");
   },
   get POSTS() {
-    return path.join(process.cwd(), 'src', 'writing', 'posts');
+    return path.join(process.cwd(), "src", "writing", "posts");
   },
   get TIDBITS() {
-    return path.join(process.cwd(), 'src', 'writing', 'tidbits');
+    return path.join(process.cwd(), "src", "writing", "tidbits");
   },
   get POSTS_PAGES_DIR() {
-    return path.join(process.cwd(), 'src', 'app', 'blog');
+    return path.join(process.cwd(), "src", "app", "blog");
   },
   get TIDBITS_PAGES_DIR() {
-    return path.join(process.cwd(), 'src', 'app', 'tidbits');
+    return path.join(process.cwd(), "src", "app", "tidbits");
   },
   get PUBLIC_DIR() {
-    return path.join(process.cwd(), 'public');
+    return path.join(process.cwd(), "public");
   },
 };
-export const RSS_FEED_XML_SLUG = 'rss.xml';
-export const RSS_FEED_JSON_SLUG = 'rss.json';
+export const RSS_FEED_XML_SLUG = "rss.xml";
+export const RSS_FEED_JSON_SLUG = "rss.json";
 
 export function getRssFeedXmlPath() {
   return path.join(PATHS.PUBLIC_DIR, RSS_FEED_XML_SLUG);

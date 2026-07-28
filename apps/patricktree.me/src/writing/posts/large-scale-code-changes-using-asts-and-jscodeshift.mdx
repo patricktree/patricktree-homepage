@@ -1,10 +1,10 @@
 ---
 title: Large-scale code changes using ASTs and jscodeshift
 published: true
-publishedAtISO: '2024-12-25T13:00:00.000Z'
-lastUpdatedAtISO: '2025-12-30T13:14:00.000Z'
+publishedAtISO: "2024-12-25T13:00:00.000Z"
+lastUpdatedAtISO: "2025-12-30T13:14:00.000Z"
 description: How I used Abstract Syntax Trees (ASTs) and the `jscodeshift` library to migrate legacy CJS module specifiers to exact specifiers in a TypeScript codebase.
-tags: ['AST', 'jscodeshift', 'codemod', 'typescript', 'webdev']
+tags: ["AST", "jscodeshift", "codemod", "typescript", "webdev"]
 giscusTerm: large-scale-code-changes-using-asts-and-jscodeshift
 ---
 
@@ -23,13 +23,13 @@ For example:
 
 ```ts
 // for this (extensionless) module specifier in some TypeScript CJS module...
-import * as constants from './constants';
+import * as constants from "./constants";
 
 // ...Node.js will look for these files:
-import * as constants from './constants.js';
-import * as constants from './constants.cjs';
-import * as constants from './constants/index.js';
-import * as constants from './constants/index.cjs';
+import * as constants from "./constants.js";
+import * as constants from "./constants.cjs";
+import * as constants from "./constants/index.js";
+import * as constants from "./constants/index.cjs";
 ```
 
 However, ESM is much stricter.  
@@ -38,11 +38,11 @@ It requires **exact module specifiers**:
 
 ```ts
 // in ESM, this import will fail!
-import * as constants from './constants';
+import * as constants from "./constants";
 
 // this works in ESM (and CJS)
-import * as constants from './constants.js';
-import * as constants from './constants/index.js';
+import * as constants from "./constants.js";
+import * as constants from "./constants/index.js";
 ```
 
 This difference means that a TypeScript CJS to ESM migration requires systematically updating these paths
@@ -84,7 +84,7 @@ When in doubt, it is best to just use `TSESTree` because it covers TypeScript co
 For example, given this code...
 
 ```ts
-const myVar: string = 'my-value';
+const myVar: string = "my-value";
 ```
 
 ...we can produce this `TSESTree`:
@@ -169,12 +169,12 @@ It is used by:
 Using what we learned, we can now write a script to update module specifiers of a file with only ~30 lines of code!
 
 ```ts
-import fs from 'node:fs';
-import j from 'jscodeshift';
+import fs from "node:fs";
+import j from "jscodeshift";
 
 // load code of source file and its AST
-const text = await fs.promises.readFile('./constants.ts', 'utf8');
-const programNode = j.withParser('tsx')(text);
+const text = await fs.promises.readFile("./constants.ts", "utf8");
+const programNode = j.withParser("tsx")(text);
 
 // find all import declarations
 const astNodesImportDeclarations = programNode.find(j.ImportDeclaration);
@@ -198,7 +198,7 @@ astNodesModuleSpecifiers.forEach((astPath) => {
 
 // produce code from AST and write it back to the source file
 const newText = programNode.toSource();
-await fs.promises.writeFile('./constants.ts', newText, 'utf8');
+await fs.promises.writeFile("./constants.ts", newText, "utf8");
 ```
 
 This is the basic structure of the script I used to update all module specifiers.

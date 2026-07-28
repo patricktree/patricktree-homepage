@@ -1,20 +1,42 @@
-.favicons :global(.styled-anchor)[href="https://prisma.io"] :global(.fancy-anchor-icon)::before, .favicons :global(.styled-anchor)[href="https://www.prisma.io/client"] :global(.fancy-anchor-icon)::before
-{
+.favicons :global(.styled-anchor)[href="https://prisma.io"] :global(.fancy-anchor-icon)::before,
+.favicons
+  :global(.styled-anchor)[href="https://www.prisma.io/client"]
+  :global(.fancy-anchor-icon)::before {
   display: inline-block;
   background-image: url(data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAgVBMVEVMaXH///////9BYHL7/PwAGTMvUWX29/gAIzzX3eH///////8WPFLv8vPW3OD+/v7////k6Ov////6/Pz////4+fogRFn///8LNEsPN039/f0AKEEFLUXb4eXp7e+uu8NfeYhRbX58kZ6Ro667xs309vdqg5HI0decrLWFmaXO1tu+QPIsAAAAHXRSTlMA56D++/3+Av4FiXD+KRFatBzFS9c8/v///////p+sgfUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAGoSURBVHjadZOLtoIgEEVReWmaVhaCIL61/v8DL6BWdmuWLpfO9jDMGQDYRZhGF0DAryAkGxSMfhIhOMCAjuz6gyDg5N0plw//J+ArXhS0hslXgoALa0pZN6X6KkFAmOsyplqhEZ6+ECGIhpvkxYMFsorM6z+BBLamwtvAetR6x38SBGQPWfCyYYIFvDp8ShCQsqDknLYMMo26PNxLEHD0ZsqNgjYKAt+GDwlTYRXLwoRiQrAZzTl5lyDgyurSCEgMLTDcsEj3wLk3O1xrNFeH9PnDJOwAel+AimP2sn01qbAKvQXM3aI+ewOcSTa4WoFKBk/XF5OcgMQ27YgRTdkTOGuXNyvUTKyAKhuxuG57VK8A7dhToqYv18+aLoDsX8CDjnCT2Goo4moDzLORah3fbRfcVL4kbVjXV8tsHzrn1GidEm6jag7QuI1FuHndscFm4dRiiuK6elZpp8UuMdkW6TpGFLfTIPzjC0igaXasVBdIJINZCc9P3yfX2VXy2ArrSuTRNXQncWf4xAt8nyDMDon7En7MXOJVSuR+elyS5MvBPKzC+1//APumL+3+YBlMAAAAAElFTkSuQmCC);
 }
-.favicons :global(.styled-anchor)[href="https://www.typescriptlang.org/docs/handbook/2/generics.html#hello-world-of-generics"] :global(.fancy-anchor-icon)::before, .favicons :global(.styled-anchor)[href="https://www.typescriptlang.org/docs/handbook/2/conditional-types.html"] :global(.fancy-anchor-icon)::before, .favicons :global(.styled-anchor)[href="https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types"] :global(.fancy-anchor-icon)::before
-{
+.favicons
+  :global(
+    .styled-anchor
+  )[href="https://www.typescriptlang.org/docs/handbook/2/generics.html#hello-world-of-generics"]
+  :global(.fancy-anchor-icon)::before,
+.favicons
+  :global(
+    .styled-anchor
+  )[href="https://www.typescriptlang.org/docs/handbook/2/conditional-types.html"]
+  :global(.fancy-anchor-icon)::before,
+.favicons
+  :global(
+    .styled-anchor
+  )[href="https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types"]
+  :global(.fancy-anchor-icon)::before {
   display: inline-block;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAADz0lEQVR4nO1Y22sTWRifF/8J8UWt1NVqMxNdER+EhQV9qKC+eAFvqKzorr0knUzr3Xqt24cg3hAVtLKoqKsrKrhok7nEJm3sxdpYayze2mjva++Tn3xnZkJSsDaSuiAd+Jg5mXPO9zvn9/u+M184++bABEFSi2wutYN3aeBdapR3qRgji5IP8mUT1SLyzfGicnDuvnrwkk8fQ8eJJvl05lNUDnJCoT/CSxo1xnLliUa+JA1CYXmEEyTt+zkeZuSb+7+cW8aNA+DHKXCNi1D9ccNQkIbZtwCwjdLix9gLNNglDbPzFcx0KpjhkJHhkJEpJglASMJiziUN03NlzMiTsWD3Y2QVV2J5SRCLD1dg/k4fA/VVAHZJxU95Mtz3mhB6/wkVLzsRfNWFqqZuVJtGz/Rb4GUnGpo/4citMHM80yFj7Yka/Fvbig9d/ejt19E3qOO/viF87B7A6QevGQhhZAAa0nO9uOFvAV1DehRfuqx3l5V3mLjlIQr+eg6re/woPWq0tIZ2ZMbtAvcl8dAWHrsdRjDcBW99OzzP2tDc0Reb8HVrL8rq2ti7qqYu7L32AnMKNDR39Mf6hCM9KLnzCruuNODYP2GUN3bCU9eWoAVuRAGKqoFWVDEt24Ob5o7QdeHRG0z+vczYSlFFeo4XG0/XwlwoW/GykiAmbX3EqJnyhweznAoWHapgQG3JhKGdCcuLvwNxAMreYup2D5vMer/xTC3bdgtE0fVGTMv2IsOp4OcdPsyRNAYi6Txg/woAooyEtXBvOVpMCkgbuh7FnWAEq49XM3ESrdQ/5QB4S7g5Xsa3JUBLeHRXQu1Y6a5i4qYoSzkA3hTv9DwZ287XobGlJw6IMWZgKApnaQjpuTKbc0wAUJtWSffci/XwN3YkhCvlgl8PBJgWqH/KAFA00KQZDgXzCn1mLpFZGnbfbTJAmJTkl4aYOGlsykRohFgAS4orWchR6FG8p2V7mUA7ewZjY0knadnGWC6VYbjhVA1auwdw7uEbbDpTi6V/BrHKXYVrj5tjYiQm1pyoZqmexqUQgIx1J2sSUm/fgB7j3oqI+9UfWV6InQXCKAoTC8DNESigSbOOVrKDiZwOPz26ewdRKr/DvB3GicgASFqUo/JoNKVZpqggq7iCrXL9qRosPhxIONWsPnMLNaxwP4HjUgh7rr7AzisN+O3sU/yy38/yRGY+CdYqzfyRpIpTWiVxRzZrmHMrEmyi0YdUnrbdw8SWniNjtlOBvcD8dogvTqlEplJ5NOW5IBl8k9HzSJQRNZbRF5IJNlae018CVJ5/BmpPj7yFuxjPAAAAAElFTkSuQmCC);
 }
-.favicons :global(.styled-anchor)[href="https://github.com/patricktree/how-prisma-adapts-result-types-based-on-the-actual-arguments-given_example/tree/main/prisma/lib/prisma-client"] :global(.fancy-anchor-icon)::before
-{
+.favicons
+  :global(
+    .styled-anchor
+  )[href="https://github.com/patricktree/how-prisma-adapts-result-types-based-on-the-actual-arguments-given_example/tree/main/prisma/lib/prisma-client"]
+  :global(.fancy-anchor-icon)::before {
   display: inline-block;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNiAwQzcuMTYgMCAwIDcuMTYgMCAxNkMwIDIzLjA4IDQuNTggMjkuMDYgMTAuOTQgMzEuMThDMTEuNzQgMzEuMzIgMTIuMDQgMzAuODQgMTIuMDQgMzAuNDJDMTIuMDQgMzAuMDQgMTIuMDIgMjguNzggMTIuMDIgMjcuNDRDOCAyOC4xOCA2Ljk2IDI2LjQ2IDYuNjQgMjUuNTZDNi40NiAyNS4xIDUuNjggMjMuNjggNSAyMy4zQzQuNDQgMjMgMy42NCAyMi4yNiA0Ljk4IDIyLjI0QzYuMjQgMjIuMjIgNy4xNCAyMy40IDcuNDQgMjMuODhDOC44OCAyNi4zIDExLjE4IDI1LjYyIDEyLjEgMjUuMkMxMi4yNCAyNC4xNiAxMi42NiAyMy40NiAxMy4xMiAyMy4wNkM5LjU2IDIyLjY2IDUuODQgMjEuMjggNS44NCAxNS4xNkM1Ljg0IDEzLjQyIDYuNDYgMTEuOTggNy40OCAxMC44NkM3LjMyIDEwLjQ2IDYuNzYgOC44MiA3LjY0IDYuNjJDNy42NCA2LjYyIDguOTggNi4yIDEyLjA0IDguMjZDMTMuMzIgNy45IDE0LjY4IDcuNzIgMTYuMDQgNy43MkMxNy40IDcuNzIgMTguNzYgNy45IDIwLjA0IDguMjZDMjMuMSA2LjE4IDI0LjQ0IDYuNjIgMjQuNDQgNi42MkMyNS4zMiA4LjgyIDI0Ljc2IDEwLjQ2IDI0LjYgMTAuODZDMjUuNjIgMTEuOTggMjYuMjQgMTMuNCAyNi4yNCAxNS4xNkMyNi4yNCAyMS4zIDIyLjUgMjIuNjYgMTguOTQgMjMuMDZDMTkuNTIgMjMuNTYgMjAuMDIgMjQuNTIgMjAuMDIgMjYuMDJDMjAuMDIgMjguMTYgMjAgMjkuODggMjAgMzAuNDJDMjAgMzAuODQgMjAuMyAzMS4zNCAyMS4xIDMxLjE4QzI3LjQyIDI5LjA2IDMyIDIzLjA2IDMyIDE2QzMyIDcuMTYgMjQuODQgMCAxNiAwVjBaIiBmaWxsPSIjMjQyOTJFIi8+Cjwvc3ZnPgo=);
 }
-*:root[data-theme='dark'] .favicons :global(.styled-anchor)[href="https://github.com/patricktree/how-prisma-adapts-result-types-based-on-the-actual-arguments-given_example/tree/main/prisma/lib/prisma-client"] :global(.fancy-anchor-icon)::before
-{
+*:root[data-theme="dark"]
+  .favicons
+  :global(
+    .styled-anchor
+  )[href="https://github.com/patricktree/how-prisma-adapts-result-types-based-on-the-actual-arguments-given_example/tree/main/prisma/lib/prisma-client"]
+  :global(.fancy-anchor-icon)::before {
   display: inline-block;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNiAwQzcuMTYgMCAwIDcuMTYgMCAxNkMwIDIzLjA4IDQuNTggMjkuMDYgMTAuOTQgMzEuMThDMTEuNzQgMzEuMzIgMTIuMDQgMzAuODQgMTIuMDQgMzAuNDJDMTIuMDQgMzAuMDQgMTIuMDIgMjguNzggMTIuMDIgMjcuNDRDOCAyOC4xOCA2Ljk2IDI2LjQ2IDYuNjQgMjUuNTZDNi40NiAyNS4xIDUuNjggMjMuNjggNSAyMy4zQzQuNDQgMjMgMy42NCAyMi4yNiA0Ljk4IDIyLjI0QzYuMjQgMjIuMjIgNy4xNCAyMy40IDcuNDQgMjMuODhDOC44OCAyNi4zIDExLjE4IDI1LjYyIDEyLjEgMjUuMkMxMi4yNCAyNC4xNiAxMi42NiAyMy40NiAxMy4xMiAyMy4wNkM5LjU2IDIyLjY2IDUuODQgMjEuMjggNS44NCAxNS4xNkM1Ljg0IDEzLjQyIDYuNDYgMTEuOTggNy40OCAxMC44NkM3LjMyIDEwLjQ2IDYuNzYgOC44MiA3LjY0IDYuNjJDNy42NCA2LjYyIDguOTggNi4yIDEyLjA0IDguMjZDMTMuMzIgNy45IDE0LjY4IDcuNzIgMTYuMDQgNy43MkMxNy40IDcuNzIgMTguNzYgNy45IDIwLjA0IDguMjZDMjMuMSA2LjE4IDI0LjQ0IDYuNjIgMjQuNDQgNi42MkMyNS4zMiA4LjgyIDI0Ljc2IDEwLjQ2IDI0LjYgMTAuODZDMjUuNjIgMTEuOTggMjYuMjQgMTMuNCAyNi4yNCAxNS4xNkMyNi4yNCAyMS4zIDIyLjUgMjIuNjYgMTguOTQgMjMuMDZDMTkuNTIgMjMuNTYgMjAuMDIgMjQuNTIgMjAuMDIgMjYuMDJDMjAuMDIgMjguMTYgMjAgMjkuODggMjAgMzAuNDJDMjAgMzAuODQgMjAuMyAzMS4zNCAyMS4xIDMxLjE4QzI3LjQyIDI5LjA2IDMyIDIzLjA2IDMyIDE2QzMyIDcuMTYgMjQuODQgMCAxNiAwVjBaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K);
 }

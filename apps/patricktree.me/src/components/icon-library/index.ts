@@ -1,1 +1,1 @@
-export * from '#pkg/components/icon-library/IconLibrary.jsx';
+export * from "#pkg/components/icon-library/IconLibrary.jsx";

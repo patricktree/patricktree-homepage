@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { styled } from '@pigment-css/react';
-import React from 'react';
-import { XCircle } from 'react-feather';
-import invariant from 'tiny-invariant';
+import { styled } from "@pigment-css/react";
+import React from "react";
+import { XCircle } from "react-feather";
+import invariant from "tiny-invariant";
 
-import { Nav } from '#pkg/components/nav/index.js';
-import { useSidenavContext } from '#pkg/components/sidenav/SidenavContextProvider.jsx';
-import { Button } from '#pkg/elements/Button.jsx';
+import { Nav } from "#pkg/components/nav/index.js";
+import { useSidenavContext } from "#pkg/components/sidenav/SidenavContextProvider.jsx";
+import { Button } from "#pkg/elements/Button.jsx";
 
 export const Sidenav: React.FC = () => {
   const closeSidenavButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -21,7 +21,7 @@ export const Sidenav: React.FC = () => {
     <CloseBackdropAndNavigationContainer
       data-is-open={isOpen}
       onKeyUp={(e) => {
-        if (e.code === 'Escape') {
+        if (e.code === "Escape") {
           closeSidenav();
         }
       }}
@@ -66,7 +66,7 @@ const CloseBackdropAndNavigationContainer = styled.aside`
   display: grid;
 
   visibility: hidden;
-  grid-template-areas: 'escape nav';
+  grid-template-areas: "escape nav";
   grid-template-columns: 1fr max-content;
   width: 100%;
   height: 100%;
@@ -75,7 +75,7 @@ const CloseBackdropAndNavigationContainer = styled.aside`
   transition: visibility 0s linear var(--duration-opacity);
   will-change: transform;
 
-  &[data-is-open='true'] {
+  &[data-is-open="true"] {
     visibility: visible;
     transition: visibility 0s linear 0s;
   }
@@ -101,7 +101,7 @@ const CloseBackdropAndNavigationContainer = styled.aside`
     transition: transform var(--duration-slide-out) var(--ease-out-expo);
   }
 
-  &[data-is-open='true'] .nav-container {
+  &[data-is-open="true"] .nav-container {
     transform: translateX(0);
     transition: transform var(--duration-slide-in) var(--ease-out-expo);
   }

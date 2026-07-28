@@ -1,1 +1,1 @@
-export * from '#pkg/components/table-of-contents/TableOfContents.jsx';
+export * from "#pkg/components/table-of-contents/TableOfContents.jsx";

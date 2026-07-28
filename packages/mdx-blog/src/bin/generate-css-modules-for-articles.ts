@@ -1,11 +1,11 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import invariant from 'tiny-invariant';
+import fs from "node:fs";
+import path from "node:path";
+import invariant from "tiny-invariant";
 
-import { Classes, DataAttribute, ColorTheme, ClassesAliases } from '#pkg/constants-browser.js';
-import { PATHS } from '#pkg/constants-server.js';
-import { createFaviconsMapping } from '#pkg/favicons.js';
-import { parseMDXFileAndCollectHrefs } from '#pkg/mdx.js';
+import { Classes, DataAttribute, ColorTheme, ClassesAliases } from "#pkg/constants-browser.js";
+import { PATHS } from "#pkg/constants-server.js";
+import { createFaviconsMapping } from "#pkg/favicons.js";
+import { parseMDXFileAndCollectHrefs } from "#pkg/mdx.js";
 
 /*
  * Generate .module.css files for every blog post & tidbit page containing icons for FancyAnchors.
@@ -35,7 +35,7 @@ async function generateCssModulesForArticles() {
       await fs.promises.writeFile(
         path.join(PATHS.POSTS_PAGES_DIR, nameWithoutExt, `styles.module.css`),
         cssModule,
-        { encoding: 'utf8' },
+        { encoding: "utf8" },
       );
     }),
     ...tidbitsBasenames.map(async (tidbitBasename) => {
@@ -44,7 +44,7 @@ async function generateCssModulesForArticles() {
       await fs.promises.writeFile(
         path.join(PATHS.TIDBITS_PAGES_DIR, nameWithoutExt, `styles.module.css`),
         cssModule,
-        { encoding: 'utf8' },
+        { encoding: "utf8" },
       );
     }),
   ]);
@@ -66,7 +66,7 @@ async function generateCssModuleForPage(
         (url) =>
           `.${ClassesAliases.FAVICONS} :global(.${Classes.STYLED_ANCHOR})[href="${url}"] :global(.${Classes.FANCY_ANCHOR_ICON})::before`,
       )
-      .join(', ');
+      .join(", ");
     const rule = `{ display: inline-block; background-image: url(${icon.iconDataURL}); }`;
     return `${selector} ${rule}`;
   });
@@ -78,12 +78,12 @@ async function generateCssModuleForPage(
         (url) =>
           `*:root[${DataAttribute.THEME}='${ColorTheme.DARK}'] .${ClassesAliases.FAVICONS} :global(.${Classes.STYLED_ANCHOR})[href="${url}"] :global(.${Classes.FANCY_ANCHOR_ICON})::before`,
       )
-      .join(', ');
+      .join(", ");
     const rule = `{ display: inline-block; background-image: url(${icon.iconDataURL}); }`;
     return `${selector} ${rule}`;
   });
 
-  const css = `${lightIconsCss.join(' ')} ${darkIconsCss.join(' ')}`;
+  const css = `${lightIconsCss.join(" ")} ${darkIconsCss.join(" ")}`;
 
   return css;
 }

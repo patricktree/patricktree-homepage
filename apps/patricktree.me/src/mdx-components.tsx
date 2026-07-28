@@ -1,18 +1,19 @@
-'use client';
+"use client";
 
-import { check } from '@patricktree/commons-ecma/util/assert';
-import { styled } from '@pigment-css/react';
-import type { MDXComponents } from 'mdx/types.js';
-import React from 'react';
-import { CheckCircle, Clipboard } from 'react-feather';
-import invariant from 'tiny-invariant';
+import { check } from "@patricktree/commons-ecma/util/assert";
+import { styled } from "@pigment-css/react";
+import React from "react";
+import { CheckCircle, Clipboard } from "react-feather";
+import invariant from "tiny-invariant";
 
-import { reactUtils } from '@patricktree-homepage/react-utils/react.utils.jsx';
+import { reactUtils } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
-import { FancyAnchor, type FancyAnchorProps } from '#pkg/components/fancy-anchor/index.js';
-import { Version, VersionTabs } from '#pkg/components/version-tabs/index.js';
-import { Classes, ColorTheme, DataAttribute } from '#pkg/constants-browser.js';
-import { Anchor, type AnchorProps, Button } from '#pkg/elements/index.js';
+import { FancyAnchor, type FancyAnchorProps } from "#pkg/components/fancy-anchor/index.js";
+import { Version, VersionTabs } from "#pkg/components/version-tabs/index.js";
+import { Classes, ColorTheme, DataAttribute } from "#pkg/constants-browser.js";
+import { Anchor, type AnchorProps, Button } from "#pkg/elements/index.js";
+
+import type { MDXComponents } from "mdx/types.js";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   let currentSectionHeadingId = {
@@ -34,13 +35,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         throw new Error(`the <a> element must have a href, but has not`);
       }
 
+      /* MDX hands over the raw intrinsic `<a>` props, which are wider than `AnchorProps` */
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      const anchorProps = props as AnchorProps;
+
       return (
-        <Anchor
-          target="_blank"
-          {...(props as AnchorProps)}
-          href={props.href}
-          {...currentSectionHeadingId}
-        />
+        <Anchor target="_blank" {...anchorProps} href={props.href} {...currentSectionHeadingId} />
       );
     },
     h2: ({ ref: _ignored, id, ...delegated }) => {
@@ -73,7 +73,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
 // based on https://tomekdev.com/posts/anchors-for-headings-in-mdx
 type HeadingWithAnchorProps = {
-  as: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as: "h2" | "h3" | "h4" | "h5" | "h6";
   headingProps: React.HTMLAttributes<HTMLHeadingElement>;
 };
 
@@ -106,23 +106,23 @@ const HeadingAnchor = styled(Anchor)`
   }
 
   &:not(:hover)
-    ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      HeadingAnchorIcon as any
-    } {
+  ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    HeadingAnchorIcon as any
+  } {
     opacity: 0;
   }
 
   &:hover
-    ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      HeadingAnchorIcon as any
-    } {
+  ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    HeadingAnchorIcon as any
+  } {
     opacity: initial;
   }
 `;
 
-export const PreComponent: React.FC<React.ComponentProps<'pre'>> = ({ children, ...delegated }) => {
+export const PreComponent: React.FC<React.ComponentProps<"pre">> = ({ children, ...delegated }) => {
   const codePreRef = React.useRef<HTMLPreElement>(null);
   const [codeWasCopied, setCodeWasCopied] = React.useState(false);
 

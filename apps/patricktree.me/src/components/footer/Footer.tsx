@@ -1,9 +1,10 @@
-import { styled } from '@pigment-css/react';
-import dayjs from 'dayjs';
-import Link from 'next/link';
-import type React from 'react';
+import { styled } from "@pigment-css/react";
+import dayjs from "dayjs";
+import Link from "next/link";
 
-import { SocialMediaLinks } from '#pkg/components/footer/SocialMediaLinks.jsx';
+import { SocialMediaLinks } from "#pkg/components/footer/SocialMediaLinks.jsx";
+
+import type React from "react";
 
 export const Footer: React.FC = () => {
   return (

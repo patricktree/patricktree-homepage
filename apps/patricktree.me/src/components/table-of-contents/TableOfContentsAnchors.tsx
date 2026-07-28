@@ -1,14 +1,14 @@
-'use client';
-import { styled } from '@pigment-css/react';
-import React from 'react';
-import invariant from 'tiny-invariant';
+"use client";
+import { styled } from "@pigment-css/react";
+import React from "react";
+import invariant from "tiny-invariant";
 
-import type { Heading } from '@patricktree-homepage/mdx/schema';
-import { useMediaMatch } from '@patricktree-homepage/react-utils/react.utils.jsx';
-import { uiUtils } from '@patricktree-homepage/ui-utils/ui.utils';
+import type { Heading } from "@patricktree-homepage/mdx/schema";
+import { useMediaMatch } from "@patricktree-homepage/react-utils/react.utils.jsx";
+import { uiUtils } from "@patricktree-homepage/ui-utils/ui.utils";
 
-import { TOC_QUERY } from '#pkg/constants-browser.js';
-import { Anchor } from '#pkg/elements/index.js';
+import { TOC_QUERY } from "#pkg/constants-browser.js";
+import { Anchor } from "#pkg/elements/index.js";
 
 export type TableOfContentsAnchorsProps = {
   headings: Heading[];
@@ -93,12 +93,12 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
 
   React.useEffect(
     function observeLastScrolledToHeadingGoingOutOfViewport() {
-      if (matches === 'SSR' || !matches) {
-        return;
+      if (matches === "SSR" || !matches) {
+        return undefined;
       }
 
       if (!lastScrolledToHeading || lastScrolledToHeading.wentOutOfViewport) {
-        return;
+        return undefined;
       }
 
       let unobserveViewportObserver = startViewportObserver();
@@ -147,8 +147,8 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
 
   React.useEffect(
     function observeHeadingsAndDetectLastHeadingAboveTheFold() {
-      if (matches === 'SSR' || !matches) {
-        return;
+      if (matches === "SSR" || !matches) {
+        return undefined;
       }
 
       const $headings: HTMLElement[] = [];
@@ -209,7 +209,7 @@ export const TableOfContentsAnchors: React.FC<TableOfContentsAnchorsProps> = ({ 
             <TocAnchor
               href={`#${heading.id}`}
               style={{
-                color: highlighted ? 'var(--color-fg-interactive)' : undefined,
+                color: highlighted ? "var(--color-fg-interactive)" : undefined,
               }}
               onClick={() => {
                 setLastScrolledToHeading({

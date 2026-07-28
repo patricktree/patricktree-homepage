@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
-import { ArrowLeftCircle } from 'react-feather';
+import { ArrowLeftCircle } from "react-feather";
 
 import {
   BacklinkAnchor,
   BackLinkParagraph,
   Heading,
   PageArticle,
-} from '#pkg/components/commons.jsx';
+} from "#pkg/components/commons.jsx";
+
+import type { Metadata } from "next";
 
 function DatenschutzPage() {
   return (
@@ -101,7 +102,7 @@ function DatenschutzPage() {
         lit. b DSGVO (Vertragserfüllung bzw. Terminvereinbarung).
       </p>
       <p>
-        Weitere Informationen hierzu finden Sie in der{' '}
+        Weitere Informationen hierzu finden Sie in der{" "}
         <a href="https://synaptos.at/datenschutzerklaerung/">Datenschutzerklärung von Synaptos</a>.
       </p>
 
@@ -214,9 +215,9 @@ function DatenschutzPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung – Physiotherapie Jasmin Kerschbaum',
+  title: "Datenschutzerklärung – Physiotherapie Jasmin Kerschbaum",
   openGraph: {
-    title: 'Datenschutzerklärung – Physiotherapie Jasmin Kerschbaum',
+    title: "Datenschutzerklärung – Physiotherapie Jasmin Kerschbaum",
   },
 };
 

@@ -1,1 +1,1 @@
-export * from '#pkg/components/fancy-anchor/FancyAnchor.jsx';
+export * from "#pkg/components/fancy-anchor/FancyAnchor.jsx";

@@ -1,9 +1,10 @@
-import { styled } from '@pigment-css/react';
-import type React from 'react';
+import { styled } from "@pigment-css/react";
 
-import { Nav } from '#pkg/components/nav/index.js';
-import { RssFeedAnchor } from '#pkg/components/rss-feed-anchor/index.js';
-import { ToggleThemeButton } from '#pkg/components/toggle-theme-button/index.js';
+import { Nav } from "#pkg/components/nav/index.js";
+import { RssFeedAnchor } from "#pkg/components/rss-feed-anchor/index.js";
+import { ToggleThemeButton } from "#pkg/components/toggle-theme-button/index.js";
+
+import type React from "react";
 
 export const Header: React.FC = () => {
   return (

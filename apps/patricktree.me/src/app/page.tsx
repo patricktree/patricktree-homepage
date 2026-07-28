@@ -1,13 +1,14 @@
-import { styled } from '@pigment-css/react';
-import type { Metadata } from 'next';
-import { PenTool } from 'react-feather';
+import { styled } from "@pigment-css/react";
+import { PenTool } from "react-feather";
 
-import { headingIds } from '#pkg/app/heading-ids.js';
-import { ArticlesList } from '#pkg/components/articles-list/index.js';
-import { Introduction } from '#pkg/components/introduction/index.js';
-import { Main } from '#pkg/components/main/index.js';
-import { PATHS } from '#pkg/constants-server.js';
-import { getAllMarkdownFiles } from '#pkg/mdx/index.js';
+import { headingIds } from "#pkg/app/heading-ids.js";
+import { ArticlesList } from "#pkg/components/articles-list/index.js";
+import { Introduction } from "#pkg/components/introduction/index.js";
+import { Main } from "#pkg/components/main/index.js";
+import { PATHS } from "#pkg/constants-server.js";
+import { getAllMarkdownFiles } from "#pkg/mdx/index.js";
+
+import type { Metadata } from "next";
 
 async function HomePage() {
   const [posts, tidbits] = await Promise.all([
@@ -17,12 +18,12 @@ async function HomePage() {
 
   const writingEntries = [
     ...posts.map((article) => ({
-      pathPrefix: '/blog',
+      pathPrefix: "/blog",
       article,
       sortDateISO: article.frontmatter.publishedAtISO,
     })),
     ...tidbits.map((article) => ({
-      pathPrefix: '/tidbits',
+      pathPrefix: "/tidbits",
       article,
       // Use lastUpdatedAtISO so that tidbits with content updates get surfaced to the top
       sortDateISO: article.frontmatter.lastUpdatedAtISO ?? article.frontmatter.publishedAtISO,
@@ -45,11 +46,11 @@ async function HomePage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Patrick Kerschbaum',
-  description: 'Homepage of Patrick Kerschbaum',
+  title: "Patrick Kerschbaum",
+  description: "Homepage of Patrick Kerschbaum",
   openGraph: {
-    title: 'Patrick Kerschbaum',
-    description: 'Homepage of Patrick Kerschbaum',
+    title: "Patrick Kerschbaum",
+    description: "Homepage of Patrick Kerschbaum",
   },
 };
 

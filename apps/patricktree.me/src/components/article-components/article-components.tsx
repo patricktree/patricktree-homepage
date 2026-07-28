@@ -1,8 +1,8 @@
-import { styled } from '@pigment-css/react';
+import { styled } from "@pigment-css/react";
 
-import { TOC_QUERY } from '#pkg/constants-browser.js';
-import { Image } from '#pkg/elements/Image.jsx';
-import { CodeBlockContainer } from '#pkg/mdx-components.jsx';
+import { TOC_QUERY } from "#pkg/constants-browser.js";
+import { Image } from "#pkg/elements/Image.jsx";
+import { CodeBlockContainer } from "#pkg/mdx-components.jsx";
 
 export const ArticleContainer = styled.div`
   display: flex;
@@ -76,7 +76,7 @@ export const ArticleContent = styled.div`
     left: 0;
     width: 140px;
     height: 3px;
-    content: '';
+    content: "";
     background-image: linear-gradient(to right, var(--color-fg-interactive), rgb(0 0 0 / 0%));
   }
 
@@ -128,64 +128,64 @@ export const ArticleContent = styled.div`
     We have to undo the app padding and margin-inline-start of ul/ol list elements (if a code block is inside such an element).
    */
   &
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    } {
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  } {
     /* add some margin-block-start so that there is some space between the copy button and any text before the code block. */
     margin-block-start: calc(3 * var(--spacing-base));
     margin-inline-start: calc(-1 * var(--app-padding-inline));
     margin-inline-end: calc(-1 * var(--app-padding-inline));
   }
   &
-    ul
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    },
-    &
-    ol
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    } {
+  ul
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  },
+  &
+  ol
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  } {
     width: calc(100% + 2 * var(--app-padding-inline) + var(--ul-padding-inline-start));
     margin-inline-start: calc(-1 * (var(--app-padding-inline) + var(--ul-padding-inline-start)));
   }
   &
-    ul
-    ul
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    },
-    &
-    ol
-    ol
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    },
-    &
-    ul
-    ol
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    },
-    &
-    ol
-    ul
-    > li
-    > ${
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      CodeBlockContainer as any
-    } {
+  ul
+  ul
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  },
+  &
+  ol
+  ol
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  },
+  &
+  ul
+  ol
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  },
+  &
+  ol
+  ul
+  > li
+  > ${
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- @pigment-css/react's styled() result is not typed as a selector
+    CodeBlockContainer as any
+  } {
     width: calc(100% + 2 * var(--app-padding-inline) + 2 * var(--ul-padding-inline-start));
     margin-inline-start: calc(
       -1 * (var(--app-padding-inline) + 2 * var(--ul-padding-inline-start))

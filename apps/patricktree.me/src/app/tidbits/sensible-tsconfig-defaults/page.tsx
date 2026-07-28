@@ -1,15 +1,15 @@
-import type { Metadata } from 'next';
-import path from 'path';
-import type React from 'react';
-import invariant from 'tiny-invariant';
+import path from "path";
+import invariant from "tiny-invariant";
 
-import { MDXContentClientComponent } from '#pkg/app/tidbits/sensible-tsconfig-defaults/mdx-content-client-component.jsx';
-import styles from '#pkg/app/tidbits/sensible-tsconfig-defaults/styles.module.css';
-import { ArticleContainerTidbit } from '#pkg/components/article-container-tidbit/index.js';
-import { SEARCH_PARAM_KEY } from '#pkg/components/version-tabs/constants.jsx';
-import { ClassesAliases } from '#pkg/constants-browser.js';
-import { PATHS } from '#pkg/constants-server.js';
-import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from '#pkg/mdx/index.js';
+import { MDXContentClientComponent } from "#pkg/app/tidbits/sensible-tsconfig-defaults/mdx-content-client-component.jsx";
+import styles from "#pkg/app/tidbits/sensible-tsconfig-defaults/styles.module.css";
+import { ArticleContainerTidbit } from "#pkg/components/article-container-tidbit/index.js";
+import { SEARCH_PARAM_KEY } from "#pkg/components/version-tabs/constants.jsx";
+import { ClassesAliases } from "#pkg/constants-browser.js";
+import { PATHS } from "#pkg/constants-server.js";
+import { mapMDXParseResultToMetadata, parseMDXFileAndCollectHrefs } from "#pkg/mdx/index.js";
+
+import type { Metadata } from "next";
 
 const faviconsClassName = styles[ClassesAliases.FAVICONS];
 
@@ -28,7 +28,7 @@ async function TidbitPage(props: TidbitPageProps) {
   ]);
 
   const versionFromUrl =
-    typeof searchParams[SEARCH_PARAM_KEY] === 'string' ? searchParams[SEARCH_PARAM_KEY] : undefined;
+    typeof searchParams[SEARCH_PARAM_KEY] === "string" ? searchParams[SEARCH_PARAM_KEY] : undefined;
 
   return (
     <ArticleContainerTidbit
