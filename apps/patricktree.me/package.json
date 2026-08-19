@@ -32,11 +32,12 @@
     "@next/mdx": "^15.3.1",
     "@patricktree-homepage/mdx": "workspace:*",
     "@patricktree-homepage/mdx-blog": "workspace:*",
-    "@patricktree-homepage/react-utils": "workspace:*",
     "@patricktree-homepage/ui-utils": "workspace:*",
+    "@patricktree-stack/react-utils": "workspace:*",
     "@patricktree/commons-ecma": "^2.4.1",
     "@pigment-css/react": "^0.0.30",
     "@vercel/speed-insights": "^1.2.0",
+    "acorn": "^8.14.1",
     "dayjs": "^1.11.13",
     "next": "^15.5.7",
     "react": "^19.1.0",
@@ -48,8 +49,10 @@
   "devDependencies": {
     "@babel/runtime": "^7.27.0",
     "@opentelemetry/api": "^1.9.0",
+    "@patricktree-stack/config-nextjs": "workspace:*",
     "@patricktree-stack/config-oxlint": "workspace:*",
-    "@pigment-css/nextjs-plugin": "^0.0.30",
+    "@patricktree-stack/config-stylelint": "workspace:*",
+    "@patricktree-stack/config-typescript": "workspace:*",
     "@types/mdx": "^2.0.13",
     "@types/node": "catalog:",
     "@types/react": "^18",
@@ -60,11 +63,7 @@
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
     "playwright": "^1.52.0",
-    "postcss": "^8.5.3",
-    "postcss-styled-syntax": "^0.7.1",
-    "stylelint": "^16.19.1",
-    "stylelint-config-recess-order": "^6.0.0",
-    "stylelint-config-standard": "^38.0.0",
+    "stylelint": "catalog:",
     "typescript": "catalog:"
   }
 }

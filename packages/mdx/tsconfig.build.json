@@ -1,5 +1,9 @@
 {
-  "extends": "@patricktree-homepage/config-typescript/tsconfig.json",
+  "extends": [
+    "@patricktree-stack/config-typescript/tsconfig.defaults.json",
+    "@patricktree-stack/config-typescript/tsconfig.node-direct-ts-execution.json",
+    "@patricktree-stack/config-typescript/tsconfig.emit-js-and-declarations.json"
+  ],
   "compilerOptions": {
     /* Modules */
     "rootDir": "./src",

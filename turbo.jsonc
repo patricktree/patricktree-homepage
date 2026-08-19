@@ -2,6 +2,7 @@
   "$schema": "./node_modules/turbo/schema.json",
   "noUpdateNotifier": true,
   "concurrency": "100%",
+  "globalEnv": ["DEPLOYMENT_ORIGIN", "ENABLE_EXPERIMENTAL_COREPACK"],
   "futureFlags": {
     "watchUsingTaskInputs": true,
   },

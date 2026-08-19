@@ -49,10 +49,10 @@
    pnpm dev
    ```
 
-1. **Start a local instance of `@patricktree-homepage/web`:**
+1. **Start a local instance of `@patricktree-homepage/patricktree.me`:**
 
    ```sh
-   pnpm --filter=web run dev
+   pnpm --filter @patricktree-homepage/patricktree.me run dev
    ```
 
 ### Additional commands for development

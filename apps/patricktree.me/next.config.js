@@ -1,14 +1,14 @@
 // @ts-check
 import createMDX from "@next/mdx";
-import { withPigment } from "@pigment-css/nextjs-plugin";
+import {
+  createNextConfig,
+  withPigmentCss,
+} from "@patricktree-stack/config-nextjs/next-base-config.js";
 
 import { createMdxOptions } from "@patricktree-homepage/mdx/mdx";
 
 /** @type {import("next").NextConfig} */
-let nextConfig = {
-  distDir: "dist",
-  reactStrictMode: true,
-
+let nextConfig = createNextConfig({
   outputFileTracingIncludes: {
     "/": [
       // Include MDX source files
@@ -18,26 +18,6 @@ let nextConfig = {
       // Include MDX source files
       "./src/writing/**/*",
     ],
-  },
-
-  eslint: {
-    dirs: ["."],
-    ignoreDuringBuilds: true,
-  },
-
-  typescript: {
-    tsconfigPath: "./tsconfig.next.json",
-    ignoreBuildErrors: true,
-  },
-
-  webpack(config) {
-    // moduleResolution: node16 support for Next.js (https://github.com/vercel/next.js/discussions/41189#discussioncomment-4026895)
-    config.resolve.extensionAlias = {
-      ...config.resolve.extensionAlias,
-      ".js": [".js", ".ts"],
-      ".jsx": [".jsx", ".tsx"],
-    };
-    return config;
   },
 
   async rewrites() {
@@ -94,7 +74,7 @@ let nextConfig = {
 
   // include .md and .mdx files, see https://nextjs.org/docs/app/building-your-application/configuring/mdx#configure-nextconfigmjs
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-};
+});
 
 const withMDX = createMDX({
   options: createMdxOptions({ collectedHrefs: [], collectedHeadings: [] }),
@@ -102,24 +82,6 @@ const withMDX = createMDX({
 
 nextConfig = withMDX(nextConfig);
 
-nextConfig = withPigment(nextConfig, {
-  /**
-   * See
-   * {@link https://github.com/callstack/linaria/blob/10302654006e414bfb52e3b4f07773d71b483abe/docs/CONFIGURATION.md}
-   * which also applies to Pigment CSS (uses also @wyw-in-js under-the-hood)
-   */
-  classNameSlug: (hash, title, args) => {
-    let titleToUse;
-    if (title === "className") {
-      /* this is the case when the result of a `css` function call is directly assigned to a `className` JSX prop */
-      titleToUse = "INLINE";
-    } else {
-      titleToUse = title;
-    }
-    return process.env.NODE_ENV === "production"
-      ? hash
-      : `${args.file.substring(0, args.file.length - args.ext.length)}_${titleToUse}_${hash}`;
-  },
-});
+nextConfig = withPigmentCss(nextConfig);
 
 export default nextConfig;

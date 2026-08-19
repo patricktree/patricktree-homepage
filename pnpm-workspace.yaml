@@ -3,9 +3,14 @@ packages:
   - packages/*
   - platform/*
   - test/*
+  - .patricktree-stack/libs/react-utils
+  - .patricktree-stack/tooling/config-nextjs
   - .patricktree-stack/tooling/config-oxfmt
   - .patricktree-stack/tooling/config-oxlint
+  - .patricktree-stack/tooling/config-stylelint
   - .patricktree-stack/tooling/config-turbo-typescript
+  - .patricktree-stack/tooling/config-typescript
+  - .patricktree-stack/tooling/config-wyw-in-js
 
 allowBuilds:
   "@vercel/speed-insights": true
@@ -13,12 +18,18 @@ allowBuilds:
   unrs-resolver: true
 
 catalog:
+  "@pigment-css/nextjs-plugin": ^0.0.30
   "@types/node": ^24
   "@typescript/native": "npm:typescript@^7.0.2"
   oxfmt: ^0.58.0
   # oxlint >=1.75 requires the renumbered oxlint-tsgolint 7.x line (it tracks the TypeScript version)
   oxlint: ^1.75.0
   oxlint-tsgolint: ^7.0.2001
+  postcss: ^8.5.3
+  postcss-styled-syntax: ^0.7.1
+  stylelint: ^16.19.1
+  stylelint-config-recess-order: ^6.0.0
+  stylelint-config-standard: ^38.0.0
   typescript: "npm:@typescript/typescript6@^6.0.2"
 
 packageExtensions:

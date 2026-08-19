@@ -1,31 +1,11 @@
 {
-  "extends": "@patricktree-homepage/config-typescript/tsconfig.json",
+  "extends": [
+    "@patricktree-stack/config-typescript/tsconfig.defaults.json",
+    "@patricktree-stack/config-typescript/tsconfig.next.json"
+  ],
   "compilerOptions": {
-    /* Type Checking*/
-    "strictNullChecks": true,
-
-    /* Language and Environment */
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-
     /* Modules */
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "types": ["node", "@types/mdx"],
-
-    /* Emit */
-    "noEmit": true,
-
-    /* JavaScript Support */
-    "allowJs": true,
-
-    /* Editor Support */
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "types": ["node", "@types/mdx"]
   },
   "include": [
     "next-env.d.ts",

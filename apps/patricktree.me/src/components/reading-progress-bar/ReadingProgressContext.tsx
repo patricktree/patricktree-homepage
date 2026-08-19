@@ -1,8 +1,7 @@
 "use client";
 
+import { reactUtils } from "@patricktree-stack/react-utils/react.utils.jsx";
 import React from "react";
-
-import { reactUtils } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
 type ReadingProgressContextValue = {
   readingTarget: HTMLElement | null;

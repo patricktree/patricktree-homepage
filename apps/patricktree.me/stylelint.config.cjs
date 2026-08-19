@@ -1,1 +1,1 @@
-module.exports = require("@patricktree-homepage/config-stylelint/stylelint.config.cjs");
+module.exports = require("@patricktree-stack/config-stylelint/stylelint.config.cjs");

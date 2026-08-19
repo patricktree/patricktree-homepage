@@ -1,7 +1,6 @@
 "use client";
+import { useIsMounted } from "@patricktree-stack/react-utils/react.utils.jsx";
 import React from "react";
-
-import { useIsMounted } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
 import { DataAttribute, IsAnimationEnabled } from "#pkg/constants-browser.js";
 

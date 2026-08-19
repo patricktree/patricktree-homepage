@@ -19,9 +19,8 @@
     "zizmor": "uvx zizmor@1.29.0 --gh-token \"$(gh auth token)\" ."
   },
   "devDependencies": {
-    "@patricktree-homepage/config-stylelint": "workspace:*",
-    "@patricktree-homepage/config-typescript": "workspace:*",
     "@patricktree-stack/config-oxfmt": "workspace:*",
+    "@patricktree-stack/config-typescript": "workspace:*",
     "@typescript/native": "catalog:",
     "del-cli": "^6.0.0",
     "eslint-plugin-react-you-might-not-need-an-effect": "^1.0.1",

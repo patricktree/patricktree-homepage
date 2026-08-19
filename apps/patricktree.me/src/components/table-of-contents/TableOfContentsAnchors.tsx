@@ -1,10 +1,10 @@
 "use client";
+import { useMediaMatch } from "@patricktree-stack/react-utils/react.utils.jsx";
 import { styled } from "@pigment-css/react";
 import React from "react";
 import invariant from "tiny-invariant";
 
 import type { Heading } from "@patricktree-homepage/mdx/schema";
-import { useMediaMatch } from "@patricktree-homepage/react-utils/react.utils.jsx";
 import { uiUtils } from "@patricktree-homepage/ui-utils/ui.utils";
 
 import { TOC_QUERY } from "#pkg/constants-browser.js";

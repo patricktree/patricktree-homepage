@@ -1,13 +1,12 @@
 "use client";
 
+import { reactUtils } from "@patricktree-stack/react-utils/react.utils.jsx";
 import { check } from "@patricktree/commons-ecma/util/assert";
 import { styled } from "@pigment-css/react";
 import type { MDXComponents } from "mdx/types.js";
 import React from "react";
 import { CheckCircle, Clipboard } from "react-feather";
 import invariant from "tiny-invariant";
-
-import { reactUtils } from "@patricktree-homepage/react-utils/react.utils.jsx";
 
 import { FancyAnchor, type FancyAnchorProps } from "#pkg/components/fancy-anchor/index.js";
 import { Version, VersionTabs } from "#pkg/components/version-tabs/index.js";

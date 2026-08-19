@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This monorepo is rooted around `pnpm`. `apps/patricktree.me` is the flagship Next.js app; `apps/physio-kerschbaum.at` is a smaller marketing site that reuses the same primitives. Shared UI, MDX, and utility code sits under `packages/*`, and repo-local configuration (TypeScript, Stylelint) lives in `platform/*`. `.patricktree-stack/` is a git submodule holding the shared baseline (oxfmt, oxlint and turbo configs) used by all patricktree monorepos - do not edit it from here, change it in its own repository. End-to-end automation runs from `test/e2e-test`, keeping Playwright specs and snapshots separate from runtime bundles.
+This monorepo is rooted around `pnpm` and contains the `apps/patricktree.me` Next.js app. Shared UI, MDX, and utility code sits under `packages/*`, and repo-local configuration (TypeScript, Stylelint) lives in `platform/*`. `.patricktree-stack/` is a git submodule holding the shared baseline used by patricktree web-app repositories - do not edit it from here, change it in its own repository. End-to-end automation runs from `test/e2e-test`, keeping Playwright specs and snapshots separate from runtime bundles.
 
 ## Build, Test, and Development Commands
 
@@ -16,7 +16,7 @@ This monorepo is rooted around `pnpm`. `apps/patricktree.me` is the flagship Nex
 - `pnpm fix`: `format` followed by `lint:fix`.
 - `pnpm declutter`: run knip to find unused files, exports and dependencies.
 - `pnpm validate`: build, lint, test and `declutter` in one go.
-- `pnpm --filter @patricktree-homepage/e2e-test run e2e-test`: launch Playwright specs against the dev server.
+- `pnpm --filter @patricktree-homepage/e2e-test run e2e-test`: launch Playwright specs against the homepage URLs.
 - Validation when you think you are finished: `pnpm install && pnpm run fix && pnpm run validate && pnpm run format:check`.
 
 ## Coding Style & Naming Conventions
@@ -24,7 +24,7 @@ This monorepo is rooted around `pnpm`. `apps/patricktree.me` is the flagship Nex
 Just run `pnpm lint` in the monorepo root to see coding style or naming convention issues.
 
 - Use React hooks via the `React` namespace (e.g., `React.useState` instead of `useState`).
-- Format with oxfmt; lint with oxlint (`--type-aware`). The two Next.js apps additionally enable oxlint's built-in `nextjs` plugin, which covers the `@next/eslint-plugin-next` rules natively.
+- Format with oxfmt; lint with oxlint (`--type-aware`). The Next.js app additionally enables oxlint's built-in `nextjs` plugin, which covers the `@next/eslint-plugin-next` rules natively.
 - CSS is linted by stylelint via `@patricktree-homepage/config-stylelint`.
 - `typescript` resolves to `@typescript/typescript6` and `@typescript/native` to TypeScript 7, both via the pnpm catalog in `pnpm-workspace.yaml`. Add them as `catalog:` entries, never as literal versions.
 - Only disable oxlint rules when there is truly no other viable option; prefer code or config fixes instead, and always state the reason in a comment.

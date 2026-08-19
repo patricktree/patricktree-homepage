@@ -26,22 +26,22 @@ const config: KnipConfig = {
         "next-sitemap.cjs",
       ],
       ignoreDependencies: [
+        /* supplied directly because @mdx-js/loader declares acorn as a transitive peer */
+        "acorn",
+        /* resolved by the shared Stylelint config re-exported from this app */
+        "postcss-styled-syntax",
+        "stylelint-config-recess-order",
+        "stylelint-config-standard",
         /* used by Next.js at build time for image optimization, never imported */
         "sharp",
         /* runtime helpers injected by the @pigment-css/wyw-in-js babel transform */
         "@babel/runtime",
       ],
     },
-    "apps/physio-kerschbaum.at": {
-      entry: [
-        /* ambient module augmentations, never imported */
-        "src/types.ts",
-        /* consumed by the `next-sitemap` CLI */
-        "next-sitemap.cjs",
-      ],
+    "packages/mdx": {
       ignoreDependencies: [
-        /* used by Next.js at build time for image optimization, never imported */
-        "sharp",
+        /* supplied directly because @mdx-js/mdx reaches acorn through a transitive peer */
+        "acorn",
       ],
     },
   },
