@@ -123,6 +123,34 @@ importers:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
 
+  .patricktree-stack/libs/utils-ecma:
+    dependencies:
+      pino-std-serializers:
+        specifier: ^7.1.0
+        version: 7.1.0
+      safe-stable-stringify:
+        specifier: ^2.5.0
+        version: 2.5.0
+    devDependencies:
+      '@patricktree-stack/config-oxlint':
+        specifier: workspace:*
+        version: link:../../tooling/config-oxlint
+      '@patricktree-stack/config-typescript':
+        specifier: workspace:*
+        version: link:../../tooling/config-typescript
+      '@typescript/native':
+        specifier: 'catalog:'
+        version: typescript@7.0.2
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.75.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2001
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
   .patricktree-stack/tooling/config-nextjs:
     dependencies:
       '@patricktree-stack/config-wyw-in-js':
@@ -213,9 +241,9 @@ importers:
       '@patricktree-stack/react-utils':
         specifier: workspace:*
         version: link:../../.patricktree-stack/libs/react-utils
-      '@patricktree/commons-ecma':
-        specifier: ^2.4.1
-        version: 2.4.1
+      '@patricktree-stack/utils-ecma':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/libs/utils-ecma
       '@pigment-css/react':
         specifier: ^0.0.30
         version: 0.0.30(@types/react@18.3.20)(@typescript/typescript6@6.0.2)(react@19.1.0)
@@ -307,9 +335,9 @@ importers:
       '@mdx-js/mdx':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.14.1)
-      '@patricktree/commons-ecma':
-        specifier: ^2.4.1
-        version: 2.4.1
+      '@patricktree-stack/utils-ecma':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/libs/utils-ecma
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -368,9 +396,9 @@ importers:
       '@patricktree-homepage/mdx':
         specifier: workspace:*
         version: link:../mdx
-      '@patricktree/commons-ecma':
-        specifier: ^2.4.1
-        version: 2.4.1
+      '@patricktree-stack/utils-ecma':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/libs/utils-ecma
       '@patricktree/fetch-favicon':
         specifier: ^1.3.0
         version: 1.3.0(playwright@1.52.0)
@@ -1633,9 +1661,6 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
-
-  '@patricktree/commons-ecma@2.4.1':
-    resolution: {integrity: sha512-Ripr10PWgaUagtbaWjP9lXgXMR5FZRf0W6sau/EIuzkySrD+Vz0SlweR8bde1iVRPjcmOGM+b+EXa0gTNvoi2Q==}
 
   '@patricktree/commons-ecma@3.0.0':
     resolution: {integrity: sha512-Ew5sbb3F4HK1YkmV+E0L7OVufFbykKbgtlghFakj7m8N1yq6iCb/ab9UhUprFRX/VvmeMSOKl6e4pM0u4JGj8Q==}
@@ -3077,6 +3102,9 @@ packages:
   picomatch@4.0.5:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
+
+  pino-std-serializers@7.1.0:
+    resolution: {integrity: sha512-BndPH67/JxGExRgiX1dX0w1FvZck5Wa4aal9198SrRhZjH3GxKQUKIBnYJTdj2HDN3UQAS06HlfcSbQj2OHmaw==}
 
   playwright-core@1.52.0:
     resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
@@ -4541,11 +4569,6 @@ snapshots:
 
   '@oxlint/binding-win32-x64-msvc@1.75.0':
     optional: true
-
-  '@patricktree/commons-ecma@2.4.1':
-    dependencies:
-      safe-stable-stringify: 2.5.0
-      tiny-invariant: 1.3.3
 
   '@patricktree/commons-ecma@3.0.0':
     dependencies:
@@ -6253,6 +6276,8 @@ snapshots:
   picomatch@2.3.1: {}
 
   picomatch@4.0.5: {}
+
+  pino-std-serializers@7.1.0: {}
 
   playwright-core@1.52.0: {}
 

@@ -1,5 +1,5 @@
-import { arrays } from "@patricktree/commons-ecma/util/arrays";
-import { jsonUtil } from "@patricktree/commons-ecma/util/json";
+import { arrays } from "@patricktree-stack/utils-ecma/array.utils";
+import { jsonUtil } from "@patricktree-stack/utils-ecma/json.utils";
 import { fetchFavicons } from "@patricktree/fetch-favicon";
 import fs from "node:fs";
 import path from "node:path";

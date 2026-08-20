@@ -1,7 +1,7 @@
 "use client";
 
 import { reactUtils } from "@patricktree-stack/react-utils/react.utils.jsx";
-import { check } from "@patricktree/commons-ecma/util/assert";
+import { check } from "@patricktree-stack/utils-ecma/assert.utils";
 import { styled } from "@pigment-css/react";
 import type { MDXComponents } from "mdx/types.js";
 import React from "react";

@@ -4,6 +4,7 @@ packages:
   - platform/*
   - test/*
   - .patricktree-stack/libs/react-utils
+  - .patricktree-stack/libs/utils-ecma
   - .patricktree-stack/tooling/config-nextjs
   - .patricktree-stack/tooling/config-oxfmt
   - .patricktree-stack/tooling/config-oxlint

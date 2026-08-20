@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@patricktree-homepage/mdx": "workspace:*",
-    "@patricktree/commons-ecma": "^2.4.1",
+    "@patricktree-stack/utils-ecma": "workspace:*",
     "@patricktree/fetch-favicon": "^1.3.0",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",

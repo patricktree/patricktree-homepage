@@ -34,7 +34,7 @@
     "@patricktree-homepage/mdx-blog": "workspace:*",
     "@patricktree-homepage/ui-utils": "workspace:*",
     "@patricktree-stack/react-utils": "workspace:*",
-    "@patricktree/commons-ecma": "^2.4.1",
+    "@patricktree-stack/utils-ecma": "workspace:*",
     "@pigment-css/react": "^0.0.30",
     "@vercel/speed-insights": "^1.2.0",
     "acorn": "^8.14.1",

@@ -1,4 +1,4 @@
-import { urlUtils } from "@patricktree/commons-ecma/util/url";
+import { urlUtils } from "@patricktree-stack/utils-ecma/url.utils";
 import { styled } from "@pigment-css/react";
 import type React from "react";
 
