@@ -2,6 +2,10 @@
   "$schema": "./node_modules/turbo/schema.json",
   "noUpdateNotifier": true,
   "concurrency": "100%",
+  "globalDependencies": [
+    /* .patricktree-stack contains tooling and config files that are used by multiple workspace projects and turbo tasks, so changes to it must invalidate all cached tasks */
+    "./.patricktree-stack/**",
+  ],
   "globalEnv": ["DEPLOYMENT_ORIGIN", "ENABLE_EXPERIMENTAL_COREPACK"],
   "futureFlags": {
     "watchUsingTaskInputs": true,
