@@ -1,6 +1,7 @@
 {
   "extends": [
     "@patricktree-stack/config-typescript/tsconfig.defaults.json",
+    "@patricktree-stack/config-typescript/tsconfig.node24.json",
     "@patricktree-stack/config-typescript/tsconfig.next.json"
   ],
   "compilerOptions": {
