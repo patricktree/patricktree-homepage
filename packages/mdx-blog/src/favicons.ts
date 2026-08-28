@@ -1,4 +1,4 @@
-import { schema_faviconsForWebsites } from "@patricktree/fetch-favicon";
+import { schema_faviconsForWebsites } from "@patricktree-stack/fetch-favicon";
 import fs from "node:fs";
 
 import type { MDXParseResult } from "@patricktree-homepage/mdx/schema";

@@ -89,6 +89,95 @@ importers:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
 
+  .patricktree-stack/libs/fetch-favicon:
+    dependencies:
+      '@commander-js/extra-typings':
+        specifier: ^14.0.0
+        version: 14.0.0(commander@14.0.2)
+      '@patricktree-stack/utils-ecma':
+        specifier: workspace:*
+        version: link:../utils-ecma
+      '@patricktree-stack/utils-node':
+        specifier: workspace:*
+        version: link:../utils-node
+      commander:
+        specifier: ^14.0.2
+        version: 14.0.2
+      tiny-invariant:
+        specifier: ^1.3.3
+        version: 1.3.3
+      zod:
+        specifier: ^3.23.8
+        version: 3.25.76
+    devDependencies:
+      '@patricktree-stack/config-oxlint':
+        specifier: workspace:*
+        version: link:../../tooling/config-oxlint
+      '@patricktree-stack/config-typescript':
+        specifier: workspace:*
+        version: link:../../tooling/config-typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
+      '@typescript/native':
+        specifier: 'catalog:'
+        version: typescript@7.0.2
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.75.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2001
+      playwright:
+        specifier: ^1.47.0
+        version: 1.52.0
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
+  .patricktree-stack/libs/fetch-sitemap-locations:
+    dependencies:
+      '@commander-js/extra-typings':
+        specifier: ^13.1.0
+        version: 13.1.0(commander@13.1.0)
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
+      tiny-invariant:
+        specifier: ^1.3.3
+        version: 1.3.3
+      xml2js:
+        specifier: ^0.6.2
+        version: 0.6.2
+      zod:
+        specifier: ^3.23.8
+        version: 3.25.76
+    devDependencies:
+      '@patricktree-stack/config-oxlint':
+        specifier: workspace:*
+        version: link:../../tooling/config-oxlint
+      '@patricktree-stack/config-typescript':
+        specifier: workspace:*
+        version: link:../../tooling/config-typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
+      '@types/xml2js':
+        specifier: ^0.4.14
+        version: 0.4.14
+      '@typescript/native':
+        specifier: 'catalog:'
+        version: typescript@7.0.2
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.75.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2001
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
   .patricktree-stack/libs/react-utils:
     dependencies:
       react:
@@ -138,6 +227,34 @@ importers:
       '@patricktree-stack/config-typescript':
         specifier: workspace:*
         version: link:../../tooling/config-typescript
+      '@typescript/native':
+        specifier: 'catalog:'
+        version: typescript@7.0.2
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.75.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2001
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
+  .patricktree-stack/libs/utils-node:
+    dependencies:
+      exit-hook:
+        specifier: ^5.1.0
+        version: 5.1.0
+    devDependencies:
+      '@patricktree-stack/config-oxlint':
+        specifier: workspace:*
+        version: link:../../tooling/config-oxlint
+      '@patricktree-stack/config-typescript':
+        specifier: workspace:*
+        version: link:../../tooling/config-typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
       '@typescript/native':
         specifier: 'catalog:'
         version: typescript@7.0.2
@@ -396,12 +513,12 @@ importers:
       '@patricktree-homepage/mdx':
         specifier: workspace:*
         version: link:../mdx
+      '@patricktree-stack/fetch-favicon':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/libs/fetch-favicon
       '@patricktree-stack/utils-ecma':
         specifier: workspace:*
         version: link:../../.patricktree-stack/libs/utils-ecma
-      '@patricktree/fetch-favicon':
-        specifier: ^1.3.0
-        version: 1.3.0(playwright@1.52.0)
       feed:
         specifier: ^4.2.2
         version: 4.2.2
@@ -458,9 +575,9 @@ importers:
 
   test/e2e-test:
     dependencies:
-      '@patricktree/fetch-sitemap-locations':
-        specifier: ^1.1.0
-        version: 1.1.0
+      '@patricktree-stack/fetch-sitemap-locations':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/libs/fetch-sitemap-locations
     devDependencies:
       '@patricktree-stack/config-oxlint':
         specifier: workspace:*
@@ -1662,20 +1779,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@patricktree/commons-ecma@3.0.0':
-    resolution: {integrity: sha512-Ew5sbb3F4HK1YkmV+E0L7OVufFbykKbgtlghFakj7m8N1yq6iCb/ab9UhUprFRX/VvmeMSOKl6e4pM0u4JGj8Q==}
-
-  '@patricktree/commons-node@3.0.0':
-    resolution: {integrity: sha512-y91RNxJtb0EfN2trxvBUODcXaxmufsDoyXgGGWIf1gcUuSodHqtICRxfAOl2HPwYNagHiovEI4+rQQOLYkZjmQ==}
-
-  '@patricktree/fetch-favicon@1.3.0':
-    resolution: {integrity: sha512-4C2dL0JHxKFNG77Eowm3ElQETS41589phg46J/ZWaTY7kbME8B4MHRC6iQCzIo8i50sK0YwUFc9UgfH29B0s5w==}
-    peerDependencies:
-      playwright: ^1.35.0
-
-  '@patricktree/fetch-sitemap-locations@1.1.0':
-    resolution: {integrity: sha512-4Hw9crXgJv2noy7204qqEl80aBnJ2oiuq9XU7BGFZOmsEuxzYsKcj2jcCS6KOi/pomPX6Ljf7ZNMlPhwMmKsjw==}
-
   '@pigment-css/nextjs-plugin@0.0.30':
     resolution: {integrity: sha512-jdy8HAhG8xyxexldtFZbl7guTvtp8eT9Jc6sNnSL+cigVYnUQLK+izLb+IXDVA+ECZyrY+OSQMyt+qbI0Dwlzg==}
     engines: {node: '>=14.0.0'}
@@ -1787,6 +1890,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/xml2js@0.4.14':
+    resolution: {integrity: sha512-4YnrRemBShWRO2QjvUin8ESA41rH+9nQGLUGZV/1IDhi3SL9OhdpNC/MrulTWuptXKwhx/aDxE7toV0f/ypIXQ==}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
@@ -2288,6 +2394,10 @@ packages:
 
   estree-walker@3.0.3:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+
+  exit-hook@5.1.0:
+    resolution: {integrity: sha512-INjr2xyxHo7bhAqf5ong++GZPPnpcuBcaXUKt03yf7Fie9yWD7FapL4teOU0+awQazGs5ucBh7xWs/AD+6nhog==}
+    engines: {node: '>=20'}
 
   extend-shallow@2.0.1:
     resolution: {integrity: sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==}
@@ -4570,33 +4680,6 @@ snapshots:
   '@oxlint/binding-win32-x64-msvc@1.75.0':
     optional: true
 
-  '@patricktree/commons-ecma@3.0.0':
-    dependencies:
-      safe-stable-stringify: 2.5.0
-      tiny-invariant: 1.3.3
-
-  '@patricktree/commons-node@3.0.0':
-    dependencies:
-      '@patricktree/commons-ecma': 3.0.0
-
-  '@patricktree/fetch-favicon@1.3.0(playwright@1.52.0)':
-    dependencies:
-      '@commander-js/extra-typings': 14.0.0(commander@14.0.2)
-      '@patricktree/commons-ecma': 3.0.0
-      '@patricktree/commons-node': 3.0.0
-      commander: 14.0.2
-      playwright: 1.52.0
-      tiny-invariant: 1.3.3
-      zod: 3.25.76
-
-  '@patricktree/fetch-sitemap-locations@1.1.0':
-    dependencies:
-      '@commander-js/extra-typings': 13.1.0(commander@13.1.0)
-      commander: 13.1.0
-      tiny-invariant: 1.3.3
-      xml2js: 0.6.2
-      zod: 3.24.3
-
   '@pigment-css/nextjs-plugin@0.0.30(next@15.5.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@pigment-css/unplugin': 0.0.30(react@19.1.0)
@@ -4764,6 +4847,10 @@ snapshots:
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
+
+  '@types/xml2js@0.4.14':
+    dependencies:
+      '@types/node': 24.13.3
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -5190,6 +5277,8 @@ snapshots:
   estree-walker@3.0.3:
     dependencies:
       '@types/estree': 1.0.7
+
+  exit-hook@5.1.0: {}
 
   extend-shallow@2.0.1:
     dependencies:

@@ -4,7 +4,10 @@ packages:
   - platform/*
   - test/*
   - .patricktree-stack/libs/react-utils
+  - .patricktree-stack/libs/fetch-favicon
+  - .patricktree-stack/libs/fetch-sitemap-locations
   - .patricktree-stack/libs/utils-ecma
+  - .patricktree-stack/libs/utils-node
   - .patricktree-stack/tooling/config-nextjs
   - .patricktree-stack/tooling/config-oxfmt
   - .patricktree-stack/tooling/config-oxlint

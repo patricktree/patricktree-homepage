@@ -332,13 +332,13 @@
         "light": "https://github.githubassets.com/favicons/favicon.svg"
       }
     },
-    "https://github.com/patricktree/packages/tree/main/packages/typescript-eslint-rules-requiring-type-info/test-pkg-consumption-scenarios": {
+    "https://github.com/patricktree/pkg-consumption-test/tree/main/pkg-consumption-test/examples/typescript-eslint-rules-requiring-type-info": {
       "iconURLs": {
         "dark": "https://github.githubassets.com/favicons/favicon-dark.svg",
         "light": "https://github.githubassets.com/favicons/favicon.svg"
       }
     },
-    "https://github.com/patricktree/packages/tree/main/packages/webpage-observer": {
+    "https://github.com/patricktree/playwright-server-docker-visual-testing-example": {
       "iconURLs": {
         "dark": "https://github.githubassets.com/favicons/favicon-dark.svg",
         "light": "https://github.githubassets.com/favicons/favicon.svg"

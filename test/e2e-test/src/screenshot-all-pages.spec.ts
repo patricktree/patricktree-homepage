@@ -1,4 +1,4 @@
-import { fetchSitemapLinks } from "@patricktree/fetch-sitemap-locations";
+import { fetchSitemapLinks } from "@patricktree-stack/fetch-sitemap-locations";
 import { test, expect } from "@playwright/test";
 
 const allLinks: string[] = [];

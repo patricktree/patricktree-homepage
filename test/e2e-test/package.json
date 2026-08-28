@@ -18,7 +18,7 @@
     "turbo:lint:fix": "pnpm run turbo:lint --fix"
   },
   "dependencies": {
-    "@patricktree/fetch-sitemap-locations": "^1.1.0"
+    "@patricktree-stack/fetch-sitemap-locations": "workspace:*"
   },
   "devDependencies": {
     "@patricktree-stack/config-oxlint": "workspace:*",
