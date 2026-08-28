@@ -29,7 +29,7 @@
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
-    "turbo": "^2.10.3",
+    "turbo": "^2.10.12",
     "typescript": "catalog:"
   },
   "devEngines": {
