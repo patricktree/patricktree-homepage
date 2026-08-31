@@ -2,7 +2,7 @@
 title: Sensible tsconfig.json Defaults
 published: true
 publishedAtISO: "2022-12-13T22:17:00.000Z"
-lastUpdatedAtISO: "2026-03-28T12:00:00.000Z"
+lastUpdatedAtISO: "2026-08-31T12:00:00.000Z"
 description: The TypeScript configuration I use as a basis for new projects.
 tags: ["typescript"]
 giscusTerm: sensible-tsconfig-defaults
@@ -45,7 +45,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2020",
+    "target": "ES2022",
 
     /* Projects */
     "incremental": true,
@@ -90,7 +90,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2020",
+    "target": "ES2022",
 
     /* Projects */
     "incremental": true,
@@ -129,7 +129,7 @@ When I set up a TypeScript package, this is the `tsconfig.json` configuration I 
     "verbatimModuleSyntax": true,
 
     /* Language and Environment */
-    "target": "ES2020",
+    "target": "ES2022",
 
     /* Projects */
     "incremental": true,
@@ -371,7 +371,7 @@ That is why the <FancyAnchor href="https://nodejs.org/api/typescript.html">Node.
 Affected are e.g. `namespace`'s and `const enum`'s.  
 I think it is a good idea to start with this option enabled, as I feel we don't need the affected features often anyway; it can be disabled later in case one of those features is really needed.
 
-## `"target": "ES2020"`
+## `"target": "ES2022"`
 
 {/* prettier-ignore */}<FancyAnchor href="https://www.typescriptlang.org/tsconfig#target">#target docs</FancyAnchor>
 
@@ -388,7 +388,7 @@ According to a <FancyAnchor href="https://youtu.be/cLxNdLK--yI">Chrome Developer
 Even in 2026 it still applies that targets newer than `ES2017` don't change much in terms of size and performance.
 
 So my advice is to bump the target whenever you want access to newer JavaScript features.  
-I bumped it to `ES2020` to have access to e.g. `flatMap`.
+I bumped it to `ES2022` because browsers have supported it for a long time; Node.js 22, the oldest maintained Node.js release, supports it; and it enables the use of the `cause` option on `Error` objects.
 
 ## Enabling `"incremental"`
 
