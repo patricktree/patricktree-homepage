@@ -39,4 +39,4 @@ Commit messages follow Conventional Commits (`feat(patricktree.me): add progress
 
 ## Security & Configuration Tips
 
-The Node.js version comes from `package.json#devEngines.runtime`; enable Corepack so `pnpm@11.1.0` is locked. Never commit `.env*`; keep secrets in `.env.local` or platform settings. When scripts generate artifacts (favicons, CSS modules, RSS), run them as defined in the package scripts so committed assets align with production expectations.
+The Node.js version comes from `package.json#devEngines.runtime`; enable Corepack so `pnpm@12.2.1` is locked. Never commit `.env*`; keep secrets in `.env.local` or platform settings. When scripts generate artifacts (favicons, CSS modules, RSS), run them as defined in the package scripts so committed assets align with production expectations.

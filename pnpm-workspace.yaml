@@ -43,6 +43,9 @@ packageExtensions:
       eslint:
         optional: true
 
+patchedDependencies:
+  "@wyw-in-js/transform@0.5.5": patches/@wyw-in-js__transform@0.5.5.patch
+
 # handle peer dependencies in a strict way
 autoInstallPeers: false
 resolvePeersFromWorkspaceRoot: false

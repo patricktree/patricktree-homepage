@@ -39,10 +39,8 @@
       "onFail": "download"
     }
   },
-  "packageManager": "pnpm@11.1.0",
-  "pnpm": {
-    "patchedDependencies": {
-      "@wyw-in-js/transform@0.5.5": "patches/@wyw-in-js__transform@0.5.5.patch"
-    }
-  }
+  "engines": {
+    "pnpm": "12.2.1"
+  },
+  "packageManager": "pnpm@12.2.1"
 }
