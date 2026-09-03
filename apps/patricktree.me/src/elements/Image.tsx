@@ -1,5 +1,5 @@
 /* importing from next/image is allowed here */
-import NextImage from "next/image.js";
+import NextImage from "next/image";
 import React from "react";
 
 export type ImageProps = React.ComponentProps<typeof NextImage> & {

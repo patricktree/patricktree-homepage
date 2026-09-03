@@ -156,6 +156,8 @@ export const cssBase = css`
       --box-width-lg: 1050px;
       --box-width-md: 800px;
       --box-width-sm: 600px;
+      --border-radius-tile: 12px;
+      --border-tile: 1px solid var(--color-fg);
       --image-filter: grayscale(0%);
 
       --animation-hide: ${Animations.HIDE};
@@ -255,6 +257,17 @@ export const cssBase = css`
     ul,
     ol {
       font-size: var(--font-size-base);
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      padding: var(--spacing-base);
+      vertical-align: top;
+      text-align: start;
+      border: 1px solid var(--color-fg-less-emphasized);
     }
 
     h1,

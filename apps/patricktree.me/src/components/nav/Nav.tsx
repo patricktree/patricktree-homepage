@@ -1,6 +1,6 @@
 import { styled } from "@pigment-css/react";
 import type React from "react";
-import { Home, PenTool } from "react-feather";
+import { Folder, Home, PenTool } from "react-feather";
 
 import { headingIds } from "#pkg/app/heading-ids.js";
 import { Anchor } from "#pkg/elements/index.js";
@@ -13,6 +13,13 @@ export const Nav: React.FC = () => {
           <NavAnchor href="/">
             <Home size="1em" />
             home
+          </NavAnchor>
+        </NavListItem>
+
+        <NavListItem>
+          <NavAnchor href={`/#${headingIds.projects}`}>
+            <Folder size="1em" />
+            projects
           </NavAnchor>
         </NavListItem>
 

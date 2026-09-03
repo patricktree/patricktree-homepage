@@ -19,11 +19,17 @@ export const PATHS = {
   get POSTS() {
     return path.join(process.cwd(), "src", "writing", "posts");
   },
+  get PROJECTS() {
+    return path.join(process.cwd(), "src", "writing", "projects");
+  },
   get TIDBITS() {
     return path.join(process.cwd(), "src", "writing", "tidbits");
   },
   get POSTS_PAGES_DIR() {
     return path.join(process.cwd(), "src", "app", "blog");
+  },
+  get PROJECTS_PAGES_DIR() {
+    return path.join(process.cwd(), "src", "app", "projects");
   },
   get TIDBITS_PAGES_DIR() {
     return path.join(process.cwd(), "src", "app", "tidbits");

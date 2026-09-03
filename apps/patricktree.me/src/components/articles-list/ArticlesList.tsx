@@ -2,15 +2,15 @@ import { styled } from "@pigment-css/react";
 import dayjs from "dayjs";
 import type React from "react";
 
-import type { MDXFile } from "@patricktree-homepage/mdx/schema";
+import type { ListingFrontmatterData, MDXFile } from "@patricktree-homepage/mdx/schema";
 
 import { ArticleTile } from "#pkg/components/article-tile/index.js";
 import { QUERIES } from "#pkg/constants-browser.js";
 
 type ArticlesListEntry = {
   pathPrefix: string;
-  article: MDXFile;
-  sortDateISO: string;
+  article: MDXFile<ListingFrontmatterData>;
+  sortDateISO?: string;
 };
 
 type ArticlesListProps = {
@@ -18,17 +18,23 @@ type ArticlesListProps = {
 };
 
 export const ArticlesList: React.FC<ArticlesListProps> = ({ entries }) => {
+  const sortedEntries = [...entries].sort((a, b) => {
+    if (!a.sortDateISO || !b.sortDateISO) {
+      return 0;
+    }
+
+    return dayjs(b.sortDateISO).diff(a.sortDateISO);
+  });
+
   return (
     <ArticlesListContainer>
-      {entries
-        .sort((a, b) => dayjs(b.sortDateISO).diff(a.sortDateISO))
-        .map((entry) => (
-          <ArticleTile
-            key={entry.article.segment}
-            article={entry.article}
-            href={`${entry.pathPrefix}/${encodeURIComponent(entry.article.segment)}`}
-          />
-        ))}
+      {sortedEntries.map((entry) => (
+        <ArticleTile
+          key={entry.article.segment}
+          article={entry.article}
+          href={`${entry.pathPrefix}/${encodeURIComponent(entry.article.segment)}`}
+        />
+      ))}
     </ArticlesListContainer>
   );
 };

@@ -5,33 +5,47 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { parseMDXFileAndCollectHrefs } from "@patricktree-homepage/mdx/mdx";
+import {
+  schema_frontmatterData,
+  schema_listingFrontmatterData,
+} from "@patricktree-homepage/mdx/schema";
 
 import { PATHS } from "#pkg/constants-server.js";
 
 async function fetchFaviconsForAllHrefsAndWriteToFile() {
-  const [postsBasenames, tidbitBasenames] = await Promise.all([
-    fs.promises.readdir(PATHS.POSTS),
-    fs.promises.readdir(PATHS.TIDBITS),
-  ]);
-  const postsWithAbsolutePaths = postsBasenames
-    .filter((basename) => basename.endsWith(".mdx"))
-    .map((basename) => path.join(PATHS.POSTS, basename));
-  const tidbitsWithAbsolutePaths = tidbitBasenames
-    .filter((basename) => basename.endsWith(".mdx"))
-    .map((basename) => path.join(PATHS.TIDBITS, basename));
-  const filesWithAbsolutePaths = [...postsWithAbsolutePaths, ...tidbitsWithAbsolutePaths];
+  const articleDirectories = [
+    { content: PATHS.POSTS, frontmatterSchema: schema_frontmatterData },
+    { content: PATHS.PROJECTS, frontmatterSchema: schema_listingFrontmatterData },
+    { content: PATHS.TIDBITS, frontmatterSchema: schema_frontmatterData },
+  ];
+  const filesByDirectory = await Promise.all(
+    articleDirectories.map(async ({ content, frontmatterSchema }) => {
+      const basenames = await fs.promises.readdir(content);
 
-  // Collect all hrefs of all posts (with duplicates removed)
-  let hrefsOfAllPosts: string[] = [];
-  await Promise.all(
-    filesWithAbsolutePaths.map(async (fileAbsolutePath) => {
-      const { collectedHrefs } = await parseMDXFileAndCollectHrefs(fileAbsolutePath);
-      hrefsOfAllPosts.push(...collectedHrefs);
+      return basenames
+        .filter((basename) => basename.endsWith(".mdx"))
+        .map((basename) => ({
+          fileAbsolutePath: path.join(content, basename),
+          frontmatterSchema,
+        }));
     }),
   );
-  hrefsOfAllPosts = arrays.uniqueValues(hrefsOfAllPosts);
+  const files = filesByDirectory.flat();
 
-  const finalResult = await fetchFavicons(hrefsOfAllPosts);
+  // Collect all hrefs of all articles (with duplicates removed)
+  let hrefsOfAllArticles: string[] = [];
+  await Promise.all(
+    files.map(async ({ fileAbsolutePath, frontmatterSchema }) => {
+      const { collectedHrefs } = await parseMDXFileAndCollectHrefs(
+        fileAbsolutePath,
+        frontmatterSchema,
+      );
+      hrefsOfAllArticles.push(...collectedHrefs);
+    }),
+  );
+  hrefsOfAllArticles = arrays.uniqueValues(hrefsOfAllArticles);
+
+  const finalResult = await fetchFavicons(hrefsOfAllArticles);
   await fs.promises.writeFile(
     PATHS.FAVICONS_FOR_WEBSITES,
     jsonUtil.safeStringify(finalResult, undefined, 2),

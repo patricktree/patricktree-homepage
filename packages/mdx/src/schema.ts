@@ -1,23 +1,27 @@
 import { z } from "zod";
 
-export type MDXFile = {
+export type MDXFile<TFrontmatterData = FrontmatterData> = {
   segment: string;
-  frontmatter: FrontmatterData;
+  frontmatter: TFrontmatterData;
 };
 
-export type MDXParseResult = {
-  frontmatter: FrontmatterData;
+export type MDXParseResult<TFrontmatterData = FrontmatterData> = {
+  frontmatter: TFrontmatterData;
   collectedHrefs: string[];
   collectedHeadings: Heading[];
 };
 
-export const schema_frontmatterData = z.object({
+export const schema_listingFrontmatterData = z.object({
   title: z.string(),
+  description: z.string(),
+  tags: z.array(z.string()),
+});
+export type ListingFrontmatterData = z.infer<typeof schema_listingFrontmatterData>;
+
+export const schema_frontmatterData = schema_listingFrontmatterData.extend({
   published: z.boolean(),
   publishedAtISO: z.string(),
   lastUpdatedAtISO: z.string().optional(),
-  description: z.string(),
-  tags: z.array(z.string()),
   giscusTerm: z.string(),
 });
 export type FrontmatterData = z.infer<typeof schema_frontmatterData>;

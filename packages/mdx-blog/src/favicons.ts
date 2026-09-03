@@ -21,7 +21,7 @@ const faviconsForWebsitesReadPromise = fs.promises.readFile(PATHS.FAVICONS_FOR_W
 });
 
 export async function createFaviconsMapping(
-  mdxParseResult: MDXParseResult,
+  mdxParseResult: MDXParseResult<unknown>,
 ): Promise<FaviconDataURLsForWebsiteURLs> {
   const faviconsForWebsitesString = await faviconsForWebsitesReadPromise;
   const faviconsForWebsites = schema_faviconsForWebsites.parse(

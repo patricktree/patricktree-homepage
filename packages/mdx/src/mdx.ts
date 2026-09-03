@@ -41,21 +41,27 @@ export function createMdxOptions({
   };
 }
 
+export function parseMDXFileAndCollectHrefs(fileAbsolutePath: string): Promise<MDXParseResult>;
+export function parseMDXFileAndCollectHrefs<TFrontmatterData>(
+  fileAbsolutePath: string,
+  frontmatterSchema: { parse: (data: unknown) => TFrontmatterData },
+): Promise<MDXParseResult<TFrontmatterData>>;
 export async function parseMDXFileAndCollectHrefs(
   fileAbsolutePath: string,
-): Promise<MDXParseResult> {
+  frontmatterSchema: { parse: (data: unknown) => unknown } = schema_frontmatterData,
+): Promise<MDXParseResult<unknown>> {
   const source = await fs.promises.readFile(fileAbsolutePath, "utf8");
 
   // parse frontmatter (taken from https://github.com/hashicorp/next-mdx-remote/blob/5ca106487cae7dfdb96af636d7c316c40f079108/src/serialize.ts)
   const vfile = new VFile(source);
   matter(vfile, { strip: true });
-  const frontmatter = schema_frontmatterData.parse(vfile.data["matter"]);
+  const frontmatter = frontmatterSchema.parse(vfile.data["matter"]);
 
   const collectedHrefs: string[] = [];
   const collectedHeadings: Heading[] = [];
   await compile(vfile, createMdxOptions({ collectedHrefs, collectedHeadings }));
 
-  const mdxParseResult: MDXParseResult = {
+  const mdxParseResult: MDXParseResult<unknown> = {
     frontmatter,
     collectedHrefs,
     collectedHeadings,

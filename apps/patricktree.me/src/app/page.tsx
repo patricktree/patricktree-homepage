@@ -1,16 +1,22 @@
 import { styled } from "@pigment-css/react";
 import type { Metadata } from "next";
-import { PenTool } from "react-feather";
+import { Folder, PenTool } from "react-feather";
+import invariant from "tiny-invariant";
+
+import { schema_listingFrontmatterData } from "@patricktree-homepage/mdx/schema";
 
 import { headingIds } from "#pkg/app/heading-ids.js";
 import { ArticlesList } from "#pkg/components/articles-list/index.js";
 import { Introduction } from "#pkg/components/introduction/index.js";
 import { Main } from "#pkg/components/main/index.js";
+import { ProjectTile } from "#pkg/components/project-tile/index.js";
 import { PATHS } from "#pkg/constants-server.js";
-import { getAllMarkdownFiles } from "#pkg/mdx/index.js";
+import { getAllMarkdownFiles, getAllMarkdownFilesMatchingSchema } from "#pkg/mdx/index.js";
+import { PROJECT_ASSETS } from "#pkg/project-assets.js";
 
 async function HomePage() {
-  const [posts, tidbits] = await Promise.all([
+  const [projects, posts, tidbits] = await Promise.all([
+    getAllMarkdownFilesMatchingSchema(PATHS.PROJECTS, schema_listingFrontmatterData),
     getAllMarkdownFiles(PATHS.POSTS),
     getAllMarkdownFiles(PATHS.TIDBITS),
   ]);
@@ -29,9 +35,29 @@ async function HomePage() {
     })),
   ];
 
+  const createAudiobookFromURLProject = projects.find(
+    (project) => project.segment === "cup-create-an-audiobook-from-a-url",
+  );
+  invariant(
+    createAudiobookFromURLProject,
+    "Cup - Create an Audiobook from a URL project must exist",
+  );
+
   return (
     <HomepageContainer>
       <Introduction />
+
+      <HomepageSection>
+        <SectionHeading id={headingIds.projects}>
+          <Folder size="1em" />
+          Projects
+        </SectionHeading>
+        <ProjectTile
+          project={createAudiobookFromURLProject}
+          href="/projects/cup-create-an-audiobook-from-a-url"
+          {...PROJECT_ASSETS.CREATE_AUDIOBOOK_FROM_URL}
+        />
+      </HomepageSection>
 
       <HomepageSection>
         <SectionHeading id={headingIds.writing}>

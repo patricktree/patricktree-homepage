@@ -17,7 +17,7 @@
     "internal:fetch-favicons": "playwright install chromium && pnpm run internal:compile && fetch-favicons-for-articles && oxfmt \"./generated/favicons-for-websites.json\" && git add \"./generated/favicons-for-websites.json\"",
     "internal:generate-css-modules": "pnpm run internal:compile && generate-css-modules-for-articles && oxfmt \"./src/app/**/*.module.css\" && git add \"./src/app/**/*.module.css\"",
     "lint": "turbo run turbo:lint",
-    "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\" \"!./src/app/blog/*/styles.module.css\" \"!./src/app/tidbits/*/styles.module.css\"",
+    "lint:css": "stylelint \"./src/**/*.(css|ts|cts|mts|tsx|ctsx|mtsx)\" \"!./src/app/blog/*/styles.module.css\" \"!./src/app/projects/*/styles.module.css\" \"!./src/app/tidbits/*/styles.module.css\"",
     "lint:fix": "turbo run turbo:lint:fix",
     "start": "next start",
     "turbo:build": "pnpm run internal:compile",

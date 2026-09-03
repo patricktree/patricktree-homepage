@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 import {
+  type ListingFrontmatterData,
   type MDXFile,
   type MDXParseResult,
   schema_frontmatterData,
@@ -12,6 +13,18 @@ export { parseMDXFileAndCollectHrefs } from "@patricktree-homepage/mdx/mdx";
 export type { MDXParseResult } from "@patricktree-homepage/mdx/schema";
 
 export async function getAllMarkdownFiles(absolutePathToDirectory: string): Promise<MDXFile[]> {
+  const markdownFiles = await getAllMarkdownFilesMatchingSchema(
+    absolutePathToDirectory,
+    schema_frontmatterData,
+  );
+
+  return markdownFiles.filter((file) => file.frontmatter.published);
+}
+
+export async function getAllMarkdownFilesMatchingSchema<TFrontmatterData>(
+  absolutePathToDirectory: string,
+  frontmatterSchema: { parse: (data: unknown) => TFrontmatterData },
+): Promise<MDXFile<TFrontmatterData>[]> {
   let files = await fs.promises.readdir(absolutePathToDirectory);
   files = files.filter((fileName) => fileName.endsWith(".mdx"));
 
@@ -23,8 +36,8 @@ export async function getAllMarkdownFiles(absolutePathToDirectory: string): Prom
       );
 
       const segment = fileName.replace(/\.mdx$/, "");
-      const frontmatter = schema_frontmatterData.parse(matter(source).data);
-      const markdownFile: MDXFile = {
+      const frontmatter = frontmatterSchema.parse(matter(source).data);
+      const markdownFile: MDXFile<TFrontmatterData> = {
         frontmatter,
         segment,
       };
@@ -33,12 +46,12 @@ export async function getAllMarkdownFiles(absolutePathToDirectory: string): Prom
     }),
   );
 
-  const publishedFiles = markdownFiles.filter((file) => file.frontmatter.published);
-
-  return publishedFiles;
+  return markdownFiles;
 }
 
-export function mapMDXParseResultToMetadata(mdxParseResult: MDXParseResult) {
+export function mapMDXParseResultToMetadata(
+  mdxParseResult: MDXParseResult<ListingFrontmatterData>,
+) {
   return {
     title: mdxParseResult.frontmatter.title,
     description: mdxParseResult.frontmatter.description,

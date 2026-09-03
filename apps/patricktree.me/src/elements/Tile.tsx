@@ -16,8 +16,8 @@ export const Tile = styled.article`
   /* hide overflow to "apply" box-shadow to children */
   overflow: hidden;
   color: inherit;
-  border: 1px solid var(--color-fg);
-  border-radius: 12px;
+  border: var(--border-tile);
+  border-radius: var(--border-radius-tile);
   box-shadow: var(--shadow-style);
 
   transition:
@@ -44,4 +44,5 @@ export const Description = styled.p`
   flex-grow: 1;
 
   text-align: justify;
+  white-space: pre-line;
 `;
