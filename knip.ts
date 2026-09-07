@@ -14,8 +14,6 @@ const config: KnipConfig = {
         "husky",
         /* the TypeScript 7 binary is invoked by oxlint-tsgolint, not imported anywhere */
         "@typescript/native",
-        /* oxlint doesn't resolve its JS plugins correctly, we need it in the root node_modules */
-        "eslint-plugin-react-you-might-not-need-an-effect",
       ],
     },
     "apps/patricktree.me": {

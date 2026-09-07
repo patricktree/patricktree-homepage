@@ -165,9 +165,6 @@ importers:
       del-cli:
         specifier: ^6.0.0
         version: 6.0.0
-      eslint-plugin-react-you-might-not-need-an-effect:
-        specifier: ^1.0.1
-        version: 1.0.1
       husky:
         specifier: ^9.1.7
         version: 9.1.7
