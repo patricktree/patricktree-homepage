@@ -16,7 +16,7 @@ Existing options fell short for me:
 So I built **Cup**, a full-stack application that turns the content behind a URL into natural-sounding narration, synchronized text, and portable exports.
 
 - {/* prettier-ignore */}<FancyAnchor href="https://github.com/patricktree/create-audiobook-from-url">GitHub source code</FancyAnchor>
-- {/* prettier-ignore */}<FancyAnchor href="https://create-audiobook-from-url.patricktree.me/">Check it out <ExternalLink/></FancyAnchor>
+- {/* prettier-ignore */}<FancyAnchor href="https://cup-audio.com/app/">Check it out <ExternalLink/></FancyAnchor>
 
 Listen to <FancyAnchor href="https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make">"A turbulent AI era—and the critical choices ahead" by Bill Gates</FancyAnchor> to hear how it sounds:
 
@@ -60,7 +60,7 @@ The whole conversion pipeline runs as a durable workflow (Cloudflare Workflows) 
 Web pages mix the content a listener wants to hear with navigation, ads, consent UI, recommendations, and other unrelated elements. Deterministic extraction rules cannot separate them reliably across websites.
 
 Therefore, the application uses an LLM to select the elements worth narrating.  
-In simple terms, it asks: "If this page were an audiobook, what would belong in it?""
+In simple terms, it asks: "If this page were an audiobook, what would belong in it?"
 
 A simple approach would be to feed the whole HTML into the model and ask it to return the narration text itself.  
 However, that would create two problems:
@@ -96,8 +96,10 @@ I built a manually curated reference dataset from HTML sources across different 
 Each candidate consists of its model, prompt, tool schema, reasoning effort, temperature, token limit, and retry policy.  
 Comparing candidates against the evals allows me to make informed decisions about which model and prompt to use, to prevent regressions, and to measure the (cost) effect of changes in the prompt or model configuration.
 
-I evaluated different models and configurations, which is how I landed on Cloudflare Workers AI's `@cf/qwen/qwen3.8-27b` for the production configuration.  
+I initially chose Qwen 3.8 27B (via Cloudflare Workers AI) after evaluating different models and configurations.  
 It met the required quality at low cost; cheaper models didn't satisfy the evals.
+
+Latency turned out to be a problem, though: content selection was slow and repeatedly hit request timeouts. I compared other models and providers, then switched to Gemini 3.8 Flash through Cloudflare AI Gateway to bring that latency down. It matched the expected output in all existing eval cases while completing much faster. Having those evals made it possible to check that the speed improvement preserved the selection quality.
 
 Lesson: **Create evals early to avoid regressions and to enable informed decisions**.
 
@@ -110,7 +112,7 @@ Cup runs entirely on Cloudflare: Workers hosts the web application and API, Work
 | **Web application.** Renders the SPA and manages routing, server state, forms, and styling.                                  | React, Base UI, Vite, TanStack Router, TanStack Query, TanStack Form, Linaria CSS      |
 | **API.** Exposes the HTTP API and validates its request and response schemas.                                                | Hono, OpenAPI, `@hono/zod-openapi`                                                     |
 | **Page rendering and extraction.** Loads pages, including JavaScript-rendered content, and captures their HTML and metadata. | Playwright, Cloudflare Browser Run                                                     |
-| **Narration content selection.** Selects the original page elements worth narrating.                                         | Cloudflare Workers AI, OpenAI SDK, `@cf/qwen/qwen3.8-27b`                              |
+| **Narration content selection.** Selects the original page elements worth narrating.                                         | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash`                            |
 | **Text-to-speech.** Routes speech requests and generates an audio segment for each synchronization unit.                     | Cloudflare AI Gateway, Google AI Studio text-to-speech, `gemini-3.1-flash-tts-preview` |
 | **Conversion orchestration.** Runs the long-lived conversion with explicit timeouts, retries, and resumable stages.          | Cloudflare Workflows                                                                   |
 | **Application state.** Stores conversion grants and coordinates their mutable state.                                         | Cloudflare Durable Objects, SQLite, Drizzle ORM                                        |
