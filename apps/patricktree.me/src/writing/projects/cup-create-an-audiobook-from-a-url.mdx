@@ -1,6 +1,6 @@
 ---
 title: Cup - Create an Audiobook from a URL
-description: "Turns content behind a URL into natural-sounding narration.\nMP3, WebVTT captions, EPUB 3."
+description: "Turns content behind a URL into natural-sounding narration.\nRead along while it plays, segment by segment."
 tags: ["ai", "llm", "text-to-speech", "cloudflare", "webdev"]
 ---
 
@@ -11,11 +11,11 @@ Existing options fell short for me:
 - Screen readers are optimized for using interfaces. They announce interactive elements and therefore don't allow for uninterrupted listening.
 - Conventional read-aloud tools all sound robotic.
 - Android's Gemini assistant lets you "live share" your screen with the assistant, but then it can only access what is visible on screen (and it also sometimes paraphrases the text).
-- ...and none of those tools would let me export the result for offline listening, sharing, or playlists.
+- ...and none of those tools would remember my listening progress or have playlists.
 
-So I built **Cup**, a full-stack application that turns the content behind a URL into natural-sounding narration, synchronized text, and portable exports.
+So I built **Cup**, a full-stack application that turns the content behind a URL into an audiobook: natural-sounding narration with a clean, readable text synchronized to it.
 
-- {/* prettier-ignore */}<FancyAnchor href="https://github.com/patricktree/create-audiobook-from-url">GitHub source code</FancyAnchor>
+- {/* prettier-ignore */}<FancyAnchor href="https://github.com/patricktree/cup">GitHub source code</FancyAnchor>
 - {/* prettier-ignore */}<FancyAnchor href="https://cup-audio.com/app/">Check it out <ExternalLink/></FancyAnchor>
 
 Listen to <FancyAnchor href="https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make">"A turbulent AI era—and the critical choices ahead" by Bill Gates</FancyAnchor> to hear how it sounds:
@@ -31,29 +31,30 @@ Listen to <FancyAnchor href="https://www.gatesnotes.com/a-turbulent-ai-era-and-c
 
 ## Conversion Pipeline: From URL to Synchronized Audio
 
-The conversion pipeline looks like this:
+A conversion has two phases. Preparation runs once per URL and produces the text; speech is generated afterwards, segment by segment, as the player asks for it.
 
 ```text
-Source URL
-  -> rendered web page
-  -> (LLM) narration content selection
-  -> narration document and synchronization units
-  -> (LLM) speech generation for every unit
-  -> MP3 assembly and synchronization cues
-  -> EPUB 3, MP3, and WebVTT delivery
+Preparation (once per URL)
+  Source URL
+    -> rendered web page
+    -> (LLM) narration content selection
+    -> narration document and segments
+
+Playback (per segment, on demand)
+  Segment text
+    -> (LLM) speech generation
+    -> MP3 audio segment
 ```
 
 - The application accepts the URL of an HTML page.
 - Playwright loads it through Cloudflare Browser Run and captures the rendered HTML and metadata, including content produced by JavaScript.
 - An LLM selects the content worth narrating.
-- The content is split into chunks (so-called "synchronization units").
-- A TTS model generates speech for each unit.
-- Those speech segments are assembled into one MP3 track.
+- The content is turned into a narration document and split into segments (internally called "synchronization units").
+- When the player needs a segment, a TTS model generates speech for it and the result is stored as an independent MP3.
 
-The result consists of a narration document, one MP3 playback track, and synchronization cues connecting both.  
-The application derives EPUB 3 with Media Overlays, MP3, and WebVTT (i.e., captions) from it.
+The audiobook therefore consists of a narration document and one audio segment per unit. There is no single assembled audio file: the player plays the segments in sequence and highlights the corresponding text.
 
-The whole conversion pipeline runs as a durable workflow (Cloudflare Workflows) to make it reliable. Each step has explicit timeouts and retries, and a failed conversion can resume from the last successful stage instead of starting over.
+Both phases run as durable workflows (Cloudflare Workflows): one for preparation, and one per audio segment. Each step has explicit timeouts and retries. A failed preparation can be retried for the same conversion, and a failed segment can be retried on its own without affecting the audio that already exists.
 
 ## Content Selection: Keeping the Non-Deterministic Part Small
 
@@ -90,9 +91,9 @@ It reduces cost, reduces the impact of hallucinations, and improves testability.
 
 ## Evals: Preventing Regressions and Enabling Informed Decisions
 
-I built a manually curated reference dataset from HTML sources across different publishers, including news pages and blog posts. For each source, I reviewed the application's narration JSON and edited it into what I considered the ideal output.
+I built a manually curated reference dataset from HTML sources across different publishers, including news pages and blog posts. For each source, I reviewed the application's narration output and edited it into what I considered the ideal output.
 
-`vitest-evals` compares candidates against these input/output pairs.  
+`vitest-evals` compares candidates against these input/output pairs; the resulting segments must match the references exactly.  
 Each candidate consists of its model, prompt, tool schema, reasoning effort, temperature, token limit, and retry policy.  
 Comparing candidates against the evals allows me to make informed decisions about which model and prompt to use, to prevent regressions, and to measure the (cost) effect of changes in the prompt or model configuration.
 
@@ -105,22 +106,23 @@ Lesson: **Create evals early to avoid regressions and to enable informed decisio
 
 ## Technology Stack
 
-Cup runs entirely on Cloudflare: Workers hosts the web application and API, Workflows orchestrates conversions, and Durable Objects and R2 persist state and generated artifacts.
+Cup runs almost entirely on Cloudflare: Workers hosts the web application and API, Workflows orchestrates conversions, and Durable Objects and R2 persist state and generated artifacts.
 
-| Purpose                                                                                                                      | Technologies                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **Web application.** Renders the SPA and manages routing, server state, forms, and styling.                                  | React, Base UI, Vite, TanStack Router, TanStack Query, TanStack Form, Linaria CSS      |
-| **API.** Exposes the HTTP API and validates its request and response schemas.                                                | Hono, OpenAPI, `@hono/zod-openapi`                                                     |
-| **Page rendering and extraction.** Loads pages, including JavaScript-rendered content, and captures their HTML and metadata. | Playwright, Cloudflare Browser Run                                                     |
-| **Narration content selection.** Selects the original page elements worth narrating.                                         | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash`                            |
-| **Text-to-speech.** Routes speech requests and generates an audio segment for each synchronization unit.                     | Cloudflare AI Gateway, Google AI Studio text-to-speech, `gemini-3.1-flash-tts-preview` |
-| **Conversion orchestration.** Runs the long-lived conversion with explicit timeouts, retries, and resumable stages.          | Cloudflare Workflows                                                                   |
-| **Application state.** Stores conversion grants and coordinates their mutable state.                                         | Cloudflare Durable Objects, SQLite, Drizzle ORM                                        |
-| **Object storage.** Stores audio segments, assembled MP3 files, audiobook manifests, and generated exports.                  | Cloudflare R2                                                                          |
-| **Access control and verification.** Protects operator routes and verifies Cloudflare Access tokens.                         | Cloudflare Zero Trust Access, `jose`                                                   |
-| **Validation and date/time.** Validates structured data and handles date and time values.                                    | Zod, Temporal                                                                          |
-
-Cup produces MP3 audio, WebVTT captions, and EPUB 3 documents with Media Overlays.
+| Purpose                                                                                                                      | Technologies                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Web application.** Renders the SPA and manages routing, server state, forms, and styling.                                  | React, Base UI, Vite, TanStack Router, TanStack Query, TanStack Form, Linaria CSS |
+| **Mobile app.** Packages the same UI with native sign-in, sharing, and background playback.                                  | Capacitor                                                                         |
+| **API.** Exposes the HTTP API and validates its request and response schemas.                                                | Hono, OpenAPI, `@hono/zod-openapi`                                                |
+| **Page rendering and extraction.** Loads pages, including JavaScript-rendered content, and captures their HTML and metadata. | Playwright, Cloudflare Browser Run                                                |
+| **Narration content selection.** Selects the original page elements worth narrating.                                         | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash`                       |
+| **Text-to-speech.** Routes speech requests and generates an audio segment for each synchronization unit.                     | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash-lite-tts`              |
+| **Conversion orchestration.** Runs preparation and per-segment speech generation with explicit timeouts and retries.         | Cloudflare Workflows                                                              |
+| **Application state.** Stores accounts, trial grants, conversions, and duration accounting.                                  | Cloudflare Durable Objects, SQLite, Drizzle ORM                                   |
+| **Object storage.** Stores narration documents and audio segments.                                                           | Cloudflare R2                                                                     |
+| **Sign-in.** Authenticates users and issues the tokens the API verifies.                                                     | Supabase Auth, Google sign-in, `jose`                                             |
+| **Operator access.** Protects administrative routes.                                                                         | Cloudflare Zero Trust Access                                                      |
+| **Email.** Sends account-deletion notices.                                                                                   | Resend                                                                            |
+| **Validation and date/time.** Validates structured data and handles date and time values.                                    | Zod, Temporal                                                                     |
 
 ### Development and Testing
 
@@ -128,15 +130,16 @@ Cup produces MP3 audio, WebVTT captions, and EPUB 3 documents with Media Overlay
 | ------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | **Workspace and builds.** Manages dependencies and orchestrates builds.                                       | pnpm, Turborepo                         |
 | **Cloudflare development.** Runs and deploys the Cloudflare Worker.                                           | Wrangler                                |
+| **Infrastructure.** Manages the configuration of external services.                                           | Terraform                               |
 | **Formatting, type checks, linting.** Enforces formatting and applies static analysis (type checks, linting). | Oxfmt, TypeScript, Oxlint               |
 | **Tests and evals.** Covers unit behavior, end-to-end flows, and LLM output quality.                          | Vitest, Playwright Test, `vitest-evals` |
 
 ## Future Work
 
-- **Bring the costs down.** A conversion currently costs around $1, mostly for text-to-speech. Gemini provided the best voice quality I found, but reducing cost without sacrificing that quality remains the main challenge.
+- **Bring the costs down further.** Text-to-speech dominates the cost. Switching to a lighter Gemini TTS model and generating only what is listened to helped a lot, but voice quality per dollar remains the main trade-off.
 - **Support more input formats.** e.g. PDFs.
-- **Add real user accounts and payments.** Currently, the application is invite-only. I want to add sign-up, payments, and conversion history.
+- **Add payments.** Accounts have a free allowance, but there is no way to buy more yet.
 - **Improve synchronization beyond paragraphs.** Currently, the application synchronizes at paragraph boundaries. It should support sentence-level synchronization.
 - **Use different voices for authors and quotations.** The application could detect the gender of the author and use a corresponding voice, and it could detect quotations and use separate voices for them.
 - **Narrate images and other visuals.** The application could use a vision model to describe images and other visuals and narrate those descriptions.
-- **Evals for TTS quality.** Content-selection evals and deterministic tests covering the pipeline through synchronization-unit output give me high confidence in the text sent to the TTS model. The generated audio itself still needs evals to check how faithfully and naturally it narrates that text.
+- **Evals for TTS quality.** Content-selection evals and deterministic tests covering the pipeline through segment output give me high confidence in the text sent to the TTS model. The generated audio itself still needs evals to check how faithfully and naturally it narrates that text.
