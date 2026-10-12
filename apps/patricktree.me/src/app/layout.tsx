@@ -223,7 +223,7 @@ const RootContainer = styled.div`
  * loads use SSR
  */
 const blockingThemeScript = `(function() {
-  const match = document.cookie.match(new RegExp('(^| )' + ${CookieName.THEME} + '=([^;]+)'));
+  const match = document.cookie.match(new RegExp('(^| )${CookieName.THEME}=([^;]+)'));
   const persistedTheme = match ? match[2] : null;
 
   if (persistedTheme === '${ColorTheme.LIGHT}' || persistedTheme === '${ColorTheme.DARK}') {
