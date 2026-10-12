@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/turbo/schema.json",
   "noUpdateNotifier": true,
+  "agentGuidance": false,
   "concurrency": "100%",
   "globalEnv": ["DEPLOYMENT_ORIGIN", "ENABLE_EXPERIMENTAL_COREPACK"],
   "futureFlags": {

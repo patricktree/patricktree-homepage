@@ -21,19 +21,19 @@
     "turbo:lint:fix": "pnpm run turbo:lint --fix"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^3.1.0",
+    "@mdx-js/mdx": "^3.1.1",
     "@patricktree-stack/utils-ecma": "workspace:*",
-    "@types/hast": "^3.0.4",
+    "@types/hast": "^3.0.5",
     "@types/mdast": "^4.0.4",
-    "acorn": "^8.14.1",
+    "acorn": "^8.19.0",
     "refractor": "^5.0.0",
-    "rehype-prism-plus": "^2.0.1",
+    "rehype-prism-plus": "^2.0.2",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "unist-util-visit": "^5.0.0",
+    "unist-util-visit": "^5.1.0",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1",
-    "zod": "^3.24.3"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@patricktree-stack/config-oxlint": "workspace:*",

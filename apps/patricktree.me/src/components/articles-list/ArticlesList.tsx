@@ -42,8 +42,8 @@ export const ArticlesList: React.FC<ArticlesListProps> = ({ entries }) => {
 const ArticlesListContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: calc(3 * var(--spacing-base));
-  grid-column-gap: calc(3 * var(--spacing-base));
+  row-gap: calc(3 * var(--spacing-base));
+  column-gap: calc(3 * var(--spacing-base));
   align-items: stretch;
 
   /* stylelint-disable-next-line media-query-no-invalid -- works */

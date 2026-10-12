@@ -6,6 +6,7 @@
   ],
   "compilerOptions": {
     /* Modules */
+    "rewriteRelativeImportExtensions": true,
     "lib": ["dom", "dom.iterable", "es2019"],
     "target": "ES2019",
     "rootDir": "./src",

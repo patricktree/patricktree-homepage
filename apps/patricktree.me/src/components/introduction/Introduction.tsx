@@ -38,8 +38,8 @@ const IntroductionContainer = styled.section`
     "profile-picture message"
     "profile-picture message-details";
   grid-template-columns: max-content 1fr;
-  grid-row-gap: calc(0.5 * var(--spacing-base));
-  grid-column-gap: calc(3 * var(--spacing-base));
+  row-gap: calc(0.5 * var(--spacing-base));
+  column-gap: calc(3 * var(--spacing-base));
   align-items: start;
 
   align-self: center;

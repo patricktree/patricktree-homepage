@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@patricktree-stack/config-oxlint": "workspace:*",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.64.0",
     "@types/node": "catalog:",
     "@typescript/native": "catalog:",
     "oxlint": "catalog:",

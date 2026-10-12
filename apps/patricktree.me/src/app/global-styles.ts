@@ -344,7 +344,7 @@ export const cssPrismaTheme = css`
     word-spacing: normal;
     hyphens: none;
     word-break: normal;
-    word-wrap: normal;
+    overflow-wrap: normal;
     tab-size: 4;
     white-space: pre;
     background: none;

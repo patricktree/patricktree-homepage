@@ -11,6 +11,6 @@ export const commonStyles = {
     margin: -1px;
     overflow: hidden;
     border: 0;
-    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
   `,
 };

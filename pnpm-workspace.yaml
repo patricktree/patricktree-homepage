@@ -22,29 +22,27 @@ allowBuilds:
   unrs-resolver: true
 
 catalog:
-  "@pigment-css/nextjs-plugin": ^0.0.30
-  "@types/node": ^24
+  "@pigment-css/nextjs-plugin": ^0.0.31
+  "@types/node": ^24.19.2
   "@typescript/native": "npm:typescript@^7.0.2"
-  oxfmt: ^0.58.0
+  oxfmt: ^0.72.0
   # oxlint >=1.75 requires the renumbered oxlint-tsgolint 7.x line (it tracks the TypeScript version)
-  oxlint: ^1.75.0
-  oxlint-tsgolint: ^7.0.2001
-  postcss: ^8.5.3
-  postcss-styled-syntax: ^0.7.1
-  stylelint: ^16.19.1
-  stylelint-config-recess-order: ^6.0.0
-  stylelint-config-standard: ^38.0.0
+  oxlint: ^1.87.0
+  oxlint-tsgolint: ^7.0.2004
+  postcss: ^8.5.29
+  postcss-styled-syntax: ^0.7.3
+  stylelint: ^17.16.0
+  stylelint-config-recess-order: ^7.8.0
+  stylelint-config-standard: ^40.0.0
+  stylelint-order: ^8.1.2
   typescript: "npm:@typescript/typescript6@^6.0.2"
 
 packageExtensions:
-  eslint-plugin-react-you-might-not-need-an-effect@1.0.1:
+  eslint-plugin-react-you-might-not-need-an-effect@1.0.2:
     # "eslint-plugin-react-you-might-not-need-an-effect" defines eslint as peer dependency, but that is not required when used by oxlint --> make it optional
     peerDependenciesMeta:
       eslint:
         optional: true
-
-patchedDependencies:
-  "@wyw-in-js/transform@0.5.5": patches/@wyw-in-js__transform@0.5.5.patch
 
 # handle peer dependencies in a strict way
 autoInstallPeers: false
