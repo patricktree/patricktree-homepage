@@ -2,3 +2,4 @@
 	path = .patricktree-stack
 	url = https://github.com/patricktree/patricktree-stack
 	branch = main
+	update = rebase
