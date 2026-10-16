@@ -15,7 +15,7 @@ This monorepo is rooted around `pnpm` and contains the `apps/patricktree.me` Nex
 - `pnpm format` / `pnpm format:check`: apply/check oxfmt across the workspace.
 - `pnpm fix`: `format` followed by `lint:fix`.
 - `pnpm declutter`: run knip to find unused files, exports and dependencies.
-- `pnpm validate`: build, lint, test and `declutter` in one go.
+- `pnpm validate`: build, lint, test, `declutter`, and the Mermaid diagram check in one go.
 - `pnpm --filter @patricktree-homepage/e2e-test run e2e-test`: launch Playwright specs against the homepage URLs.
 - Validation when you think you are finished: `pnpm install && pnpm run fix && pnpm run validate && pnpm run format:check`.
 

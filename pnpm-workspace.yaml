@@ -15,6 +15,7 @@ packages:
   - .patricktree-stack/tooling/config-turbo-typescript
   - .patricktree-stack/tooling/config-typescript
   - .patricktree-stack/tooling/config-wyw-in-js
+  - .patricktree-stack/tooling/mermaid-check
 
 allowBuilds:
   "@vercel/speed-insights": true
