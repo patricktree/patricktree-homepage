@@ -520,6 +520,9 @@ importers:
       '@patricktree-stack/config-typescript':
         specifier: workspace:*
         version: link:../config-typescript
+      '@patricktree-stack/config-vitest':
+        specifier: workspace:*
+        version: link:../config-vitest
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -535,6 +538,12 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
+      vite:
+        specifier: 'catalog:'
+        version: 8.3.4(@types/node@24.19.2)
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.4(@types/node@24.19.2)(happy-dom@20.14.6)(vite@8.3.4(@types/node@24.19.2))
 
   .patricktree-stack/tooling/submodule-check:
     devDependencies:
@@ -8351,6 +8360,28 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.19.2
       fsevents: 2.3.3
+
+  vitest@5.0.4(@types/node@24.19.2)(happy-dom@20.14.6)(vite@8.3.4(@types/node@24.19.2)):
+    dependencies:
+      '@types/chai': 5.2.3
+      '@vitest/mocker': 5.0.4(vite@8.3.4(@types/node@24.19.2))
+      chai: 6.3.0
+      es-module-lexer: 2.3.2
+      expect-type: 1.4.0
+      magic-string: 1.4.3
+      obug: 3.0.0
+      picomatch: 4.0.7
+      std-env: 4.3.0
+      tinybench: 6.2.2
+      tinyexec: 1.3.1
+      tinyglobby: 0.2.17
+      vite: 8.3.4(@types/node@24.19.2)
+      why-is-node-running: 3.2.1
+    optionalDependencies:
+      '@types/node': 24.19.2
+      happy-dom: 20.14.6
+    transitivePeerDependencies:
+      - msw
 
   vitest@5.0.4(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)):
     dependencies:
