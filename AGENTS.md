@@ -37,6 +37,8 @@ Playwright (`@playwright/test`) provides regression coverage from `test/e2e-test
 
 Commit messages follow Conventional Commits (`feat(patricktree.me): add progress bar`, `chore(deps): bump next`). Keep each change focused, describe breaking behavior in the footer, and avoid mixing refactors with feature work. Pull requests should mention the problem statement, link issues, list local verification steps (`pnpm build`, `pnpm lint`, relevant Playwright suites), and attach screenshots or GIFs for UI changes.
 
+The Husky pre-commit and pre-push hooks run `submodule-check` (from `.patricktree-stack/tooling/submodule-check`), which rejects commits that move the `.patricktree-stack` pointer backwards, e.g. after staging a lagging submodule checkout during rebase conflict resolution.
+
 ## Security & Configuration Tips
 
 The Node.js version comes from `package.json#devEngines.runtime`; enable Corepack so `pnpm@12.11.2` is locked. Never commit `.env*`; keep secrets in `.env.local` or platform settings. When scripts generate artifacts (favicons, CSS modules, RSS), run them as defined in the package scripts so committed assets align with production expectations.
