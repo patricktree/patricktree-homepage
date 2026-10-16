@@ -17,6 +17,7 @@ packages:
   - .patricktree-stack/tooling/config-vitest
   - .patricktree-stack/tooling/config-wyw-in-js
   - .patricktree-stack/tooling/mermaid-check
+  - .patricktree-stack/tooling/submodule-check
 
 allowBuilds:
   "@vercel/speed-insights": true

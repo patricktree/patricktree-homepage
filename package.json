@@ -23,6 +23,7 @@
     "@patricktree-stack/config-oxfmt": "workspace:*",
     "@patricktree-stack/config-typescript": "workspace:*",
     "@patricktree-stack/mermaid-check": "workspace:*",
+    "@patricktree-stack/submodule-check": "workspace:*",
     "@typescript/native": "catalog:",
     "del-cli": "^8.0.1",
     "husky": "^9.1.7",

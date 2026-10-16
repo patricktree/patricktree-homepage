@@ -1,3 +1,4 @@
+pnpm exec submodule-check staged
 pnpm run format:check
 pnpm run validate
 pnpm run zizmor
