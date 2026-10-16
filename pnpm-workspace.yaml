@@ -14,6 +14,7 @@ packages:
   - .patricktree-stack/tooling/config-stylelint
   - .patricktree-stack/tooling/config-turbo-typescript
   - .patricktree-stack/tooling/config-typescript
+  - .patricktree-stack/tooling/config-vitest
   - .patricktree-stack/tooling/config-wyw-in-js
   - .patricktree-stack/tooling/mermaid-check
 
@@ -37,6 +38,8 @@ catalog:
   stylelint-config-standard: ^40.0.0
   stylelint-order: ^8.1.2
   typescript: "npm:@typescript/typescript6@^6.0.2"
+  vite: ^8.3.4
+  vitest: ^5.0.3
 
 packageExtensions:
   eslint-plugin-react-you-might-not-need-an-effect@1.0.2:
