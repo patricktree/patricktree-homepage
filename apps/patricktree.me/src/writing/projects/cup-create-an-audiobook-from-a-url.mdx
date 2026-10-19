@@ -31,7 +31,7 @@ Listen to <FancyAnchor href="https://www.gatesnotes.com/a-turbulent-ai-era-and-c
 
 ## Conversion Pipeline: From URL to Synchronized Audio
 
-A conversion has two phases. Preparation runs once per URL and produces the text; speech is generated afterwards, segment by segment, as the player asks for it.
+A conversion has two phases. Preparation runs once per URL and produces the text; speech for the whole text is generated right afterwards, all segments in parallel.
 
 ```text
 Preparation (once per URL)
@@ -40,21 +40,19 @@ Preparation (once per URL)
     -> (LLM) narration content selection
     -> narration document and segments
 
-Playback (per segment, on demand)
+Synthesis (all segments in parallel, after preparation)
   Segment text
     -> (LLM) speech generation
     -> MP3 audio segment
 ```
 
 - The application accepts the URL of an HTML page.
-- Playwright loads it through Cloudflare Browser Run and captures the rendered HTML and metadata, including content produced by JavaScript.
+- Playwright loads it through Cloudflare Browser Run and captures the rendered HTML and metadata, including content produced by JavaScript. A second browser session fetches the cover image the page declares.
 - An LLM selects the content worth narrating.
 - The content is turned into a narration document and split into segments (internally called "synchronization units").
-- When the player needs a segment, a TTS model generates speech for it and the result is stored as an independent MP3.
+- A TTS model then generates speech for every segment at once, and each result is stored as an independent MP3.
 
-The audiobook therefore consists of a narration document and one audio segment per unit. There is no single assembled audio file: the player plays the segments in sequence and highlights the corresponding text.
-
-Both phases run as durable workflows (Cloudflare Workflows): one for preparation, and one per audio segment. Each step has explicit timeouts and retries. A failed preparation can be retried for the same conversion, and a failed segment can be retried on its own without affecting the audio that already exists.
+Both phases run as durable workflows (Cloudflare Workflows): one for preparation, and one per audio segment. Each step has explicit timeouts and retries. A failed preparation can be retried for the same conversion. If segments still fail after their retries, the reader marks them and offers a single Retry for all of them, or playing without them; the audio that already exists stays untouched.
 
 ## Content Selection: Keeping the Non-Deterministic Part Small
 
@@ -108,21 +106,21 @@ Lesson: **Create evals early to avoid regressions and to enable informed decisio
 
 Cup runs almost entirely on Cloudflare: Workers hosts the web application and API, Workflows orchestrates conversions, and Durable Objects and R2 persist state and generated artifacts.
 
-| Purpose                                                                                                                      | Technologies                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Web application.** Renders the SPA and manages routing, server state, forms, and styling.                                  | React, Base UI, Vite, TanStack Router, TanStack Query, TanStack Form, Linaria CSS |
-| **Mobile app.** Packages the same UI with native sign-in, sharing, and background playback.                                  | Capacitor                                                                         |
-| **API.** Exposes the HTTP API and validates its request and response schemas.                                                | Hono, OpenAPI, `@hono/zod-openapi`                                                |
-| **Page rendering and extraction.** Loads pages, including JavaScript-rendered content, and captures their HTML and metadata. | Playwright, Cloudflare Browser Run                                                |
-| **Narration content selection.** Selects the original page elements worth narrating.                                         | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash`                       |
-| **Text-to-speech.** Routes speech requests and generates an audio segment for each synchronization unit.                     | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash-lite-tts`              |
-| **Conversion orchestration.** Runs preparation and per-segment speech generation with explicit timeouts and retries.         | Cloudflare Workflows                                                              |
-| **Application state.** Stores accounts, trial grants, conversions, and duration accounting.                                  | Cloudflare Durable Objects, SQLite, Drizzle ORM                                   |
-| **Object storage.** Stores narration documents and audio segments.                                                           | Cloudflare R2                                                                     |
-| **Sign-in.** Authenticates users and issues the tokens the API verifies.                                                     | Supabase Auth, Google sign-in, `jose`                                             |
-| **Operator access.** Protects administrative routes.                                                                         | Cloudflare Zero Trust Access                                                      |
-| **Email.** Sends account-deletion notices.                                                                                   | Resend                                                                            |
-| **Validation and date/time.** Validates structured data and handles date and time values.                                    | Zod, Temporal                                                                     |
+| Purpose                                                                                                                                                          | Technologies                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Web application.** Renders the SPA and manages routing, server state, forms, client lifecycles (sign-in, playback), and styling.                               | React, Base UI, Vite, TanStack Router, TanStack Query, TanStack Form, XState, Linaria CSS |
+| **Mobile app.** Packages the same UI with native sign-in, sharing, and background playback.                                                                      | Capacitor                                                                                 |
+| **API.** Exposes the HTTP API and validates its request and response schemas.                                                                                    | Hono, OpenAPI, `@hono/zod-openapi`                                                        |
+| **Page rendering and extraction.** Loads pages, including JavaScript-rendered content, captures their HTML and metadata, and fetches their declared cover image. | Playwright, Cloudflare Browser Run                                                        |
+| **Narration content selection.** Selects the original page elements worth narrating.                                                                             | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash`                               |
+| **Text-to-speech.** Routes speech requests and generates an audio segment for each synchronization unit.                                                         | Cloudflare AI Gateway, Google AI Studio, `gemini-3.8-flash-lite-tts`                      |
+| **Conversion orchestration.** Runs preparation and per-segment speech generation with explicit timeouts and retries.                                             | Cloudflare Workflows                                                                      |
+| **Application state.** Stores accounts, trial grants, conversions, and duration accounting.                                                                      | Cloudflare Durable Objects, SQLite, Drizzle ORM                                           |
+| **Object storage.** Stores narration documents and audio segments.                                                                                               | Cloudflare R2                                                                             |
+| **Sign-in.** Authenticates users and issues the tokens the API verifies.                                                                                         | Supabase Auth, Google sign-in, `jose`                                                     |
+| **Operator access.** Protects administrative routes.                                                                                                             | Cloudflare Zero Trust Access                                                              |
+| **Email.** Sends account-deletion notices.                                                                                                                       | Resend                                                                                    |
+| **Validation and date/time.** Validates structured data and handles date and time values.                                                                        | Zod, Temporal                                                                             |
 
 ### Development and Testing
 
@@ -136,7 +134,7 @@ Cup runs almost entirely on Cloudflare: Workers hosts the web application and AP
 
 ## Future Work
 
-- **Bring the costs down further.** Text-to-speech dominates the cost. Switching to a lighter Gemini TTS model and generating only what is listened to helped a lot, but voice quality per dollar remains the main trade-off.
+- **Bring the costs down further.** Text-to-speech dominates the cost. Switching to a lighter Gemini TTS model helped a lot, still voice quality per dollar remains challenging.
 - **Support more input formats.** e.g. PDFs.
 - **Add payments.** Accounts have a free allowance, but there is no way to buy more yet.
 - **Improve synchronization beyond paragraphs.** Currently, the application synchronizes at paragraph boundaries. It should support sentence-level synchronization.
