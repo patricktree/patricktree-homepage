@@ -647,6 +647,9 @@ importers:
       '@opentelemetry/api':
         specifier: ^1.9.1
         version: 1.9.1
+      '@patricktree-homepage/config-oxlint':
+        specifier: workspace:*
+        version: link:../../platform/config-oxlint
       '@patricktree-stack/config-nextjs':
         specifier: workspace:*
         version: link:../../.patricktree-stack/tooling/config-nextjs
@@ -738,9 +741,9 @@ importers:
         specifier: ^4.6.5
         version: 4.6.5
     devDependencies:
-      '@patricktree-stack/config-oxlint':
+      '@patricktree-homepage/config-oxlint':
         specifier: workspace:*
-        version: link:../../.patricktree-stack/tooling/config-oxlint
+        version: link:../../platform/config-oxlint
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -781,9 +784,9 @@ importers:
         specifier: ^1.3.3
         version: 1.3.3
     devDependencies:
-      '@patricktree-stack/config-oxlint':
+      '@patricktree-homepage/config-oxlint':
         specifier: workspace:*
-        version: link:../../.patricktree-stack/tooling/config-oxlint
+        version: link:../../platform/config-oxlint
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -806,9 +809,9 @@ importers:
         specifier: ^1.3.3
         version: 1.3.3
     devDependencies:
-      '@patricktree-stack/config-oxlint':
+      '@patricktree-homepage/config-oxlint':
         specifier: workspace:*
-        version: link:../../.patricktree-stack/tooling/config-oxlint
+        version: link:../../platform/config-oxlint
       '@typescript/native':
         specifier: 'catalog:'
         version: typescript@7.0.2
@@ -822,15 +825,27 @@ importers:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
 
+  platform/config-oxlint:
+    dependencies:
+      '@patricktree-stack/config-oxlint':
+        specifier: workspace:*
+        version: link:../../.patricktree-stack/tooling/config-oxlint
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.87.0(oxlint-tsgolint@7.0.2004)
+      oxlint-tsgolint:
+        specifier: 'catalog:'
+        version: 7.0.2004
+
   test/e2e-test:
     dependencies:
       '@patricktree-stack/fetch-sitemap-locations':
         specifier: workspace:*
         version: link:../../.patricktree-stack/libs/fetch-sitemap-locations
     devDependencies:
-      '@patricktree-stack/config-oxlint':
+      '@patricktree-homepage/config-oxlint':
         specifier: workspace:*
-        version: link:../../.patricktree-stack/tooling/config-oxlint
+        version: link:../../platform/config-oxlint
       '@playwright/test':
         specifier: ^1.64.0
         version: 1.64.0

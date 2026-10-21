@@ -21,7 +21,7 @@
     "@patricktree-stack/fetch-sitemap-locations": "workspace:*"
   },
   "devDependencies": {
-    "@patricktree-stack/config-oxlint": "workspace:*",
+    "@patricktree-homepage/config-oxlint": "workspace:*",
     "@playwright/test": "^1.64.0",
     "@types/node": "catalog:",
     "@typescript/native": "catalog:",

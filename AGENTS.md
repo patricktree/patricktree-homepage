@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This monorepo is rooted around `pnpm` and contains the `apps/patricktree.me` Next.js app. Shared UI, MDX, and utility code sits under `packages/*`, and repo-local configuration (TypeScript, Stylelint) lives in `platform/*`. `.patricktree-stack/` is a git submodule holding the shared baseline used by patricktree web-app repositories - do not edit it from here, change it in its own repository. End-to-end automation runs from `test/e2e-test`, keeping Playwright specs and snapshots separate from runtime bundles.
+This monorepo is rooted around `pnpm` and contains the `apps/patricktree.me` Next.js app. Shared UI, MDX, and utility code sits under `packages/*`, and repo-local configuration (the oxlint layer every workspace project extends) lives in `platform/*`. `.patricktree-stack/` is a git submodule holding the shared baseline used by patricktree web-app repositories - do not edit it from here, change it in its own repository. End-to-end automation runs from `test/e2e-test`, keeping Playwright specs and snapshots separate from runtime bundles.
 
 ## Build, Test, and Development Commands
 

@@ -24,7 +24,7 @@
     "tiny-invariant": "^1.3.3"
   },
   "devDependencies": {
-    "@patricktree-stack/config-oxlint": "workspace:*",
+    "@patricktree-homepage/config-oxlint": "workspace:*",
     "@typescript/native": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",

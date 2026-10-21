@@ -1,8 +1,10 @@
 import { config as baseConfig } from "@patricktree-stack/config-oxlint/oxlint-base.js";
 import { defineConfig } from "oxlint";
 
+import { config as repoConfig } from "@patricktree-homepage/config-oxlint/oxlint-base.js";
+
 export default defineConfig({
-  extends: [baseConfig],
+  extends: [repoConfig],
   /* `plugins` overwrites the base set instead of merging, so the base plugins are repeated here */
   plugins: [
     ...(baseConfig.plugins ?? []),

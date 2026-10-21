@@ -1,0 +1,10 @@
+{
+  "name": "@patricktree-homepage/config-oxlint",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@patricktree-stack/config-oxlint": "workspace:*",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:"
+  }
+}
